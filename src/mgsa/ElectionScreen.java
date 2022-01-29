@@ -1,6 +1,6 @@
 package mgsa;
 
-import elections.ElectionManager;
+import elections.LoadElection;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -44,7 +44,7 @@ public class ElectionScreen implements Screen {
                     String s = (String) t.getTransferData(DataFlavor.stringFlavor);
                     if (!paste.equals(s)) {
                         paste = s;
-                        ElectionManager.runElection(paste);
+                        LoadElection.runElection(paste);
                     }
                 }
             } catch (Exception ex) {

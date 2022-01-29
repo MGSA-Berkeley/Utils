@@ -1,8 +1,8 @@
 package elections;
 
-import java.util.Arrays;
+import java.util.List;
 
-public class ElectionManager {
+public class LoadElection {
 
     private static final String tab = "\t";
     private static final String newline = "\n";
@@ -28,38 +28,34 @@ public class ElectionManager {
             for (int j = 0; j < splitlines[i + 1].length; j++) {
                 ballots[i][j] = parse(splitlines[i + 1][j]);
                 if (ballots[i][j] < 0 || ballots[i][j] > numcandidates) {
-                    throw new IllegalArgumentException("Ballot" + (i + 1) + " has an illegal vote");
+                    throw new IllegalArgumentException("Ballot " + (i + 1) + " has an illegal vote");
                 }
             }
-            System.out.println(Arrays.toString(ballots[i]));
         }
-        String[][] cleanballots = cleanballots(candidates, ballots);
-        for (String[] s : cleanballots) {
-            System.out.println(Arrays.toString(s));
-        }
+        List<ElectionState> record = RunElection.runElection(7, candidates.length, cleanballots(candidates, ballots));
     }
 
-    private static String[][] cleanballots(String[] candidates, int[][] ballots) {
-        String[][] cleanballots = new String[ballots.length][];
+    private static int[][] cleanballots(String[] candidates, int[][] ballots) {
+        int[][] cleanballots = new int[ballots.length][];
         for (int i = 0; i < ballots.length; i++) {
             cleanballots[i] = cleanballot(candidates, ballots[i]);
         }
         return cleanballots;
     }
 
-    private static String[] cleanballot(String[] candidates, int[] ballot) {
+    private static int[] cleanballot(String[] candidates, int[] ballot) {
         int len = 0;
         for (int i : ballot) {
             if (i != 0) {
                 len++;
             }
         }
-        String[] cleanballot = new String[len];
+        int[] cleanballot = new int[len];
         len = 0;
         for (int i = 1; i <= candidates.length; i++) {
             for (int j = 0; j < ballot.length; j++) {
                 if (ballot[j] == i) {
-                    cleanballot[len++] = candidates[j];
+                    cleanballot[len++] = j;
                     break;
                 }
             }
