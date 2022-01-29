@@ -102,4 +102,12 @@ public class HomeScreen implements Screen {
         }
         click = null;
     }
+
+    @Override
+    public void keyPressed(int key) {
+    }
+
+    @Override
+    public void keyReleased(int key) {
+    }
 }

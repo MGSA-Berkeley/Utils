@@ -21,6 +21,14 @@ public class MainCanvas extends JComponent {
         screen.mouseReleased();
     }
 
+    public void keyPressed(int key) {
+        screen.keyPressed(key);
+    }
+
+    public void keyReleased(int key) {
+        screen.keyReleased(key);
+    }
+
     public void setScreen(Screen screen) {
         this.screen = screen;
     }

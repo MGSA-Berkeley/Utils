@@ -21,4 +21,12 @@ public class OfficeDrawScreen implements Screen {
     @Override
     public void mouseReleased() {
     }
+
+    @Override
+    public void keyPressed(int key) {
+    }
+
+    @Override
+    public void keyReleased(int key) {
+    }
 }

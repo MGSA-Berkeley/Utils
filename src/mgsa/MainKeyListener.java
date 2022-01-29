@@ -17,9 +17,11 @@ public class MainKeyListener implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        canvas.keyPressed(e.getKeyCode());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        canvas.keyReleased(e.getKeyCode());
     }
 }
