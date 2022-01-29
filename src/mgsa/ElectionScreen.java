@@ -44,7 +44,7 @@ public class ElectionScreen implements Screen {
                     String s = (String) t.getTransferData(DataFlavor.stringFlavor);
                     if (!paste.equals(s)) {
                         paste = s;
-                        LoadElection.runElection(paste);
+                        LoadElection.loadElection(paste);
                     }
                 }
             } catch (Exception ex) {

@@ -3,11 +3,11 @@ package elections;
 import java.util.List;
 
 public class LoadElection {
-
+    
     private static final String tab = "\t";
     private static final String newline = "\n";
-
-    public static void runElection(String rawpaste) {
+    
+    public static void loadElection(String rawpaste) {
         String[] rawlines = rawpaste.split(newline);
         int numlines = rawlines.length;
         String[][] splitlines = new String[numlines][];
@@ -32,9 +32,9 @@ public class LoadElection {
                 }
             }
         }
-        List<ElectionState> record = RunElection.runElection(7, candidates.length, cleanballots(candidates, ballots));
+        RunElection.runElection(5, candidates.length, cleanballots(candidates, ballots));
     }
-
+    
     private static int[][] cleanballots(String[] candidates, int[][] ballots) {
         int[][] cleanballots = new int[ballots.length][];
         for (int i = 0; i < ballots.length; i++) {
@@ -42,7 +42,7 @@ public class LoadElection {
         }
         return cleanballots;
     }
-
+    
     private static int[] cleanballot(String[] candidates, int[] ballot) {
         int len = 0;
         for (int i : ballot) {
@@ -65,7 +65,7 @@ public class LoadElection {
         }
         return cleanballot;
     }
-
+    
     private static int parse(String s) {
         if (!s.matches("^[0-9]*[^0-9]*$")) {
             throw new IllegalArgumentException("Cannot parse vote: " + s);
