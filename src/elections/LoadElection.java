@@ -1,5 +1,6 @@
 package elections;
 
+import java.io.IOException;
 import java.util.List;
 
 public class LoadElection {
@@ -7,7 +8,7 @@ public class LoadElection {
     private static final String tab = "\t";
     private static final String newline = "\n";
     
-    public static void loadElection(String rawpaste) {
+    public static void loadElection(String rawpaste) throws IOException {
         String[] rawlines = rawpaste.split(newline);
         int numlines = rawlines.length;
         String[][] splitlines = new String[numlines][];
@@ -32,7 +33,7 @@ public class LoadElection {
                 }
             }
         }
-        RunElection.runElection(5, candidates.length, cleanballots(candidates, ballots));
+        RunElection.runElection(5, candidates, cleanballots(candidates, ballots));
     }
     
     private static int[][] cleanballots(String[] candidates, int[][] ballots) {

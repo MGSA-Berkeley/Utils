@@ -2,11 +2,14 @@ package mgsa;
 
 import elections.LoadElection;
 import java.awt.Graphics;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -47,8 +50,8 @@ public class ElectionScreen implements Screen {
                         LoadElection.loadElection(paste);
                     }
                 }
-            } catch (Exception ex) {
-                System.out.println(ex);
+            } catch (HeadlessException | UnsupportedFlavorException | IOException ex) {
+                ex.printStackTrace(System.out);
                 System.exit(0);
             }
         }

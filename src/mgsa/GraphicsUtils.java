@@ -12,8 +12,12 @@ import java.awt.font.TextLayout;
 public class GraphicsUtils {
 
     public static final Color BayFog = new Color(221, 213, 199);
-    public static final Color Grey = new Color(238, 238, 238);
     public static final Color Black = new Color(0, 0, 0);
+    public static final Color CaliforniaGolf = new Color(253, 181, 21);
+    public static final Color GoldenGate = new Color(237, 78, 51);
+    public static final Color Grey = new Color(238, 238, 238);
+    public static final Color Lawrence = new Color(0, 176, 218);
+    public static final Color SoyBean = new Color(133, 148, 56);
 
     private static final String sample1 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String sample2 = "abcdefhiklmnorstuvwxzABCDEFGHIJKLMNOPRSTUVWXYZ";

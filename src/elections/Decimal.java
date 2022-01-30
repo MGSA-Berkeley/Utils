@@ -20,9 +20,10 @@ public class Decimal implements Comparable<Decimal> {
         return new Decimal(BigInteger.valueOf(n).multiply(denom));
     }
 
-    /*public BigInteger val() {
+    public BigInteger val() {
         return val;
-    }*/
+    }
+
     public int signum() {
         return val.signum();
     }

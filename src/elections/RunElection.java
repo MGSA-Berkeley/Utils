@@ -1,5 +1,6 @@
 package elections;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,10 +16,10 @@ public class RunElection {
     private static final Decimal epsilon = new Decimal(BigInteger.ONE);
     private static final Decimal omega = new Decimal(BigInteger.TEN.pow(3));
 
-    public static void runElection(int numseats, int numcandidates, int[][] ballots) {
+    public static void runElection(int numseats, String[] candidates, int[][] ballots) throws IOException {
         List<ElectionState> record = new ArrayList<>();
-        stepA(numseats, numcandidates, ballots, record);
-        DisplayElection.displayElection(numseats, numcandidates, record);
+        stepA(numseats, candidates.length, ballots, record);
+        DisplayElection.displayElection(numseats, candidates, record);
     }
 
     //Initialize Election
@@ -182,7 +183,7 @@ public class RunElection {
             }
         }
         int numtiedcandidates = tiedcandidates.size();
-        Random randy = new Random(record.hashCode());
+        Random randy = new Random(Arrays.deepHashCode(ballots));
         int randomindex = randy.nextInt(numtiedcandidates);
         int tiedcandidate = tiedcandidates.get(randomindex);
         current = current.setCandidateState(tiedcandidate, CandidateState.DEFEATED);
