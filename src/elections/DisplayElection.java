@@ -32,6 +32,15 @@ public class DisplayElection {
                 }
             }
         }
+        FontMetrics metrics = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB).getGraphics().getFontMetrics(font);
+        int maxlen = 0;
+        for (String candidate : candidates) {
+            int len = metrics.stringWidth(candidate);
+            if (len > maxlen) {
+                maxlen = len;
+            }
+        }
+        int w = barwidth + maxlen + 3 * (padding + 1);
         int[] ordering = candidateOrdering(numcandidates, record);
         String[] reorderedcandidates = new String[numcandidates];
         for (int i = 0; i < numcandidates; i++) {
@@ -46,27 +55,84 @@ public class DisplayElection {
                 states[i] = electionstate.getCandidateState(ordering[i]);
             }
             Decimal quota = electionstate.getQuota();
-            BufferedImage img = displayElectionState(reorderedcandidates, states, votes, maxvote, quota);
+            BufferedImage img = displayElectionState(maxlen, reorderedcandidates, states, votes, maxvote, quota);
             ImageIO.write(img, "png", new File("C:\\Users\\thoma\\website\\election\\round" + round + ".png"));
             round++;
         }
-
         List<String> sb = new ArrayList<>();
         Path file = Paths.get("C:\\Users\\thoma\\website\\election\\election.html");
         sb.add("<html>");
         sb.add("<head>");
         sb.add("<title>" + timestring + " MGSA Election</title>");
         sb.add("<style>");
-        sb.add("body {font-family: sans-serif; background-color: #003262;}");
+        sb.add("body {text-align:center; font-family: sans-serif; color:#FDB515; background-color: #003262;}");
+        sb.add(".infobox {margin: auto; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; "
+                + "width: " + w + "px; border: 1px solid black; padding: " + cssinpadding + "px; background-color: #EEEEEE; "
+                + "text-align:left; color:#000000;}");
+        sb.add("img {display: block; margin-left: auto; margin-right: auto;}");
         sb.add("</style>");
         sb.add("</head>");
         sb.add("<body>");
-        sb.add("<h1 style=\"text-align:center;color:#FDB515;\">" + timestring + " MGSA Election</h1>");
+        sb.add("<h1>" + timestring + " MGSA Election</h1>");
+        sb.add("<h2>There were " + numcandidates + " candidates and " + numseats + " open seats</h2>");
+        sb.add("<h2>The election used Meek's STV algorithm</h2>");
+        List<String> elected = new ArrayList<>();
+        List<String> defeated = new ArrayList<>();
+        for (round = 0; round < record.size(); round++) {
+            List<String> newelected = new ArrayList<>();
+            List<String> newdefeated = new ArrayList<>();
+            ElectionState electionstate = record.get(round);
+            for (int i = 0; i < numcandidates; i++) {
+                int candidate = ordering[i];
+                String candidatename = candidates[candidate];
+                CandidateState candidatestate = electionstate.getCandidateState(candidate);
+                if (candidatestate == CandidateState.ELECTED && !elected.contains(candidatename)) {
+                    elected.add(candidatename);
+                    newelected.add(candidatename);
+                } else if (candidatestate == CandidateState.DEFEATED && !defeated.contains(candidatename)) {
+                    defeated.add(candidatename);
+                    newdefeated.add(candidatename);
+                }
+            }
+            String text = "After " + (round == 0 ? "distributing the initial" : "reallocating") + " votes, ";
+            if (newelected.isEmpty() && newdefeated.size() == 1) {
+                text += newdefeated.get(0) + " is defeated:";
+            } else if (!newelected.isEmpty() && newdefeated.isEmpty()) {
+                text += winners(newelected) + ":";
+            } else {
+                throw new IllegalArgumentException("Incorrect pattern of elections and defeats");
+            }
+            sb.add("<div class=\"infobox\">" + text + "</div>");
+            sb.add("<div style=\"height: " + cssoutpadding + "px;\">&nbsp;</div>");
+            sb.add("<img src=\"round" + (round + 1) + ".png\">");
+            sb.add("<div style=\"height: " + cssoutpadding + "px;\">&nbsp;</div>");
+        }
+        sb.add("<div class=\"infobox\">" + winners(elected) + "!</div>");
         sb.add("</body>");
         sb.add("</html>");
         Files.write(file, sb, StandardCharsets.UTF_8);
-
         System.exit(0);
+    }
+
+    private static String winners(List<String> names) {
+        int len = names.size();
+        if (len == 0) {
+            throw new IllegalArgumentException("No winners");
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            sb.append(names.get(i));
+            if (i != len - 1 && len > 2) {
+                sb.append(",");
+            }
+            sb.append(" ");
+            if (i == len - 2) {
+                sb.append("and ");
+            }
+        }
+        sb.append(len == 1 ? "is" : "are");
+        sb.append(" elected");
+        return sb.toString();
     }
 
     private static int[] candidateOrdering(int numcandidates, List<ElectionState> record) {
@@ -92,7 +158,7 @@ public class DisplayElection {
                     } else if (state1 == CandidateState.HOPEFUL && state2 == CandidateState.ELECTED) {
                         return 1;
                     } else if (state1 == CandidateState.HOPEFUL && state2 == CandidateState.HOPEFUL) {
-                        return record.get(i+1).getVote(id2).compareTo(record.get(i+1).getVote(id1));
+                        return record.get(i + 1).getVote(id2).compareTo(record.get(i + 1).getVote(id1));
                     } else {
                         throw new IllegalArgumentException("Defeated candidate was elected");
                     }
@@ -131,22 +197,17 @@ public class DisplayElection {
     private static final int barheight = 16; // height of each horizontal bar
     private static final int barsep = 8; // space between horizontal bars
     private static final int padding = 4; // padding
+    private static final int cssinpadding = 6; // space inside div
+    private static final int cssoutpadding = 12; // space between div and img
 
-    private static BufferedImage displayElectionState(String[] candidates, CandidateState[] states, Decimal[] votes, Decimal maxvote, Decimal quota) {
+    private static BufferedImage displayElectionState(int maxlen, String[] candidates, CandidateState[] states, Decimal[] votes, Decimal maxvote, Decimal quota) {
         int n = candidates.length;
-        FontMetrics metrics = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB).getGraphics().getFontMetrics(font);
-        int maxlen = 0;
-        for (String candidate : candidates) {
-            int len = metrics.stringWidth(candidate);
-            if (len > maxlen) {
-                maxlen = len;
-            }
-        }
         int w = barwidth + maxlen + 3 * (padding + 1);//one+padding+maxlen+padding+one+barwidth+padding+one
         int h = n * barheight + (n + 1) * barsep + 2 * (padding + 1);//one+padding+[bars]+padding+one
         BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         Graphics g = img.getGraphics();
         g.setFont(font);
+        FontMetrics metrics = g.getFontMetrics();
         g.setColor(GraphicsUtils.Grey);
         g.fillRect(0, 0, w, h);
         g.setColor(GraphicsUtils.SoyBean);
