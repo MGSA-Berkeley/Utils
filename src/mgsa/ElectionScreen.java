@@ -10,7 +10,12 @@ import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ElectionScreen implements Screen {
@@ -47,7 +52,7 @@ public class ElectionScreen implements Screen {
                     String s = (String) t.getTransferData(DataFlavor.stringFlavor);
                     if (!paste.equals(s)) {
                         paste = s;
-                        LoadElection.loadElection(paste);
+                        LoadElection.loadElection(5, paste);
                     }
                 }
             } catch (HeadlessException | UnsupportedFlavorException | IOException ex) {

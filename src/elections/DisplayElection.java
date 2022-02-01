@@ -60,7 +60,6 @@ public class DisplayElection {
             round++;
         }
         List<String> sb = new ArrayList<>();
-        Path file = Paths.get("C:\\Users\\thoma\\website\\election\\election.html");
         sb.add("<html>");
         sb.add("<head>");
         sb.add("<title>" + timestring + " MGSA Election</title>");
@@ -79,6 +78,10 @@ public class DisplayElection {
         List<String> elected = new ArrayList<>();
         List<String> defeated = new ArrayList<>();
         for (round = 0; round < record.size(); round++) {
+            String text = "After " + (round == 0 ? "distributing the initial" : "reallocating") + " votes, ";
+            if (elected.size() >= numseats || numcandidates - defeated.size() <= numseats) {
+                text = "";
+            }
             List<String> newelected = new ArrayList<>();
             List<String> newdefeated = new ArrayList<>();
             ElectionState electionstate = record.get(round);
@@ -94,7 +97,6 @@ public class DisplayElection {
                     newdefeated.add(candidatename);
                 }
             }
-            String text = "After " + (round == 0 ? "distributing the initial" : "reallocating") + " votes, ";
             if (newelected.isEmpty() && newdefeated.size() == 1) {
                 text += newdefeated.get(0) + " is defeated:";
             } else if (!newelected.isEmpty() && newdefeated.isEmpty()) {
@@ -110,6 +112,7 @@ public class DisplayElection {
         sb.add("<div class=\"infobox\">" + winners(elected) + "!</div>");
         sb.add("</body>");
         sb.add("</html>");
+        Path file = Paths.get("C:\\Users\\thoma\\website\\election\\election.html");
         Files.write(file, sb, StandardCharsets.UTF_8);
         System.exit(0);
     }

@@ -16,10 +16,10 @@ public class RunElection {
     private static final Decimal epsilon = new Decimal(BigInteger.ONE);
     private static final Decimal omega = new Decimal(BigInteger.TEN.pow(3));
 
-    public static void runElection(int numseats, String[] candidates, int[][] ballots) throws IOException {
+    public static List<ElectionState> runElection(int numseats, int numcandidates, int[][] ballots) {
         List<ElectionState> record = new ArrayList<>();
-        stepA(numseats, candidates.length, ballots, record);
-        DisplayElection.displayElection(numseats, candidates, record);
+        stepA(numseats, numcandidates, ballots, record);
+        return record;
     }
 
     //Initialize Election
