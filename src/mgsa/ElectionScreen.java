@@ -52,7 +52,7 @@ public class ElectionScreen implements Screen {
                     String s = (String) t.getTransferData(DataFlavor.stringFlavor);
                     if (!paste.equals(s)) {
                         paste = s;
-                        LoadElection.loadElection(5, paste);
+                        LoadElection.loadElection(7, paste);
                     }
                 }
             } catch (HeadlessException | UnsupportedFlavorException | IOException ex) {
