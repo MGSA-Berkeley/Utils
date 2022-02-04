@@ -57,9 +57,9 @@ public class RunElection {
     private static void stepB2a(int numseats, int numcandidates, int[][] ballots, List<ElectionState> record, ElectionState current) {
         current = current.clearVotes();
         int numballots = ballots.length;
-        for (int ballot = 0; ballot < numballots; ballot++) {
+        for (int[] ballot : ballots) {
             Decimal weight = Decimal.ONE;
-            for (int candidate : ballots[ballot]) {
+            for (int candidate : ballot) {
                 Decimal keepfactor = current.getKeepFactor(candidate);
                 Decimal vote = weight.multiplyup(keepfactor);
                 current = current.addVote(candidate, vote);
