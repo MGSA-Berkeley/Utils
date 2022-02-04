@@ -166,7 +166,7 @@ public class DisplayElection {
                         throw new IllegalArgumentException("Defeated candidate was elected");
                     }
                 }
-                return id1 - id2;
+                return record.get(0).getVote(id2).compareTo(record.get(0).getVote(id1));
             } else if (state1 == CandidateState.DEFEATED && state2 == CandidateState.DEFEATED) {
                 for (int i = record.size() - 2; i >= 0; i--) {
                     state1 = record.get(i).getCandidateState(id1);
