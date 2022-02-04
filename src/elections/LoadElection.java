@@ -5,8 +5,8 @@ import java.util.List;
 
 public class LoadElection {
     
-    private static final String tab = "\t";
     private static final String newline = "\n";
+    private static final String tab = "\t";
     
     public static void loadElection(int numseats, String rawpaste) throws IOException {
         String[] rawlines = rawpaste.split(newline);
@@ -33,19 +33,20 @@ public class LoadElection {
                 }
             }
         }
-        List<ElectionState> record = RunElection.runElection(numseats, candidates.length, cleanballots(candidates, ballots));
+        int[][] cleanballots = cleanballots(candidates.length, ballots);
+        List<ElectionState> record = RunElection.runElection(numseats, candidates.length, cleanballots);
         DisplayElection.displayElection(numseats, candidates, record);
     }
     
-    private static int[][] cleanballots(String[] candidates, int[][] ballots) {
+    private static int[][] cleanballots(int numcandidates, int[][] ballots) {
         int[][] cleanballots = new int[ballots.length][];
         for (int i = 0; i < ballots.length; i++) {
-            cleanballots[i] = cleanballot(candidates, ballots[i]);
+            cleanballots[i] = cleanballot(numcandidates, ballots[i]);
         }
         return cleanballots;
     }
     
-    private static int[] cleanballot(String[] candidates, int[] ballot) {
+    private static int[] cleanballot(int numcandidates, int[] ballot) {
         int len = 0;
         for (int i : ballot) {
             if (i != 0) {
@@ -54,7 +55,7 @@ public class LoadElection {
         }
         int[] cleanballot = new int[len];
         len = 0;
-        for (int i = 1; i <= candidates.length; i++) {
+        for (int i = 1; i <= numcandidates; i++) {
             for (int j = 0; j < ballot.length; j++) {
                 if (ballot[j] == i) {
                     cleanballot[len++] = j;
