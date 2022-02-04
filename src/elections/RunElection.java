@@ -157,6 +157,7 @@ public class RunElection {
         stepB2a(numseats, numcandidates, ballots, record, current);
     }
 
+    //Defeat low candidate
     private static void stepB3(int numseats, int numcandidates, int[][] ballots, List<ElectionState> record, ElectionState current) {
         Decimal minvote = null;
         for (int candidate = 0; candidate < numcandidates; candidate++) {
@@ -192,6 +193,7 @@ public class RunElection {
         stepB1(numseats, numcandidates, ballots, record, current);
     }
 
+    //Count complete
     private static void stepC(int numseats, int numcandidates, int[][] ballots, List<ElectionState> record, ElectionState current) {
         int numelected = 0;
         for (int candidate = 0; candidate < numcandidates; candidate++) {
