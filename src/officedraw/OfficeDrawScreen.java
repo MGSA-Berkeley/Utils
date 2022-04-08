@@ -1,6 +1,8 @@
-package mgsa;
+package officedraw;
 
 import java.awt.Graphics;
+import mgsa.MainCanvas;
+import mgsa.Screen;
 
 public class OfficeDrawScreen implements Screen {
 

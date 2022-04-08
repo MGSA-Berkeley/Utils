@@ -1,4 +1,4 @@
-package mgsa;
+package elections;
 
 import elections.LoadElection;
 import java.awt.Graphics;
@@ -17,6 +17,8 @@ import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import mgsa.MainCanvas;
+import mgsa.Screen;
 
 public class ElectionScreen implements Screen {
 

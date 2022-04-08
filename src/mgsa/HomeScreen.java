@@ -1,5 +1,7 @@
 package mgsa;
 
+import officedraw.OfficeDrawScreen;
+import elections.ElectionScreen;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
