@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.util.HashSet;
+import java.util.Set;
 
 public class HomeScreen implements Screen {
 
@@ -14,6 +17,8 @@ public class HomeScreen implements Screen {
     private Rectangle officedrawpos;
     private Rectangle electionpos;
     private Rectangle exitpos;
+    
+    private final Set<Integer> keyset = new HashSet<>();
 
     private Point click;
 
@@ -105,9 +110,14 @@ public class HomeScreen implements Screen {
 
     @Override
     public void keyPressed(int key) {
+        keyset.add(key);
+        if (keyset.contains(KeyEvent.VK_CONTROL) && key == KeyEvent.VK_Q) {
+            System.exit(0);
+        }
     }
 
     @Override
     public void keyReleased(int key) {
+        keyset.remove(key);
     }
 }

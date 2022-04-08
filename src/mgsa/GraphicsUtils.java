@@ -25,6 +25,12 @@ public class GraphicsUtils {
     private static int getHeight(Graphics g, String sample) {
         return (int) new TextLayout(sample, g.getFont(), ((Graphics2D) g).getFontRenderContext()).getBounds().getHeight();
     }
+    
+    public static void drawLine(Graphics g, int x1, int y1, int x2, int y2, int thickness) {
+        ((Graphics2D) g).setStroke(new BasicStroke(thickness));
+        g.drawLine(x1, y1, x2, y2);
+        ((Graphics2D) g).setStroke(new BasicStroke());
+    }
 
     public static void drawRectangle(Graphics g, Rectangle r, int thickness) {
         ((Graphics2D) g).setStroke(new BasicStroke(thickness));
