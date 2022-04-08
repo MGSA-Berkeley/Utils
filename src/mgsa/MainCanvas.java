@@ -1,7 +1,6 @@
 package mgsa;
 
 import java.awt.Graphics;
-import java.awt.Point;
 import javax.swing.JComponent;
 
 public class MainCanvas extends JComponent {

@@ -1,14 +1,12 @@
 package officedraw;
 
 import java.awt.Graphics;
-import mgsa.MainCanvas;
-import mgsa.Screen;
 
-public class OfficeDrawScreen implements Screen {
+public class OfficeDrawScreen implements mgsa.Screen {
 
-    private final MainCanvas canvas;
+    private final mgsa.MainCanvas canvas;
 
-    public OfficeDrawScreen(MainCanvas canvas) {
+    public OfficeDrawScreen(mgsa.MainCanvas canvas) {
         this.canvas = canvas;
     }
 

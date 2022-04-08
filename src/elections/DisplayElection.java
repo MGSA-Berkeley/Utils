@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.imageio.ImageIO;
-import mgsa.GraphicsUtils;
 
 public class DisplayElection {
 
@@ -211,26 +210,26 @@ public class DisplayElection {
         Graphics g = img.getGraphics();
         g.setFont(font);
         FontMetrics metrics = g.getFontMetrics();
-        g.setColor(GraphicsUtils.Grey);
+        g.setColor(mgsa.GraphicsUtils.Grey);
         g.fillRect(0, 0, w, h);
-        g.setColor(GraphicsUtils.SoyBean);
+        g.setColor(mgsa.GraphicsUtils.SoyBean);
         int pos = quota.divideup(maxvote).multiplyup(new Decimal(BigInteger.valueOf(barwidth))).val().intValue();
         g.fillRect(maxlen + 2 * padding + pos + 1, padding + 1, 2, h - 2 * padding - 2);
-        g.setColor(GraphicsUtils.Black);
+        g.setColor(mgsa.GraphicsUtils.Black);
         g.drawRect(0, 0, w - 1, h - 1);
         g.drawLine(maxlen + 2 * padding + 1, padding + 1, maxlen + 2 * padding + 1, h - padding - 2);
         for (int i = 0; i < n; i++) {
             if (states[i] == CandidateState.ELECTED) {
-                g.setColor(GraphicsUtils.CaliforniaGolf);
+                g.setColor(mgsa.GraphicsUtils.CaliforniaGolf);
             } else if (states[i] == CandidateState.DEFEATED) {
-                g.setColor(GraphicsUtils.GoldenGate);
+                g.setColor(mgsa.GraphicsUtils.GoldenGate);
             } else {
-                g.setColor(GraphicsUtils.Lawrence);
+                g.setColor(mgsa.GraphicsUtils.Lawrence);
             }
             int len = votes[i].divideup(maxvote).multiplyup(new Decimal(BigInteger.valueOf(barwidth))).val().intValue();
             g.fillRect(maxlen + 2 * padding + 1, i * barheight + (i + 1) * barsep + padding + 1, len + 1, barheight);
         }
-        g.setColor(GraphicsUtils.Black);
+        g.setColor(mgsa.GraphicsUtils.Black);
         for (int i = 0; i < n; i++) {
             int len = votes[i].divideup(maxvote).multiplyup(new Decimal(BigInteger.valueOf(barwidth))).val().intValue();
             g.drawRect(maxlen + 2 * padding + 1, i * barheight + (i + 1) * barsep + padding + 1, len, barheight - 1);
@@ -238,7 +237,7 @@ public class DisplayElection {
         for (int i = 0; i < n; i++) {
             int len = metrics.stringWidth(candidates[i]);
             Rectangle rect = new Rectangle(maxlen + padding - len + 1, i * barheight + (i + 1) * barsep + padding + 1, len, barheight);
-            GraphicsUtils.drawCenteredString(g, candidates[i], rect, false);
+            mgsa.GraphicsUtils.drawCenteredString(g, candidates[i], rect, false);
         }
         return img;
     }

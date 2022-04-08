@@ -1,7 +1,5 @@
 package mgsa;
 
-import officedraw.OfficeDrawScreen;
-import elections.ElectionScreen;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -93,10 +91,10 @@ public class HomeScreen implements Screen {
         Point p = canvas.getMousePosition();
         if (p != null && click != null) {
             if (officedrawpos.contains(p) && officedrawpos.contains(click)) {
-                canvas.setScreen(new OfficeDrawScreen(canvas));
+                canvas.setScreen(new officedraw.OfficeDrawScreen(canvas));
             }
             if (electionpos.contains(p) && electionpos.contains(click)) {
-                canvas.setScreen(new ElectionScreen(canvas));
+                canvas.setScreen(new elections.ElectionScreen(canvas));
             }
             if (exitpos.contains(p) && exitpos.contains(click)) {
                 System.exit(0);

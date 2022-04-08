@@ -1,6 +1,5 @@
 package elections;
 
-import elections.LoadElection;
 import java.awt.Graphics;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
@@ -17,16 +16,14 @@ import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import mgsa.MainCanvas;
-import mgsa.Screen;
 
-public class ElectionScreen implements Screen {
+public class ElectionScreen implements mgsa.Screen {
 
-    private final MainCanvas canvas;
+    private final mgsa.MainCanvas canvas;
     private final Set<Integer> keyset = new HashSet<>();
     private String paste = "";
 
-    public ElectionScreen(MainCanvas canvas) {
+    public ElectionScreen(mgsa.MainCanvas canvas) {
         this.canvas = canvas;
     }
 
