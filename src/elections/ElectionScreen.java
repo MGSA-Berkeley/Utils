@@ -15,10 +15,10 @@ import java.util.Set;
 public class ElectionScreen implements mgsa.Screen {
 
     private final mgsa.MainCanvas canvas;
-    
+
     private final Set<Integer> keyset = new HashSet<>();
     private String paste = "";
-    
+
     public ElectionScreen(mgsa.MainCanvas canvas) {
         this.canvas = canvas;
     }
@@ -34,6 +34,10 @@ public class ElectionScreen implements mgsa.Screen {
 
     @Override
     public void mouseReleased() {
+    }
+
+    @Override
+    public void mouseScrolled(int n) {
     }
 
     @Override

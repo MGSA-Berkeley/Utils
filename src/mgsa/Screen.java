@@ -10,6 +10,8 @@ public interface Screen {
     
     public void mouseReleased();
     
+    public void mouseScrolled(int n);
+    
     public void keyPressed(int key);
     
     public void keyReleased(int key);

@@ -64,25 +64,29 @@ public class Button {
     }
 
     public void drawCenter(Graphics g, Color mouseover, Color foreground, Point... points) {
-        highlight(g, mouseover, points);
+        checkhighlight(g, mouseover, points);
         g.setColor(foreground);
         mgsa.GraphicsUtils.drawCenterString(g, text, rect, false);
     }
 
     public void drawLeft(Graphics g, Color mouseover, Color foreground, int padding, Point... points) {
-        highlight(g,mouseover,points);
+        checkhighlight(g, mouseover, points);
         g.setColor(foreground);
         mgsa.GraphicsUtils.drawLeftString(g, text, rect, false, padding);
     }
-    
-    public void highlight(Graphics g, Color mouseover, Point... points) {
+
+    public void checkhighlight(Graphics g, Color mouseover, Point... points) {
         for (Point p : points) {
             if (contains(p)) {
-                g.setColor(mouseover);
-                mgsa.GraphicsUtils.fillRectangle(g, rect);
+                highlight(g, mouseover);
                 break;
             }
         }
+    }
+
+    public void highlight(Graphics g, Color mouseover) {
+        g.setColor(mouseover);
+        mgsa.GraphicsUtils.fillRectangle(g, rect);
     }
 
     public boolean contains(Point p) {

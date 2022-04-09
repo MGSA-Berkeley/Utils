@@ -6,12 +6,12 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 public class OfficeDrawScreen implements mgsa.Screen {
@@ -32,6 +32,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
     private final mgsa.Button warningsbutton = new mgsa.Button("Warnings", null);
 
     private final Set<Integer> keyset = new HashSet<>();
+    private final Set<String> letters = new HashSet<>();
 
     private Point click;
 
@@ -43,20 +44,36 @@ public class OfficeDrawScreen implements mgsa.Screen {
     private static final Font mediumfont = new Font(Font.SANS_SERIF, Font.BOLD, 16);
     private static final Font smallfont = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
 
-    private final Map<Integer, List<Person>> data = new HashMap<>();
+    private final Map<Integer, Person[]> data = new HashMap<>();
+    private int row = 0;
+    private int column = 0;
+    private int scroll;
 
     public OfficeDrawScreen(mgsa.MainCanvas canvas) {
         this.canvas = canvas;
-        data.put(2022, new ArrayList<>());
-        data.get(2022).add(new Person("Thomas Browning", "4", "0", "Squat", "1041"));
-        data.get(2022).add(new Person("Ted Kaczynski", "8", "1", "Group 1", "1942"));
-        data.get(2022).add(new Person("Albert Einstein", "5", "2", "Group 1004913", "1945"));
-        data.get(2022).add(new Person("", "", "", "", ""));
+        for (char c : "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray()) {
+            letters.add(Character.toString(c));
+        }
+        data.put(2022, new Person[]{new Person("Thomas Browning", "4", "0", "Squat", "1041"),
+            new Person("Ted Kaczynski", "8", "1", "Group 1", "1942"),
+            new Person("Albert Einstein", "5", "2", "Group 1004913", "1945"),
+            new Person()});
+        Person[] people = new Person[100];
+        Random randy = new Random();
+        for (int i = 0; i < 100; i++) {
+            people[i] = new Person(Integer.toString(randy.nextInt()), Integer.toString(randy.nextInt()), Integer.toString(randy.nextInt()), Integer.toString(randy.nextInt()), Integer.toString(randy.nextInt()));
+        }
+        data.put(2023, people);
     }
 
     @Override
     public void paintComponent(Graphics g, int w, int h) {
-        int year = this.year; // fix the year to avoid concurrency bugs
+        int year = this.year;
+        Person[] people = data.get(year);
+        Point click = this.click;
+        int row = this.row;
+        int column = this.column;
+        int scroll = this.scroll;
         int bigpadding = 12;
         int smallpadding = 5;
         g.setFont(bigfont);
@@ -80,15 +97,13 @@ public class OfficeDrawScreen implements mgsa.Screen {
         rowheight = Math.max(rowheight, groupbutton.getHeight(g, smallpadding));
         int officelen = officebutton.getWidth(g, smallpadding);
         rowheight = Math.max(rowheight, officebutton.getHeight(g, smallpadding));
-        if (data.containsKey(year)) {
-            g.setFont(smallfont);
-            for (Person p : data.get(year)) {
-                namelen = Math.max(namelen, p.name.getWidth(g, smallpadding));
-                yearlen = Math.max(yearlen, p.year.getWidth(g, smallpadding));
-                prioritylen = Math.max(prioritylen, p.priority.getWidth(g, smallpadding));
-                grouplen = Math.max(grouplen, p.group.getWidth(g, smallpadding));
-                officelen = Math.max(officelen, p.office.getWidth(g, smallpadding));
-            }
+        g.setFont(smallfont);
+        for (Person p : people) {
+            namelen = Math.max(namelen, p.buttons[0].getWidth(g, smallpadding));
+            yearlen = Math.max(yearlen, p.buttons[1].getWidth(g, smallpadding));
+            prioritylen = Math.max(prioritylen, p.buttons[2].getWidth(g, smallpadding));
+            grouplen = Math.max(grouplen, p.buttons[3].getWidth(g, smallpadding));
+            officelen = Math.max(officelen, p.buttons[4].getWidth(g, smallpadding));
         }
         int namepos = 0;
         int yearpos = namepos + namelen;
@@ -103,29 +118,29 @@ public class OfficeDrawScreen implements mgsa.Screen {
         groupbutton.setRect(new Rectangle(grouppos, bannerheight, grouplen, rowheight));
         officebutton.setRect(new Rectangle(officepos, bannerheight, officelen, rowheight));
         warningsbutton.setRect(new Rectangle(warningspos, bannerheight, warningslen, rowheight));
-        if (data.containsKey(year)) {
-            int y = bannerheight;
-            for (Person p : data.get(year)) {
-                y += rowheight;
-                p.name.setRect(new Rectangle(namepos, y, namelen, rowheight));
-                p.year.setRect(new Rectangle(yearpos, y, yearlen, rowheight));
-                p.priority.setRect(new Rectangle(prioritypos, y, prioritylen, rowheight));
-                p.group.setRect(new Rectangle(grouppos, y, grouplen, rowheight));
-                p.office.setRect(new Rectangle(officepos, y, officelen, rowheight));
-            }
+        int y = bannerheight;
+        for (Person p : people) {
+            y += rowheight;
+            p.buttons[0].setRect(new Rectangle(namepos, y - scroll, namelen, rowheight));
+            p.buttons[1].setRect(new Rectangle(yearpos, y - scroll, yearlen, rowheight));
+            p.buttons[2].setRect(new Rectangle(prioritypos, y - scroll, prioritylen, rowheight));
+            p.buttons[3].setRect(new Rectangle(grouppos, y - scroll, grouplen, rowheight));
+            p.buttons[4].setRect(new Rectangle(officepos, y - scroll, officelen, rowheight));
         }
         // *** PAINT THE CANVAS ***
         Point mouse = canvas.getMousePosition();
         g.setColor(background);
         g.fillRect(0, 0, w, h);
-        if (data.containsKey(year)) {
-            for (Person p : data.get(year)) {
-                p.name.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
-                p.year.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
-                p.priority.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
-                p.group.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
-                p.office.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
+        for (int i = 0; i < people.length; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (i == row && j == column) {
+                    people[i].buttons[j].highlight(g, mouseover);
+                }
+                people[i].buttons[j].drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
             }
+        }
+        for (int n = 2; n <= people.length + 1; n++) {
+            g.drawLine(0, bannerheight + n * rowheight - scroll, w, bannerheight + n * rowheight - scroll);
         }
         g.setColor(background);
         g.fillRect(0, 0, w, bannerheight + rowheight);
@@ -142,14 +157,17 @@ public class OfficeDrawScreen implements mgsa.Screen {
         groupbutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
         officebutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
         warningsbutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
-        for (int n = 0; n <= (data.containsKey(year) ? data.get(year).size() + 1 : 1); n++) {
+        for (int n = 0; n < 2; n++) {
             g.drawLine(0, bannerheight + n * rowheight, w, bannerheight + n * rowheight);
         }
+        g.drawLine(namepos, bannerheight, namepos, h);
         g.drawLine(yearpos, bannerheight, yearpos, h);
         g.drawLine(prioritypos, bannerheight, prioritypos, h);
         g.drawLine(grouppos, bannerheight, grouppos, h);
         g.drawLine(officepos, bannerheight, officepos, h);
         g.drawLine(warningspos, bannerheight, warningspos, h);
+        g.drawLine(w - 1, bannerheight, w - 1, h);
+        g.drawLine(0, h - 1, w, h - 1);
     }
 
     @Override
@@ -164,9 +182,19 @@ public class OfficeDrawScreen implements mgsa.Screen {
             year = Calendar.getInstance().get(Calendar.YEAR);
         }
         if (leftbutton.contains(p) && leftbutton.contains(click)) {
+            if (!data.containsKey(year - 1)) {
+                data.put(year - 1, new Person[]{new Person()});
+            }
+            row = 0;
+            scroll = 0;
             year--;
         }
         if (rightbutton.contains(p) && rightbutton.contains(click)) {
+            if (!data.containsKey(year + 1)) {
+                data.put(year + 1, new Person[]{new Person()});
+            }
+            row = 0;
+            scroll = 0;
             year++;
         }
         if (backbutton.contains(p) && backbutton.contains(click)) {
@@ -179,10 +207,81 @@ public class OfficeDrawScreen implements mgsa.Screen {
     }
 
     @Override
+    public void mouseScrolled(int n) {
+        n *= 4;
+        if (scroll + n < 0) {
+            scroll = 0;
+        } else {
+            scroll += n;
+        }
+    }
+
+    @Override
     public void keyPressed(int key) {
         keyset.add(key);
         if (keyset.contains(KeyEvent.VK_CONTROL) && key == KeyEvent.VK_Q) {
             System.exit(0);
+        }
+        if (key == KeyEvent.VK_UP) {
+            if (row > 0) {
+                row--;
+            }
+            return;
+        }
+        if (key == KeyEvent.VK_DOWN) {
+            if (row < data.get(year).length - 1) {
+                row++;
+            }
+            return;
+        }
+        if (key == KeyEvent.VK_LEFT) {
+            if (column > 0) {
+                column--;
+            }
+            return;
+        }
+        if (key == KeyEvent.VK_RIGHT) {
+            if (column < 4) {
+                column++;
+            }
+            return;
+        }
+        Person[] people = data.get(year);
+        mgsa.Button button = people[row].buttons[column];
+        if (key == KeyEvent.VK_BACK_SPACE) {
+            String s = button.getText();
+            if (!s.isEmpty()) {
+                button.setText(s.substring(0, s.length() - 1));
+                for (mgsa.Button b : people[row].buttons) {
+                    if (!b.getText().isEmpty()) {
+                        return;
+                    }
+                }
+                Person[] newpeople = new Person[people.length - 1];
+                System.arraycopy(people, 0, newpeople, 0, row);
+                System.arraycopy(people, row + 1, newpeople, row, newpeople.length - row);
+                data.put(year, newpeople);
+            }
+            return;
+        }
+        boolean append = false;
+        if (key == KeyEvent.VK_SPACE) {
+            button.setText(button.getText() + " ");
+            append = true;
+        }
+        if (key == KeyEvent.VK_MINUS) {
+            button.setText(button.getText() + "-");
+            append = true;
+        }
+        String s = KeyEvent.getKeyText(key);
+        if (letters.contains(s)) {
+            button.setText(button.getText() + (keyset.contains(KeyEvent.VK_SHIFT) ? s : s.toLowerCase()));
+            append = true;
+        }
+        if (append && row == people.length - 1) {
+            people = Arrays.copyOf(people, people.length + 1);
+            people[people.length - 1] = new Person();
+            data.put(year, people);
         }
     }
 

@@ -20,6 +20,10 @@ public class MainCanvas extends JComponent {
         screen.mouseReleased();
     }
 
+    public void mouseScrolled(int n) {
+        screen.mouseScrolled(n);
+    }
+
     public void keyPressed(int key) {
         screen.keyPressed(key);
     }

@@ -75,6 +75,10 @@ public class HomeScreen implements Screen {
     }
 
     @Override
+    public void mouseScrolled(int n) {
+    }
+
+    @Override
     public void keyPressed(int key) {
         keyset.add(key);
         if (keyset.contains(KeyEvent.VK_CONTROL) && key == KeyEvent.VK_Q) {
