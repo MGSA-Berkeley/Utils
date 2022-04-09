@@ -7,13 +7,17 @@ public class Person {
     public final Button[] buttons;
 
     public Person(String... data) {
-        if (data.length != 5) {
+        int len = 6;
+        if (data.length != len) {
             throw new IllegalArgumentException();
         }
-        buttons = new Button[]{new Button(data[0], null), new Button(data[1], null), new Button(data[2], null), new Button(data[3], null), new Button(data[4], null)};
+        buttons = new Button[len];
+        for (int i = 0; i < len; i++) {
+            buttons[i] = new Button(data[i], null);
+        }
     }
 
     public Person() {
-        this("", "", "", "", "");
+        this("", "", "", "", "", "");
     }
 }

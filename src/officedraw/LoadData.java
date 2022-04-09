@@ -28,6 +28,7 @@ public class LoadData {
                     }
                     data.put(Integer.parseInt(p.toString().substring(0, p.toString().length() - 11)), people);
                 } catch (Exception ex) {
+                    System.out.println("Error in file "+p);
                     ex.printStackTrace(System.out);
                     System.exit(0);
                 }

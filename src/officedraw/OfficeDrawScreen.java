@@ -27,6 +27,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
     private final mgsa.Button namebutton = new mgsa.Button("Name", null);
     private final mgsa.Button yearbutton = new mgsa.Button("Year", null);
     private final mgsa.Button prioritybutton = new mgsa.Button("Priority", null);
+    private final mgsa.Button adjustmentbutton = new mgsa.Button("Adjustment", null);
     private final mgsa.Button blockbutton = new mgsa.Button("Block", null);
     private final mgsa.Button officebutton = new mgsa.Button("Office", null);
     private final mgsa.Button warningsbutton = new mgsa.Button("Warnings", null);
@@ -83,6 +84,8 @@ public class OfficeDrawScreen implements mgsa.Screen {
         rowheight = Math.max(rowheight, yearbutton.getHeight(g, smallpadding));
         int prioritylen = prioritybutton.getWidth(g, smallpadding);
         rowheight = Math.max(rowheight, prioritybutton.getHeight(g, smallpadding));
+        int adjustmentlen = adjustmentbutton.getWidth(g, smallpadding);
+        rowheight = Math.max(rowheight, adjustmentbutton.getHeight(g, smallpadding));
         int blocklen = blockbutton.getWidth(g, smallpadding);
         rowheight = Math.max(rowheight, blockbutton.getHeight(g, smallpadding));
         int officelen = officebutton.getWidth(g, smallpadding);
@@ -92,19 +95,22 @@ public class OfficeDrawScreen implements mgsa.Screen {
             namelen = Math.max(namelen, p.buttons[0].getWidth(g, smallpadding));
             yearlen = Math.max(yearlen, p.buttons[1].getWidth(g, smallpadding));
             prioritylen = Math.max(prioritylen, p.buttons[2].getWidth(g, smallpadding));
-            blocklen = Math.max(blocklen, p.buttons[3].getWidth(g, smallpadding));
-            officelen = Math.max(officelen, p.buttons[4].getWidth(g, smallpadding));
+            adjustmentlen = Math.max(adjustmentlen, p.buttons[3].getWidth(g, smallpadding));
+            blocklen = Math.max(blocklen, p.buttons[4].getWidth(g, smallpadding));
+            officelen = Math.max(officelen, p.buttons[5].getWidth(g, smallpadding));
         }
         int namepos = 0;
         int yearpos = namepos + namelen;
         int prioritypos = yearpos + yearlen;
-        int blockpos = prioritypos + prioritylen;
+        int adjustmentpos = prioritypos + prioritylen;
+        int blockpos = adjustmentpos + adjustmentlen;
         int officepos = blockpos + blocklen;
         int warningspos = officepos + officelen;
         int warningslen = w - warningspos;
         namebutton.setRect(new Rectangle(namepos, bannerheight, namelen, rowheight));
         yearbutton.setRect(new Rectangle(yearpos, bannerheight, yearlen, rowheight));
         prioritybutton.setRect(new Rectangle(prioritypos, bannerheight, prioritylen, rowheight));
+        adjustmentbutton.setRect(new Rectangle(adjustmentpos, bannerheight, adjustmentlen, rowheight));
         blockbutton.setRect(new Rectangle(blockpos, bannerheight, blocklen, rowheight));
         officebutton.setRect(new Rectangle(officepos, bannerheight, officelen, rowheight));
         warningsbutton.setRect(new Rectangle(warningspos, bannerheight, warningslen, rowheight));
@@ -114,8 +120,9 @@ public class OfficeDrawScreen implements mgsa.Screen {
             p.buttons[0].setRect(new Rectangle(namepos, y - scroll, namelen, rowheight));
             p.buttons[1].setRect(new Rectangle(yearpos, y - scroll, yearlen, rowheight));
             p.buttons[2].setRect(new Rectangle(prioritypos, y - scroll, prioritylen, rowheight));
-            p.buttons[3].setRect(new Rectangle(blockpos, y - scroll, blocklen, rowheight));
-            p.buttons[4].setRect(new Rectangle(officepos, y - scroll, officelen, rowheight));
+            p.buttons[3].setRect(new Rectangle(adjustmentpos, y - scroll, adjustmentlen, rowheight));
+            p.buttons[4].setRect(new Rectangle(blockpos, y - scroll, blocklen, rowheight));
+            p.buttons[5].setRect(new Rectangle(officepos, y - scroll, officelen, rowheight));
         }
         // *** PAINT THE CANVAS ***
         Point mouse = canvas.getMousePosition();
@@ -144,6 +151,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
         namebutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
         yearbutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
         prioritybutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
+        adjustmentbutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
         blockbutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
         officebutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
         warningsbutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
@@ -153,6 +161,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
         g.drawLine(namepos, bannerheight, namepos, h);
         g.drawLine(yearpos, bannerheight, yearpos, h);
         g.drawLine(prioritypos, bannerheight, prioritypos, h);
+        g.drawLine(adjustmentpos, bannerheight, adjustmentpos, h);
         g.drawLine(blockpos, bannerheight, blockpos, h);
         g.drawLine(officepos, bannerheight, officepos, h);
         g.drawLine(warningspos, bannerheight, warningspos, h);

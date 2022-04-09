@@ -17,7 +17,7 @@ public class SaveData {
             for (int year : map.keySet()) {
                 List<String> lines = new ArrayList<>();
                 for (Person p : map.get(year)) {
-                    lines.add(p.buttons[0].getText() + tab + p.buttons[1].getText() + tab + p.buttons[2].getText() + tab + p.buttons[3].getText() + tab + p.buttons[4].getText());
+                    lines.add(p.buttons[0].getText() + tab + p.buttons[1].getText() + tab + p.buttons[2].getText() + tab + p.buttons[3].getText() + tab + p.buttons[4].getText() + tab + p.buttons[5].getText());
                 }
                 Path file = Paths.get(year + ".officedraw");
                 Files.write(file, lines);
