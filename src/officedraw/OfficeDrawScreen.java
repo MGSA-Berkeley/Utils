@@ -6,12 +6,13 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 public class OfficeDrawScreen implements mgsa.Screen {
@@ -126,13 +127,28 @@ public class OfficeDrawScreen implements mgsa.Screen {
             p.warning.setRect(new Rectangle(warningspos, y - scroll, warningslen, rowheight));
         }
         // *** WARNINGS ***
-        Map<Integer, Map<String, Person>> namelookup = new HashMap<>();
+        Map<String, Map<Integer, Person>> namelookup = new HashMap<>();
         for (int n : data.keySet()) {
-            namelookup.put(n, new HashMap<>());
             Person[] prevpeople = data.get(n);
             for (int i = 0; i < prevpeople.length - 1; i++) {
                 Person p = prevpeople[i];
-                namelookup.get(n).put(p.buttons[0].getText(), p);
+                String s = p.buttons[0].getText();
+                if (!namelookup.containsKey(s)) {
+                    namelookup.put(s, new HashMap<>());
+                }
+                namelookup.get(s).put(n, p);
+            }
+        }
+        Map<String, List<Person>> blocklookup = new HashMap<>();
+        for (int i = 0; i < people.length - 1; i++) {
+            Person p = people[i];
+            String s4 = p.buttons[4].getText();
+            if (s4.startsWith("Block ")) {
+                String a4 = s4.substring(6);
+                if (!blocklookup.containsKey(a4)) {
+                    blocklookup.put(a4, new ArrayList<>());
+                }
+                blocklookup.get(a4).add(p);
             }
         }
         Set<String> names = new HashSet<>();
@@ -159,13 +175,13 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 } else if (a1 > 1) {
                     int maxyear = 0;
                     int yearthen = 0;
-                    for (int n : namelookup.keySet()) {
-                        if (n < maxyear || n >= year) {
-                            continue;
-                        }
-                        if (namelookup.get(n).containsKey(s0)) {
+                    if (namelookup.containsKey(s0)) {
+                        for (int n : namelookup.get(s0).keySet()) {
+                            if (n < maxyear || n >= year) {
+                                continue;
+                            }
                             maxyear = n;
-                            yearthen = Integer.parseInt(namelookup.get(n).get(s0).buttons[1].getText());
+                            yearthen = Integer.parseInt(namelookup.get(s0).get(n).buttons[1].getText());
                         }
                     }
                     if (maxyear == 0) {
@@ -219,6 +235,9 @@ public class OfficeDrawScreen implements mgsa.Screen {
             }
             if (s4.startsWith("Block ")) {
                 a4 = s4.substring(6);
+                if (blocklookup.get(a4).size()==1) {
+                    warning += "Singleton block. ";
+                }
             }
             p.warning.setText(warning);
         }

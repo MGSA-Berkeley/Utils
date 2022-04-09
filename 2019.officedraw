@@ -78,7 +78,7 @@ Meredith Shea	4	2		Block F	835
 Aaron Brookner	5	1		Block G	1043
 Onyebuchi Ekenta	5	1		Block G	1043
 Marvin Castellon	2	4		Block H	854
-Kiran Luecke	4	4		Block H	854
+Kiran Luecke	2	4		Block H	854
 Ben Castle	5	1		Block I	741
 Kubrat Danailov	5	1		Block I	741
 Matthew McCauley	2	4		Block I	741
@@ -144,7 +144,7 @@ Oliver Edtmair	1	6		Block BH	852
 Jacob Elafandi	1	6		Block BF	836
 David Gonzalez	1	6		Block BI	850
 Raehyun Kim	1	6		Block BE	844
-Yixiang Luo	1	6		Block BJ	828
+Yixiang Luo	1	6		Float	828
 Mark Macerato	1	6		Block BD	842
 Yelena Mandelshtam	1	6		Block BB	834
 Ahmee Marshall-Christensen	1	6		Block BG	832
@@ -156,7 +156,7 @@ Michael Seaman	1	6		Block BH	852
 Rikhav Shah	1	6		Block BI	850
 Edric Wang	1	6		Block BD	842
 Jiasu Wang	1	6		Block BE	844
-Weitong Wang	1	6		Block BK	820
+Weitong Wang	1	6		Float	820
 Chi Nok Enoch Yiu	1	6		Block BD	842
 Haixiang Zhang	1	6		Block BE	844
 Junsheng Zhang	1	6		Block BF	836

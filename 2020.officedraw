@@ -1,10 +1,10 @@
 Ziwen Zhao	3	3		Block Dun Tang	787
 Dun Tang	3	3		Block Dun Tang	787
 Irit Huq-Kuruvilla	4	2		Block Daniel Chupin	835
-Aaron Brookner	6	0	-1	Block Aaron Brookner	1058
-Angxiu Ni	4	2		Block Angxiu Ni	787
-Michael Yeh	6	1		Block Michael Yeh	1057
-Esme Bajo	2	4		Block Esme Bajo	1041
+Aaron Brookner	6	0	-1	Float	1058
+Angxiu Ni	4	2		Float	787
+Michael Yeh	6	1		Float	1057
+Esme Bajo	2	4		Float	1041
 Andrew Shi	4	2		Block Yu Tong	1095
 Raehyun Kim	2	4		Block Raehyun Kim	844
 Jiasu Wang	2	4		Block Raehyun Kim	844
@@ -12,8 +12,8 @@ Haixiang Zhang	2	4		Block Raehyun Kim	844
 Yu Tong	4	2		Block Yu Tong	1095
 Yixiang Luo	2	4		Block Yixiang Luo, Zixi Hu, Zhewei Yao	1064
 Zixi Hu	5	1		Block Yixiang Luo, Zixi Hu, Zhewei Yao	1064
-Junsheng Zhang	2	4		Block Junsheng Zhang	745
-Onyebuchi Ekenta	6	1		Block Onyebuchi Ekenta	1049
+Junsheng Zhang	2	4		Float	745
+Onyebuchi Ekenta	6	1		Float	1049
 Yulia Alexandr	2	3	-1	Block YAM	1040
 Jiahao Yao	3	3		Block Edric Wang	1006
 Patrick Lutz	5	-1	-2	Block Patrick Lutz	1097
@@ -35,8 +35,8 @@ Ethan Dlugie	3	2	-1	Block Tahsin Saffat	853
 Xiaohan Yan	4	2		Block Raha Ahmadianhosseini,Jacopo Di Bonito,Mariana Vicaria,Xiaohan Yan	747
 Tong Zhou	2	4		Block Ovidiu-Neculai Avadanei	852
 Michael Christianson	5	1		Block Joe Stahl	1075
-Scott Mutchnik	2	4		Block Scott Mutchnik	
-Jeffmin Lin	6	1		Block Jeffmin Lin	789
+Scott Mutchnik	2	4		Float	
+Jeffmin Lin	6	1		Float	789
 Yixuan Li	4	2		Block Haoren Xiong	745
 Andrew Gitlin	3	3		Block Maksym Zubkov	1068
 Haoren Xiong	4	2		Block Haoren Xiong	745
@@ -52,8 +52,8 @@ Jiaming Wang	3	3		Block Jiaming Wang	1062
 Mitchell Taylor	3	3		Block Jeffrey Kuan	1060
 Zhewei Yao	5	1		Block Yixiang Luo, Zixi Hu, Zhewei Yao	1064
 David Gonzalez	2	4		Block Rikhav Shah	1066
-Shinu Cho	3	3		Block Shinu Cho	775
-Zirui Zhou	3	3		Block Zirui Zhou	741
+Shinu Cho	3	3		Float	775
+Zirui Zhou	3	3		Float	741
 Alois Cerbu	3	3		Block Tahsin Saffat	853
 Ravi Fernando	7	3		Block Zixin Jiang	1037
 Ovidiu-Neculai Avadanei	2	4		Block Ovidiu-Neculai Avadanei	852
@@ -65,12 +65,12 @@ Nicholas Bhattacharya	5	1		Block Yu Tong	1095
 Max Hlavacek	4	2		Block Adele	737
 Ian Gleason	6	1		Block Zixin Jiang	1037
 Jacopo Di Bonito	4	2		Block Raha Ahmadianhosseini,Jacopo Di Bonito,Mariana Vicaria,Xiaohan Yan	747
-Weitong Wang	2	4		Block Weitong Wang	
+Weitong Wang	2	4		Float	
 Boyan Xu	3	3		Block Tahsin Saffat	853
 Xianglong Ni	3	3		Block Xianglong Ni	1058
 Anthony Villafranca	4	2		Block Anthony Villafranca	1044
 Frederick Huang	4	2		Block Anthony Villafranca	1044
-Jorge Garza Vargas	4	2		Block Jorge Garza Vargas	775
+Jorge Garza Vargas	4	2		Float	775
 Lauren Heller	4	2		Block Lauren Heller	941
 Eduardo Oregon Reyes	3	3		Block Maksym Zubkov	1068
 Oliver Edtmair	2	4		Block Ovidiu-Neculai Avadanei	852
@@ -82,21 +82,21 @@ Nic Brody	5	1		Block Nic Brody	1045
 Leon Zhang	5	1		Block Leon Zhang	1061
 Yuan Yao	4	2		Block Daniel Chupin	835
 Adam Dhillon	2	0	-4	Block Izak Oltman	1043
-Holly Mandel	4	2		Block Holly Mandel	1065
+Holly Mandel	4	2		Float	1065
 Raha Ahmadian	4	2		Block Raha Ahmadianhosseini,Jacopo Di Bonito,Mariana Vicaria,Xiaohan Yan	747
 Michael Seaman	2	4		Block Ovidiu-Neculai Avadanei	852
 Emily Bain	3	3		Block Anthony Villafranca	1044
-Theodore Coyne	3	3		Block Theodore Coyne	775
+Theodore Coyne	3	3		Float	775
 Daniel Chupin	4	2		Block Daniel Chupin	835
-Yi Lai	5	1		Block Yi Lai	787
+Yi Lai	5	1		Float	787
 Jacob Elafandi	2	4		Block Thomas Browning	1042
-Kiran Luecke	5	1		Block Kiran Luecke	1057
-Yanshuai Qin	3	3		Block Yanshuai Qin	812
+Kiran Luecke	3	3		Float	1057
+Yanshuai Qin	3	3		Float	812
 Yelena Mandelshtam	2	0	-4	Block Izak Oltman	1043
 Kentaro Yamamoto	7	3		Block Reid Dale	1049
-Yulong Dong	3	3		Block Yulong Dong	1062
+Yulong Dong	3	3		Float	1062
 Tahsin Saffat	3	3		Block Tahsin Saffat	853
-Rockford Sison	7	3		Block Rockford Sison	1008
+Rockford Sison	7	3		Float	1008
 Reid Dale	7	3		Block Reid Dale	1049
 Mariana Vicaria	5	1		Block Raha Ahmadianhosseini,Jacopo Di Bonito,Mariana Vicaria,Xiaohan Yan	747
 Max Zubkov	3	3		Block Maksym Zubkov	1068
@@ -176,4 +176,7 @@ Catherine Lee	1	6		Float
 Erik Herrera	1	6		Float	
 Yuchen Mao	1	6		Float	
 Luke Corcos	5	1		Float	1056
+Aubrey Gross	1	6		Float	
+Jiazhen Tan	1	6		Float	
+Andrew Scharf	1	6		Float	
 					

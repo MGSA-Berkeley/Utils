@@ -15,7 +15,7 @@ Ben Wormleighton	4	2		Squat	869
 Michael Lindsey	4	2		Squat	869
 Benjamin Siskind	4	2		Squat	937
 Yifeng Ding	4	2		Squat	937
-Michael Smith 	4	2		Squat	1010
+Michael Smith	4	2		Squat	1010
 Nima Moini	4	2		Squat	1010
 Kyeongsik Nam	4	2		Squat	1020
 Haoran Tang	4	2		Squat	1020
@@ -65,7 +65,7 @@ Alexander Bertoloni Meli	5	1		Block A	747
 Rahul Dalal	4	0	-2	Block A	747
 Sander Mack-Crane	4	2		Block A	747
 Alex Youcis	6	1		Block A	747
-Jess Banks	3	2	-2	Block B	1045
+Jess Banks	3	2	-1	Block B	1045
 Paula Burkhardt-Guim	3	0	-3	Block B	1045
 Liyu Xia	3	3		Block C	1040
 Chiao-Yu Yang	3	3		Block C	1040
@@ -153,11 +153,11 @@ Yonah Borns-Weil	1	6		Block AD	852
 Marvin Castellon	1	6		Float	840
 Alois Cerbu	1	6		Block AH	854
 Shinu Cho	1	6		Block AE	842
-Theodore Coyne	1	6		Block AM	854
+Theodore Coyne	1	6		Float	854
 Ethan Dlugie	1	6		Block AD	852
 Ian Francis	1	6		Block AD	852
 Andrew Gitlin	1	6		Block AF	834
-Haotian Gu	1	6		Block AL	840
+Haotian Gu	1	6		Float	840
 James Hagborg	1	6		Block AE	842
 Joshua Hull	1	6		Block AE	842
 Jeffrey Kuan	1	6		Block AI	848
