@@ -1,7 +1,7 @@
 Ziwen Zhao	3	3		Block Dun Tang	787
 Dun Tang	3	3		Block Dun Tang	787
 Irit Huq-Kuruvilla	4	2		Block Daniel Chupin	835
-Aaron Brookner	6	0		Block Aaron Brookner	1058
+Aaron Brookner	6	0	-1	Block Aaron Brookner	1058
 Angxiu Ni	4	2		Block Angxiu Ni	787
 Michael Yeh	6	1		Block Michael Yeh	1057
 Esme Bajo	2	4		Block Esme Bajo	1041
@@ -14,24 +14,24 @@ Yixiang Luo	2	4		Block Yixiang Luo, Zixi Hu, Zhewei Yao	1064
 Zixi Hu	5	1		Block Yixiang Luo, Zixi Hu, Zhewei Yao	1064
 Junsheng Zhang	2	4		Block Junsheng Zhang	745
 Onyebuchi Ekenta	6	1		Block Onyebuchi Ekenta	1049
-Yulia Alexandr	2	3		Block YAM	1040
+Yulia Alexandr	2	3	-1	Block YAM	1040
 Jiahao Yao	3	3		Block Edric Wang	1006
-Patrick Lutz	5	-1		Block Patrick Lutz	1097
-Edric Wang	2	3		Block Edric Wang	1006
-Christopher Kuo	5	-1		Block Patrick Lutz	1097
-German Stefanich	5	-1		Block Patrick Lutz	1097
+Patrick Lutz	5	-1	-2	Block Patrick Lutz	1097
+Edric Wang	2	3	-1	Block Edric Wang	1006
+Christopher Kuo	5	-1	-2	Block Patrick Lutz	1097
+German Stefanich	5	-1	-2	Block Patrick Lutz	1097
 Thomas Browning	2	4		Block Thomas Browning	1042
 Diego Andres Bejarano Rayo	3	3		Block Guillaume Massas	869
 Guillaume Massas	3	3		Block Guillaume Massas	869
-Fei Yu Chen	2	4		Block Fei Yu Chen	
+Fei Yu Chen	2	4		Block Fei Yu Chen	842
 Mark Macerato	2	4		Block Fei Yu Chen	842
 Ahmee Marshall-Christensen	2	4		Block Thomas Browning	1042
 Chi Cheuk Tsang	3	3		Block Jeffrey Kuan	1004
 Joseph Stahl	5	1		Block Joe Stahl	1075
 Ritvik Ramkumar	5	1		Block Joe Stahl	1075
 Mostafa Adnane	3	3		Block Guillaume Massas	869
-Chi Nok Enoch Yiu	2	4		Block Fei Yu Chen	
-Ethan Dlugie	3	2		Block Tahsin Saffat	853
+Chi Nok Enoch Yiu	2	4		Block Fei Yu Chen	842
+Ethan Dlugie	3	2	-1	Block Tahsin Saffat	853
 Xiaohan Yan	4	2		Block Raha Ahmadianhosseini,Jacopo Di Bonito,Mariana Vicaria,Xiaohan Yan	747
 Tong Zhou	2	4		Block Ovidiu-Neculai Avadanei	852
 Michael Christianson	5	1		Block Joe Stahl	1075
@@ -42,7 +42,7 @@ Andrew Gitlin	3	3		Block Maksym Zubkov	1068
 Haoren Xiong	4	2		Block Haoren Xiong	745
 Melissa Sherman-Bennett	4	2		Block Leon Zhang	1061
 Rikhav Shah	2	4		Block Rikhav Shah	1066
-Roy Zhao	4	1		Block ROY ZHAO	1093
+Roy Zhao	4	1	-1	Block ROY ZHAO	1093
 James Dix	4	2		Block ROY ZHAO	1093
 Jeffrey Kuan	3	3		Block Jeffrey Kuan	1004
 Adele Padgett	4	2		Block Adele	737
@@ -81,7 +81,7 @@ Kyle Miller	7	3		Block Nic Brody	1045
 Nic Brody	5	1		Block Nic Brody	1045
 Leon Zhang	5	1		Block Leon Zhang	1061
 Yuan Yao	4	2		Block Daniel Chupin	835
-Adam Dhillon	2	0		Block Izak Oltman	1043
+Adam Dhillon	2	0	-4	Block Izak Oltman	1043
 Holly Mandel	4	2		Block Holly Mandel	1065
 Raha Ahmadian	4	2		Block Raha Ahmadianhosseini,Jacopo Di Bonito,Mariana Vicaria,Xiaohan Yan	747
 Michael Seaman	2	4		Block Ovidiu-Neculai Avadanei	852
@@ -92,16 +92,16 @@ Yi Lai	5	1		Block Yi Lai	787
 Jacob Elafandi	2	4		Block Thomas Browning	1042
 Kiran Luecke	5	1		Block Kiran Luecke	1057
 Yanshuai Qin	3	3		Block Yanshuai Qin	812
-Yelena Mandelshtam	2	0		Block Izak Oltman	1043
-Kentaro Yamamoto	7	1		Block Reid Dale	1049
+Yelena Mandelshtam	2	0	-4	Block Izak Oltman	1043
+Kentaro Yamamoto	7	3		Block Reid Dale	1049
 Yulong Dong	3	3		Block Yulong Dong	1062
 Tahsin Saffat	3	3		Block Tahsin Saffat	853
 Rockford Sison	7	3		Block Rockford Sison	1008
 Reid Dale	7	3		Block Reid Dale	1049
 Mariana Vicaria	5	1		Block Raha Ahmadianhosseini,Jacopo Di Bonito,Mariana Vicaria,Xiaohan Yan	747
 Max Zubkov	3	3		Block Maksym Zubkov	1068
-Anya Michaelsen	2	-1		Block YAM	1040
-Izak Oltman	2	0		Block Izak Oltman	1043
+Anya Michaelsen	2	-1	-5	Block YAM	1040
+Izak Oltman	2	0	-4	Block Izak Oltman	1043
 Dongxiao Yu	5	1		Squat	1085
 Eugene Rabinovich	6	1		Squat	1057
 Bo Li	5	1		Squat	743
@@ -121,7 +121,7 @@ Katrina Biele	5	1		Squat	739
 Isabelle Shankar	5	1		Squat	739
 Mario Sanchez	5	1		Squat	739
 Satyaki Mukherjee	6	1		Squat	1039
-Milind Hegde	5	0		Squat	1039
+Milind Hegde	5	0	-1	Squat	1039
 Dan Daniel Erdmann-Pham	6	1		Squat	1039
 Yiling You	3	3		Squat	1070
 Haotian Gu	3	3		Squat	1070
@@ -134,7 +134,7 @@ Michael Franco	5	1		Squat	1066
 Dong An	5	1		Squat	1087
 James Hagborg	3	3		Squat	1085
 Yifeng Ding	6	1		Squat	937
-Yonah Borns-Weil	3	0		Squat	845
+Yonah Borns-Weil	3	0	-3	Squat	845
 David Casey	4	2		Squat	937
 Kubrat Danailov	6	1		Squat	741
 Benjamin Siskind	6	1		Squat	937
@@ -147,7 +147,7 @@ Julian Chaidez	6	1		Squat	935
 Ian Francis	3	3		Squat	845
 Michael Smith	6	1		Squat	1010
 Charlie Cifarelli	6	1		Squat	1061
-Rahul Dalal	6	0		Squat	1041
+Rahul Dalal	6	0	-1	Squat	1041
 Qinyi Zhu	3	3		Float	
 Zack Mcnulty	1	6		Float	
 Ahmad Zaid Abassi	1	6		Float	

@@ -7,6 +7,8 @@ public class MainMouseWheelListener implements MouseWheelListener {
 
     private final MainCanvas canvas;
 
+    private static final int bound = 30;
+
     public MainMouseWheelListener(MainCanvas canvas) {
         this.canvas = canvas;
     }
@@ -14,7 +16,10 @@ public class MainMouseWheelListener implements MouseWheelListener {
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
         if (e.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
-            canvas.mouseScrolled(e.getUnitsToScroll());
+            int n = e.getUnitsToScroll();
+            if (n <= bound && n >= - bound) {
+                canvas.mouseScrolled(e.getUnitsToScroll());
+            }
         }
     }
 }

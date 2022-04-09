@@ -126,16 +126,16 @@ public class OfficeDrawScreen implements mgsa.Screen {
             p.warning.setRect(new Rectangle(warningspos, y - scroll, warningslen, rowheight));
         }
         // *** WARNINGS ***
-        Map<String, Person> namelookup = new HashMap<>();
-        if (data.containsKey(year - 1)) {
-            Person[] prevpeople = data.get(year - 1);
+        Map<Integer, Map<String, Person>> namelookup = new HashMap<>();
+        for (int n : data.keySet()) {
+            namelookup.put(n, new HashMap<>());
+            Person[] prevpeople = data.get(n);
             for (int i = 0; i < prevpeople.length - 1; i++) {
                 Person p = prevpeople[i];
-                namelookup.put(p.buttons[0].getText(), p);
+                namelookup.get(n).put(p.buttons[0].getText(), p);
             }
         }
         Set<String> names = new HashSet<>();
-        Set<String> duplicatenames = new HashSet<>();
         for (int i = 0; i < people.length - 1; i++) {
             Person p = people[i];
             String s0 = p.buttons[0].getText();
@@ -146,7 +146,6 @@ public class OfficeDrawScreen implements mgsa.Screen {
             String s5 = p.buttons[5].getText();
             String warning = "";
             if (names.contains(s0)) {
-                duplicatenames.add(s0);
                 warning += "Duplicate name. ";
             }
             names.add(s0);
@@ -158,32 +157,38 @@ public class OfficeDrawScreen implements mgsa.Screen {
                     warning += "Invalid year. ";
                     b1 = false;
                 } else if (a1 > 1) {
-                    if (namelookup.containsKey(s0)) {
-                        Person q = namelookup.get(s0);
-                        int q1 = Integer.parseInt(q.buttons[1].getText());
-                        if (a1 != q1 + 1) {
-                            warning += "Inconsistent year. ";
-                            b1 = false;
+                    int maxyear = 0;
+                    int yearthen = 0;
+                    for (int n : namelookup.keySet()) {
+                        if (n < maxyear || n >= year) {
+                            continue;
                         }
-                    } else {
+                        if (namelookup.get(n).containsKey(s0)) {
+                            maxyear = n;
+                            yearthen = Integer.parseInt(namelookup.get(n).get(s0).buttons[1].getText());
+                        }
+                    }
+                    if (maxyear == 0) {
+                        warning += "No history. ";
+                    } else if (a1 != yearthen + 1) {
                         warning += "Inconsistent year. ";
-                        b1 = false;
+                    } else if (year != maxyear + 1) {
+                        warning += "Skipped " + (year - maxyear - 1) + " year" + (year == maxyear + 2 ? "" : "s") + ". ";
                     }
                 }
             } catch (NumberFormatException ex) {
-                warning += "Invalid year. ";
+                warning += "Non-integer year. ";
                 b1 = false;
             }
             int a2 = 0;
             boolean b2 = true;
             try {
                 a2 = Integer.parseInt(s2);
+                if (a2 > 6) {
+                    warning += "Invalid priority. ";
+                }
             } catch (NumberFormatException ex) {
-                warning += "Invalid priority. ";
-                b2 = false;
-            }
-            if (b2 && a2 > 6) {
-                warning += "Invalid priority. ";
+                warning += "Non-integer priority. ";
                 b2 = false;
             }
             int a3 = 0;
@@ -191,13 +196,19 @@ public class OfficeDrawScreen implements mgsa.Screen {
             if (!s3.isEmpty()) {
                 try {
                     a3 = Integer.parseInt(s3);
+                    if (a3 >= 0) {
+                        warning += "Invalid adjustment. ";
+                    }
                 } catch (NumberFormatException ex) {
-                    warning += "Invalid adjustment. ";
+                    warning += "Non-integer adjustment. ";
                     b3 = false;
                 }
-                if (b3 && a3 >= 0) {
-                    warning += "Invalid adjustment. ";
-                    b3 = false;
+            }
+            if (b1 && b2 && b3) {
+                int[] lookup = {6, 4, 3, 2, 1, 1, 3};
+                int priority = a1 >= 8 ? 5 : lookup[a1 - 1];
+                if (a2 != priority + a3) {
+                    warning += "Priority off by " + (a2 - priority - a3) + ". ";
                 }
             }
             String a4 = null;

@@ -23,8 +23,8 @@ Max Wimberley	5	1		Squat	1047
 Alex Sherman	6	1		Squat	1057
 Kristina Nelson	3	3		Squat	1060
 Adele Padgett	3	3		Squat	1060
-Charlie Cifarelli	5	3		Squat	1061
-Christopher Eur	5	0		Squat	1061
+Charlie Cifarelli	5	1		Squat	1061
+Christopher Eur	5	0	-1	Squat	1061
 Mengyuan Zhang	6	1		Squat	1061
 Zixi Hu	4	2		Squat	1064
 Holly Mandel	3	3		Squat	1064
@@ -34,9 +34,9 @@ Theodore Zhu	5	1		Squat	1085
 Dong An	4	2		Squat	1087
 Xinyu Zhao	4	2		Squat	1087
 Kentaro Yamamoto	6	1		Squat	1097
-Nicholas Bhattacharya	4	0		Squat	1097
+Nicholas Bhattacharya	4	0	-2	Squat	1097
 Reid Dale	6	1		Squat	1097
-Emily Bain	2	0		Float	1049
+Emily Bain	2	0	-4	Float	1049
 Mostafa Adnane	2	4		Float	1062
 David Casey	3	3		Float	741
 Luhang Lai	6	1		Float	1037
@@ -63,14 +63,14 @@ Qinyi Zhu	2	4		Block AJ	824
 Yulong Dong	2	4		Block AJ	824
 Hong Suh	4	2		Block AK	1068
 Leon Zhang	4	2		Block AK	1068
-Andrew Shi	3	4		Block B	1058
+Andrew Shi	3	3		Block B	1058
 Yu Tong	3	3		Block B	1058
-Madeline Brandt	5	0		Block C	1065
-Jess Banks	4	1		Block C	1065
+Madeline Brandt	5	0	-1	Block C	1065
+Jess Banks	4	1	-1	Block C	1065
 Paula Burkhardt-Guim	4	2		Block C	1065
 Diego Andres Bejarano Rayo	2	4		Block D	1062
 Guillaume Massas	2	4		Block D	1062
-Yonah Borns-Weil	2	0		Block E	845
+Yonah Borns-Weil	2	0	-4	Block E	845
 Ian Francis	2	4		Block E	845
 Nic Brody	4	2		Block F	835
 Michael Klug	4	2		Block F	835
@@ -82,29 +82,29 @@ Kiran Luecke	4	4		Block H	854
 Ben Castle	5	1		Block I	741
 Kubrat Danailov	5	1		Block I	741
 Matthew McCauley	2	4		Block I	741
-Ethan Dlugie	2	3		Block J	853
-Tahsin Saffat	2	0		Block J	853
-Alois Cerbu	2	0		Block J	853
+Ethan Dlugie	2	3	-1	Block J	853
+Tahsin Saffat	2	0	-4	Block J	853
+Alois Cerbu	2	0	-4	Block J	853
 Boyan Xu	2	4		Block J	853
 Shinu Cho	2	4		Block K	1037
 James Hagborg	2	4		Block K	1085
 Tristan Hull	2	4		Block K	1087
 Foster Tom	2	4		Block K	1047
-Michael Christianson	4	1		Block L	1095
-Joseph Stahl	4	1		Block L	1095
+Michael Christianson	4	1	-1	Block L	1095
+Joseph Stahl	4	1	-1	Block L	1095
 Ritvik Ramkumar	4	2		Block L	1095
 Luke Corcos	4	2		Block M	1066
 Michael Franco	4	2		Block M	1066
 Yanhe Huang	4	2		Block M	1066
-Rahul Dalal	5	0		Block N*	1041
+Rahul Dalal	5	0	-1	Block N*	1041
 Sander Mack-Crane	5	1		Block N*	1041
 Alexander Bertoloni Meli	6	1		Block N*	1041
 Jacopo Di Bonito	3	3		Block O	747
 Mariana Vicaria	4	2		Block O	747
 Xiaohan Yan	3	3		Block O	747
-Roy Zhao	3	0		Block P	869
+Roy Zhao	3	2	-1	Block P	869
 James Dix	3	3		Block P	869
-James Rowan	3	2		Block P	869
+James Rowan	3	2	-1	Block P	869
 Ravi Fernando	6	1		Block Q	1093
 Ian Gleason	5	1		Block Q	1093
 Zixin Jiang	4	2		Block Q	1093
@@ -122,8 +122,8 @@ Yiling You	2	4		Block U	1070
 Lauren Heller	3	3		Block V	775
 Theo McKenzie	3	3		Block V	775
 Angxiu Ni	3	3		Block V	775
-Max Hlavacek	3	0		Block W	1045
-Larsen Linov	3	0		Block W	1045
+Max Hlavacek	3	0	-3	Block W	1045
+Larsen Linov	3	0	-3	Block W	1045
 Anthony Villafranca	3	3		Block W	1045
 Jeffrey Kuan	2	4		Block X	1042
 Mitchell Taylor	2	4		Block X	1042
