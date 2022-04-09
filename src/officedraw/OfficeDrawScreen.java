@@ -123,18 +123,109 @@ public class OfficeDrawScreen implements mgsa.Screen {
             p.buttons[3].setRect(new Rectangle(adjustmentpos, y - scroll, adjustmentlen, rowheight));
             p.buttons[4].setRect(new Rectangle(blockpos, y - scroll, blocklen, rowheight));
             p.buttons[5].setRect(new Rectangle(officepos, y - scroll, officelen, rowheight));
+            p.warning.setRect(new Rectangle(warningspos, y - scroll, warningslen, rowheight));
+        }
+        // *** WARNINGS ***
+        Map<String, Person> namelookup = new HashMap<>();
+        if (data.containsKey(year - 1)) {
+            Person[] prevpeople = data.get(year - 1);
+            for (int i = 0; i < prevpeople.length - 1; i++) {
+                Person p = prevpeople[i];
+                namelookup.put(p.buttons[0].getText(), p);
+            }
+        }
+        Set<String> names = new HashSet<>();
+        Set<String> duplicatenames = new HashSet<>();
+        for (int i = 0; i < people.length - 1; i++) {
+            Person p = people[i];
+            String s0 = p.buttons[0].getText();
+            String s1 = p.buttons[1].getText();
+            String s2 = p.buttons[2].getText();
+            String s3 = p.buttons[3].getText();
+            String s4 = p.buttons[4].getText();
+            String s5 = p.buttons[5].getText();
+            String warning = "";
+            if (names.contains(s0)) {
+                duplicatenames.add(s0);
+                warning += "Duplicate name. ";
+            }
+            names.add(s0);
+            int a1 = 0;
+            boolean b1 = true;
+            try {
+                a1 = Integer.parseInt(s1);
+                if (a1 < 1) {
+                    warning += "Invalid year. ";
+                    b1 = false;
+                } else if (a1 > 1) {
+                    if (namelookup.containsKey(s0)) {
+                        Person q = namelookup.get(s0);
+                        int q1 = Integer.parseInt(q.buttons[1].getText());
+                        if (a1 != q1 + 1) {
+                            warning += "Inconsistent year. ";
+                            b1 = false;
+                        }
+                    } else {
+                        warning += "Inconsistent year. ";
+                        b1 = false;
+                    }
+                }
+            } catch (NumberFormatException ex) {
+                warning += "Invalid year. ";
+                b1 = false;
+            }
+            int a2 = 0;
+            boolean b2 = true;
+            try {
+                a2 = Integer.parseInt(s2);
+            } catch (NumberFormatException ex) {
+                warning += "Invalid priority. ";
+                b2 = false;
+            }
+            if (b2 && a2 > 6) {
+                warning += "Invalid priority. ";
+                b2 = false;
+            }
+            int a3 = 0;
+            boolean b3 = true;
+            if (!s3.isEmpty()) {
+                try {
+                    a3 = Integer.parseInt(s3);
+                } catch (NumberFormatException ex) {
+                    warning += "Invalid adjustment. ";
+                    b3 = false;
+                }
+                if (b3 && a3 >= 0) {
+                    warning += "Invalid adjustment. ";
+                    b3 = false;
+                }
+            }
+            String a4 = null;
+            boolean b4 = true;
+            if (!s4.equals("Squat") && !s4.equals("Float") && !s4.startsWith("Block ")) {
+                warning += "Invalid block. ";
+                b4 = false;
+            }
+            if (s4.startsWith("Block ")) {
+                a4 = s4.substring(6);
+            }
+            p.warning.setText(warning);
         }
         // *** PAINT THE CANVAS ***
         Point mouse = canvas.getMousePosition();
         g.setColor(background);
         g.fillRect(0, 0, w, h);
         for (int i = 0; i < people.length; i++) {
-            for (int j = 0; j < 5; j++) {
-                if (i == row && j == column) {
+            for (int j = 0; j < 6; j++) {
+                if (row == i && column == j) {
                     people[i].buttons[j].highlight(g, mouseover);
                 }
                 people[i].buttons[j].drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
             }
+            if (row == i && column == 6) {
+                people[i].warning.highlight(g, mouseover);
+            }
+            people[i].warning.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
         }
         for (int n = 2; n <= people.length + 1; n++) {
             g.drawLine(0, bannerheight + n * rowheight - scroll, w, bannerheight + n * rowheight - scroll);
@@ -185,6 +276,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 data.put(year - 1, new Person[]{new Person()});
             }
             row = 0;
+            column = 0;
             scroll = 0;
             year--;
         }
@@ -193,6 +285,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 data.put(year + 1, new Person[]{new Person()});
             }
             row = 0;
+            column = 0;
             scroll = 0;
             year++;
         }
@@ -244,7 +337,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
             return;
         }
         if (key == KeyEvent.VK_RIGHT) {
-            if (column < 4) {
+            if (column < 6) {
                 column++;
             }
             return;

@@ -19,8 +19,8 @@ Dan Daniel Erdmann-Pham	5	1		Squat	1039
 Milind Hegde	4	2		Squat	1039
 Satyaki Mukherjee	5	1		Squat	1039
 Jeremy Meza	5	1		Squat	1047
-Maxim Wimberley	5	1		Squat	1047
-Alexander Sherman	6	1		Squat	1057
+Max Wimberley	5	1		Squat	1047
+Alex Sherman	6	1		Squat	1057
 Kristina Nelson	3	3		Squat	1060
 Adele Padgett	3	3		Squat	1060
 Charlie Cifarelli	5	3		Squat	1061
@@ -36,10 +36,9 @@ Xinyu Zhao	4	2		Squat	1087
 Kentaro Yamamoto	6	1		Squat	1097
 Nicholas Bhattacharya	4	0		Squat	1097
 Reid Dale	6	1		Squat	1097
-Daniel Chupin	3	3		Float	1044
 Emily Bain	2	0		Float	1049
-mostafa adnane	2	4		Float	1062
-Davd Casey	3	3		Float	741
+Mostafa Adnane	2	4		Float	1062
+David Casey	3	3		Float	741
 Luhang Lai	6	1		Float	1037
 Mohandas Pillai	5	1		Float	1037
 Frederick Huang	3	3		Float	869
@@ -50,11 +49,7 @@ Hongyi Liu	2	4		Block AA	1056
 Jiaming Wang	2	4		Block AA	1056
 Noble Macfarlane	6	1		Block AB	1049
 Rockford Sison	6	1		Block AB	1049
-Dan Daniel Erdmann-Pham	5	1		Block AC	1039
-Milind Hegde	4	2		Block AC	1039
-Satyaki Mukherjee	5	1		Block AC	1039
-Hongyi Liu	2	4		Block AD	1056
-Yanshuai Qin	2	4		Block AD	822
+Yanshuai Qin	2	4		Block AA	822
 Eugene Rabinovich	5	1		Block AE	1057
 Ben Wormleighton	5	1		Block AE	1057
 Ziwen Zhao	2	4		Block AF	1006
@@ -64,19 +59,16 @@ Jiahao Yao	2	4		Block AG	1004
 Daniel Chupin	3	3		Block AH	1044
 Irit Huq-Kuruvilla	3	3		Block AH	1044
 Yuan Yao	3	3		Block AH	1044
-Zixi Hu	4	2		Block AI	1064
-Holly Mandel	3	3		Block AI	1064
-Zhewei Yao	4	2		Block AI	1064
 Qinyi Zhu	2	4		Block AJ	824
 Yulong Dong	2	4		Block AJ	824
 Hong Suh	4	2		Block AK	1068
 Leon Zhang	4	2		Block AK	1068
-Andrew Shi	2	4		Block B	1058
+Andrew Shi	3	4		Block B	1058
 Yu Tong	3	3		Block B	1058
 Madeline Brandt	5	0		Block C	1065
 Jess Banks	4	1		Block C	1065
 Paula Burkhardt-Guim	4	2		Block C	1065
-Diego Bejarano Rayo	2	4		Block D	1062
+Diego Andres Bejarano Rayo	2	4		Block D	1062
 Guillaume Massas	2	4		Block D	1062
 Yonah Borns-Weil	2	0		Block E	845
 Ian Francis	2	4		Block E	845
@@ -106,11 +98,11 @@ Michael Franco	4	2		Block M	1066
 Yanhe Huang	4	2		Block M	1066
 Rahul Dalal	5	0		Block N*	1041
 Sander Mack-Crane	5	1		Block N*	1041
-Alexander Bertoloni-Meli	6	1		Block N*	1041
+Alexander Bertoloni Meli	6	1		Block N*	1041
 Jacopo Di Bonito	3	3		Block O	747
 Mariana Vicaria	4	2		Block O	747
 Xiaohan Yan	3	3		Block O	747
-Roy Zhao	6	0		Block P	869
+Roy Zhao	3	0		Block P	869
 James Dix	3	3		Block P	869
 James Rowan	3	2		Block P	869
 Ravi Fernando	6	1		Block Q	1093
@@ -130,7 +122,7 @@ Yiling You	2	4		Block U	1070
 Lauren Heller	3	3		Block V	775
 Theo McKenzie	3	3		Block V	775
 Angxiu Ni	3	3		Block V	775
-Magda Hlavacek	3	0		Block W	1045
+Max Hlavacek	3	0		Block W	1045
 Larsen Linov	3	0		Block W	1045
 Anthony Villafranca	3	3		Block W	1045
 Jeffrey Kuan	2	4		Block X	1042
@@ -169,3 +161,4 @@ Chi Nok Enoch Yiu	1	5		Block BD	842
 Haixiang Zhang	1	5		Block BE	844
 Junsheng Zhang	1	5		Block BF	836
 Tong Zhou	1	5		Block BH	852
+					
