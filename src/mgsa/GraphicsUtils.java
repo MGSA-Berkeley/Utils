@@ -25,7 +25,11 @@ public class GraphicsUtils {
     private static int getHeight(Graphics g, String sample) {
         return (int) new TextLayout(sample, g.getFont(), ((Graphics2D) g).getFontRenderContext()).getBounds().getHeight();
     }
-    
+
+    public static int getHeight(Graphics g) {
+        return getHeight(g, sample2);
+    }
+
     public static void drawLine(Graphics g, int x1, int y1, int x2, int y2, int thickness) {
         ((Graphics2D) g).setStroke(new BasicStroke(thickness));
         g.drawLine(x1, y1, x2, y2);
@@ -42,18 +46,30 @@ public class GraphicsUtils {
         g.fillRect(r.x, r.y, r.width, r.height);
     }
 
-    public static void drawCenteredString(Graphics g, String text, Rectangle r, boolean below) {
+    public static void drawCenterString(Graphics g, String text, Rectangle r, boolean below) {
         FontMetrics metrics = g.getFontMetrics();
         int w = metrics.stringWidth(text);
         int h = getHeight(g, below ? sample1 : sample2);
-        int descent = below ? metrics.getDescent() - 1 : 0;
+        int descent = (below ? metrics.getDescent() : 0) - 1;
         g.drawString(text, r.x + r.width / 2 - w / 2, r.y + r.height / 2 - descent + h / 2);
     }
 
-    public static Rectangle getRectangle(Graphics g, String text, Point p, boolean below, int padding) {
+    public static void drawLeftString(Graphics g, String text, Rectangle r, boolean below, int padding) {
+        FontMetrics metrics = g.getFontMetrics();
+        int h = getHeight(g, below ? sample1 : sample2);
+        int descent = (below ? metrics.getDescent() : 0) - 1;
+        g.drawString(text, r.x + padding, r.y + r.height / 2 - descent + h / 2);
+    }
+
+    public static Rectangle getCenterRectangle(Graphics g, String text, Point p, boolean below, int padding) {
         FontMetrics metrics = g.getFontMetrics();
         int w = metrics.stringWidth(text);
         int h = getHeight(g, below ? sample1 : sample2);
         return new Rectangle(p.x - w / 2 - padding, p.y - h / 2 - padding, w + 2 * padding, h + 2 * padding);
+    }
+
+    public static Rectangle getLeftRectangle(Graphics g, String text, Point p, int w, boolean below, int padding) {
+        int h = getHeight(g, below ? sample1 : sample2);
+        return new Rectangle(p.x, p.y - h / 2 - padding, w, h + 2 * padding);
     }
 }

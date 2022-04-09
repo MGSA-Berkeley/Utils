@@ -237,7 +237,7 @@ public class DisplayElection {
         for (int i = 0; i < n; i++) {
             int len = metrics.stringWidth(candidates[i]);
             Rectangle rect = new Rectangle(maxlen + padding - len + 1, i * barheight + (i + 1) * barsep + padding + 1, len, barheight);
-            mgsa.GraphicsUtils.drawCenteredString(g, candidates[i], rect, false);
+            mgsa.GraphicsUtils.drawCenterString(g, candidates[i], rect, false);
         }
         return img;
     }

@@ -13,11 +13,11 @@ public class HomeScreen implements Screen {
 
     private final MainCanvas canvas;
 
-    private Rectangle titlepos;
-    private Rectangle officedrawpos;
-    private Rectangle electionpos;
-    private Rectangle exitpos;
-    
+    private final Button title = new Button("MGSA Utils", null);
+    private final Button officedraw = new Button("Office Draw", null);
+    private final Button election = new Button("Election", null);
+    private final Button exit = new Button("Exit", null);
+
     private final Set<Integer> keyset = new HashSet<>();
 
     private Point click;
@@ -36,54 +36,22 @@ public class HomeScreen implements Screen {
     @Override
     public void paintComponent(Graphics g, int w, int h) {
         int padding = 8;
-        int thickness = 3;
-        String titletext = "MGSA Utils";
-        String officedrawtext = "Office Draw";
-        String electiontext = "Election";
-        String exittext = "Exit";
         g.setFont(bigfont);
-        titlepos = GraphicsUtils.getRectangle(g, titletext, new Point(w / 2, h / 3), false, padding);
+        title.setRectCenter(g, new Point(w / 2, h / 3), padding);
         g.setFont(smallfont);
-        officedrawpos = GraphicsUtils.getRectangle(g, officedrawtext, new Point(w / 2, h / 2), false, padding);
-        electionpos = GraphicsUtils.getRectangle(g, electiontext, new Point(w / 2, 5 * h / 8), false, padding);
-        exitpos = GraphicsUtils.getRectangle(g, exittext, new Point(w / 2, 3 * h / 4), false, padding);
+        officedraw.setRectCenter(g, new Point(w / 2, h / 2), padding);
+        election.setRectCenter(g, new Point(w / 2, 5 * h / 8), padding);
+        exit.setRectCenter(g, new Point(w / 2, 3 * h / 4), padding);
+        // *** PAINT THE CANVAS ***
+        Point mouse = canvas.getMousePosition();
         g.setColor(background);
         g.fillRect(0, 0, w, h);
-        g.setColor(mouseover);
-        Point p = canvas.getMousePosition();
-        if (p != null) {
-            if (officedrawpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, officedrawpos);
-            }
-            if (electionpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, electionpos);
-            }
-            if (exitpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, exitpos);
-            }
-        }
-        p = click;
-        if (p != null) {
-            if (officedrawpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, officedrawpos);
-            }
-            if (electionpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, electionpos);
-            }
-            if (exitpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, exitpos);
-            }
-        }
-        g.setColor(foreground);
         g.setFont(bigfont);
-        GraphicsUtils.drawCenteredString(g, titletext, titlepos, false);
+        title.drawCenter(g, mouseover, foreground, mouse, click);
         g.setFont(smallfont);
-        GraphicsUtils.drawCenteredString(g, officedrawtext, officedrawpos, false);
-        GraphicsUtils.drawCenteredString(g, electiontext, electionpos, false);
-        GraphicsUtils.drawCenteredString(g, exittext, exitpos, false);
-        GraphicsUtils.drawRectangle(g, officedrawpos, thickness);
-        GraphicsUtils.drawRectangle(g, electionpos, thickness);
-        GraphicsUtils.drawRectangle(g, exitpos, thickness);
+        officedraw.drawCenter(g, mouseover, foreground, mouse, click);
+        election.drawCenter(g, mouseover, foreground, mouse, click);
+        exit.drawCenter(g, mouseover, foreground, mouse, click);
     }
 
     @Override
@@ -94,16 +62,14 @@ public class HomeScreen implements Screen {
     @Override
     public void mouseReleased() {
         Point p = canvas.getMousePosition();
-        if (p != null && click != null) {
-            if (officedrawpos.contains(p) && officedrawpos.contains(click)) {
-                canvas.setScreen(new officedraw.OfficeDrawScreen(canvas));
-            }
-            if (electionpos.contains(p) && electionpos.contains(click)) {
-                canvas.setScreen(new elections.ElectionScreen(canvas));
-            }
-            if (exitpos.contains(p) && exitpos.contains(click)) {
-                System.exit(0);
-            }
+        if (officedraw.contains(p) && officedraw.contains(click)) {
+            canvas.setScreen(new officedraw.OfficeDrawScreen(canvas));
+        }
+        if (election.contains(p) && election.contains(click)) {
+            canvas.setScreen(new elections.ElectionScreen(canvas));
+        }
+        if (exit.contains(p) && exit.contains(click)) {
+            System.exit(0);
         }
         click = null;
     }

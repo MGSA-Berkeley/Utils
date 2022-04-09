@@ -6,103 +6,150 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import mgsa.GraphicsUtils;
 
 public class OfficeDrawScreen implements mgsa.Screen {
 
     private final mgsa.MainCanvas canvas;
 
-    private Rectangle yearpos;
-    private Rectangle leftpos;
-    private Rectangle rightpos;
-    private Rectangle backpos;
-    private Rectangle exitpos;
+    private int year = Calendar.getInstance().get(Calendar.YEAR);
+    private final mgsa.Button bannerbutton = new mgsa.Button(Integer.toString(year), null);
+    private final mgsa.Button leftbutton = new mgsa.Button("<", null);
+    private final mgsa.Button rightbutton = new mgsa.Button(">", null);
+    private final mgsa.Button backbutton = new mgsa.Button("←", null);
+    private final mgsa.Button exitbutton = new mgsa.Button("X", null);
+    private final mgsa.Button namebutton = new mgsa.Button("Name", null);
+    private final mgsa.Button yearbutton = new mgsa.Button("Year", null);
+    private final mgsa.Button prioritybutton = new mgsa.Button("Priority", null);
+    private final mgsa.Button groupbutton = new mgsa.Button("Group", null);
+    private final mgsa.Button officebutton = new mgsa.Button("Office", null);
+    private final mgsa.Button warningsbutton = new mgsa.Button("Warnings", null);
 
     private final Set<Integer> keyset = new HashSet<>();
 
     private Point click;
 
-    private static final Color background = GraphicsUtils.Grey;
-    private static final Color foreground = GraphicsUtils.Black;
-    private static final Color mouseover = GraphicsUtils.BayFog;
+    private static final Color background = mgsa.GraphicsUtils.Grey;
+    private static final Color foreground = mgsa.GraphicsUtils.Black;
+    private static final Color mouseover = mgsa.GraphicsUtils.BayFog;
 
     private static final Font bigfont = new Font(Font.SANS_SERIF, Font.BOLD, 48);
-    private static final Font smallfont = new Font(Font.SANS_SERIF, Font.BOLD, 14);
+    private static final Font mediumfont = new Font(Font.SANS_SERIF, Font.BOLD, 16);
+    private static final Font smallfont = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
 
-    private int year = Calendar.getInstance().get(Calendar.YEAR);
+    private final Map<Integer, List<Person>> data = new HashMap<>();
 
     public OfficeDrawScreen(mgsa.MainCanvas canvas) {
         this.canvas = canvas;
+        data.put(2022, new ArrayList<>());
+        data.get(2022).add(new Person("Thomas Browning", "4", "0", "Squat", "1041"));
+        data.get(2022).add(new Person("Ted Kaczynski", "8", "1", "Group 1", "1942"));
+        data.get(2022).add(new Person("Albert Einstein", "5", "2", "Group 1004913", "1945"));
+        data.get(2022).add(new Person("", "", "", "", ""));
     }
 
     @Override
     public void paintComponent(Graphics g, int w, int h) {
-        int bigpadding = 16;
-        int mediumpadding = 4;
-        int smallpadding = 2;
-        int bigthickness = 4;
-        int smallthickness = 2;
-        String yeartext = Integer.toString(year);
-        String lefttext = "<";
-        String righttext = ">";
-        String backtext = "←";
-        String exittext = "X";
+        int year = this.year; // fix the year to avoid concurrency bugs
+        int bigpadding = 12;
+        int smallpadding = 5;
         g.setFont(bigfont);
-        Rectangle banner = GraphicsUtils.getRectangle(g, "  " + yeartext + "  ", new Point(w / 2, 0), false, bigpadding);
-        yearpos = GraphicsUtils.getRectangle(g, yeartext, new Point(w / 2, banner.height / 2), false, mediumpadding);
-        leftpos = GraphicsUtils.getRectangle(g, lefttext, new Point(banner.x, banner.height / 2), false, mediumpadding);
-        rightpos = GraphicsUtils.getRectangle(g, righttext, new Point(banner.x + banner.width, banner.height / 2), false, mediumpadding);
-        backpos = GraphicsUtils.getRectangle(g, backtext, new Point(banner.height / 2, banner.height / 2), false, mediumpadding);
-        exitpos = GraphicsUtils.getRectangle(g, backtext, new Point(w - banner.height / 2, banner.height / 2), false, mediumpadding);
+        bannerbutton.setText(Integer.toString(year));
+        int bannerwidth = bannerbutton.getWidth(g, smallpadding);
+        int bannerheight = bannerbutton.getHeight(g, bigpadding);
+        bannerbutton.setRectCenter(g, new Point(w / 2, bannerheight / 2), smallpadding);
+        leftbutton.setRectRight(g, new Point(w / 2 - bannerwidth / 2, bannerheight / 2), smallpadding);
+        rightbutton.setRectLeft(g, new Point(w / 2 + bannerwidth / 2, bannerheight / 2), smallpadding);
+        backbutton.setRectLeft(g, new Point(bigpadding - smallpadding, bannerheight / 2), smallpadding);
+        exitbutton.setRectRight(g, new Point(w - bigpadding + smallpadding, bannerheight / 2), smallpadding);
+        g.setFont(mediumfont);
+        int rowheight = 0;
+        int namelen = namebutton.getWidth(g, smallpadding);
+        rowheight = Math.max(rowheight, namebutton.getHeight(g, smallpadding));
+        int yearlen = yearbutton.getWidth(g, smallpadding);
+        rowheight = Math.max(rowheight, yearbutton.getHeight(g, smallpadding));
+        int prioritylen = prioritybutton.getWidth(g, smallpadding);
+        rowheight = Math.max(rowheight, prioritybutton.getHeight(g, smallpadding));
+        int grouplen = groupbutton.getWidth(g, smallpadding);
+        rowheight = Math.max(rowheight, groupbutton.getHeight(g, smallpadding));
+        int officelen = officebutton.getWidth(g, smallpadding);
+        rowheight = Math.max(rowheight, officebutton.getHeight(g, smallpadding));
+        if (data.containsKey(year)) {
+            g.setFont(smallfont);
+            for (Person p : data.get(year)) {
+                namelen = Math.max(namelen, p.name.getWidth(g, smallpadding));
+                yearlen = Math.max(yearlen, p.year.getWidth(g, smallpadding));
+                prioritylen = Math.max(prioritylen, p.priority.getWidth(g, smallpadding));
+                grouplen = Math.max(grouplen, p.group.getWidth(g, smallpadding));
+                officelen = Math.max(officelen, p.office.getWidth(g, smallpadding));
+            }
+        }
+        int namepos = 0;
+        int yearpos = namepos + namelen;
+        int prioritypos = yearpos + yearlen;
+        int grouppos = prioritypos + prioritylen;
+        int officepos = grouppos + grouplen;
+        int warningspos = officepos + officelen;
+        int warningslen = w - warningspos;
+        namebutton.setRect(new Rectangle(namepos, bannerheight, namelen, rowheight));
+        yearbutton.setRect(new Rectangle(yearpos, bannerheight, yearlen, rowheight));
+        prioritybutton.setRect(new Rectangle(prioritypos, bannerheight, prioritylen, rowheight));
+        groupbutton.setRect(new Rectangle(grouppos, bannerheight, grouplen, rowheight));
+        officebutton.setRect(new Rectangle(officepos, bannerheight, officelen, rowheight));
+        warningsbutton.setRect(new Rectangle(warningspos, bannerheight, warningslen, rowheight));
+        if (data.containsKey(year)) {
+            int y = bannerheight;
+            for (Person p : data.get(year)) {
+                y += rowheight;
+                p.name.setRect(new Rectangle(namepos, y, namelen, rowheight));
+                p.year.setRect(new Rectangle(yearpos, y, yearlen, rowheight));
+                p.priority.setRect(new Rectangle(prioritypos, y, prioritylen, rowheight));
+                p.group.setRect(new Rectangle(grouppos, y, grouplen, rowheight));
+                p.office.setRect(new Rectangle(officepos, y, officelen, rowheight));
+            }
+        }
+        // *** PAINT THE CANVAS ***
+        Point mouse = canvas.getMousePosition();
         g.setColor(background);
         g.fillRect(0, 0, w, h);
-        g.setColor(mouseover);
-        Point p = canvas.getMousePosition();
-        if (p != null) {
-            if (yearpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, yearpos);
-            }
-            if (leftpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, leftpos);
-            }
-            if (rightpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, rightpos);
-            }
-            if (backpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, backpos);
-            }
-            if (exitpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, exitpos);
+        if (data.containsKey(year)) {
+            for (Person p : data.get(year)) {
+                p.name.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
+                p.year.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
+                p.priority.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
+                p.group.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
+                p.office.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
             }
         }
-        p = click;
-        if (p != null) {
-            if (yearpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, yearpos);
-            }
-            if (leftpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, leftpos);
-            }
-            if (rightpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, rightpos);
-            }
-            if (backpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, backpos);
-            }
-            if (exitpos.contains(p)) {
-                GraphicsUtils.fillRectangle(g, exitpos);
-            }
+        g.setColor(background);
+        g.fillRect(0, 0, w, bannerheight + rowheight);
+        g.setFont(bigfont);
+        bannerbutton.drawCenter(g, mouseover, foreground, mouse, click);
+        leftbutton.drawCenter(g, mouseover, foreground, mouse, click);
+        rightbutton.drawCenter(g, mouseover, foreground, mouse, click);
+        backbutton.drawCenter(g, mouseover, foreground, mouse, click);
+        exitbutton.drawCenter(g, mouseover, foreground, mouse, click);
+        g.setFont(mediumfont);
+        namebutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
+        yearbutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
+        prioritybutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
+        groupbutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
+        officebutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
+        warningsbutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
+        for (int n = 0; n <= (data.containsKey(year) ? data.get(year).size() + 1 : 1); n++) {
+            g.drawLine(0, bannerheight + n * rowheight, w, bannerheight + n * rowheight);
         }
-        g.setColor(foreground);
-        GraphicsUtils.drawCenteredString(g, yeartext, yearpos, false);
-        GraphicsUtils.drawCenteredString(g, lefttext, leftpos, false);
-        GraphicsUtils.drawCenteredString(g, righttext, rightpos, false);
-        GraphicsUtils.drawCenteredString(g, backtext, backpos, false);
-        GraphicsUtils.drawCenteredString(g, exittext, exitpos, false);
-        GraphicsUtils.drawLine(g, 0, banner.height, w, banner.height, bigthickness);
+        g.drawLine(yearpos, bannerheight, yearpos, h);
+        g.drawLine(prioritypos, bannerheight, prioritypos, h);
+        g.drawLine(grouppos, bannerheight, grouppos, h);
+        g.drawLine(officepos, bannerheight, officepos, h);
+        g.drawLine(warningspos, bannerheight, warningspos, h);
     }
 
     @Override
@@ -113,22 +160,20 @@ public class OfficeDrawScreen implements mgsa.Screen {
     @Override
     public void mouseReleased() {
         Point p = canvas.getMousePosition();
-        if (p != null && click != null) {
-            if (yearpos.contains(p) && yearpos.contains(click)) {
-                year = Calendar.getInstance().get(Calendar.YEAR);
-            }
-            if (leftpos.contains(p) && leftpos.contains(click)) {
-                year--;
-            }
-            if (rightpos.contains(p) && rightpos.contains(click)) {
-                year++;
-            }
-            if (backpos.contains(p) && backpos.contains(click)) {
-                canvas.setScreen(new mgsa.HomeScreen(canvas));
-            }
-            if (exitpos.contains(p) && exitpos.contains(click)) {
-                System.exit(0);
-            }
+        if (bannerbutton.contains(p) && bannerbutton.contains(click)) {
+            year = Calendar.getInstance().get(Calendar.YEAR);
+        }
+        if (leftbutton.contains(p) && leftbutton.contains(click)) {
+            year--;
+        }
+        if (rightbutton.contains(p) && rightbutton.contains(click)) {
+            year++;
+        }
+        if (backbutton.contains(p) && backbutton.contains(click)) {
+            canvas.setScreen(new mgsa.HomeScreen(canvas));
+        }
+        if (exitbutton.contains(p) && exitbutton.contains(click)) {
+            System.exit(0);
         }
         click = null;
     }
