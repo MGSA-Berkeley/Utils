@@ -44,7 +44,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
     private static final Font mediumfont = new Font(Font.SANS_SERIF, Font.BOLD, 16);
     private static final Font smallfont = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
 
-    private final Map<Integer, Person[]> data = new HashMap<>();
+    private final Map<Integer, Person[]> data = LoadData.load();
     private int row = 0;
     private int column = 0;
     private int scroll;
@@ -54,16 +54,6 @@ public class OfficeDrawScreen implements mgsa.Screen {
         for (char c : "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray()) {
             letters.add(Character.toString(c));
         }
-        data.put(2022, new Person[]{new Person("Thomas Browning", "4", "0", "Squat", "1041"),
-            new Person("Ted Kaczynski", "8", "1", "Group 1", "1942"),
-            new Person("Albert Einstein", "5", "2", "Group 1004913", "1945"),
-            new Person()});
-        Person[] people = new Person[100];
-        Random randy = new Random();
-        for (int i = 0; i < 100; i++) {
-            people[i] = new Person(Integer.toString(randy.nextInt()), Integer.toString(randy.nextInt()), Integer.toString(randy.nextInt()), Integer.toString(randy.nextInt()), Integer.toString(randy.nextInt()));
-        }
-        data.put(2023, people);
     }
 
     @Override
@@ -221,6 +211,10 @@ public class OfficeDrawScreen implements mgsa.Screen {
         keyset.add(key);
         if (keyset.contains(KeyEvent.VK_CONTROL) && key == KeyEvent.VK_Q) {
             System.exit(0);
+        }
+        if (keyset.contains(KeyEvent.VK_CONTROL) && key == KeyEvent.VK_S) {
+            SaveData.save(data);
+            return;
         }
         if (key == KeyEvent.VK_UP) {
             if (row > 0) {
