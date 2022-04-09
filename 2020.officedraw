@@ -1,107 +1,137 @@
-Ziwen Zhao	3	3		Block Dun Tang	787
-Dun Tang	3	3		Block Dun Tang	787
-Irit Huq-Kuruvilla	4	2		Block Daniel Chupin	835
+Adele Padgett	4	2		Block A	737
+Kristina Nelson	4	2		Block A	737
+Max Hlavacek	4	2		Block A	737
+Anthony Villafranca	4	2		Block B	1044
+Frederick Huang	4	2		Block B	1044
+Emily Bain	3	3		Block B	1044
+Irit Huq-Kuruvilla	4	2		Block C	835
+Yuan Yao	4	2		Block C	835
+Daniel Chupin	4	2		Block C	835
+Ziwen Zhao	3	3		Block D	787
+Dun Tang	3	3		Block D	787
+Jiahao Yao	3	3		Block E	1006
+Edric Wang	2	3	-1	Block E	1006
+Fei Yu Chen	2	4		Block F	842
+Mark Macerato	2	4		Block F	842
+Chi Nok Enoch Yiu	2	4		Block F	842
+Diego Andres Bejarano Rayo	3	3		Block G	869
+Guillaume Massas	3	3		Block G	869
+Mostafa Adnane	3	3		Block G	869
+Yixuan Li	4	2		Block H	745
+Haoren Xiong	4	2		Block H	745
+Adam Dhillon	2	0	-4	Block I	1043
+Yelena Mandelshtam	2	0	-4	Block I	1043
+Izak Oltman	2	0	-4	Block I	1043
+Chi Cheuk Tsang	3	3		Block J	1004
+Jeffrey Kuan	3	3		Block J	1004
+Mitchell Taylor	3	3		Block J	1060
+Benjamin Pineau	2	4		Block J	1060
+Hongyi Liu	3	3		Block K	1062
+Jiaming Wang	3	3		Block K	1062
+Joseph Stahl	5	1		Block L	1075
+Ritvik Ramkumar	5	1		Block L	1075
+Michael Christianson	5	1		Block L	1075
+Larsen Linov	4	2		Block M	941
+Theo McKenzie	4	2		Block M	941
+Lauren Heller	4	2		Block M	941
+Melissa Sherman-Bennett	4	2		Block N	1061
+Leon Zhang	5	1		Block N	1061
+Andrew Gitlin	3	3		Block O	1068
+Eduardo Oregon Reyes	3	3		Block O	1068
+Max Zubkov	3	3		Block O	1068
+Meredith Shea	5	1		Block P	1045
+Kyle Miller	7	3		Block P	1045
+Nic Brody	5	1		Block P	1045
+Tong Zhou	2	4		Block Q	852
+Ovidiu-Neculai Avadanei	2	4		Block Q	852
+Oliver Edtmair	2	4		Block Q	852
+Michael Seaman	2	4		Block Q	852
+Patrick Lutz	5	-1	-2	Block R	1097
+Christopher Kuo	5	-1	-2	Block R	1097
+German Stefanich	5	-1	-2	Block R	1097
+Raehyun Kim	2	4		Block S	844
+Jiasu Wang	2	4		Block S	844
+Haixiang Zhang	2	4		Block S	844
+Xiaohan Yan	4	2		Block T	747
+Jacopo Di Bonito	4	2		Block T	747
+Raha Ahmadian	4	2		Block T	747
+Mariana Vicaria	5	1		Block T	747
+Kentaro Yamamoto	7	3		Block U	1049
+Reid Dale	7	3		Block U	1049
+Rikhav Shah	2	4		Block V	1056
+David Gonzalez	2	4		Block V	1056
+Roy Zhao	4	1	-1	Block W	1093
+James Dix	4	2		Block W	1093
+James Rowan	4	2		Block W	1093
+Ethan Dlugie	3	2	-1	Block X	853
+Alois Cerbu	3	3		Block X	853
+Boyan Xu	3	3		Block X	853
+Tahsin Saffat	3	3		Block X	853
+Thomas Browning	2	4		Block Y	1042
+Ahmee Marshall-Christensen	2	4		Block Y	1042
+Jacob Elafandi	2	4		Block Y	1042
+Xianglong Ni	3	3		Block Z	1058
+Marvin Castellon	3	3		Block Z	1058
+Yulia Alexandr	2	3	-1	Block AA	1040
+Anya Michaelsen	2	-1	-5	Block AA	1040
+Yixiang Luo	2	4		Block AB	1064
+Zixi Hu	5	1		Block AB	1064
+Zhewei Yao	5	1		Block AB	1064
+Andrew Shi	4	2		Block AC	1095
+Yu Tong	4	2		Block AC	1095
+Nicholas Bhattacharya	5	1		Block AC	1095
+Ravi Fernando	7	3		Block AD	1037
+Zixin Jiang	5	1		Block AD	1037
+Ian Gleason	6	1		Block AD	1037
 Aaron Brookner	6	0	-1	Float	1058
 Angxiu Ni	4	2		Float	787
 Michael Yeh	6	1		Float	1057
 Esme Bajo	2	4		Float	1041
-Andrew Shi	4	2		Block Yu Tong	1095
-Raehyun Kim	2	4		Block Raehyun Kim	844
-Jiasu Wang	2	4		Block Raehyun Kim	844
-Haixiang Zhang	2	4		Block Raehyun Kim	844
-Yu Tong	4	2		Block Yu Tong	1095
-Yixiang Luo	2	4		Block Yixiang Luo, Zixi Hu, Zhewei Yao	1064
-Zixi Hu	5	1		Block Yixiang Luo, Zixi Hu, Zhewei Yao	1064
 Junsheng Zhang	2	4		Float	745
 Onyebuchi Ekenta	6	1		Float	1049
-Yulia Alexandr	2	3	-1	Block YAM	1040
-Jiahao Yao	3	3		Block Edric Wang	1006
-Patrick Lutz	5	-1	-2	Block Patrick Lutz	1097
-Edric Wang	2	3	-1	Block Edric Wang	1006
-Christopher Kuo	5	-1	-2	Block Patrick Lutz	1097
-German Stefanich	5	-1	-2	Block Patrick Lutz	1097
-Thomas Browning	2	4		Block Thomas Browning	1042
-Diego Andres Bejarano Rayo	3	3		Block Guillaume Massas	869
-Guillaume Massas	3	3		Block Guillaume Massas	869
-Fei Yu Chen	2	4		Block Fei Yu Chen	842
-Mark Macerato	2	4		Block Fei Yu Chen	842
-Ahmee Marshall-Christensen	2	4		Block Thomas Browning	1042
-Chi Cheuk Tsang	3	3		Block Jeffrey Kuan	1004
-Joseph Stahl	5	1		Block Joe Stahl	1075
-Ritvik Ramkumar	5	1		Block Joe Stahl	1075
-Mostafa Adnane	3	3		Block Guillaume Massas	869
-Chi Nok Enoch Yiu	2	4		Block Fei Yu Chen	842
-Ethan Dlugie	3	2	-1	Block Tahsin Saffat	853
-Xiaohan Yan	4	2		Block Raha Ahmadianhosseini,Jacopo Di Bonito,Mariana Vicaria,Xiaohan Yan	747
-Tong Zhou	2	4		Block Ovidiu-Neculai Avadanei	852
-Michael Christianson	5	1		Block Joe Stahl	1075
 Scott Mutchnik	2	4		Float	
 Jeffmin Lin	6	1		Float	789
-Yixuan Li	4	2		Block Haoren Xiong	745
-Andrew Gitlin	3	3		Block Maksym Zubkov	1068
-Haoren Xiong	4	2		Block Haoren Xiong	745
-Melissa Sherman-Bennett	4	2		Block Leon Zhang	1061
-Rikhav Shah	2	4		Block Rikhav Shah	1066
-Roy Zhao	4	1	-1	Block ROY ZHAO	1093
-James Dix	4	2		Block ROY ZHAO	1093
-Jeffrey Kuan	3	3		Block Jeffrey Kuan	1004
-Adele Padgett	4	2		Block Adele	737
-Kristina Nelson	4	2		Block Adele	737
-Hongyi Liu	3	3		Block Jiaming Wang	1062
-Jiaming Wang	3	3		Block Jiaming Wang	1062
-Mitchell Taylor	3	3		Block Jeffrey Kuan	1060
-Zhewei Yao	5	1		Block Yixiang Luo, Zixi Hu, Zhewei Yao	1064
-David Gonzalez	2	4		Block Rikhav Shah	1066
 Shinu Cho	3	3		Float	775
 Zirui Zhou	3	3		Float	741
-Alois Cerbu	3	3		Block Tahsin Saffat	853
-Ravi Fernando	7	3		Block Zixin Jiang	1037
-Ovidiu-Neculai Avadanei	2	4		Block Ovidiu-Neculai Avadanei	852
-Zixin Jiang	5	1		Block Zixin Jiang	1037
-Larsen Linov	4	2		Block Lauren Heller	941
-Theo McKenzie	4	2		Block Lauren Heller	941
-Benjamin Pineau	2	4		Block Jeffrey Kuan	1060
-Nicholas Bhattacharya	5	1		Block Yu Tong	1095
-Max Hlavacek	4	2		Block Adele	737
-Ian Gleason	6	1		Block Zixin Jiang	1037
-Jacopo Di Bonito	4	2		Block Raha Ahmadianhosseini,Jacopo Di Bonito,Mariana Vicaria,Xiaohan Yan	747
 Weitong Wang	2	4		Float	
-Boyan Xu	3	3		Block Tahsin Saffat	853
-Xianglong Ni	3	3		Block Xianglong Ni	1058
-Anthony Villafranca	4	2		Block Anthony Villafranca	1044
-Frederick Huang	4	2		Block Anthony Villafranca	1044
 Jorge Garza Vargas	4	2		Float	775
-Lauren Heller	4	2		Block Lauren Heller	941
-Eduardo Oregon Reyes	3	3		Block Maksym Zubkov	1068
-Oliver Edtmair	2	4		Block Ovidiu-Neculai Avadanei	852
-Marvin Castellon	3	3		Block Xianglong Ni	1058
-James Rowan	4	2		Block ROY ZHAO	1093
-Meredith Shea	5	1		Block Nic Brody	1045
-Kyle Miller	7	3		Block Nic Brody	1045
-Nic Brody	5	1		Block Nic Brody	1045
-Leon Zhang	5	1		Block Leon Zhang	1061
-Yuan Yao	4	2		Block Daniel Chupin	835
-Adam Dhillon	2	0	-4	Block Izak Oltman	1043
 Holly Mandel	4	2		Float	1065
-Raha Ahmadian	4	2		Block Raha Ahmadianhosseini,Jacopo Di Bonito,Mariana Vicaria,Xiaohan Yan	747
-Michael Seaman	2	4		Block Ovidiu-Neculai Avadanei	852
-Emily Bain	3	3		Block Anthony Villafranca	1044
 Theodore Coyne	3	3		Float	775
-Daniel Chupin	4	2		Block Daniel Chupin	835
 Yi Lai	5	1		Float	787
-Jacob Elafandi	2	4		Block Thomas Browning	1042
 Kiran Luecke	3	3		Float	1057
 Yanshuai Qin	3	3		Float	812
-Yelena Mandelshtam	2	0	-4	Block Izak Oltman	1043
-Kentaro Yamamoto	7	3		Block Reid Dale	1049
 Yulong Dong	3	3		Float	1062
-Tahsin Saffat	3	3		Block Tahsin Saffat	853
 Rockford Sison	7	3		Float	1008
-Reid Dale	7	3		Block Reid Dale	1049
-Mariana Vicaria	5	1		Block Raha Ahmadianhosseini,Jacopo Di Bonito,Mariana Vicaria,Xiaohan Yan	747
-Max Zubkov	3	3		Block Maksym Zubkov	1068
-Anya Michaelsen	2	-1	-5	Block YAM	1040
-Izak Oltman	2	0	-4	Block Izak Oltman	1043
+Qinyi Zhu	3	3		Float	
+Zack Mcnulty	1	6		Float	
+Ahmad Zaid Abassi	1	6		Float	
+Mingyang Li	1	6		Float	
+Zhongkai Tao	1	6		Float	
+Pranav Trivedi	1	6		Float	
+Tianrui Xu	1	6		Float	
+Jordan Brown	1	6		Float	
+Yifan Chen	1	6		Float	
+Rebecca Whitman	1	6		Float	
+Claire Mirocha	1	6		Float	
+Shoshana Simons	1	6		Float	
+Ronan O'Gorman	1	6		Float	
+Jeremy Taylor	1	6		Float	
+John Nolan	1	6		Float	
+Kabir Kapoor	1	6		Float	
+Rose Lopez	1	6		Float	
+Connor Halleck-Dube	1	6		Float	
+Xiaoyu Huang	1	6		Float	
+Eric Jankowski	1	6		Float	
+Sean Gonzales	1	6		Float	
+Zachary Stier	1	6		Float	
+Carlos Esparza	1	6		Float	
+Michael Heinz	1	6		Float	
+Catherine Lee	1	6		Float	
+Erik Herrera	1	6		Float	
+Yuchen Mao	1	6		Float	
+Aubrey Gross	1	6		Float	
+Jiazhen Tan	1	6		Float	
+Andrew Scharf	1	6		Float	
 Dongxiao Yu	5	1		Squat	1085
 Eugene Rabinovich	6	1		Squat	1057
 Bo Li	5	1		Squat	743
@@ -148,35 +178,5 @@ Ian Francis	3	3		Squat	845
 Michael Smith	6	1		Squat	1010
 Charlie Cifarelli	6	1		Squat	1061
 Rahul Dalal	6	0	-1	Squat	1041
-Qinyi Zhu	3	3		Float	
-Zack Mcnulty	1	6		Float	
-Ahmad Zaid Abassi	1	6		Float	
-Mingyang Li	1	6		Float	
-Zhongkai Tao	1	6		Float	
-Pranav Trivedi	1	6		Float	
-Tianrui Xu	1	6		Float	
-Jordan Brown	1	6		Float	
-Yifan Chen	1	6		Float	
-Rebecca Whitman	1	6		Float	
-Claire Mirocha	1	6		Float	
-Shoshana Simons	1	6		Float	
-Ronan O'Gorman	1	6		Float	
-Jeremy Taylor	1	6		Float	
-John Nolan	1	6		Float	
-Kabir Kapoor	1	6		Float	
-Rose Lopez	1	6		Float	
-Connor Halleck-Dube	1	6		Float	
-Xiaoyu Huang	1	6		Float	
-Eric Jankowski	1	6		Float	
-Sean Gonzales	1	6		Float	
-Zachary Stier	1	6		Float	
-Carlos Esparza	1	6		Float	
-Michael Heinz	1	6		Float	
-Catherine Lee	1	6		Float	
-Erik Herrera	1	6		Float	
-Yuchen Mao	1	6		Float	
-Luke Corcos	5	1		Float	1056
-Aubrey Gross	1	6		Float	
-Jiazhen Tan	1	6		Float	
-Andrew Scharf	1	6		Float	
+Luke Corcos	5	1		Squat	1066
 					

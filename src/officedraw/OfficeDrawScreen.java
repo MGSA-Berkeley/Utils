@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -131,24 +132,51 @@ public class OfficeDrawScreen implements mgsa.Screen {
         for (int n : data.keySet()) {
             Person[] prevpeople = data.get(n);
             for (int i = 0; i < prevpeople.length - 1; i++) {
-                Person p = prevpeople[i];
-                String s = p.buttons[0].getText();
-                if (!namelookup.containsKey(s)) {
-                    namelookup.put(s, new HashMap<>());
+                Person person = prevpeople[i];
+                String name = person.buttons[0].getText();
+                if (!namelookup.containsKey(name)) {
+                    namelookup.put(name, new HashMap<>());
                 }
-                namelookup.get(s).put(n, p);
+                namelookup.get(name).put(n, person);
             }
         }
-        Map<String, List<Person>> blocklookup = new HashMap<>();
-        for (int i = 0; i < people.length - 1; i++) {
-            Person p = people[i];
-            String s4 = p.buttons[4].getText();
-            if (s4.startsWith("Block ")) {
-                String a4 = s4.substring(6);
-                if (!blocklookup.containsKey(a4)) {
-                    blocklookup.put(a4, new ArrayList<>());
+        Map<String, List<Person>> prevofficelookup = new HashMap<>();
+        if (data.containsKey(year - 1)) {
+            Person[] prevpeople = data.get(year - 1);
+            for (int i = 0; i < prevpeople.length - 1; i++) {
+                Person person = prevpeople[i];
+                String office = person.buttons[5].getText();
+                if (!prevofficelookup.containsKey(office)) {
+                    prevofficelookup.put(office, new ArrayList<>());
                 }
-                blocklookup.get(a4).add(p);
+                prevofficelookup.get(office).add(person);
+            }
+        }
+        Map<String, List<Person>> squatlookup = new HashMap<>();
+        for (int i = 0; i < people.length - 1; i++) {
+            Person person = people[i];
+            String group = person.buttons[4].getText();
+            if (group.equals("Squat")) {
+                String office = person.buttons[5].getText();
+                if (!squatlookup.containsKey(office)) {
+                    squatlookup.put(office, new ArrayList<>());
+                }
+                squatlookup.get(office).add(person);
+            }
+        }
+        Map<Integer, Map<String, List<Person>>> blocklookup = new HashMap<>();
+        for (int n : data.keySet()) {
+            blocklookup.put(n, new HashMap<>());
+            Person[] prevpeople = data.get(n);
+            for (int i = 0; i < prevpeople.length - 1; i++) {
+                Person person = prevpeople[i];
+                String block = person.buttons[4].getText();
+                if (block.startsWith("Block ")) {
+                    if (!blocklookup.get(n).containsKey(block)) {
+                        blocklookup.get(n).put(block, new ArrayList<>());
+                    }
+                    blocklookup.get(n).get(block).add(person);
+                }
             }
         }
         Set<String> names = new HashSet<>();
@@ -175,14 +203,12 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 } else if (a1 > 1) {
                     int maxyear = 0;
                     int yearthen = 0;
-                    if (namelookup.containsKey(s0)) {
-                        for (int n : namelookup.get(s0).keySet()) {
-                            if (n < maxyear || n >= year) {
-                                continue;
-                            }
-                            maxyear = n;
-                            yearthen = Integer.parseInt(namelookup.get(s0).get(n).buttons[1].getText());
+                    for (int n : namelookup.get(s0).keySet()) {
+                        if (n < maxyear || n >= year) {
+                            continue;
                         }
+                        maxyear = n;
+                        yearthen = Integer.parseInt(namelookup.get(s0).get(n).buttons[1].getText());
                     }
                     if (maxyear == 0) {
                         warning += "No history. ";
@@ -227,15 +253,96 @@ public class OfficeDrawScreen implements mgsa.Screen {
                     warning += "Priority off by " + (a2 - priority - a3) + ". ";
                 }
             }
-            String a4 = null;
+            String a4;
             boolean b4 = true;
             if (!s4.equals("Squat") && !s4.equals("Float") && !s4.startsWith("Block ")) {
                 warning += "Invalid block. ";
                 b4 = false;
             }
+            if (s4.equals("Squat")) {
+                if (!(namelookup.get(s0).containsKey(year - 1) && namelookup.get(s0).get(year - 1).buttons[5].getText().equals(s5))) {
+                    warning += "Invalid squat (" + s5 + "). ";
+                } else if (!(b1 && a1 >= 9)) {
+                    List<String> badsquat = new ArrayList<>();
+                    for (Person q : prevofficelookup.get(s5)) {
+                        String s = q.buttons[0].getText();
+                        if (namelookup.get(s).containsKey(year)) {
+                            Person r = namelookup.get(s).get(year);
+                            if (!(r.buttons[4].getText().equals(s4) && r.buttons[5].getText().equals(s5))) {
+                                badsquat.add(s);
+                            }
+                        }
+                    }
+                    if (!badsquat.isEmpty()) {
+                        Collections.sort(badsquat);
+                        String s = badsquat.toString();
+                        warning += "Invalid squat (" + s.substring(1, s.length() - 1) + "). ";
+                    } else if (b2) {
+                        try {
+                            BigFraction newsum = BigFraction.ZERO;
+                            int newamt = 0;
+                            for (Person q : squatlookup.get(s5)) {
+                                newsum = newsum.add(new BigFraction(Integer.parseInt(q.buttons[2].getText())));
+                                newamt++;
+                            }
+                            BigFraction oldsum = BigFraction.ZERO;
+                            int oldamt = 0;
+                            List<String> onlysquat = new ArrayList<>();
+                            for (Person q : prevofficelookup.get(s5)) {
+                                String name = q.buttons[0].getText();
+                                int maxyear = 0;
+                                Person nonsquatter = null;
+                                for (int n : namelookup.get(name).keySet()) {
+                                    if (n < maxyear || n >= year) {
+                                        continue;
+                                    }
+                                    Person r = namelookup.get(name).get(n);
+                                    if (!r.buttons[4].getText().equals("Squat")) {
+                                        maxyear = n;
+                                        nonsquatter = r;
+                                    }
+                                }
+                                if (nonsquatter == null) {
+                                    onlysquat.add(name);
+                                } else {
+                                    String group = nonsquatter.buttons[4].getText();
+                                    if (group.equals("Float")) {
+                                        oldsum = oldsum.add(new BigFraction(Integer.parseInt(nonsquatter.buttons[2].getText())));
+                                        oldamt++;
+                                    } else if (group.startsWith("Block ")) {
+                                        BigFraction average = BigFraction.ZERO;
+                                        int amt = 0;
+                                        for (Person r : blocklookup.get(maxyear).get(nonsquatter.buttons[4].getText())) {
+                                            average = average.add(new BigFraction(Integer.parseInt(r.buttons[2].getText())));
+                                            amt++;
+                                        }
+                                        average = average.divide(new BigFraction(amt));
+                                        oldsum = oldsum.add(average);
+                                        oldamt++;
+                                    } else {
+                                        onlysquat.add(name);
+                                    }
+                                }
+                            }
+                            if (!onlysquat.isEmpty()) {
+                                Collections.sort(onlysquat);
+                                String s = onlysquat.toString();
+                                warning += "Unable to determine effective priority (" + s.substring(1, s.length() - 1) + "). ";
+                            } else {
+                                newsum = newsum.divide(new BigFraction(newamt));
+                                oldsum = oldsum.divide(new BigFraction(oldamt));
+                                if (newsum.compareTo(oldsum) > 0) {
+                                    warning += "Invalid squat ("+newsum+">"+oldsum+"). ";
+                                }
+                            }
+                        } catch (NumberFormatException ex) {
+                            warning += "Non-integer priority. ";
+                        }
+                    }
+                }
+            }
             if (s4.startsWith("Block ")) {
-                a4 = s4.substring(6);
-                if (blocklookup.get(a4).size()==1) {
+                if (blocklookup.get(year).get(s4).size() == 1) {
                     warning += "Singleton block. ";
                 }
             }
@@ -372,42 +479,44 @@ public class OfficeDrawScreen implements mgsa.Screen {
             }
             return;
         }
-        Person[] people = data.get(year);
-        mgsa.Button button = people[row].buttons[column];
-        if (key == KeyEvent.VK_BACK_SPACE) {
-            String s = button.getText();
-            if (!s.isEmpty()) {
-                button.setText(s.substring(0, s.length() - 1));
-                for (mgsa.Button b : people[row].buttons) {
-                    if (!b.getText().isEmpty()) {
-                        return;
+        if (column < 6) {
+            Person[] people = data.get(year);
+            mgsa.Button button = people[row].buttons[column];
+            if (key == KeyEvent.VK_BACK_SPACE) {
+                String s = button.getText();
+                if (!s.isEmpty()) {
+                    button.setText(s.substring(0, s.length() - 1));
+                    for (mgsa.Button b : people[row].buttons) {
+                        if (!b.getText().isEmpty()) {
+                            return;
+                        }
                     }
+                    Person[] newpeople = new Person[people.length - 1];
+                    System.arraycopy(people, 0, newpeople, 0, row);
+                    System.arraycopy(people, row + 1, newpeople, row, newpeople.length - row);
+                    data.put(year, newpeople);
                 }
-                Person[] newpeople = new Person[people.length - 1];
-                System.arraycopy(people, 0, newpeople, 0, row);
-                System.arraycopy(people, row + 1, newpeople, row, newpeople.length - row);
-                data.put(year, newpeople);
+                return;
             }
-            return;
-        }
-        boolean append = false;
-        if (key == KeyEvent.VK_SPACE) {
-            button.setText(button.getText() + " ");
-            append = true;
-        }
-        if (key == KeyEvent.VK_MINUS) {
-            button.setText(button.getText() + "-");
-            append = true;
-        }
-        String s = KeyEvent.getKeyText(key);
-        if (letters.contains(s)) {
-            button.setText(button.getText() + (keyset.contains(KeyEvent.VK_SHIFT) ? s : s.toLowerCase()));
-            append = true;
-        }
-        if (append && row == people.length - 1) {
-            people = Arrays.copyOf(people, people.length + 1);
-            people[people.length - 1] = new Person();
-            data.put(year, people);
+            boolean append = false;
+            if (key == KeyEvent.VK_SPACE) {
+                button.setText(button.getText() + " ");
+                append = true;
+            }
+            if (key == KeyEvent.VK_MINUS) {
+                button.setText(button.getText() + "-");
+                append = true;
+            }
+            String s = KeyEvent.getKeyText(key);
+            if (letters.contains(s)) {
+                button.setText(button.getText() + (keyset.contains(KeyEvent.VK_SHIFT) ? s : s.toLowerCase()));
+                append = true;
+            }
+            if (append && row == people.length - 1) {
+                people = Arrays.copyOf(people, people.length + 1);
+                people[people.length - 1] = new Person();
+                data.put(year, people);
+            }
         }
     }
 
