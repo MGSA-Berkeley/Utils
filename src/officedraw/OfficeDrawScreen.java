@@ -52,11 +52,84 @@ public class OfficeDrawScreen implements mgsa.Screen {
     private int column = 0;
     private int scroll;
 
+    private static final Map<String, Integer> offices = new HashMap<>();
+
     public OfficeDrawScreen(mgsa.MainCanvas canvas) {
         this.canvas = canvas;
         for (char c : "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray()) {
             letters.add(Character.toString(c));
         }
+        offices.put("710", 2);
+        offices.put("716", 2);
+        offices.put("737", 3);
+        offices.put("739", 4);
+        offices.put("741", 4);
+        offices.put("743", 3);
+        offices.put("745", 3);
+        offices.put("747", 4);
+        offices.put("775", 3);
+        offices.put("787", 4);
+        offices.put("789", 3);
+        offices.put("810", 2);
+        offices.put("812", 2);
+        offices.put("814", 2);
+        offices.put("816", 2);
+        offices.put("818", 2);
+        offices.put("820", 2);
+        offices.put("822", 2);
+        offices.put("826", 3);
+        offices.put("824", 3);
+        offices.put("828", 2);
+        offices.put("830", 2);
+        offices.put("832", 2);
+        offices.put("834", 2);
+        offices.put("835", 3);
+        offices.put("836", 2);
+        offices.put("840", 4);
+        offices.put("842", 4);
+        offices.put("844", 4);
+        offices.put("845", 3);
+        offices.put("848", 4);
+        offices.put("850", 4);
+        offices.put("852", 4);
+        offices.put("853", 4);
+        offices.put("854", 4);
+        offices.put("869", 4);
+        offices.put("935", 3);
+        offices.put("937", 3);
+        offices.put("941", 3);
+        offices.put("1004", 2);
+        offices.put("1006", 2);
+        offices.put("1008", 2);
+        offices.put("1010", 2);
+        offices.put("1020", 2);
+        offices.put("1037", 3);
+        offices.put("1039", 3);
+        offices.put("1040", 2);
+        offices.put("1041", 3);
+        offices.put("1042", 3);
+        offices.put("1043", 3);
+        offices.put("1044", 3);
+        offices.put("1045", 3);
+        offices.put("1047", 3);
+        offices.put("1049", 3);
+        offices.put("1056", 2);
+        offices.put("1057", 3);
+        offices.put("1058", 3);
+        offices.put("1060", 3);
+        offices.put("1061", 3);
+        offices.put("1062", 3);
+        offices.put("1064", 3);
+        offices.put("1065", 3);
+        offices.put("1066", 3);
+        offices.put("1068", 3);
+        offices.put("1070", 2);
+        offices.put("1075", 3);
+        offices.put("1085", 3);
+        offices.put("1087", 3);
+        offices.put("1093", 3);
+        offices.put("1095", 3);
+        offices.put("1097", 3);
     }
 
     @Override
@@ -177,6 +250,17 @@ public class OfficeDrawScreen implements mgsa.Screen {
                     }
                     blocklookup.get(n).get(block).add(person);
                 }
+            }
+        }
+        Map<String, Integer> officeamounts = new HashMap<>();
+        for (String office : offices.keySet()) {
+            officeamounts.put(office, 0);
+        }
+        for (int i = 0; i < people.length - 1; i++) {
+            Person p = people[i];
+            String office = p.buttons[5].getText();
+            if (offices.containsKey(office)) {
+                officeamounts.put(office, officeamounts.get(office) + 1);
             }
         }
         Set<String> names = new HashSet<>();
@@ -332,7 +416,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                                 newsum = newsum.divide(new BigFraction(newamt));
                                 oldsum = oldsum.divide(new BigFraction(oldamt));
                                 if (newsum.compareTo(oldsum) > 0) {
-                                    warning += "Invalid squat ("+newsum+">"+oldsum+"). ";
+                                    warning += "Invalid squat (" + newsum + ">" + oldsum + "). ";
                                 }
                             }
                         } catch (NumberFormatException ex) {
@@ -344,6 +428,15 @@ public class OfficeDrawScreen implements mgsa.Screen {
             if (s4.startsWith("Block ")) {
                 if (blocklookup.get(year).get(s4).size() == 1) {
                     warning += "Singleton block. ";
+                }
+            }
+            if (!offices.containsKey(s5)) {
+                if (!s5.isEmpty()) {
+                    warning += "Invalid office. ";
+                }
+            } else {
+                if (officeamounts.get(s5) > offices.get(s5)) {
+                    warning += "Overfull office ("+s5+" "+officeamounts.get(s5)+" vs "+offices.get(s5)+". ";
                 }
             }
             p.warning.setText(warning);
