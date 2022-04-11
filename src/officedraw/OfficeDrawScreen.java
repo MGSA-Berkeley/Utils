@@ -588,6 +588,16 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 blockcounts.put(block, blockcounts.get(block) + 1);
             }
         }
+        Map<String, List<Integer>> officecache = new HashMap<>();
+        if (thisyear > 0) {
+            for (int person = 0; person < numpeople[thisyear - 1]; person++) {
+                String office = officestrings[thisyear - 1][person];
+                if (!officecache.containsKey(office)) {
+                    officecache.put(office, new ArrayList<>());
+                }
+                officecache.get(office).add(person);
+            }
+        }
         for (int person = 0; person < numpeople[thisyear]; person++) {
             String warning = "";
             int yearint = yearints[thisyear][person];
@@ -647,10 +657,71 @@ public class OfficeDrawScreen implements mgsa.Screen {
                     // Todo: Check subset condition (but this depends on the block ordering)
                 }
             }
-            // --- Squatting stuff ---
-            // Squatting, but is not currently in this office
-            // Someone who picked the office last year is floating or blocking (only check if previous condition holds)
-            // Squatting, effective priority is not satisfied (only check if previous condition holds)
+            if (squatting[thisyear][person]) {
+                if (thisyear == 0) {
+                    if (officestring.isEmpty()) {
+                        warning += "Invalid squat (must specify an office). ";
+                    }
+                } else if (!namelookup.get(thisyear - 1).containsKey(namestring)) {
+                    warning += "Invalid squat (did not receive an office last year). ";
+                } else {
+                    String oldoffice = officestrings[thisyear - 1][namelookup.get(thisyear - 1).get(namestring)];
+                    if (officestring.isEmpty()) {
+                        warning += "Invalid squat (must specify " + oldoffice + "). ";
+                    } else if (!officestring.equals(oldoffice)) {
+                        warning += "Invalid squat (must squat in " + oldoffice + "). ";
+                    } else {
+                        List<String> badnames = new ArrayList<>();
+                        for (int oldperson : officecache.get(officestring)) {
+                            String name = namestrings[thisyear - 1][oldperson];
+                            if (namelookup.get(thisyear).containsKey(name)) {
+                                int newperson = namelookup.get(thisyear).get(name);
+                                if (!(squatting[thisyear][newperson] && officestrings[thisyear][newperson].equals(officestring))) {
+                                    badnames.add(name);
+                                }
+                            }
+                        }
+                        if (!badnames.isEmpty()) {
+                            Collections.sort(badnames);
+                            String s = badnames.toString();
+                            s = s.substring(1, s.length() - 1);
+                            warning += "Illegal squat (" + s + "). ";
+                        } else {
+                            BigFraction oldsum = BigFraction.ZERO;
+                            int oldamt = 0;
+                            int newsum = 0;
+                            int newamt = 0;
+                            List<String> badnames2 = new ArrayList<>();
+                            for (int oldperson : officecache.get(officestring)) {
+                                String name = namestrings[thisyear - 1][oldperson];
+                                BigFraction effectivepriority = effectivepriorities[thisyear - 1][oldperson];
+                                if (effectivepriority == null) {
+                                    badnames2.add(name);
+                                } else {
+                                    oldsum = oldsum.add(effectivepriority);
+                                    oldamt++;
+                                    if (namelookup.get(thisyear).containsKey(name)) {
+                                        int newperson = namelookup.get(thisyear).get(name);
+                                        newsum += individualpriorities[thisyear][newperson];
+                                        newamt++;
+                                    }
+                                }
+                            }
+                            if (!badnames2.isEmpty()) {
+                                Collections.sort(badnames2);
+                                String s = badnames2.toString();
+                                warning += "Unable to determine effective priority (" + s.substring(1, s.length() - 1) + "). ";
+                            } else {
+                                BigFraction pold = oldsum.divide(new BigFraction(oldamt));
+                                BigFraction pnew = new BigFraction(newsum, newamt);
+                                if (pold.compareTo(pnew) < 0) {
+                                    warning += "Illegal squat (" + pold + " < " + pnew + "). ";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             // --- Office stuff ---
             // Overcrowded office
             people[thisyear][person].warning.setText(warning);
