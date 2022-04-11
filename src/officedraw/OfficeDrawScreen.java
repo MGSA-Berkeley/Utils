@@ -51,6 +51,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
     private int row = 0;
     private int column = 0;
     private int scroll;
+    private boolean severe;
 
     private static final Map<String, Integer> offices = new HashMap<>();
 
@@ -383,8 +384,280 @@ public class OfficeDrawScreen implements mgsa.Screen {
     }
 
     private void update() {
-        int year = this.year;
-        Person[] people = data.get(year);
+        Set<Integer> yearset = data.keySet();
+        int numyears = yearset.size();
+        int[] years = new int[numyears];
+        int thisyear = 0;
+        for (int year : yearset) {
+            years[thisyear++] = year;
+        }
+        for (int year = 0; year < numyears; year++) {
+            if (years[year] == this.year) {
+                thisyear = year;
+            }
+        }
+        Arrays.sort(years);
+        int[] numpeople = new int[numyears];
+        Person[][] people = new Person[numyears][];
+        String[][] namestrings = new String[numyears][];
+        String[][] yearstrings = new String[numyears][];
+        String[][] prioritystrings = new String[numyears][];
+        String[][] adjustmentstrings = new String[numyears][];
+        String[][] blockstrings = new String[numyears][];
+        String[][] officestrings = new String[numyears][];
+        for (int year = 0; year < numyears; year++) {
+            people[year] = data.get(years[year]);
+            numpeople[year] = people[year].length - 1;
+            namestrings[year] = new String[numpeople[year]];
+            yearstrings[year] = new String[numpeople[year]];
+            prioritystrings[year] = new String[numpeople[year]];
+            adjustmentstrings[year] = new String[numpeople[year]];
+            blockstrings[year] = new String[numpeople[year]];
+            officestrings[year] = new String[numpeople[year]];
+            for (int person = 0; person < numpeople[year]; person++) {
+                namestrings[year][person] = people[year][person].buttons[0].getText();
+                yearstrings[year][person] = people[year][person].buttons[1].getText();
+                prioritystrings[year][person] = people[year][person].buttons[2].getText();
+                adjustmentstrings[year][person] = people[year][person].buttons[3].getText();
+                blockstrings[year][person] = people[year][person].buttons[4].getText();
+                officestrings[year][person] = people[year][person].buttons[5].getText();
+            }
+        }
+        List<Integer> badyears = new ArrayList<>();
+        for (int year = 0; year < numyears; year++) {
+            Set<String> names = new HashSet<>();
+            for (int person = 0; person < numpeople[year]; person++) {
+                String namestring = namestrings[year][person];
+                String yearstring = yearstrings[year][person];
+                String prioritystring = prioritystrings[year][person];
+                String blockstring = blockstrings[year][person];
+                String officestring = officestrings[year][person];
+                if (names.contains(namestring)) {
+                    badyears.add(years[year]);
+                    break;
+                }
+                names.add(namestring);
+                try {
+                    Integer.parseInt(yearstring);
+                } catch (NumberFormatException ex) {
+                    badyears.add(years[year]);
+                    break;
+                }
+                try {
+                    Integer.parseInt(prioritystring);
+                } catch (NumberFormatException ex) {
+                    badyears.add(years[year]);
+                    break;
+                }
+                if (!(blockstring.equals("Squat") || blockstring.equals("Float") || blockstring.startsWith("Block"))) {
+                    badyears.add(years[year]);
+                    break;
+                }
+                if (!(officestring.isEmpty() || offices.containsKey(officestring))) {
+                    badyears.add(years[year]);
+                    break;
+                }
+            }
+        }
+        Set<String> names = new HashSet<>();
+        Set<String> duplicatenames = new HashSet<>();
+        for (String name : namestrings[thisyear]) {
+            if (names.contains(name)) {
+                duplicatenames.add(name);
+            }
+            names.add(name);
+        }
+        for (int person = 0; person < numpeople[thisyear]; person++) {
+            String warning = "";
+            String namestring = namestrings[thisyear][person];
+            String yearstring = yearstrings[thisyear][person];
+            String prioritystring = prioritystrings[thisyear][person];
+            String blockstring = blockstrings[thisyear][person];
+            String officestring = officestrings[thisyear][person];
+            if (duplicatenames.contains(namestring)) {
+                warning += "Duplicate name. ";
+            }
+            try {
+                Integer.parseInt(yearstring);
+            } catch (NumberFormatException ex) {
+                warning += "Non-integer year. ";
+            }
+            try {
+                Integer.parseInt(prioritystring);
+            } catch (NumberFormatException ex) {
+                warning += "Non-integer priority. ";
+            }
+            if (!(blockstring.equals("Squat") || blockstring.equals("Float") || blockstring.startsWith("Block"))) {
+                warning += "Invalid block. ";
+            }
+            if (!(officestring.isEmpty() || offices.containsKey(officestring))) {
+                warning += "Invalid office. ";
+            }
+            people[thisyear][person].warning.setText(warning);
+        }
+        if (badyears.isEmpty()) {
+            warningsbutton.setText("Warnings");
+            severe = false;
+        } else {
+            String s = badyears.toString();
+            warningsbutton.setText("Warnings (Severe error in " + s.substring(1, s.length() - 1) + ")");
+            severe = true;
+            return;
+        }
+        List<Map<String, Integer>> namelookup = new ArrayList<>();
+        for (int year = 0; year < numyears; year++) {
+            Map<String, Integer> lookup = new HashMap<>();
+            for (int person = 0; person < numpeople[year]; person++) {
+                lookup.put(namestrings[year][person], person);
+            }
+            namelookup.add(lookup);
+        }
+        boolean[][] floating = new boolean[numyears][];
+        boolean[][] squatting = new boolean[numyears][];
+        boolean[][] blocking = new boolean[numyears][];
+        for (int year = 0; year < numyears; year++) {
+            floating[year] = new boolean[numpeople[year]];
+            squatting[year] = new boolean[numpeople[year]];
+            blocking[year] = new boolean[numpeople[year]];
+            for (int person = 0; person < numpeople[year]; person++) {
+                if (blockstrings[year][person].equals("Float")) {
+                    blockstrings[year][person] += namestrings[year][person];
+                    floating[year][person] = true;
+                } else if (blockstrings[year][person].equals("Squat")) {
+                    blockstrings[year][person] += officestrings[year][person];
+                    squatting[year][person] = true;
+                } else {
+                    blocking[year][person] = true;
+                }
+            }
+        }
+        int[][] yearints = new int[numyears][];
+        for (int year = 0; year < numyears; year++) {
+            yearints[year] = new int[numpeople[year]];
+            for (int person = 0; person < numpeople[year]; person++) {
+                yearints[year][person] = Integer.parseInt(yearstrings[year][person]);
+            }
+        }
+        int[][] individualpriorities = new int[numyears][];
+        for (int year = 0; year < numyears; year++) {
+            individualpriorities[year] = new int[numpeople[year]];
+            for (int person = 0; person < numpeople[year]; person++) {
+                individualpriorities[year][person] = Integer.parseInt(prioritystrings[year][person]);
+            }
+        }
+        BigFraction[][] blockpriorities = new BigFraction[numyears][];
+        for (int year = 0; year < numyears; year++) {
+            blockpriorities[year] = new BigFraction[numpeople[year]];
+            Map<String, Integer> numerators = new HashMap<>();
+            Map<String, Integer> denominators = new HashMap<>();
+            for (int person = 0; person < numpeople[year]; person++) {
+                String block = blockstrings[year][person];
+                numerators.put(block, numerators.getOrDefault(block, 0) + individualpriorities[year][person]);
+                denominators.put(block, denominators.getOrDefault(block, 0) + 1);
+            }
+            for (int person = 0; person < numpeople[year]; person++) {
+                String block = blockstrings[year][person];
+                blockpriorities[year][person] = new BigFraction(numerators.get(block), denominators.get(block));
+            }
+        }
+        BigFraction[][] effectivepriorities = new BigFraction[numyears][];
+        for (int year = 0; year < numyears; year++) {
+            effectivepriorities[year] = new BigFraction[numpeople[year]];
+            for (int person = 0; person < numpeople[year]; person++) {
+                String name = namestrings[year][person];
+                if (squatting[year][person]) {
+                    if (year > 0 && namelookup.get(year - 1).containsKey(name)) {
+                        effectivepriorities[year][person] = effectivepriorities[year - 1][namelookup.get(year - 1).get(name)];
+                    }
+                } else {
+                    effectivepriorities[year][person] = blockpriorities[year][person];
+                }
+            }
+        }
+        Map<String, Integer> blocktotals = new HashMap<>();
+        Map<String, Integer> blockcounts = new HashMap<>();
+        for (int person = 0; person < numpeople[thisyear]; person++) {
+            String block = blockstrings[thisyear][person];
+            String office = officestrings[thisyear][person];
+            if (!blocktotals.containsKey(block)) {
+                blocktotals.put(block, 0);
+                blockcounts.put(block, 0);
+            }
+            blocktotals.put(block, blocktotals.get(block) + 1);
+            if (!office.isEmpty()) {
+                blockcounts.put(block, blockcounts.get(block) + 1);
+            }
+        }
+        for (int person = 0; person < numpeople[thisyear]; person++) {
+            String warning = "";
+            int yearint = yearints[thisyear][person];
+            int priorityint = individualpriorities[thisyear][person];
+            int adjustment = 0;
+            String namestring = namestrings[thisyear][person];
+            String adjustmentstring = adjustmentstrings[thisyear][person];
+            String blockstring = blockstrings[thisyear][person];
+            String officestring = officestrings[thisyear][person];
+            boolean parse = true;
+            if (!adjustmentstring.isEmpty()) {
+                try {
+                    adjustment = Integer.parseInt(adjustmentstrings[thisyear][person]);
+                    if (adjustment >= 0) {
+                        warning += "Invalid adjustment. ";
+                    }
+                } catch (NumberFormatException ex) {
+                    warning += "Non-integer adjustment. ";
+                    parse = false;
+                }
+            }
+            if (yearint > 1) {
+                boolean nohistory = true;
+                for (int oldyear = thisyear - 1; oldyear >= 0; oldyear--) {
+                    if (namelookup.get(oldyear).containsKey(namestring)) {
+                        int oldperson = namelookup.get(oldyear).get(namestring);
+                        int oldyearint = yearints[oldyear][oldperson];
+                        if (yearint != oldyearint + 1) {
+                            warning += "Inconsistent year. ";
+                        } else if (thisyear != oldyear + 1) {
+                            warning += "Skipped " + (thisyear - oldyear - 1) + " year" + (thisyear == oldyear + 2 ? "" : "s") + ". ";
+                        }
+                        nohistory = false;
+                        break;
+                    }
+                }
+                if (nohistory) {
+                    warning += "No history. ";
+                }
+            }
+            if (parse) {
+                int[] lookup = {6, 4, 3, 2, 1, 1, 3};
+                int basepriority = yearint >= 8 ? 5 : lookup[yearint - 1];
+                if (priorityint != basepriority + adjustment) {
+                    warning += "Priority off by " + (priorityint - basepriority - adjustment) + ". ";
+                }
+            }
+            int blocktotal = blocktotals.get(blockstring);
+            int blockcount = blockcounts.get(blockstring);
+            if (blocking[thisyear][person]) {
+                if (blocktotal == 1) {
+                    warning += "Singleton block. ";
+                }
+                if (blocking[thisyear][person] && blockcount > 0 && blockcount < blocktotal) {
+                    warning += "Incomplete pick. ";
+                } else {
+                    // Todo: Check subset condition (but this depends on the block ordering)
+                }
+            }
+            // --- Squatting stuff ---
+            // Squatting, but is not currently in this office
+            // Someone who picked the office last year is floating or blocking (only check if previous condition holds)
+            // Squatting, effective priority is not satisfied (only check if previous condition holds)
+            // --- Office stuff ---
+            // Overcrowded office
+            people[thisyear][person].warning.setText(warning);
+        }
+
+        /*int year = this.year;
+        Person[] mypeople = data.get(year);
         Map<String, Map<Integer, Person>> namelookup = new HashMap<>();
         for (int n : data.keySet()) {
             Person[] prevpeople = data.get(n);
@@ -410,8 +683,8 @@ public class OfficeDrawScreen implements mgsa.Screen {
             }
         }
         Map<String, List<Person>> squatlookup = new HashMap<>();
-        for (int i = 0; i < people.length - 1; i++) {
-            Person person = people[i];
+        for (int i = 0; i < mypeople.length - 1; i++) {
+            Person person = mypeople[i];
             String group = person.buttons[4].getText();
             if (group.equals("Squat")) {
                 String office = person.buttons[5].getText();
@@ -440,16 +713,15 @@ public class OfficeDrawScreen implements mgsa.Screen {
         for (String office : offices.keySet()) {
             officeamounts.put(office, 0);
         }
-        for (int i = 0; i < people.length - 1; i++) {
-            Person p = people[i];
+        for (int i = 0; i < mypeople.length - 1; i++) {
+            Person p = mypeople[i];
             String office = p.buttons[5].getText();
             if (offices.containsKey(office)) {
                 officeamounts.put(office, officeamounts.get(office) + 1);
             }
         }
-        Set<String> names = new HashSet<>();
-        for (int i = 0; i < people.length - 1; i++) {
-            Person p = people[i];
+        for (int i = 0; i < mypeople.length - 1; i++) {
+            Person p = mypeople[i];
             String s0 = p.buttons[0].getText();
             String s1 = p.buttons[1].getText();
             String s2 = p.buttons[2].getText();
@@ -457,10 +729,6 @@ public class OfficeDrawScreen implements mgsa.Screen {
             String s4 = p.buttons[4].getText();
             String s5 = p.buttons[5].getText();
             String warning = "";
-            if (names.contains(s0)) {
-                warning += "Duplicate name. ";
-            }
-            names.add(s0);
             int a1 = 0;
             boolean b1 = true;
             try {
@@ -626,6 +894,6 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 }
             }
             p.warning.setText(warning);
-        }
+        }*/
     }
 }
