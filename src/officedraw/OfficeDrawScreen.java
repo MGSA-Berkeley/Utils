@@ -292,7 +292,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
 
     @Override
     public void mouseScrolled(int n) {
-        n *= 4;
+        n *= 6;
         if (scroll + n < 0) {
             scroll = 0;
         } else {
@@ -598,6 +598,14 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 officecache.get(office).add(person);
             }
         }
+        Map<String, List<Integer>> blockcache = new HashMap<>();
+        for (int person = 0; person < numpeople[thisyear];person++) {
+            String block = blockstrings[thisyear][person];
+            if (!blockcache.containsKey(block)) {
+                blockcache.put(block, new ArrayList<>());
+            }
+            blockcache.get(block).add(person);
+        }
         for (int person = 0; person < numpeople[thisyear]; person++) {
             String warning = "";
             int yearint = yearints[thisyear][person];
@@ -692,19 +700,15 @@ public class OfficeDrawScreen implements mgsa.Screen {
                             int newsum = 0;
                             int newamt = 0;
                             List<String> badnames2 = new ArrayList<>();
-                            for (int oldperson : officecache.get(officestring)) {
-                                String name = namestrings[thisyear - 1][oldperson];
-                                BigFraction effectivepriority = effectivepriorities[thisyear - 1][oldperson];
+                            for (int squatter : blockcache.get(blockstring)) {
+                                BigFraction effectivepriority = effectivepriorities[thisyear][squatter];
                                 if (effectivepriority == null) {
-                                    badnames2.add(name);
+                                    badnames2.add(namestrings[thisyear][squatter]);
                                 } else {
                                     oldsum = oldsum.add(effectivepriority);
                                     oldamt++;
-                                    if (namelookup.get(thisyear).containsKey(name)) {
-                                        int newperson = namelookup.get(thisyear).get(name);
-                                        newsum += individualpriorities[thisyear][newperson];
-                                        newamt++;
-                                    }
+                                    newsum += individualpriorities[thisyear][squatter];
+                                    newamt++;
                                 }
                             }
                             if (!badnames2.isEmpty()) {
