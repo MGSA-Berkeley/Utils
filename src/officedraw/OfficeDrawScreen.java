@@ -574,30 +574,6 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 }
             }
         }
-        Map<String, Integer> blocktotals = new HashMap<>();
-        Map<String, Integer> blockcounts = new HashMap<>();
-        for (int person = 0; person < numpeople[thisyear]; person++) {
-            String block = blockstrings[thisyear][person];
-            String office = officestrings[thisyear][person];
-            if (!blocktotals.containsKey(block)) {
-                blocktotals.put(block, 0);
-                blockcounts.put(block, 0);
-            }
-            blocktotals.put(block, blocktotals.get(block) + 1);
-            if (!office.isEmpty()) {
-                blockcounts.put(block, blockcounts.get(block) + 1);
-            }
-        }
-        Map<String, List<Integer>> officecache = new HashMap<>();
-        if (thisyear > 0) {
-            for (int person = 0; person < numpeople[thisyear - 1]; person++) {
-                String office = officestrings[thisyear - 1][person];
-                if (!officecache.containsKey(office)) {
-                    officecache.put(office, new ArrayList<>());
-                }
-                officecache.get(office).add(person);
-            }
-        }
         Map<String, List<Integer>> blockcache = new HashMap<>();
         for (int person = 0; person < numpeople[thisyear]; person++) {
             String block = blockstrings[thisyear][person];
@@ -605,6 +581,28 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 blockcache.put(block, new ArrayList<>());
             }
             blockcache.get(block).add(person);
+        }
+        Map<String, Integer> blocktotals = new HashMap<>();
+        Map<String, Integer> blockcounts = new HashMap<>();
+        for (String block : blockcache.keySet()) {
+            blocktotals.put(block, blockcache.get(block).size());
+            int count = 0;
+            for (int person : blockcache.get(block)) {
+                if (!officestrings[thisyear][person].isEmpty()) {
+                    count++;
+                }
+            }
+            blockcounts.put(block, count);
+        }
+        Map<String, List<Integer>> prevofficecache = new HashMap<>();
+        if (thisyear > 0) {
+            for (int person = 0; person < numpeople[thisyear - 1]; person++) {
+                String office = officestrings[thisyear - 1][person];
+                if (!prevofficecache.containsKey(office)) {
+                    prevofficecache.put(office, new ArrayList<>());
+                }
+                prevofficecache.get(office).add(person);
+            }
         }
         for (int person = 0; person < numpeople[thisyear]; person++) {
             String warning = "";
@@ -681,7 +679,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                     } else if (!(individualpriorities[thisyear][person] == 5
                             && individualpriorities[thisyear - 1][namelookup.get(thisyear - 1).get(namestring)] == 5)) {
                         List<String> badnames = new ArrayList<>();
-                        for (int oldperson : officecache.get(officestring)) {
+                        for (int oldperson : prevofficecache.get(officestring)) {
                             String name = namestrings[thisyear - 1][oldperson];
                             if (namelookup.get(thisyear).containsKey(name)) {
                                 int newperson = namelookup.get(thisyear).get(name);
@@ -727,6 +725,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                     }
                 }
             }
+            
             // --- Office stuff ---
             // Overcrowded office
             people[thisyear][person].warning.setText(warning);
