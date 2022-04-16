@@ -594,6 +594,11 @@ public class OfficeDrawScreen implements mgsa.Screen {
             }
             blockcounts.put(block, count);
         }
+        Map<String, Integer> officecache = new HashMap<>();
+        for (int person = 0; person < numpeople[thisyear]; person++) {
+            String office = officestrings[thisyear][person];
+            officecache.put(office, officecache.getOrDefault(office, 0) + 1);
+        }
         Map<String, List<Integer>> prevofficecache = new HashMap<>();
         if (thisyear > 0) {
             for (int person = 0; person < numpeople[thisyear - 1]; person++) {
@@ -725,9 +730,9 @@ public class OfficeDrawScreen implements mgsa.Screen {
                     }
                 }
             }
-            
-            // --- Office stuff ---
-            // Overcrowded office
+            if (!officestring.isEmpty() && officecache.get(officestring) > offices.get(officestring)) {
+                warning += "Overfull office. ";
+            }
             people[thisyear][person].warning.setText(warning);
         }
     }
