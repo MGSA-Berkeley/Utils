@@ -287,6 +287,10 @@ public class OfficeDrawScreen implements mgsa.Screen {
         if (exitbutton.contains(p) && exitbutton.contains(click)) {
             System.exit(0);
         }
+        if (namebutton.contains(p) && namebutton.contains(p)) {
+            data.put(year, Sorting.nameSort(data.get(year)));
+            update();
+        }
         click = null;
     }
 
