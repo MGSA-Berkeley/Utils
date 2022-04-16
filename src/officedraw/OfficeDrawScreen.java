@@ -53,84 +53,11 @@ public class OfficeDrawScreen implements mgsa.Screen {
     private int scroll;
     private boolean severe;
 
-    private static final Map<String, Integer> offices = new HashMap<>();
-
     public OfficeDrawScreen(mgsa.MainCanvas canvas) {
         this.canvas = canvas;
         for (char c : "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray()) {
             letters.add(Character.toString(c));
         }
-        offices.put("710", 2);
-        offices.put("716", 2);
-        offices.put("737", 3);
-        offices.put("739", 4);
-        offices.put("741", 4);
-        offices.put("743", 3);
-        offices.put("745", 3);
-        offices.put("747", 4);
-        offices.put("775", 3);
-        offices.put("787", 4);
-        offices.put("789", 3);
-        offices.put("810", 2);
-        offices.put("812", 2);
-        offices.put("814", 2);
-        offices.put("816", 2);
-        offices.put("818", 2);
-        offices.put("820", 2);
-        offices.put("822", 2);
-        offices.put("826", 3);
-        offices.put("824", 3);
-        offices.put("828", 2);
-        offices.put("830", 2);
-        offices.put("832", 2);
-        offices.put("834", 2);
-        offices.put("835", 3);
-        offices.put("836", 2);
-        offices.put("840", 4);
-        offices.put("842", 4);
-        offices.put("844", 4);
-        offices.put("845", 3);
-        offices.put("848", 4);
-        offices.put("850", 4);
-        offices.put("852", 4);
-        offices.put("853", 4);
-        offices.put("854", 4);
-        offices.put("869", 4);
-        offices.put("935", 3);
-        offices.put("937", 3);
-        offices.put("941", 3);
-        offices.put("1004", 2);
-        offices.put("1006", 2);
-        offices.put("1008", 2);
-        offices.put("1010", 2);
-        offices.put("1020", 2);
-        offices.put("1037", 3);
-        offices.put("1039", 3);
-        offices.put("1040", 2);
-        offices.put("1041", 3);
-        offices.put("1042", 3);
-        offices.put("1043", 3);
-        offices.put("1044", 3);
-        offices.put("1045", 3);
-        offices.put("1047", 3);
-        offices.put("1049", 3);
-        offices.put("1056", 2);
-        offices.put("1057", 3);
-        offices.put("1058", 3);
-        offices.put("1060", 3);
-        offices.put("1061", 3);
-        offices.put("1062", 3);
-        offices.put("1064", 3);
-        offices.put("1065", 3);
-        offices.put("1066", 3);
-        offices.put("1068", 3);
-        offices.put("1070", 2);
-        offices.put("1075", 3);
-        offices.put("1085", 3);
-        offices.put("1087", 3);
-        offices.put("1093", 3);
-        offices.put("1095", 3);
-        offices.put("1097", 3);
         update();
     }
 
@@ -331,7 +258,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
             System.exit(0);
         }
         if (keyset.contains(KeyEvent.VK_CONTROL) && key == KeyEvent.VK_S) {
-            SaveData.save(data);
+            SaveData.save(data, year);
             return;
         }
         if (key == KeyEvent.VK_UP) {
@@ -481,7 +408,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                     badyears.add(years[year]);
                     break;
                 }
-                if (!(officestring.isEmpty() || offices.containsKey(officestring))) {
+                if (!(officestring.isEmpty() || Offices.offices.containsKey(officestring))) {
                     badyears.add(years[year]);
                     break;
                 }
@@ -520,7 +447,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
             if (!(blockstring.equals("Squat") || blockstring.equals("Float") || blockstring.startsWith("Block"))) {
                 warning += "Invalid block. ";
             }
-            if (!(officestring.isEmpty() || offices.containsKey(officestring))) {
+            if (!(officestring.isEmpty() || Offices.offices.containsKey(officestring))) {
                 warning += "Invalid office. ";
             }
             people[thisyear][person].warning.setText(warning);
@@ -760,7 +687,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                     }
                 }
             }
-            if (!officestring.isEmpty() && officecache.get(officestring) > offices.get(officestring)) {
+            if (!officestring.isEmpty() && officecache.get(officestring) > Offices.offices.get(officestring)) {
                 warning += "Overfull office. ";
             }
             people[thisyear][person].warning.setText(warning);

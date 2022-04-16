@@ -150,7 +150,7 @@ public class Sorting {
             return sp.equals("Squat") ? -1 : 1;
         }
         int comparison = fractions.get(tp).compareTo(fractions.get(tq));
-        // This tiebreak is exploitable, but last minute changes won't scramble the pick order
+        // This tiebreak is exploitable, but last-minute changes won't scramble the pick order
         return comparison == 0 ? Integer.compare((tp + year).hashCode(), (tq + year).hashCode()) : comparison;
     }
 
