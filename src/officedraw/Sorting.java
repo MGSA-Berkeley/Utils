@@ -1,6 +1,8 @@
 package officedraw;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Sorting {
 
@@ -40,10 +42,31 @@ public class Sorting {
         return newpeople;
     }
 
-    public static Person[] blockSort(Person[] oldpeople) {
+    public static Person[] blockSort(Person[] oldpeople, int year) {
         int len = oldpeople.length - 1;
         Person[] sortedpeople = Arrays.copyOf(oldpeople, len);
-        Arrays.sort(sortedpeople, Sorting::blockCompare);
+        Map<String, Integer> numerators = new HashMap<>();
+        Map<String, Integer> denominators = new HashMap<>();
+        for (Person p : sortedpeople) {
+            String s = block(p);
+            if (!denominators.containsKey(s)) {
+                numerators.put(s, 0);
+                denominators.put(s, 0);
+            }
+            if (numerators.containsKey(s)) {
+                try {
+                    numerators.put(s, numerators.get(s) + Integer.parseInt(p.buttons[2].getText()));
+                } catch (NumberFormatException ex) {
+                    numerators.remove(s);
+                }
+            }
+            denominators.put(s, denominators.getOrDefault(s, 0) + 1);
+        }
+        Map<String, BigFraction> fractions = new HashMap<>();
+        for (String s : numerators.keySet()) {
+            fractions.put(s, new BigFraction(numerators.get(s), denominators.get(s)));
+        }
+        Arrays.sort(sortedpeople, (p, q) -> blockCompare(p, q, fractions, year));
         Person[] newpeople = Arrays.copyOf(sortedpeople, len + 1);
         newpeople[len] = new Person();
         return newpeople;
@@ -112,11 +135,48 @@ public class Sorting {
         return Integer.compare(i, j);
     }
 
-    public static int blockCompare(Person p, Person q) {
-        return 0;
+    public static int blockCompare(Person p, Person q, Map<String, BigFraction> fractions, int year) {
+        String sp = p.buttons[4].getText();
+        String sq = q.buttons[4].getText();
+        String tp = block(p);
+        String tq = block(q);
+        if (tp.isEmpty() || tq.isEmpty()) {
+            return tp.isEmpty() ? (tq.isEmpty() ? 0 : -1) : 1;
+        }
+        if (!(fractions.containsKey(tp) && fractions.containsKey(tq))) {
+            return fractions.containsKey(tp) ? 1 : (fractions.containsKey(tq) ? -1 : 0);
+        }
+        if (sp.equals("Squat") != sq.equals("Squat")) {
+            return sp.equals("Squat") ? -1 : 1;
+        }
+        int comparison = fractions.get(tp).compareTo(fractions.get(tq));
+        // This tiebreak is exploitable, but last minute changes won't scramble the pick order
+        return comparison == 0 ? Integer.compare((tp + year).hashCode(), (tq + year).hashCode()) : comparison;
     }
 
     public static int officeCompare(Person p, Person q) {
-        return p.buttons[5].getText().compareTo(q.buttons[5].getText());
+        int i = Integer.MIN_VALUE;
+        int j = Integer.MIN_VALUE;
+        try {
+            i = Integer.parseInt(p.buttons[5].getText());
+        } catch (NumberFormatException ex) {
+        }
+        try {
+            j = Integer.parseInt(q.buttons[5].getText());
+        } catch (NumberFormatException ex) {
+        }
+        return Integer.compare(i, j);
+    }
+
+    private static String block(Person person) {
+        String block = person.buttons[4].getText();
+        if (block.equals("Float")) {
+            block += person.buttons[0].getText();
+        } else if (block.equals("Squat")) {
+            block += person.buttons[5].getText();
+        } else if (!block.startsWith("Block")) {
+            block = "";
+        }
+        return block;
     }
 }

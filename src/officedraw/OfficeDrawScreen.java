@@ -304,7 +304,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
             update();
         }
         if (blockbutton.contains(p) && blockbutton.contains(p)) {
-            data.put(year, Sorting.blockSort(data.get(year)));
+            data.put(year, Sorting.blockSort(data.get(year), year));
             update();
         }
         if (officebutton.contains(p) && officebutton.contains(p)) {
@@ -456,6 +456,10 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 String prioritystring = prioritystrings[year][person];
                 String blockstring = blockstrings[year][person];
                 String officestring = officestrings[year][person];
+                if (namestring.isEmpty()) {
+                    badyears.add(years[year]);
+                    break;
+                }
                 if (names.contains(namestring)) {
                     badyears.add(years[year]);
                     break;
@@ -498,7 +502,9 @@ public class OfficeDrawScreen implements mgsa.Screen {
             String prioritystring = prioritystrings[thisyear][person];
             String blockstring = blockstrings[thisyear][person];
             String officestring = officestrings[thisyear][person];
-            if (duplicatenames.contains(namestring)) {
+            if (namestring.isEmpty()) {
+                warning += "Empty name. ";
+            } else if (duplicatenames.contains(namestring)) {
                 warning += "Duplicate name. ";
             }
             try {
