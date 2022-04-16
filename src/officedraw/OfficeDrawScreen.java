@@ -291,6 +291,26 @@ public class OfficeDrawScreen implements mgsa.Screen {
             data.put(year, Sorting.nameSort(data.get(year)));
             update();
         }
+        if (yearbutton.contains(p) && yearbutton.contains(p)) {
+            data.put(year, Sorting.yearSort(data.get(year)));
+            update();
+        }
+        if (prioritybutton.contains(p) && prioritybutton.contains(p)) {
+            data.put(year, Sorting.prioritySort(data.get(year)));
+            update();
+        }
+        if (adjustmentbutton.contains(p) && adjustmentbutton.contains(p)) {
+            data.put(year, Sorting.adjustmentSort(data.get(year)));
+            update();
+        }
+        if (blockbutton.contains(p) && blockbutton.contains(p)) {
+            data.put(year, Sorting.blockSort(data.get(year)));
+            update();
+        }
+        if (officebutton.contains(p) && officebutton.contains(p)) {
+            data.put(year, Sorting.officeSort(data.get(year)));
+            update();
+        }
         click = null;
     }
 
