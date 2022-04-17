@@ -258,7 +258,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
             System.exit(0);
         }
         if (keyset.contains(KeyEvent.VK_CONTROL) && key == KeyEvent.VK_S) {
-            SaveData.save(data, year);
+            SaveData.save(year, data, severe);
             return;
         }
         if (key == KeyEvent.VK_UP) {

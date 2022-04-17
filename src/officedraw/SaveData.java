@@ -24,30 +24,41 @@ public class SaveData {
 
     private static final String tab = "\t";
 
-    public static void save(Map<Integer, Person[]> map, int year) {
-        Map<String, List<String>> people = new HashMap<>();
-        for (String office : Offices.offices.keySet()) {
-            people.put(office, new ArrayList<>());
+    public static void save(int year, Map<Integer, Person[]> data, boolean severe) {
+        saveData(year, data);
+        if (severe) {
+            return;
         }
-        saveData(map);
+        Map<String, List<String>> officeToPerson = new HashMap<>();
+        Map<String, String> personToOffice = new HashMap<>();
+        for (String office : Offices.offices.keySet()) {
+            officeToPerson.put(office, new ArrayList<>());
+        }
+        for (Person person : data.get(year)) {
+            String name = person.buttons[0].getText();
+            String office = person.buttons[5].getText();
+            if (!office.isEmpty()) {
+                officeToPerson.get(office).add(name);
+                personToOffice.put(name, office);
+            }
+        }
         try {
-            saveHtml(people);
-            images(people);
+            images(year, officeToPerson);
+            saveHtml(year, 0, new ArrayList<>(), new ArrayList<>(), personToOffice, officeToPerson);
         } catch (IOException ex) {
             System.out.println("Error: " + ex);
+            ex.printStackTrace();
         }
     }
 
-    private static void saveData(Map<Integer, Person[]> map) {
+    private static void saveData(int year, Map<Integer, Person[]> data) {
+        List<String> lines = new ArrayList<>();
+        for (Person p : Sorting.nameSort(data.get(year))) {
+            lines.add(p.buttons[0].getText() + tab + p.buttons[1].getText() + tab + p.buttons[2].getText() + tab + p.buttons[3].getText() + tab + p.buttons[4].getText() + tab + p.buttons[5].getText());
+        }
+        Path file = Paths.get(year + ".officedraw");
         try {
-            for (int year : map.keySet()) {
-                List<String> lines = new ArrayList<>();
-                for (Person p : Sorting.nameSort(map.get(year))) {
-                    lines.add(p.buttons[0].getText() + tab + p.buttons[1].getText() + tab + p.buttons[2].getText() + tab + p.buttons[3].getText() + tab + p.buttons[4].getText() + tab + p.buttons[5].getText());
-                }
-                Path file = Paths.get(year + ".officedraw");
-                Files.write(file, lines);
-            }
+            Files.write(file, lines);
         } catch (IOException ex) {
             System.out.println("Error: " + ex);
         }
@@ -60,7 +71,7 @@ public class SaveData {
         g.drawString(text, x, y);
     }
 
-    private static void images(Map<String, List<String>> people) throws IOException {
+    private static void images(int year, Map<String, List<String>> officeToPerson) throws IOException {
         BufferedImage[] images = new BufferedImage[4];
         Graphics2D[] graphics = new Graphics2D[4];
         for (int i = 0; i < 4; i++) {
@@ -75,7 +86,7 @@ public class SaveData {
         }
         for (String office : Offices.offices.keySet()) {
             int size = Offices.offices.get(office);
-            int amt = people.get(office).size();
+            int amt = officeToPerson.get(office).size();
             Polygon p = Offices.polygons.get(office);
             Rectangle r = p.getBounds();
             int i = (Integer.parseInt(office) / 100) - 7;
@@ -96,15 +107,16 @@ public class SaveData {
             graphics[i].drawString(office, x, y);
         }
         for (int i = 0; i < 4; i++) {
-            ImageIO.write(images[i], "png", new File("C:\\Users\\thoma\\website\\officedraw\\floor" + (i + 7) + ".png"));
+            ImageIO.write(images[i], "png", new File("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\floor" + (i + 7) + ".png"));
         }
     }
 
-    private static void saveHtml(Map<String, List<String>> people) throws IOException {
+    private static void saveHtml(int year, int numblocks, List<List<String>> blocks, List<BigFraction> priorities,
+            Map<String, String> personToOffice, Map<String, List<String>> officeToPerson) throws IOException {
         List<String> sb = new ArrayList<>();
         sb.add("<html>");
         sb.add("<head>");
-        sb.add("<title>MGSA Office Draw</title>");
+        sb.add("<title>" + year + " MGSA Office Draw</title>");
         sb.add("<style>");
         sb.add("body {font-family: sans-serif; background-color: #003262;}");
         sb.add(".row {white-space: nowrap;}");
@@ -113,6 +125,7 @@ public class SaveData {
         sb.add(".right {padding: 10px;}");
         sb.add(".boxed1 {background-color: #DDD5C7; border: 2px solid black; padding: 4px; margin: 4px; font-size: 18px;}");
         sb.add(".boxed2 {background-color: #CFDD45; border: 2px solid black; padding: 4px; margin: 4px; font-size: 18px;}");
+        sb.add(".boxed3 {background-color: #D9661F; border: 2px solid black; padding: 4px; margin: 4px; font-size: 18px;}");
         sb.add(".tooltip {position: relative;}");
         sb.add(".tooltiptext {visibility: hidden; white-space: nowrap; background-color: FDB515; color: #000; border-radius: 6px; padding: 5px; position: absolute; z-index: 1; top: 50%; -ms-transform: translateY(-14px); transform: translateY(-14px); left: 110%;}");
         sb.add(".tooltiptext::after {content: \"\"; position: absolute; top: 14px; right: 100%; margin-top: -6px; border-width: 6px; border-style: solid; border-color: transparent FDB515 transparent transparent;}");
@@ -121,37 +134,38 @@ public class SaveData {
         sb.add("</style>");
         sb.add("</head>");
         sb.add("<body>");
-        sb.add("<h1 style=\"text-align:center;color:#FDB515;\">MGSA Office Draw</h1>");
+        sb.add("<h1 style=\"text-align:center;color:#FDB515;\">" + year + " MGSA Office Draw</h1>");
         sb.add("<h2 style=\"text-align:center;color:#FDB515;\">You can hover over names and offices for more information</h2>");
         sb.add("<div class=\"row\">");
         sb.add("<div class=\"column left\" style=\"background-color:#FDB515;\">");
         sb.add("<h2 style=\"text-align:center;\">Draw Order</h2>");
-        /*for (Block block : Block.blocks()) {
+        for (int blocknum = 0; blocknum < numblocks; blocknum++) {
+            List<String> block = blocks.get(blocknum);
             int amt = 0;
-            for (Person p : block.people()) {
-                if (p.office() != null) {
+            for (String person : block) {
+                if (personToOffice.containsKey(person)) {
                     amt++;
                 }
             }
-            if (amt == block.people().length) {
+            if (amt == block.size()) {
                 sb.add("<div class=\"boxed2\">");
             } else if (amt == 0) {
                 sb.add("<div class=\"boxed1\">");
             } else {
-                throw new IllegalArgumentException("Error: Block " + block + " has not fully chosen");
+                sb.add("<div class=\"boxed3\">");
             }
-            sb.add("(" + block.time() + ") (" + block.priority() + ")");
-            for (Person p : block.people()) {
-                if (p.office() == null) {
-                    sb.add("<div class=\"tooltip\">" + p.name() + "<span class=\"tooltiptext\">No Office</span></div>");
-                } else {
-                    sb.add("<div class=\"tooltip\">" + p.name());
-                    printOffice(sb, p.office());
+            sb.add("(TIME) (" + priorities.get(blocknum) + ")");
+            for (String person : block) {
+                if (personToOffice.containsKey(person)) {
+                    sb.add("<div class=\"tooltip\">" + person);
+                    printOffice(sb, officeToPerson, personToOffice.get(person));
                     sb.add("</div>");
+                } else {
+                    sb.add("<div class=\"tooltip\">" + person + "<span class=\"tooltiptext\">No Office</span></div>");
                 }
             }
             sb.add("</div>");
-        }*/
+        }
         sb.add("</div>");
         sb.add("<div class=\"column right\" style=\"background-color: #3B7EA1;\">");
         sb.add("<h2 style=\"text-align: center; color: #DDD5C7;\">Available Offices</h2>");
@@ -162,7 +176,7 @@ public class SaveData {
                 if (Integer.parseInt(office) / 100 == i + 7) {
                     Rectangle rect = Offices.polygons.get(office).getBounds();
                     sb.add("<div class=\"tooltip\" style=\"position: absolute; left: " + rect.x + "px; top: " + rect.y + "px; width: " + rect.width + "; height: " + rect.height + ";\">");
-                    printOffice(sb, people, office);
+                    printOffice(sb, officeToPerson, office);
                     sb.add("</div>");
                 }
             }
@@ -172,13 +186,13 @@ public class SaveData {
         sb.add("</div>");
         sb.add("</body>");
         sb.add("</html>");
-        Path file = Paths.get("C:\\Users\\thoma\\website\\officedraw\\officedraw.html");
+        Path file = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\officedraw.html");
         Files.write(file, sb, StandardCharsets.UTF_8);
     }
 
-    private static void printOffice(List<String> sb, Map<String, List<String>> people, String office) {
-        sb.add("<span class=\"tooltiptext\">Office " + office + " (" + people.get(office).size() + "/" + Offices.offices.get(office) + ")");
-        for (String q : people.get(office)) {
+    private static void printOffice(List<String> sb, Map<String, List<String>> offices, String office) {
+        sb.add("<span class=\"tooltiptext\">Office " + office + " (" + offices.get(office).size() + "/" + Offices.offices.get(office) + ")");
+        for (String q : offices.get(office)) {
             sb.add("<br>" + q);
         }
         sb.add("</span>");
