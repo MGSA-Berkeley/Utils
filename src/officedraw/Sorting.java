@@ -168,7 +168,7 @@ public class Sorting {
         return Integer.compare(i, j);
     }
 
-    private static String block(Person person) {
+    public static String block(Person person) {
         String block = person.buttons[4].getText();
         if (block.equals("Float")) {
             block += person.buttons[0].getText();

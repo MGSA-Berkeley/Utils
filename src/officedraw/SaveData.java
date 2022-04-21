@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,15 +27,19 @@ public class SaveData {
 
     public static void save(int year, Map<Integer, Person[]> data, boolean severe) {
         saveData(year, data);
-        if (severe) {
-            return;
+        if (!severe) {
+            save(year, data.get(year));
         }
+    }
+
+    public static void save(int year, Person[] people) {
+        people = Arrays.copyOf(Sorting.blockSort(people, year), people.length - 1);
         Map<String, List<String>> officeToPerson = new HashMap<>();
         Map<String, String> personToOffice = new HashMap<>();
         for (String office : Offices.offices.keySet()) {
             officeToPerson.put(office, new ArrayList<>());
         }
-        for (Person person : data.get(year)) {
+        for (Person person : people) {
             String name = person.buttons[0].getText();
             String office = person.buttons[5].getText();
             if (!office.isEmpty()) {
@@ -42,9 +47,34 @@ public class SaveData {
                 personToOffice.put(name, office);
             }
         }
+
+        List<List<String>> blocks = new ArrayList<>();
+        List<Integer> blocksums = new ArrayList<>();
+        List<String> block = new ArrayList<>();
+        String oldblock = null;
+        int len = 0;
+        for (Person p : people) {
+            String newblock = Sorting.block(p);
+            if (!newblock.equals(oldblock)) {
+                if (oldblock != null) {
+                    blocks.add(block);
+                }
+                blocksums.add(0);
+                block = new ArrayList<>();
+                oldblock = newblock;
+                len++;
+            }
+            blocksums.set(len - 1, blocksums.get(len - 1) + Integer.parseInt(p.buttons[2].getText()));
+            block.add(p.buttons[0].getText());
+        }
+        blocks.add(block);
+        List<BigFraction> priorities = new ArrayList<>();
+        for (int i = 0; i < len; i++) {
+            priorities.add(new BigFraction(blocksums.get(i), blocks.get(i).size()));
+        }
         try {
             images(year, officeToPerson);
-            saveHtml(year, 0, new ArrayList<>(), new ArrayList<>(), personToOffice, officeToPerson);
+            saveHtml(year, len, blocks, priorities, personToOffice, officeToPerson);
         } catch (IOException ex) {
             System.out.println("Error: " + ex);
             ex.printStackTrace();
