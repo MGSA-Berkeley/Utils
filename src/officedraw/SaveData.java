@@ -148,6 +148,96 @@ public class SaveData {
         sb.add("<head>");
         sb.add("<title>" + year + " MGSA Office Draw</title>");
         sb.add("<style>");
+        sb.add("html, body, .Container, .LeftPanel, .RightPanel {height: 100%;}");
+        sb.add(".Container:before {content: ''; height: 100%; float: left;}");
+        sb.add(".HeightTaker {position: relative; z-index: 1;}");
+        sb.add(".HeightTaker:after {content: ''; clear: both; display: block;}");
+        sb.add(".Wrapper {position: absolute; width: 100%; height: 100%;}");
+        sb.add(".LeftPanel {float: left; overflow: auto;}");
+        sb.add(".RightPanel {overflow: auto;}");
+        sb.add("body {font-family: sans-serif; background-color: #003262;}");
+        sb.add(".Header {text-align: center;}");
+        sb.add(".LeftPanel {background-color:#FDB515;}");
+        sb.add(".RightPanel {background-color: #3B7EA1;}");
+        sb.add(".boxed1 {background-color: #DDD5C7; border: 2px solid black; padding: 4px; margin: 4px; font-size: 18px;}");
+        sb.add(".boxed2 {background-color: #CFDD45; border: 2px solid black; padding: 4px; margin: 4px; font-size: 18px;}");
+        sb.add(".tooltip {position: relative;}");
+        sb.add(".tooltiptext {visibility: hidden; white-space: nowrap; background-color: FDB515; color: #000; border-radius: 6px; padding: 5px; position: absolute; z-index: 1; top: 50%; -ms-transform: translateY(-14px); transform: translateY(-14px); left: 110%;}");
+        sb.add(".tooltiptext::after {content: ''; position: absolute; top: 14px; right: 100%; margin-top: -6px; border-width: 6px; border-style: solid; border-color: transparent FDB515 transparent transparent;}");
+        sb.add(".tooltip:hover .tooltiptext {visibility: visible;}");
+        sb.add(".container {position: relative; margin: 0 auto;}");
+        sb.add("</style>");
+        sb.add("</head>");
+        sb.add("<body>");
+        sb.add("<div class=\"Container\">");
+        sb.add("<div class=\"Header\">");
+        sb.add("<h1 style=\"text-align:center;color:#FDB515;\">" + year + " MGSA Office Draw</h1>");
+        sb.add("<h2 style=\"text-align:center;color:#FDB515;\">You can hover over names and offices for more information</h2>");
+        sb.add("</div>");
+
+        sb.add("<div class=\"HeightTaker\">");
+        sb.add("<div class=\"Wrapper\">");
+        sb.add("<div class=\"LeftPanel\">");
+        sb.add("<h2 style=\"text-align:center;\">Draw Order</h2>");
+        for (int blocknum = 0; blocknum < numblocks; blocknum++) {
+            List<String> block = blocks.get(blocknum);
+            int amt = 0;
+            for (String person : block) {
+                if (personToOffice.containsKey(person)) {
+                    amt++;
+                }
+            }
+            if (amt == block.size()) {
+                sb.add("<div class=\"boxed2\">");
+            } else if (amt == 0) {
+                sb.add("<div class=\"boxed1\">");
+            } else {
+                sb.add("<div class=\"boxed3\">");
+            }
+            // TODO: Make this nicer
+            sb.add("(TIME) (" + priorities.get(blocknum) + ")");
+            for (String person : block) {
+                if (personToOffice.containsKey(person)) {
+                    sb.add("<div class=\"tooltip\">" + person);
+                    printOffice(sb, officeToPerson, personToOffice.get(person));
+                    sb.add("</div>");
+                } else {
+                    sb.add("<div class=\"tooltip\">" + person + "<span class=\"tooltiptext\">No Office</span></div>");
+                }
+            }
+            sb.add("</div>");
+        }
+        sb.add("</div>");
+        sb.add("<div class=\"RightPanel\">");
+        sb.add("<h2 style=\"text-align: center; color: #DDD5C7;\">Available Offices</h2>");
+        for (int i = 0; i < 4; i++) {
+            sb.add("<div class=\"container\">");
+            sb.add("<p style=\"text-align:center;\"><img src=\"floor" + (i + 7) + ".png?time=" + System.currentTimeMillis() + "\" usemap=\"#map" + (i + 7) + "\"></p>");
+            for (String office : Offices.offices.keySet()) {
+                if (Integer.parseInt(office) / 100 == i + 7) {
+                    Rectangle rect = Offices.polygons.get(office).getBounds();
+                    sb.add("<div class=\"tooltip\" style=\"position: absolute; left: " + rect.x + "px; top: " + rect.y + "px; width: " + rect.width + "; height: " + rect.height + ";\">");
+                    printOffice(sb, officeToPerson, office);
+                    sb.add("</div>");
+                }
+            }
+            sb.add("</div>");
+        }
+        sb.add("</div>");
+        sb.add("</div>");
+        sb.add("</body>");
+        sb.add("</html>");
+        Path file = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\officedraw.html");
+        Files.write(file, sb, StandardCharsets.UTF_8);
+    }
+
+    private static void saveHtmlOld(int year, int numblocks, List<List<String>> blocks, List<BigFraction> priorities,
+            Map<String, String> personToOffice, Map<String, List<String>> officeToPerson) throws IOException {
+        List<String> sb = new ArrayList<>();
+        sb.add("<html>");
+        sb.add("<head>");
+        sb.add("<title>" + year + " MGSA Office Draw</title>");
+        sb.add("<style>");
         sb.add("body {font-family: sans-serif; background-color: #003262;}");
         sb.add(".row {white-space: nowrap;}");
         sb.add(".column {display: inline-block;}");
@@ -184,6 +274,7 @@ public class SaveData {
             } else {
                 sb.add("<div class=\"boxed3\">");
             }
+            // TODO: Make this nicer
             sb.add("(TIME) (" + priorities.get(blocknum) + ")");
             for (String person : block) {
                 if (personToOffice.containsKey(person)) {
