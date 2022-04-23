@@ -153,7 +153,7 @@ public class SaveData {
         sb.add(".HeightTaker {position: relative; z-index: 1;}");
         sb.add(".HeightTaker:after {content: ''; clear: both; display: block;}");
         sb.add(".Wrapper {position: absolute; width: 100%; height: 100%;}");
-        sb.add(".LeftPanel {overflow-x: clip; overflow-y: scroll; width: 100%; top: 0; left: 0; position: absolute;}");
+        sb.add(".LeftPanel {overflow-x: clip; overflow-y: scroll; width: 100%; top: 0; left: 0; position: absolute; z-index: 10;}");
         sb.add(".LeftPanel>div {display: inline-block; background-color:#FDB515;}");
         sb.add(".LeftPanel>div>div {display: inline-block;}");
         sb.add(".RightPanel {overflow-y: scroll; top: 0; right: 0; position: absolute; padding-left: 10px; padding-right: 10px; background-color: #3B7EA1;}");

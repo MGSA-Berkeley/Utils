@@ -1,4 +1,5 @@
 Abi Rajan	2	4		Block Abi Rajan	
+Adam Dhillon	4	0	-2	Squat	1043
 Ahmad Zaid Abassi	3	3		Float	
 Ahmee Marshall-Christensen	4	2		Block Jacob Elafandi	
 Alex Burka	2	4		Block Robert Schutz	
@@ -6,6 +7,7 @@ Alois Cerbu	5	1		Squat	853
 Andrew Gitlin	5	1		Squat	1093
 Andrew Scharf	3	3		Float	
 Ansuman Bardalai	2	4		Block Ely Sandine	
+Anthony Villafranca	6	1		Squat	1097
 Anya Michaelsen	4	0	-2	Squat	1041
 Benjamin Pineau	4	2		Block Mitchell Taylor	
 Boyan Xu	5	1		Squat	853
@@ -16,6 +18,7 @@ Chi Cheuk Tsang	5	1		Squat	1087
 Claire Mirocha	3	2	-1	Squat	737
 Connor Halleck-Dube	3	3		Block Michael Heinz	
 Daigo Ito	2	4		Block Garrett Brown	
+Daniel Chupin	6	1		Block Yuan Yao	
 David Casey	6	1		Squat	937
 David Gonzalez	4	2		Block Rikhav Shah	
 Diego Andres Bejarano Rayo	5	1		Block Guillaume Massas	
@@ -29,7 +32,7 @@ Eric Jankowski	3	3		Squat	1008
 Erik Herrera	3	1	-2	Block Erik Herrera	
 Esme Bajo	4	2		Squat	1041
 Ethan Dlugie	5	1		Squat	853
-Fangu Chen	2	4		Block Yueqing Feng	
+Fangu Chen	2	4		Block Fangu Chen Yueqing Feng	
 Fei Yu Chen	4	2		Block Rikhav Shah	
 Franny Dean	2	-1	-5	Block Franny Dean	
 Frederick Huang	6	1		Squat	1097
@@ -39,6 +42,7 @@ Guillaume Massas	5	1		Block Guillaume Massas
 Haixiang Zhang	4	2		Block Haixiang Zhang	
 Haotian Gu	5	1		Squat	935
 Hongyi Liu	5	1		Float	
+Ian Francis	5	1		Squat	845
 Irit Huq-Kuruvilla	6	1		Block Yuan Yao	
 Isabel Detherage	2	3	-1	Block Franny Dean	
 Izak Oltman	4	0	-2	Squat	1043
@@ -57,7 +61,7 @@ Jorge Garza Vargas	6	1		Squat	1097
 Joseph Stahl	7	3		Float	
 Junsheng Zhang	4	2		Block Yifan Chen	
 Katalin Berlow	2	4		Block Robert Schutz	
-Kiran Luecke	5	9		Float	
+Kiran Luecke	5	1		Float	
 Kristina Nelson	6	0	-1	Block Kristina Nelson	
 Kubrat Danailov	8	5		Squat	741
 Larsen Linov	6	0	-1	Block Lauren Heller	
@@ -65,7 +69,8 @@ Lauren Heller	6	0	-1	Block Lauren Heller
 Lewis Pan	2	4		Block Abi Rajan	
 Luya Wang	5	1		Squat	845
 Matthew McCauley	5	1		Squat	741
-Max Wimberley	8	5		Squat	1047
+Max Hlavacek	6	1		Block Kristina Nelson	
+Max Wimberley	8	5		Float	1047
 Max Zubkov	5	1		Block Yulia	
 Michael Heinz	3	2	-1	Block Michael Heinz	
 Mingyang Li	3	3		Squat	937
@@ -83,7 +88,10 @@ Rebecca Whitman	3	3		Squat	737
 Rikhav Shah	4	2		Block Rikhav Shah	
 Robert Schutz	2	3	-1	Block Robert Schutz	
 Robin Huang	2	3	-1	Block Franny Dean	
+Ronan O'Gorman	3	3		Float	
+Rose Lopez	3	2	-1	Float	
 Roy Zhao	6	0	-1	Squat	1049
+Scott Mutchnik	4	2		Squat	737
 Sean Gonzales	3	3		Squat	1008
 Seewoo Lee	2	4		Block Chan Bae	
 Shoshana Simons	3	3		Squat	745
@@ -92,6 +100,7 @@ Thomas Browning	4	0	-2	Squat	1041
 Tong Zhou	4	2		Squat	869
 Xianglong Ni	5	1		Squat	1093
 Xiaoyu Huang	3	3		Float	
+Xiaoyu Niu	2	4		Float	
 Yanshuai Qin	5	1		Block Yanshuai Qin	
 Yelena Mandelshtam	4	0	-2	Squat	1043
 Yifan Chen	3	3		Block Yifan Chen	
@@ -100,7 +109,7 @@ Yixuan Li	6	1		Block Lauren Heller
 Yonah Borns-Weil	5	1		Squat	845
 Yuan Yao	6	1		Block Yuan Yao	
 Yuchen Mao	3	3		Float	
-Yueqing Feng	2	845		Block Fangu Chen	
+Yueqing Feng	2	4		Block Fangu Chen Yueqing Feng	
 Yuhang Cai	2	4		Block Yuhang Cai	
 Yujie Fu	2	4		Block Qiuyu Ren	
 Yulia Alexandr	4	2		Block Yulia	
