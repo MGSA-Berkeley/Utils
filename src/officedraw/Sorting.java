@@ -81,6 +81,15 @@ public class Sorting {
         return newpeople;
     }
 
+    public static Person[] warningsSort(Person[] oldpeople) {
+        int len = oldpeople.length - 1;
+        Person[] sortedpeople = Arrays.copyOf(oldpeople, len);
+        Arrays.sort(sortedpeople, Sorting::warningsCompare);
+        Person[] newpeople = Arrays.copyOf(sortedpeople, len + 1);
+        newpeople[len] = new Person();
+        return newpeople;
+    }
+
     public static int nameCompare(Person p, Person q) {
         return p.buttons[0].getText().compareTo(q.buttons[0].getText());
     }
@@ -166,6 +175,15 @@ public class Sorting {
         } catch (NumberFormatException ex) {
         }
         return Integer.compare(i, j);
+    }
+
+    public static int warningsCompare(Person p, Person q) {
+        String s = p.warning.getText();
+        String t = q.warning.getText();
+        if (s.isEmpty() || t.isEmpty()) {
+            return s.isEmpty() ? (t.isEmpty() ? 0 : 1) : -1;
+        }
+        return p.warning.getText().compareTo(q.warning.getText());
     }
 
     public static String block(Person person) {

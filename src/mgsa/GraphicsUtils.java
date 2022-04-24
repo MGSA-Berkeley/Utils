@@ -17,6 +17,7 @@ public class GraphicsUtils {
     public static final Color GoldenGate = new Color(237, 78, 51);
     public static final Color Grey = new Color(238, 238, 238);
     public static final Color Lawrence = new Color(0, 176, 218);
+    public static final Color SatherGate = new Color(185, 211, 182);
     public static final Color SoyBean = new Color(133, 148, 56);
 
     private static final String sample1 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";

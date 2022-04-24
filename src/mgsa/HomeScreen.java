@@ -47,11 +47,11 @@ public class HomeScreen implements Screen {
         g.setColor(background);
         g.fillRect(0, 0, w, h);
         g.setFont(bigfont);
-        title.drawCenter(g, mouseover, foreground, mouse, click);
+        title.drawCenter(g, mouseover, foreground, 0, mouse, click);
         g.setFont(smallfont);
-        officedraw.drawCenter(g, mouseover, foreground, mouse, click);
-        election.drawCenter(g, mouseover, foreground, mouse, click);
-        exit.drawCenter(g, mouseover, foreground, mouse, click);
+        officedraw.drawCenter(g, mouseover, foreground, 0, mouse, click);
+        election.drawCenter(g, mouseover, foreground, 0, mouse, click);
+        exit.drawCenter(g, mouseover, foreground, 0, mouse, click);
     }
 
     @Override

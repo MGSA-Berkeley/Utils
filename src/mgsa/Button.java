@@ -63,21 +63,21 @@ public class Button {
         return mgsa.GraphicsUtils.getHeight(g) + 2 * padding;
     }
 
-    public void drawCenter(Graphics g, Color mouseover, Color foreground, Point... points) {
-        checkhighlight(g, mouseover, points);
+    public void drawCenter(Graphics g, Color mouseover, Color foreground, int miny, Point... points) {
+        checkhighlight(g, mouseover, miny, points);
         g.setColor(foreground);
         mgsa.GraphicsUtils.drawCenterString(g, text, rect, false);
     }
 
-    public void drawLeft(Graphics g, Color mouseover, Color foreground, int padding, Point... points) {
-        checkhighlight(g, mouseover, points);
+    public void drawLeft(Graphics g, Color mouseover, Color foreground, int padding, int miny, Point... points) {
+        checkhighlight(g, mouseover, miny, points);
         g.setColor(foreground);
         mgsa.GraphicsUtils.drawLeftString(g, text, rect, false, padding);
     }
 
-    public void checkhighlight(Graphics g, Color mouseover, Point... points) {
+    public void checkhighlight(Graphics g, Color mouseover, int miny, Point... points) {
         for (Point p : points) {
-            if (contains(p)) {
+            if (contains(p) && p.y >= miny) {
                 highlight(g, mouseover);
                 break;
             }

@@ -42,10 +42,13 @@ public class OfficeDrawScreen implements mgsa.Screen {
     private static final Color background = mgsa.GraphicsUtils.Grey;
     private static final Color foreground = mgsa.GraphicsUtils.Black;
     private static final Color mouseover = mgsa.GraphicsUtils.BayFog;
+    private static final Color select = mgsa.GraphicsUtils.SatherGate;
 
     private static final Font bigfont = new Font(Font.SANS_SERIF, Font.BOLD, 48);
     private static final Font mediumfont = new Font(Font.SANS_SERIF, Font.BOLD, 16);
     private static final Font smallfont = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
+    private int bannerheight;
+    private int rowheight;
 
     private final Map<Integer, Person[]> data = LoadData.load();
     private int row = 0;
@@ -74,7 +77,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
         g.setFont(bigfont);
         bannerbutton.setText(Integer.toString(year));
         int bannerwidth = bannerbutton.getWidth(g, smallpadding);
-        int bannerheight = bannerbutton.getHeight(g, bigpadding);
+        bannerheight = bannerbutton.getHeight(g, bigpadding);
         bannerbutton.setRectCenter(g, new Point(w / 2, bannerheight / 2), smallpadding);
         leftbutton.setRectRight(g, new Point(w / 2 - bannerwidth / 2, bannerheight / 2), smallpadding);
         rightbutton.setRectLeft(g, new Point(w / 2 + bannerwidth / 2, bannerheight / 2), smallpadding);
@@ -94,6 +97,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
         rowheight = Math.max(rowheight, blockbutton.getHeight(g, smallpadding));
         int officelen = officebutton.getWidth(g, smallpadding);
         rowheight = Math.max(rowheight, officebutton.getHeight(g, smallpadding));
+        this.rowheight = rowheight;
         g.setFont(smallfont);
         for (Person p : people) {
             namelen = Math.max(namelen, p.buttons[0].getWidth(g, smallpadding));
@@ -135,14 +139,18 @@ public class OfficeDrawScreen implements mgsa.Screen {
         for (int i = 0; i < people.length; i++) {
             for (int j = 0; j < 6; j++) {
                 if (row == i && column == j) {
-                    people[i].buttons[j].highlight(g, mouseover);
+                    people[i].buttons[j].highlight(g, select);
+                    people[i].buttons[j].drawLeft(g, mouseover, foreground, smallpadding, bannerheight + rowheight);
+                } else {
+                    people[i].buttons[j].drawLeft(g, mouseover, foreground, smallpadding, bannerheight + rowheight, mouse, click);
                 }
-                people[i].buttons[j].drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
             }
             if (row == i && column == 6) {
-                people[i].warning.highlight(g, mouseover);
+                people[i].warning.highlight(g, select);
+                people[i].warning.drawLeft(g, mouseover, foreground, smallpadding, bannerheight + rowheight);
+            } else {
+                people[i].warning.drawLeft(g, mouseover, foreground, smallpadding, bannerheight + rowheight, mouse, click);
             }
-            people[i].warning.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
         }
         for (int n = 2; n <= people.length + 1; n++) {
             g.drawLine(0, bannerheight + n * rowheight - scroll, w, bannerheight + n * rowheight - scroll);
@@ -150,19 +158,19 @@ public class OfficeDrawScreen implements mgsa.Screen {
         g.setColor(background);
         g.fillRect(0, 0, w, bannerheight + rowheight);
         g.setFont(bigfont);
-        bannerbutton.drawCenter(g, mouseover, foreground, mouse, click);
-        leftbutton.drawCenter(g, mouseover, foreground, mouse, click);
-        rightbutton.drawCenter(g, mouseover, foreground, mouse, click);
-        backbutton.drawCenter(g, mouseover, foreground, mouse, click);
-        exitbutton.drawCenter(g, mouseover, foreground, mouse, click);
+        bannerbutton.drawCenter(g, mouseover, foreground, 0, mouse, click);
+        leftbutton.drawCenter(g, mouseover, foreground, 0, mouse, click);
+        rightbutton.drawCenter(g, mouseover, foreground, 0, mouse, click);
+        backbutton.drawCenter(g, mouseover, foreground, 0, mouse, click);
+        exitbutton.drawCenter(g, mouseover, foreground, 0, mouse, click);
         g.setFont(mediumfont);
-        namebutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
-        yearbutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
-        prioritybutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
-        adjustmentbutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
-        blockbutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
-        officebutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
-        warningsbutton.drawLeft(g, mouseover, foreground, smallpadding, mouse, click);
+        namebutton.drawLeft(g, mouseover, foreground, smallpadding, 0, mouse, click);
+        yearbutton.drawLeft(g, mouseover, foreground, smallpadding, 0, mouse, click);
+        prioritybutton.drawLeft(g, mouseover, foreground, smallpadding, 0, mouse, click);
+        adjustmentbutton.drawLeft(g, mouseover, foreground, smallpadding, 0, mouse, click);
+        blockbutton.drawLeft(g, mouseover, foreground, smallpadding, 0, mouse, click);
+        officebutton.drawLeft(g, mouseover, foreground, smallpadding, 0, mouse, click);
+        warningsbutton.drawLeft(g, mouseover, foreground, smallpadding, 0, mouse, click);
         for (int n = 0; n < 2; n++) {
             g.drawLine(0, bannerheight + n * rowheight, w, bannerheight + n * rowheight);
         }
@@ -214,29 +222,50 @@ public class OfficeDrawScreen implements mgsa.Screen {
         if (exitbutton.contains(p) && exitbutton.contains(click)) {
             System.exit(0);
         }
-        if (namebutton.contains(p) && namebutton.contains(p)) {
+        if (namebutton.contains(p) && namebutton.contains(click)) {
             data.put(year, Sorting.nameSort(data.get(year)));
             update();
         }
-        if (yearbutton.contains(p) && yearbutton.contains(p)) {
+        if (yearbutton.contains(p) && yearbutton.contains(click)) {
             data.put(year, Sorting.yearSort(data.get(year)));
             update();
         }
-        if (prioritybutton.contains(p) && prioritybutton.contains(p)) {
+        if (prioritybutton.contains(p) && prioritybutton.contains(click)) {
             data.put(year, Sorting.prioritySort(data.get(year)));
             update();
         }
-        if (adjustmentbutton.contains(p) && adjustmentbutton.contains(p)) {
+        if (adjustmentbutton.contains(p) && adjustmentbutton.contains(click)) {
             data.put(year, Sorting.adjustmentSort(data.get(year)));
             update();
         }
-        if (blockbutton.contains(p) && blockbutton.contains(p)) {
+        if (blockbutton.contains(p) && blockbutton.contains(click)) {
             data.put(year, Sorting.blockSort(data.get(year), year));
             update();
         }
-        if (officebutton.contains(p) && officebutton.contains(p)) {
+        if (officebutton.contains(p) && officebutton.contains(click)) {
             data.put(year, Sorting.officeSort(data.get(year)));
             update();
+        }
+        if (warningsbutton.contains(p) && warningsbutton.contains(click)) {
+            data.put(year, Sorting.warningsSort(data.get(year)));
+            update();
+        }
+        if (p != null && click != null) {
+            if (p.y > bannerheight + rowheight && click.y > bannerheight + rowheight) {
+                for (int i = 0; i < data.get(year).length; i++) {
+                    Person person = data.get(year)[i];
+                    for (int j = 0; j < 6; j++) {
+                        if (person.buttons[j].contains(p) && person.buttons[j].contains(click)) {
+                            row = i;
+                            column = j;
+                        }
+                    }
+                    if (person.warning.contains(p) && person.warning.contains(click)) {
+                        row = i;
+                        column = 6;
+                    }
+                }
+            }
         }
         click = null;
     }
@@ -244,8 +273,11 @@ public class OfficeDrawScreen implements mgsa.Screen {
     @Override
     public void mouseScrolled(int n) {
         n *= 6;
+        int maxscroll = rowheight * (data.get(year).length - 1);
         if (scroll + n < 0) {
             scroll = 0;
+        } else if (scroll + n > maxscroll) {
+            scroll = maxscroll;
         } else {
             scroll += n;
         }
@@ -265,11 +297,19 @@ public class OfficeDrawScreen implements mgsa.Screen {
             if (row > 0) {
                 row--;
             }
+            int maxscroll = row * rowheight;
+            if (scroll > maxscroll) {
+                scroll = maxscroll;
+            }
             return;
         }
         if (key == KeyEvent.VK_DOWN) {
             if (row < data.get(year).length - 1) {
                 row++;
+            }
+            int minscroll = (row + 2) * rowheight - canvas.getHeight() + bannerheight + 1;
+            if (scroll < minscroll) {
+                scroll = minscroll;
             }
             return;
         }
