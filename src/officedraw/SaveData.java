@@ -174,13 +174,14 @@ public class SaveData {
         sb.add(".HeightTaker:after {content: ''; clear: both; display: block;}");
         sb.add(".Wrapper {position: absolute; width: 100%; height: 100%;}");
         sb.add(".LeftPanel {overflow-x: clip; overflow-y: scroll; width: 100%; top: 0; left: 0; position: absolute;}");
-        sb.add(".LeftPanel>div {display: inline-block;position: relative; z-index: 50000; background-color:#FDB515;}");
+        sb.add(".LeftPanel>div {display: inline-block; position: relative; z-index: 50000; background-color:#FDB515;}");
         sb.add(".LeftPanel>div>div {display: inline-block;}");
         sb.add(".RightPanel {overflow-y: scroll; top: 0; right: 0; position: absolute; padding-left: 10px; padding-right: 10px; background-color: #3B7EA1;}");
         sb.add("body {margin: 0; font-family: sans-serif; background-color: #003262;}");
         sb.add(".Header {text-align: center;}");
         sb.add(".boxed1 {background-color: #DDD5C7; border: 2px solid black; padding: 4px; margin: 4px; font-size: 18px;}");
         sb.add(".boxed2 {background-color: #CFDD45; border: 2px solid black; padding: 4px; margin: 4px; font-size: 18px;}");
+        sb.add(".boxed3 {background-color: #DDD5C7; border: 2px solid black; padding: 4px; margin: 4px; font-size: 18px;}");
         sb.add(".tooltip {position: relative;}");
         sb.add(".tooltiptext {visibility: hidden; white-space: nowrap; background-color: FDB515; color: #000; border-radius: 6px; padding: 5px; position: absolute; z-index: 1; top: 50%; -ms-transform: translateY(-14px); transform: translateY(-14px); left: 110%;}");
         sb.add(".tooltiptext::after {content: ''; position: absolute; top: 14px; right: 100%; margin-top: -6px; border-width: 6px; border-style: solid; border-color: transparent FDB515 transparent transparent;}");
@@ -194,7 +195,6 @@ public class SaveData {
         sb.add("<h1 style=\"text-align:center;color:#FDB515;\">" + year + " MGSA Office Draw</h1>");
         sb.add("<h2 style=\"text-align:center;color:#FDB515;\">You can hover over names and offices for more information</h2>");
         sb.add("</div>");
-
         sb.add("<div class=\"HeightTaker\">");
         sb.add("<div class=\"Wrapper\">");
         sb.add("<div class=\"LeftPanel\">");
