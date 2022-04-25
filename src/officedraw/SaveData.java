@@ -47,12 +47,13 @@ public class SaveData {
                 personToOffice.put(name, office);
             }
         }
-
         List<List<String>> blocks = new ArrayList<>();
         List<Integer> blocksums = new ArrayList<>();
         List<String> block = new ArrayList<>();
         String oldblock = null;
+        List<String> times = new ArrayList<>();
         int len = 0;
+        int amt = 0;
         for (Person p : people) {
             String newblock = Sorting.block(p);
             if (!newblock.equals(oldblock)) {
@@ -62,6 +63,11 @@ public class SaveData {
                 blocksums.add(0);
                 block = new ArrayList<>();
                 oldblock = newblock;
+                newblock = newblock.substring(0, 5);
+                times.add(newblock);
+                if (!newblock.equals("Squat")) {
+                    amt++;
+                }
                 len++;
             }
             blocksums.set(len - 1, blocksums.get(len - 1) + Integer.parseInt(p.buttons[2].getText()));
@@ -72,9 +78,23 @@ public class SaveData {
         for (int i = 0; i < len; i++) {
             priorities.add(new BigFraction(blocksums.get(i), blocks.get(i).size()));
         }
+        if (year == 2022) {
+            String[] hours = new String[]{"12", "1", "2"};
+            String[] minutes = new String[]{"00", "15", "30", "45"};
+            int pos = 0;
+            for (int i = 0; i < len; i++) {
+                if (!times.get(i).equals("Squat")) {
+                    int step = (pos * hours.length * minutes.length) / amt;
+                    String hour = hours[step / minutes.length];
+                    String minute = minutes[step % minutes.length];
+                    times.set(i, hour + ":" + minute);
+                    pos++;
+                }
+            }
+        }
         try {
             images(year, officeToPerson);
-            saveHtml(year, len, blocks, priorities, personToOffice, officeToPerson);
+            saveHtml(year, len, blocks, priorities, times, personToOffice, officeToPerson);
         } catch (IOException ex) {
             System.out.println("Error: " + ex);
             ex.printStackTrace();
@@ -141,7 +161,7 @@ public class SaveData {
         }
     }
 
-    private static void saveHtml(int year, int numblocks, List<List<String>> blocks, List<BigFraction> priorities,
+    private static void saveHtml(int year, int numblocks, List<List<String>> blocks, List<BigFraction> priorities, List<String> times,
             Map<String, String> personToOffice, Map<String, List<String>> officeToPerson) throws IOException {
         List<String> sb = new ArrayList<>();
         sb.add("<html>");
@@ -154,7 +174,7 @@ public class SaveData {
         sb.add(".HeightTaker:after {content: ''; clear: both; display: block;}");
         sb.add(".Wrapper {position: absolute; width: 100%; height: 100%;}");
         sb.add(".LeftPanel {overflow-x: clip; overflow-y: scroll; width: 100%; top: 0; left: 0; position: absolute;}");
-        sb.add(".LeftPanel>div {display: inline-block; background-color:#FDB515;}");
+        sb.add(".LeftPanel>div {display: inline-block;position: relative; z-index: 50000; background-color:#FDB515;}");
         sb.add(".LeftPanel>div>div {display: inline-block;}");
         sb.add(".RightPanel {overflow-y: scroll; top: 0; right: 0; position: absolute; padding-left: 10px; padding-right: 10px; background-color: #3B7EA1;}");
         sb.add("body {margin: 0; font-family: sans-serif; background-color: #003262;}");
@@ -196,8 +216,7 @@ public class SaveData {
             } else {
                 sb.add("<div class=\"boxed3\">");
             }
-            // TODO: Make this nicer
-            sb.add("(TIME) (" + priorities.get(blocknum) + ")");
+            sb.add("(" + times.get(blocknum) + ") (" + priorities.get(blocknum) + ")");
             for (String person : block) {
                 if (personToOffice.containsKey(person)) {
                     sb.add("<div class=\"tooltip\">" + person);

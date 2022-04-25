@@ -78,7 +78,7 @@ public class BigFraction implements Comparable<BigFraction> {
 
     @Override
     public String toString() {
-        return top + "/" + bottom;
+        return bottom.equals(BigInteger.ONE) ? top.toString() : top + "/" + bottom;
     }
 
     @Override
