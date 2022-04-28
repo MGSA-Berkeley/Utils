@@ -94,6 +94,23 @@ public class SaveData {
             }
         }
         try {
+            // Hacky edge case, delete after the office draw
+            if (true) {
+                int pos = 27;
+                String name = "Jacopo Di Bonito";
+                long time = 1651086900000L;
+                String office = null;
+                List<String> badblock = new ArrayList<>();
+                badblock.add(name);
+                blocks.add(pos, badblock);
+                priorities.add(pos, BigFraction.ONE);
+                times.add(pos, time);
+                if (office != null) {
+                    personToOffice.put(name, office);
+                    officeToPerson.get(office).add(name);
+                }
+                len++;
+            }
             images(year, officeToPerson);
             saveHtml(year, len, blocks, priorities, times, personToOffice, officeToPerson);
         } catch (IOException ex) {
@@ -164,12 +181,6 @@ public class SaveData {
 
     private static void saveHtml(int year, int numblocks, List<List<String>> blocks, List<BigFraction> priorities, List<Long> times,
             Map<String, String> personToOffice, Map<String, List<String>> officeToPerson) throws IOException {
-        // copy over:
-        // offices.js
-        // index.js
-        // index.php
-        // main.html
-        // style.css
         StringBuilder sb = new StringBuilder();
         sb.append("window.blocks=[");
         for (int i = 0; i < numblocks; i++) {
