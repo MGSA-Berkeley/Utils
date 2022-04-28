@@ -64,14 +64,24 @@ function setupDrawOrder() {
 	window.blocks.forEach((block) => {
 		const div = document.createElement("div");
 		div.className = "block";
-        div.dataset.done = block.done ? 1 : 0;
+		div.dataset.done = block.done ? 1 : 0;
 		div.dataset.searchable = block.people.join(", ").toLowerCase();
 		div.innerHTML = `
-            <div>${block.time} (${block.priority})</div>
+            <div>${new Date(block.time).toLocaleTimeString([], {
+				hour: "numeric",
+				minute: "numeric",
+			})} (${block.priority})</div>
             ${block.people.map((person) => `<div>${person}</div>`).join("")}
         `;
 		drawOrder.lastElementChild.append(div);
+		block.elmt = div;
 	});
+
+	setTimeout(
+		() =>
+			window.blocks.find((block) => !block.done)?.elmt.scrollIntoView({ behavior: "smooth" }),
+		200
+	);
 }
 
 function setupOfficePops() {
