@@ -82,23 +82,23 @@ body {
 	top: 0;
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 0.2s;
+	/* transition: opacity 0.2s; */
 	/* zoom: 1.05; */
-	transition-timing-function: cubic-bezier(0.3, 0, 0, 0);
+	/* transition-timing-function: cubic-bezier(0.3, 0, 0, 0); */
 }
 
-.floor-map img {
+/* .floor-map img {
     transition: .2s;
-}
+} */
 
-.floor-map[data-active="0"] img {
-	/* transform: scale(1.02); */
-}
+/* .floor-map[data-active="0"] img {
+	transform: scale(1.02);
+} */
 
 .floor-map[data-active="1"] {
 	opacity: 1;
 	pointer-events: all;
-	transition-timing-function: cubic-bezier(1, 1, 0.7, 1);
+	/* transition-timing-function: cubic-bezier(1, 1, 0.7, 1); */
 }
 
 .floor-map > div {
