@@ -175,13 +175,17 @@ body {
 	border: 1px solid var(--berk-orange);
 }
 
+.block[data-done="1"] {
+    background-color: var(--berk-dark-gray);
+}
+
 .block {
 	border: 1px solid var(--berk-dark-gray);
 	color: #222;
 	padding: 0.5em;
 	margin-bottom: 0.5em;
 	user-select: none;
-	background: var(--berk-gray);
+	background-color: var(--berk-gray);
 }
 
 .block-scoller > div {
