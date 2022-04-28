@@ -67,9 +67,9 @@ body {
 	font-family: freight-sans-pro;
 }
 
-.office-box {
+/* .office-box {
 	background: var(--dark-tint);
-}
+} */
 
 .office-box:hover,
 .office-box[data-hover="1"] {
