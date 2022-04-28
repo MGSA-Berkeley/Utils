@@ -120,7 +120,6 @@ function scrollToOffice(number) {
 }
 
 function scrollOffOffice(number) {
-	console.log("off");
 	Array.from(setOffices.lastElementChild.children).find((child) => {
 		if (child.dataset.number == number) child.dataset.active = 0;
 	});
