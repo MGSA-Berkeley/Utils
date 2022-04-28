@@ -1,0 +1,143 @@
+/**
+ * @author Rikhav Shah
+ * @email atob("cmlraGF2LnNoYWhAYmVya2VsZXkuZWR1")
+ */
+
+const activeOfficeRef = {};
+
+function setupBuilding() {
+	function makeFloor(floorNum) {
+		const wrapper = document.createElement("div");
+		wrapper.className = "floor-map";
+		const im = new Image();
+		im.src = `floor-${floorNum}.png`;
+		wrapper.append(im);
+		console.log("floor num", floorNum);
+		window.officesByFloor[floorNum].forEach((office) => {
+			const { number, capacity, x1, x2, y1, y2 } = office;
+			const div = document.createElement("div");
+
+			if (typeof x1 != "object") {
+				const [a, b, c, d] = [x1 / 1160, y1 / 730, x2 / 1160, y2 / 730].map(
+					(v) => `${v * 100}%`
+				);
+				div.style.clipPath = `polygon(${a} ${b}, ${c} ${b}, ${c} ${d}, ${a} ${d})`;
+			} else {
+				div.style.clipPath = `polygon(${x1
+					.map((x, i) => `${x / 11.6}% ${y1[i] / 7.3}%`)
+					.join(", ")})`;
+			}
+
+			div.className = "office-box";
+
+			div.dataset.number = number;
+			div.addEventListener("mouseover", scrollToOffice.bind(null, number));
+			div.addEventListener("mouseleave", scrollOffOffice.bind(null, number));
+
+			wrapper.append(div);
+		});
+		return wrapper;
+	}
+
+	const floor7 = makeFloor("7");
+	const floor8 = makeFloor("8");
+	const floor9 = makeFloor("9");
+	const floor0 = makeFloor("1");
+
+	window.goToFloor = function (num) {
+		floor7.dataset.active = "7" == num ? 1 : 0;
+		floor8.dataset.active = "8" == num ? 1 : 0;
+		floor9.dataset.active = "9" == num ? 1 : 0;
+		floor0.dataset.active = "0" == num || "1" == num ? 1 : 0;
+		building.dataset.floor = num;
+	};
+
+	floor7.dataset.active = 1;
+	window.addEventListener("keydown", (evt) => "78901".includes(evt.key) && goToFloor(evt.key));
+
+	building.prepend(floor7);
+	building.prepend(floor8);
+	building.prepend(floor9);
+	building.prepend(floor0);
+}
+
+function setupDrawOrder() {
+	window.blocks.forEach((block) => {
+		const div = document.createElement("div");
+		div.className = "block";
+		div.dataset.searchable = block.people.join(", ").toLowerCase();
+		div.innerHTML = `
+            <div>${block.time} (${block.priority})</div>
+            ${block.people.map((person) => `<div>${person}</div>`).join("")}
+        `;
+		drawOrder.lastElementChild.append(div);
+	});
+}
+
+function setupOfficePops() {
+	function highlightOfficeBox(number) {
+		const old = document.querySelector(`.office-box[data-number="${activeOfficeRef.current}"]`);
+		if (old) old.dataset.hover = 0;
+
+		activeOfficeRef.current = number;
+		goToFloor(number[0]);
+		const el = document.querySelector(`.office-box[data-number="${number}"]`);
+		if (!el) return;
+		el.dataset.hover = 1;
+		setTimeout(() => (el.dataset.hover = 0), 2000);
+	}
+
+	function lazyHighlightOfficeBox(number, value) {
+		const el = document.querySelector(`.office-box[data-number="${number}"]`);
+		if (el) el.dataset.hover = value;
+	}
+
+	window.officePops.forEach(({ number, people }) => {
+		const div = document.createElement("div");
+		div.className = "block";
+		div.dataset.searchable = people.join(", ").toLowerCase();
+		div.dataset.number = number;
+		div.onclick = highlightOfficeBox.bind(null, div.dataset.number);
+
+		div.onmouseenter = lazyHighlightOfficeBox.bind(null, div.dataset.number, 1);
+		div.onmouseleave = lazyHighlightOfficeBox.bind(null, div.dataset.number, 0);
+
+		div.innerHTML = `
+        <div>Office ${number} (${people.length} / ${window.officesByNumber[number].capacity})</div>
+        ${people.map((person) => `<div>${person}</div>`).join("")}
+        `;
+		setOffices.lastElementChild.append(div);
+	});
+}
+
+function scrollToOffice(number) {
+	Array.from(setOffices.lastElementChild.children).forEach((child) => {
+		child.dataset.active = child.dataset.number == number ? 1 : 0;
+		if (child.dataset.number == number) {
+			child.scrollIntoView({ behavior: "smooth" });
+		}
+	});
+}
+
+function scrollOffOffice(number) {
+	console.log("off");
+	Array.from(setOffices.lastElementChild.children).find((child) => {
+		if (child.dataset.number == number) child.dataset.active = 0;
+	});
+}
+
+function searchForName(el, text) {
+	text = text.toLowerCase();
+	Array.from(el.children).forEach((child) => {
+		child.style.display = child.dataset.searchable.includes(text) ? "block" : "none";
+	});
+}
+
+function go() {
+	window.searchForNameInDraw = searchForName.bind(null, drawOrder.lastElementChild);
+	window.searchForNameInOffice = searchForName.bind(null, setOffices.lastElementChild);
+
+	setupBuilding();
+	setupDrawOrder();
+	setupOfficePops();
+}
