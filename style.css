@@ -1,0 +1,328 @@
+@media (max-width: 1000px) {
+	#setOffices,
+	#building {
+		display: none;
+	}
+
+	#drawOrder {
+		width: 100%;
+		font-size: 3em;
+		padding-right: 0 !important;
+	}
+
+	.block-scoller > div {
+		height: calc(100vh - 162px) !important;
+	}
+
+	input {
+		font: inherit;
+	}
+}
+
+:root {
+	--gold-tint: rgb(255 215 0 / 30%);
+	--dark-tint: rgba(0, 0, 0, 0.05);
+	--berk-blue: #003262;
+	--berk-light-blue: #3b7ea1;
+	--berk-gold: #fdb515;
+	--berk-dark-gold: #c4820e;
+	--berk-orange: #d9661f;
+	--berk-brown: #6c3302;
+	--berk-gray: #ddd5c7;
+	--berk-dark-gray: #46535e;
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--berk-gray);
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--berk-dark-gray);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+	color: var(--berk-gold);
+	font-family: freight-micro-pro;
+}
+
+body {
+	margin: 0;
+	background-color: var(--berk-blue);
+	font-family: freight-sans-pro;
+}
+
+.office-box {
+	background: var(--dark-tint);
+}
+
+.office-box:hover,
+.office-box[data-hover="1"] {
+	background: var(--gold-tint);
+}
+
+.floor-map {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.2s;
+	/* zoom: 1.05; */
+	transition-timing-function: cubic-bezier(0.3, 0, 0, 0);
+}
+
+.floor-map img {
+    transition: .2s;
+}
+
+.floor-map[data-active="0"] img {
+	/* transform: scale(1.02); */
+}
+
+.floor-map[data-active="1"] {
+	opacity: 1;
+	pointer-events: all;
+	transition-timing-function: cubic-bezier(1, 1, 0.7, 1);
+}
+
+.floor-map > div {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.floor-map > img {
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+
+#building {
+	flex-grow: 1;
+	flex-shrink: 1;
+	position: relative;
+	background-color: white;
+}
+
+#building > .buttons {
+	position: absolute;
+	right: 2em;
+	display: flex;
+	flex-direction: column;
+}
+
+#building > .buttons > button {
+	margin: 0.5em 0;
+	border-radius: 100%;
+	height: 2.5em;
+	width: 2.5em;
+	background: #fafafafa;
+	border: 2px solid #d9d9d9;
+	color: #d9d9d9;
+	cursor: pointer;
+	transition: 0.1s;
+	font-weight: bold;
+	user-select: none;
+}
+
+#building > .buttons > button:hover {
+	background: #aaa;
+	color: #eee;
+}
+
+#building[data-floor="7"] button[data-floor="7"],
+#building[data-floor="8"] button[data-floor="8"],
+#building[data-floor="9"] button[data-floor="9"],
+#building[data-floor="0"] button[data-floor="0"] {
+	border: 2px solid #888;
+	color: #888;
+}
+
+#root {
+	display: flex;
+	padding: 1em;
+	height: 100vh;
+}
+
+#drawOrder {
+	padding-right: 1em;
+}
+
+#setOffices {
+	padding-left: 1em;
+}
+
+.block[data-active="1"] {
+	box-shadow: 0 0 3px 3px var(--berk-orange);
+	border: 1px solid var(--berk-orange);
+}
+
+.block {
+	border: 1px solid var(--berk-dark-gray);
+	color: #222;
+	padding: 0.5em;
+	margin-bottom: 0.5em;
+	user-select: none;
+	background: var(--berk-gray);
+}
+
+.block-scoller > div {
+	height: calc(100vh - 111px);
+	overflow-y: scroll;
+	padding: 3px;
+}
+
+.block-scoller h2 {
+	text-align: center;
+	margin: 0.2em 0 0.5em;
+}
+
+#setOffices .block {
+	cursor: pointer;
+}
+
+#setOffices .block:hover {
+	outline: 2px solid var(--berk-gray);
+	color: black;
+}
+
+.people-search {
+	width: 100%;
+	border-radius: 0;
+	border: 1px solid #ddd;
+	padding: 0.5em 1em;
+	margin-bottom: 0.5em;
+	background-color: var(--berk-gray);
+}
+
+@import url("https://p.typekit.net/p.css?s=1&k=scr0aog&ht=tk&f=10954.13453.13454.13455.13441.13442.13443.13444&a=565005&app=typekit&e=css");
+
+@font-face {
+	font-family: "freight-sans-pro";
+	src: url("https://use.typekit.net/af/442215/000000000000000000010b5a/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+			format("woff2"),
+		url("https://use.typekit.net/af/442215/000000000000000000010b5a/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+			format("woff"),
+		url("https://use.typekit.net/af/442215/000000000000000000010b5a/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+			format("opentype");
+	font-display: auto;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: "freight-sans-pro";
+	src: url("https://use.typekit.net/af/3df5fe/000000000000000000010b5b/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+			format("woff2"),
+		url("https://use.typekit.net/af/3df5fe/000000000000000000010b5b/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+			format("woff"),
+		url("https://use.typekit.net/af/3df5fe/000000000000000000010b5b/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+			format("opentype");
+	font-display: auto;
+	font-style: italic;
+	font-weight: 400;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: "freight-sans-pro";
+	src: url("https://use.typekit.net/af/1709eb/000000000000000000010b60/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+			format("woff2"),
+		url("https://use.typekit.net/af/1709eb/000000000000000000010b60/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+			format("woff"),
+		url("https://use.typekit.net/af/1709eb/000000000000000000010b60/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+			format("opentype");
+	font-display: auto;
+	font-style: normal;
+	font-weight: 700;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: "freight-sans-pro";
+	src: url("https://use.typekit.net/af/65fc7d/000000000000000000010b61/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
+			format("woff2"),
+		url("https://use.typekit.net/af/65fc7d/000000000000000000010b61/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
+			format("woff"),
+		url("https://use.typekit.net/af/65fc7d/000000000000000000010b61/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
+			format("opentype");
+	font-display: auto;
+	font-style: italic;
+	font-weight: 700;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: "freight-micro-pro";
+	src: url("https://use.typekit.net/af/6f88f7/00000000000000000001322a/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+			format("woff2"),
+		url("https://use.typekit.net/af/6f88f7/00000000000000000001322a/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+			format("woff"),
+		url("https://use.typekit.net/af/6f88f7/00000000000000000001322a/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3")
+			format("opentype");
+	font-display: auto;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: "freight-micro-pro";
+	src: url("https://use.typekit.net/af/f0834a/00000000000000000001322b/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+			format("woff2"),
+		url("https://use.typekit.net/af/f0834a/00000000000000000001322b/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+			format("woff"),
+		url("https://use.typekit.net/af/f0834a/00000000000000000001322b/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3")
+			format("opentype");
+	font-display: auto;
+	font-style: italic;
+	font-weight: 400;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: "freight-micro-pro";
+	src: url("https://use.typekit.net/af/51014d/000000000000000000013230/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+			format("woff2"),
+		url("https://use.typekit.net/af/51014d/000000000000000000013230/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+			format("woff"),
+		url("https://use.typekit.net/af/51014d/000000000000000000013230/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3")
+			format("opentype");
+	font-display: auto;
+	font-style: normal;
+	font-weight: 700;
+	font-stretch: normal;
+}
+
+@font-face {
+	font-family: "freight-micro-pro";
+	src: url("https://use.typekit.net/af/262f01/000000000000000000013231/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
+			format("woff2"),
+		url("https://use.typekit.net/af/262f01/000000000000000000013231/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
+			format("woff"),
+		url("https://use.typekit.net/af/262f01/000000000000000000013231/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3")
+			format("opentype");
+	font-display: auto;
+	font-style: italic;
+	font-weight: 700;
+	font-stretch: normal;
+}
