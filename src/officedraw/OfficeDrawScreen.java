@@ -53,7 +53,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
     private final Map<Integer, Person[]> data = LoadData.load();
     private int row = 0;
     private int column = 0;
-    private int scroll;
+    private int scroll = 0;
     private boolean severe;
 
     public OfficeDrawScreen(mgsa.MainCanvas canvas) {
@@ -224,30 +224,37 @@ public class OfficeDrawScreen implements mgsa.Screen {
         }
         if (namebutton.contains(p) && namebutton.contains(click)) {
             data.put(year, Sorting.nameSort(data.get(year)));
+            scroll = 0;
             update();
         }
         if (yearbutton.contains(p) && yearbutton.contains(click)) {
             data.put(year, Sorting.yearSort(data.get(year)));
+            scroll = 0;
             update();
         }
         if (prioritybutton.contains(p) && prioritybutton.contains(click)) {
             data.put(year, Sorting.prioritySort(data.get(year)));
+            scroll = 0;
             update();
         }
         if (adjustmentbutton.contains(p) && adjustmentbutton.contains(click)) {
             data.put(year, Sorting.adjustmentSort(data.get(year)));
+            scroll = 0;
             update();
         }
         if (blockbutton.contains(p) && blockbutton.contains(click)) {
             data.put(year, Sorting.blockSort(data.get(year), year));
+            scroll = 0;
             update();
         }
         if (officebutton.contains(p) && officebutton.contains(click)) {
             data.put(year, Sorting.officeSort(data.get(year)));
+            scroll = 0;
             update();
         }
         if (warningsbutton.contains(p) && warningsbutton.contains(click)) {
             data.put(year, Sorting.warningsSort(data.get(year)));
+            scroll = 0;
             update();
         }
         if (p != null && click != null) {
