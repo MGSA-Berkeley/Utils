@@ -149,6 +149,9 @@ public class Sorting {
         String sq = q.buttons[4].getText();
         String tp = block(p);
         String tq = block(q);
+        if (tp.equals(tq)) {
+            return p.buttons[0].getText().compareTo(q.buttons[0].getText());
+        }
         if (tp.isEmpty() || tq.isEmpty()) {
             return tp.isEmpty() ? (tq.isEmpty() ? 0 : -1) : 1;
         }
