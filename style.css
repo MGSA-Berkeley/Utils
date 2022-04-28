@@ -1,32 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@tb65536 
-tb65536
-/
-MGSA
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-MGSA/style.css
-@RDShah
-RDShah updating floor transition styles
-Latest commit d294fdb 8 minutes ago
- History
- 1 contributor
-332 lines (288 sloc)  8.72 KB
-   
 @media (max-width: 1000px) {
 	#setOffices,
 	#building {
@@ -360,16 +331,3 @@ body {
 	font-weight: 700;
 	font-stretch: normal;
 }
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
