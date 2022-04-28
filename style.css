@@ -1,3 +1,32 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@tb65536 
+tb65536
+/
+MGSA
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+MGSA/style.css
+@RDShah
+RDShah updating floor transition styles
+Latest commit d294fdb 8 minutes ago
+ History
+ 1 contributor
+332 lines (288 sloc)  8.72 KB
+   
 @media (max-width: 1000px) {
 	#setOffices,
 	#building {
@@ -30,6 +59,7 @@
 	--berk-brown: #6c3302;
 	--berk-gray: #ddd5c7;
 	--berk-dark-gray: #46535e;
+	--berk-web-gray: #888888;
 }
 
 ::-webkit-scrollbar {
@@ -176,7 +206,7 @@ body {
 }
 
 .block[data-done="1"] {
-    background-color: var(--berk-dark-gray);
+    background-color: var(--berk-web-gray);
 }
 
 .block {
@@ -330,3 +360,16 @@ body {
 	font-weight: 700;
 	font-stretch: normal;
 }
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete

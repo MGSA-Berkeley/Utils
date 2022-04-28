@@ -15,8 +15,10 @@ public class GraphicsUtils {
     public static final Color Black = new Color(0, 0, 0);
     public static final Color CaliforniaGolf = new Color(253, 181, 21);
     public static final Color GoldenGate = new Color(237, 78, 51);
+    public static final Color WebGray = new Color(136, 136, 136);
     public static final Color Grey = new Color(238, 238, 238);
     public static final Color Lawrence = new Color(0, 176, 218);
+    public static final Color Pacific = new Color(70, 83, 94);
     public static final Color SatherGate = new Color(185, 211, 182);
     public static final Color SoyBean = new Color(133, 148, 56);
 

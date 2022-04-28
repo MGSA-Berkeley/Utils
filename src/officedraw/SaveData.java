@@ -14,8 +14,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +53,7 @@ public class SaveData {
         List<Integer> blocksums = new ArrayList<>();
         List<String> block = new ArrayList<>();
         String oldblock = null;
-        List<String> times = new ArrayList<>();
+        List<Long> times = new ArrayList<>();
         int len = 0;
         int amt = 0;
         for (Person p : people) {
@@ -63,9 +65,10 @@ public class SaveData {
                 blocksums.add(0);
                 block = new ArrayList<>();
                 oldblock = newblock;
-                newblock = newblock.substring(0, 5);
-                times.add(newblock);
-                if (!newblock.equals("Squat")) {
+                if (newblock.startsWith("Squat")) {
+                    times.add(0L);
+                } else {
+                    times.add(-1L);
                     amt++;
                 }
                 len++;
@@ -79,15 +82,13 @@ public class SaveData {
             priorities.add(new BigFraction(blocksums.get(i), blocks.get(i).size()));
         }
         if (year == 2022) {
-            String[] hours = new String[]{"12", "1", "2"};
-            String[] minutes = new String[]{"00", "15", "30", "45"};
+            long base = 1651086000000L;
+            long delta = 900000L;
+            int numslots = 12;
             int pos = 0;
             for (int i = 0; i < len; i++) {
-                if (!times.get(i).equals("Squat")) {
-                    int step = (pos * hours.length * minutes.length) / amt;
-                    String hour = hours[step / minutes.length];
-                    String minute = minutes[step % minutes.length];
-                    times.set(i, hour + ":" + minute);
+                if (times.get(i) == -1) {
+                    times.set(i, base + pos * numslots / amt * delta);
                     pos++;
                 }
             }
@@ -141,11 +142,11 @@ public class SaveData {
             Rectangle r = p.getBounds();
             int i = (Integer.parseInt(office) / 100) - 7;
             if (amt == 0) {
-                graphics[i].setColor(new Color(255, 255, 240));
+                graphics[i].setColor(mgsa.GraphicsUtils.BayFog);
             } else if (amt < size) {
-                graphics[i].setColor(new Color(255, 255, 240));
+                graphics[i].setColor(mgsa.GraphicsUtils.BayFog);
             } else {
-                graphics[i].setColor(new Color(217, 217, 217));
+                graphics[i].setColor(mgsa.GraphicsUtils.WebGray);
             }
             graphics[i].fillPolygon(p);
             graphics[i].setColor(Color.BLACK);
@@ -157,101 +158,93 @@ public class SaveData {
             graphics[i].drawString(office, x, y);
         }
         for (int i = 0; i < 4; i++) {
-            ImageIO.write(images[i], "png", new File("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\floor" + (i + 7) + ".png"));
+            ImageIO.write(images[i], "png", new File("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\floor-" + (((i + 6) % 9) + 1) + ".png"));
         }
     }
 
-    private static void saveHtml(int year, int numblocks, List<List<String>> blocks, List<BigFraction> priorities, List<String> times,
+    private static void saveHtml(int year, int numblocks, List<List<String>> blocks, List<BigFraction> priorities, List<Long> times,
             Map<String, String> personToOffice, Map<String, List<String>> officeToPerson) throws IOException {
-        List<String> sb = new ArrayList<>();
-        sb.add("<html>");
-        sb.add("<head>");
-        sb.add("<title>" + year + " MGSA Office Draw</title>");
-        sb.add("<style>");
-        sb.add("html, body, .Container, .LeftPanel, .RightPanel {height: 100%;}");
-        sb.add(".Container:before {content: ''; height: 100%; float: left;}");
-        sb.add(".HeightTaker {position: relative; z-index: 1;}");
-        sb.add(".HeightTaker:after {content: ''; clear: both; display: block;}");
-        sb.add(".Wrapper {position: absolute; width: 100%; height: 100%;}");
-        sb.add(".LeftPanel {overflow-x: clip; overflow-y: scroll; width: 100%; top: 0; left: 0; position: absolute;}");
-        sb.add(".LeftPanel>div {display: inline-block; position: relative; z-index: 50000; background-color:#FDB515;}");
-        sb.add(".LeftPanel>div>div {display: inline-block;}");
-        sb.add(".RightPanel {overflow-y: scroll; top: 0; right: 0; position: absolute; padding-left: 10px; padding-right: 10px; background-color: #3B7EA1;}");
-        sb.add("body {margin: 0; font-family: sans-serif; background-color: #003262;}");
-        sb.add(".Header {text-align: center;}");
-        sb.add(".boxed1 {background-color: #DDD5C7; border: 2px solid black; padding: 4px; margin: 4px; font-size: 18px;}");
-        sb.add(".boxed2 {background-color: #CFDD45; border: 2px solid black; padding: 4px; margin: 4px; font-size: 18px;}");
-        sb.add(".boxed3 {background-color: #DDD5C7; border: 2px solid black; padding: 4px; margin: 4px; font-size: 18px;}");
-        sb.add(".tooltip {position: relative;}");
-        sb.add(".tooltiptext {visibility: hidden; white-space: nowrap; background-color: FDB515; color: #000; border-radius: 6px; padding: 5px; position: absolute; z-index: 1; top: 50%; -ms-transform: translateY(-14px); transform: translateY(-14px); left: 110%;}");
-        sb.add(".tooltiptext::after {content: ''; position: absolute; top: 14px; right: 100%; margin-top: -6px; border-width: 6px; border-style: solid; border-color: transparent FDB515 transparent transparent;}");
-        sb.add(".tooltip:hover .tooltiptext {visibility: visible;}");
-        sb.add(".imgcontainer {position: relative;}");
-        sb.add("</style>");
-        sb.add("</head>");
-        sb.add("<body>");
-        sb.add("<div class=\"Container\">");
-        sb.add("<div class=\"Header\">");
-        sb.add("<h1 style=\"text-align:center;color:#FDB515;\">" + year + " MGSA Office Draw</h1>");
-        sb.add("<h2 style=\"text-align:center;color:#FDB515;\">You can hover over names and offices for more information</h2>");
-        sb.add("</div>");
-        sb.add("<div class=\"HeightTaker\">");
-        sb.add("<div class=\"Wrapper\">");
-        sb.add("<div class=\"LeftPanel\">");
-        sb.add("<div>");
-        sb.add("<div>");
-        sb.add("<h2 style=\"text-align:center;\">Draw Order</h2>");
-        for (int blocknum = 0; blocknum < numblocks; blocknum++) {
-            List<String> block = blocks.get(blocknum);
+        // copy over:
+        // offices.js
+        // index.js
+        // index.php
+        // main.html
+        // style.css
+        StringBuilder sb = new StringBuilder();
+        sb.append("window.blocks=[");
+        for (int i = 0; i < numblocks; i++) {
+            if (i != 0) {
+                sb.append(",");
+            }
+            sb.append("{\"time\":");
+            sb.append(times.get(i));
+            sb.append(",\"priority\":\"");
+            sb.append(priorities.get(i));
+            sb.append("\",\"people\":[");
+            for (int j = 0; j < blocks.get(i).size(); j++) {
+                if (j != 0) {
+                    sb.append(",");
+                }
+                sb.append("\"");
+                sb.append(blocks.get(i).get(j));
+                sb.append("\"");
+            }
+            sb.append("],\"done\":");
             int amt = 0;
-            for (String person : block) {
+            for (String person : blocks.get(i)) {
                 if (personToOffice.containsKey(person)) {
                     amt++;
                 }
             }
-            if (amt == block.size()) {
-                sb.add("<div class=\"boxed2\">");
-            } else if (amt == 0) {
-                sb.add("<div class=\"boxed1\">");
-            } else {
-                sb.add("<div class=\"boxed3\">");
-            }
-            sb.add("(" + times.get(blocknum) + ") (" + priorities.get(blocknum) + ")");
-            for (String person : block) {
-                if (personToOffice.containsKey(person)) {
-                    sb.add("<div class=\"tooltip\">" + person);
-                    printOffice(sb, officeToPerson, personToOffice.get(person));
-                    sb.add("</div>");
-                } else {
-                    sb.add("<div class=\"tooltip\">" + person + "<span class=\"tooltiptext\">No Office</span></div>");
-                }
-            }
-            sb.add("</div>");
+            sb.append(amt == blocks.get(i).size());
+            sb.append("}");
         }
-        sb.add("</div>");
-        sb.add("</div>");
-        sb.add("</div>");
-        sb.add("<div class=\"RightPanel\">");
-        sb.add("<h2 style=\"text-align: center; color: #DDD5C7;\">Available Offices</h2>");
-        for (int i = 0; i < 4; i++) {
-            sb.add("<div class=\"imgcontainer\">");
-            sb.add("<p style=\"text-align:center;\"><img src=\"floor" + (i + 7) + ".png?time=" + System.currentTimeMillis() + "\" usemap=\"#map" + (i + 7) + "\"></p>");
-            for (String office : Offices.offices.keySet()) {
-                if (Integer.parseInt(office) / 100 == i + 7) {
-                    Rectangle rect = Offices.polygons.get(office).getBounds();
-                    sb.add("<div class=\"tooltip\" style=\"position: absolute; left: " + rect.x + "px; top: " + rect.y + "px; width: " + rect.width + "; height: " + rect.height + ";\">");
-                    printOffice(sb, officeToPerson, office);
-                    sb.add("</div>");
-                }
+        sb.append("];\nwindow.officePops=[");
+        List<String> offices = new ArrayList<>();
+        offices.addAll(officeToPerson.keySet());
+        Collections.sort(offices, (String a, String b) -> {
+            int i;
+            int j;
+            try {
+                i = Integer.parseInt(a);
+                j = Integer.parseInt(b);
+            } catch (NumberFormatException ex) {
+                ex.printStackTrace();
+                return a.compareTo(b);
             }
-            sb.add("</div>");
+            return Integer.compare(i, j);
+        });
+        int numoffices = offices.size();
+        for (int i = 0; i < numoffices; i++) {
+            if (i != 0) {
+                sb.append(",");
+            }
+            sb.append("{\"number\":\"");
+            sb.append(offices.get(i));
+            sb.append("\",\"people\":[");
+            for (int j = 0; j < officeToPerson.get(offices.get(i)).size(); j++) {
+                if (j != 0) {
+                    sb.append(",");
+                }
+                sb.append("\"");
+                sb.append(officeToPerson.get(offices.get(i)).get(j));
+                sb.append("\"");
+            }
+            sb.append("]}");
         }
-        sb.add("</div>");
-        sb.add("</div>");
-        sb.add("</body>");
-        sb.add("</html>");
-        Path file = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\officedraw.html");
-        Files.write(file, sb, StandardCharsets.UTF_8);
+        sb.append("];\n");
+        Path datajs = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\data.js");
+        Path indexjs = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\index.js");
+        Path indexphp = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\index.php");
+        Path mainhtml = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\main.html");
+        Path officesjs = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\offices.js");
+        Path stylecss = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\style.css");
+        Files.writeString(datajs, sb.toString(), StandardCharsets.UTF_8);
+        Files.copy(Paths.get("index.js"), indexjs, StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(Paths.get("index.php"), indexphp, StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(Paths.get("main.html"), mainhtml, StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(Paths.get("offices.js"), officesjs, StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(Paths.get("style.css"), stylecss, StandardCopyOption.REPLACE_EXISTING);
     }
 
     private static void printOffice(List<String> sb, Map<String, List<String>> offices, String office) {
