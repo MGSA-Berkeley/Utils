@@ -10,7 +10,7 @@ function setupBuilding() {
 		const wrapper = document.createElement("div");
 		wrapper.className = "floor-map";
 		const im = new Image();
-		im.src = `floor-${floorNum}.png`;
+		im.src = `floor-${floorNum}.png?cachebust=${Date.now()}`;
 		wrapper.append(im);
 		window.officesByFloor[floorNum].forEach((office) => {
 			const { number, capacity, x1, x2, y1, y2 } = office;
