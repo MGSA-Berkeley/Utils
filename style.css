@@ -345,7 +345,7 @@ body {
     }
 
 	.block-scoller > div {
-		height: calc(100vh - 162px) !important;
+		height: calc(100vh - 60vw) !important;
 	}
 
 	input {
