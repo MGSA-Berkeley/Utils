@@ -1,14 +1,13 @@
 package elections;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 public class LoadElection {
-    
+
     private static final String newline = "\n";
     private static final String tab = "\t";
-    
+
     public static void loadElection(int numseats, String rawpaste) throws IOException {
         String[] rawlines = rawpaste.split(newline);
         int numlines = rawlines.length;
@@ -22,7 +21,7 @@ public class LoadElection {
         String[] candidates = splitlines[0];
         int numcandidates = candidates.length;
         if (numcandidates < numseats) {
-            throw new IllegalArgumentException("There are "+numcandidates+" for "+numseats+" seats, so there is no point holding an election.");
+            throw new IllegalArgumentException("There are " + numcandidates + " for " + numseats + " seats, so there is no point holding an election.");
         }
         int numballots = numlines - 1;
         int[][] ballots = new int[numballots][numcandidates];
@@ -41,7 +40,7 @@ public class LoadElection {
         List<ElectionState> record = RunElection.runElection(numseats, candidates.length, cleanballots);
         DisplayElection.displayElection(numseats, candidates, record);
     }
-    
+
     private static int[][] cleanballots(int numcandidates, int[][] ballots) {
         int[][] cleanballots = new int[ballots.length][];
         for (int i = 0; i < ballots.length; i++) {
@@ -49,7 +48,7 @@ public class LoadElection {
         }
         return cleanballots;
     }
-    
+
     private static int[] cleanballot(int numcandidates, int[] ballot) {
         int len = 0;
         for (int i : ballot) {
@@ -72,7 +71,7 @@ public class LoadElection {
         }
         return cleanballot;
     }
-    
+
     private static int parse(String s) {
         if (!s.matches("^[0-9]*[^0-9]*$")) {
             throw new IllegalArgumentException("Cannot parse vote: " + s);
