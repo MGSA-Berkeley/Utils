@@ -1,6 +1,7 @@
 package elections;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class LoadElection {
@@ -20,6 +21,9 @@ public class LoadElection {
         }
         String[] candidates = splitlines[0];
         int numcandidates = candidates.length;
+        if (numcandidates < numseats) {
+            throw new IllegalArgumentException("There are "+numcandidates+" for "+numseats+" seats, so there is no point holding an election.");
+        }
         int numballots = numlines - 1;
         int[][] ballots = new int[numballots][numcandidates];
         for (int i = 0; i < numballots; i++) {
