@@ -20,7 +20,7 @@ import javax.imageio.ImageIO;
 public class DisplayElection {
 
     public static void displayElection(int numseats, String[] candidates, List<ElectionState> record) throws IOException {
-        String timestring = "Spring 2022";
+        String timestring = "Fall 2022";
         int numcandidates = candidates.length;
         Decimal maxvote = Decimal.ZERO;
         for (ElectionState electionstate : record) {

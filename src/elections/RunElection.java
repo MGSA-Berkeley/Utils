@@ -12,8 +12,8 @@ import java.util.Random;
  */
 public class RunElection {
 
-    private static final Decimal epsilon = new Decimal(BigInteger.ONE);
-    private static final Decimal omega = new Decimal(BigInteger.TEN.pow(3));
+    private static final Decimal epsilon = new Decimal(BigInteger.ONE); // 10^(-9)
+    private static final Decimal omega = new Decimal(BigInteger.TEN.pow(3)); // 10^(-6)
 
     public static List<ElectionState> runElection(int numseats, int numcandidates, int[][] ballots) {
         List<ElectionState> record = new ArrayList<>();
