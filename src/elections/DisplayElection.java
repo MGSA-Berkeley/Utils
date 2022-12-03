@@ -96,10 +96,10 @@ public class DisplayElection {
                     newdefeated.add(candidatename);
                 }
             }
-            if (newelected.isEmpty() && newdefeated.size() == 1) {
-                text += newdefeated.get(0) + " is defeated:";
+            if (newelected.isEmpty() && newdefeated.size() >= 1) {
+                text += winners(newdefeated, "defeated") + ":";
             } else if (!newelected.isEmpty() && newdefeated.isEmpty()) {
-                text += winners(newelected) + ":";
+                text += winners(newelected, "elected") + ":";
             } else {
                 throw new IllegalArgumentException("Incorrect pattern of elections and defeats");
             }
@@ -108,7 +108,7 @@ public class DisplayElection {
             sb.add("<img src=\"round" + (round + 1) + ".png\">");
             sb.add("<div style=\"height: " + cssoutpadding + "px;\">&nbsp;</div>");
         }
-        sb.add("<div class=\"infobox\">" + winners(elected) + "!</div>");
+        sb.add("<div class=\"infobox\">" + winners(elected, "elected") + "!</div>");
         sb.add("</body>");
         sb.add("</html>");
         Path file = Paths.get("C:\\Users\\thoma\\website\\election\\election.html");
@@ -116,7 +116,7 @@ public class DisplayElection {
         System.exit(0);
     }
 
-    private static String winners(List<String> names) {
+    private static String winners(List<String> names, String result) {
         int len = names.size();
         if (len == 0) {
             throw new IllegalArgumentException("No winners");
@@ -133,7 +133,8 @@ public class DisplayElection {
             }
         }
         sb.append(len == 1 ? "is" : "are");
-        sb.append(" elected");
+        sb.append(" ");
+        sb.append(result);
         return sb.toString();
     }
 
@@ -177,7 +178,8 @@ public class DisplayElection {
                     } else if (state1 == CandidateState.HOPEFUL && state2 == CandidateState.DEFEATED) {
                         return -1;
                     } else if (state1 == CandidateState.HOPEFUL && state2 == CandidateState.HOPEFUL) {
-                        throw new IllegalArgumentException("Defeated more than one candidate in a single round");
+                        return 0;
+                        //throw new IllegalArgumentException("Defeated more than one candidate in a single round");
                     } else {
                         throw new IllegalArgumentException("Elected candidate was defeated");
                     }
