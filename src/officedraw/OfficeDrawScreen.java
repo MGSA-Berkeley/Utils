@@ -61,6 +61,9 @@ public class OfficeDrawScreen implements mgsa.Screen {
         for (char c : "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray()) {
             letters.add(Character.toString(c));
         }
+        if (!data.containsKey(year)) {
+            data.put(year, new Person[]{new Person()});
+        }
         update();
     }
 
