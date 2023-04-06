@@ -388,7 +388,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
             years[thisyear++] = year;
         }
         for (int year = 0; year < numyears; year++) {
-            if (years[year] == year) {
+            if (years[year] == this.year) {
                 thisyear = year;
             }
         }
