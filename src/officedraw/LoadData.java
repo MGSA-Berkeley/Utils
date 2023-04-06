@@ -1,5 +1,6 @@
 package officedraw;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.Map;
 
 public class LoadData {
 
-    private static final String tab = "\t";
+    private static final String TAB = "\t";
 
     public static Map<Integer, Person[]> load() {
         Map<Integer, Person[]> data = new HashMap<>();
@@ -22,16 +23,16 @@ public class LoadData {
                     int len = lines.size();
                     Person[] people = new Person[len];
                     for (int i = 0; i < len; i++) {
-                        people[i] = new Person(split(lines.get(i), tab));
+                        people[i] = new Person(split(lines.get(i), TAB));
                     }
                     data.put(Integer.parseInt(p.toString().substring(0, p.toString().length() - 11)), people);
-                } catch (Exception ex) {
+                } catch (IOException | NumberFormatException ex) {
                     System.out.println("Error in file " + p);
                     ex.printStackTrace(System.out);
                     System.exit(0);
                 }
             });
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             ex.printStackTrace(System.out);
             System.exit(0);
         }
@@ -53,6 +54,6 @@ public class LoadData {
             i = j + 1;
         }
         list.add(s.substring(i));
-        return list.toArray(new String[list.size()]);
+        return list.toArray(new String[0]);
     }
 }

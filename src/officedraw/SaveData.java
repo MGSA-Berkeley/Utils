@@ -25,7 +25,7 @@ import javax.imageio.ImageIO;
 
 public class SaveData {
 
-    private static final String tab = "\t";
+    private static final String TAB = "\t";
 
     public static void save(int year, Map<Integer, Person[]> data, boolean severe) {
         saveData(year, data);
@@ -98,14 +98,14 @@ public class SaveData {
             saveHtml(year, len, blocks, priorities, times, personToOffice, officeToPerson);
         } catch (IOException ex) {
             System.out.println("Error: " + ex);
-            ex.printStackTrace();
+            ex.printStackTrace(System.out);
         }
     }
 
     private static void saveData(int year, Map<Integer, Person[]> data) {
         List<String> lines = new ArrayList<>();
         for (Person p : Sorting.nameSort(data.get(year))) {
-            lines.add(p.buttons[0].getText() + tab + p.buttons[1].getText() + tab + p.buttons[2].getText() + tab + p.buttons[3].getText() + tab + p.buttons[4].getText() + tab + p.buttons[5].getText());
+            lines.add(p.buttons[0].getText() + TAB + p.buttons[1].getText() + TAB + p.buttons[2].getText() + TAB + p.buttons[3].getText() + TAB + p.buttons[4].getText() + TAB + p.buttons[5].getText());
         }
         Path file = Paths.get(year + ".officedraw");
         try {
@@ -204,7 +204,7 @@ public class SaveData {
                 i = Integer.parseInt(a);
                 j = Integer.parseInt(b);
             } catch (NumberFormatException ex) {
-                ex.printStackTrace();
+                ex.printStackTrace(System.out);
                 return a.compareTo(b);
             }
             return Integer.compare(i, j);
@@ -240,13 +240,5 @@ public class SaveData {
         Files.copy(Paths.get("main.html"), mainhtml, StandardCopyOption.REPLACE_EXISTING);
         Files.copy(Paths.get("offices.js"), officesjs, StandardCopyOption.REPLACE_EXISTING);
         Files.copy(Paths.get("style.css"), stylecss, StandardCopyOption.REPLACE_EXISTING);
-    }
-
-    private static void printOffice(List<String> sb, Map<String, List<String>> offices, String office) {
-        sb.add("<span class=\"tooltiptext\">Office " + office + " (" + offices.get(office).size() + "/" + Offices.offices.get(office) + ")");
-        for (String q : offices.get(office)) {
-            sb.add("<br>" + q);
-        }
-        sb.add("</span>");
     }
 }

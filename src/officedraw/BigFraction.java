@@ -100,13 +100,7 @@ public class BigFraction implements Comparable<BigFraction> {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final BigFraction other = (BigFraction) obj;
-        if (!Objects.equals(this.top, other.top)) {
-            return false;
-        }
-        if (!Objects.equals(this.bottom, other.bottom)) {
-            return false;
-        }
-        return true;
+        BigFraction other = (BigFraction) obj;
+        return top.equals(other.top) && bottom.equals(other.bottom);
     }
 }

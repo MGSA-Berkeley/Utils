@@ -39,14 +39,14 @@ public class OfficeDrawScreen implements mgsa.Screen {
 
     private Point click;
 
-    private static final Color background = mgsa.GraphicsUtils.Grey;
-    private static final Color foreground = mgsa.GraphicsUtils.Black;
-    private static final Color mouseover = mgsa.GraphicsUtils.BayFog;
-    private static final Color select = mgsa.GraphicsUtils.SatherGate;
+    private static final Color BACKGROUND = mgsa.GraphicsUtils.Grey;
+    private static final Color FOREGROUND = mgsa.GraphicsUtils.Black;
+    private static final Color MOUSEOVER = mgsa.GraphicsUtils.BayFog;
+    private static final Color SELECT = mgsa.GraphicsUtils.SatherGate;
 
-    private static final Font bigfont = new Font(Font.SANS_SERIF, Font.BOLD, 48);
-    private static final Font mediumfont = new Font(Font.SANS_SERIF, Font.BOLD, 16);
-    private static final Font smallfont = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
+    private static final Font BIGFONT = new Font(Font.SANS_SERIF, Font.BOLD, 48);
+    private static final Font MEDIUMFONT = new Font(Font.SANS_SERIF, Font.BOLD, 16);
+    private static final Font SMALLFONT = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
     private int bannerheight;
     private int rowheight;
 
@@ -69,15 +69,10 @@ public class OfficeDrawScreen implements mgsa.Screen {
 
     @Override
     public void paintComponent(Graphics g, int w, int h) {
-        int year = this.year;
         Person[] people = data.get(year);
-        Point click = this.click;
-        int row = this.row;
-        int column = this.column;
-        int scroll = this.scroll;
         int bigpadding = 12;
         int smallpadding = 5;
-        g.setFont(bigfont);
+        g.setFont(BIGFONT);
         bannerbutton.setText(Integer.toString(year));
         int bannerwidth = bannerbutton.getWidth(g, smallpadding);
         bannerheight = bannerbutton.getHeight(g, bigpadding);
@@ -86,7 +81,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
         rightbutton.setRectLeft(g, new Point(w / 2 + bannerwidth / 2, bannerheight / 2), smallpadding);
         backbutton.setRectLeft(g, new Point(bigpadding - smallpadding, bannerheight / 2), smallpadding);
         exitbutton.setRectRight(g, new Point(w - bigpadding + smallpadding, bannerheight / 2), smallpadding);
-        g.setFont(mediumfont);
+        g.setFont(MEDIUMFONT);
         int rowheight = 0;
         int namelen = namebutton.getWidth(g, smallpadding);
         rowheight = Math.max(rowheight, namebutton.getHeight(g, smallpadding));
@@ -101,7 +96,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
         int officelen = officebutton.getWidth(g, smallpadding);
         rowheight = Math.max(rowheight, officebutton.getHeight(g, smallpadding));
         this.rowheight = rowheight;
-        g.setFont(smallfont);
+        g.setFont(SMALLFONT);
         for (Person p : people) {
             namelen = Math.max(namelen, p.buttons[0].getWidth(g, smallpadding));
             yearlen = Math.max(yearlen, p.buttons[1].getWidth(g, smallpadding));
@@ -137,43 +132,43 @@ public class OfficeDrawScreen implements mgsa.Screen {
             p.warning.setRect(new Rectangle(warningspos, y - scroll, warningslen, rowheight));
         }
         Point mouse = canvas.getMousePosition();
-        g.setColor(background);
+        g.setColor(BACKGROUND);
         g.fillRect(0, 0, w, h);
         for (int i = 0; i < people.length; i++) {
             for (int j = 0; j < 6; j++) {
                 if (row == i && column == j) {
-                    people[i].buttons[j].highlight(g, select);
-                    people[i].buttons[j].drawLeft(g, mouseover, foreground, smallpadding, bannerheight + rowheight);
+                    people[i].buttons[j].highlight(g, SELECT);
+                    people[i].buttons[j].drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, bannerheight + rowheight);
                 } else {
-                    people[i].buttons[j].drawLeft(g, mouseover, foreground, smallpadding, bannerheight + rowheight, mouse, click);
+                    people[i].buttons[j].drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, bannerheight + rowheight, mouse, click);
                 }
             }
             if (row == i && column == 6) {
-                people[i].warning.highlight(g, select);
-                people[i].warning.drawLeft(g, mouseover, foreground, smallpadding, bannerheight + rowheight);
+                people[i].warning.highlight(g, SELECT);
+                people[i].warning.drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, bannerheight + rowheight);
             } else {
-                people[i].warning.drawLeft(g, mouseover, foreground, smallpadding, bannerheight + rowheight, mouse, click);
+                people[i].warning.drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, bannerheight + rowheight, mouse, click);
             }
         }
         for (int n = 2; n <= people.length + 1; n++) {
             g.drawLine(0, bannerheight + n * rowheight - scroll, w, bannerheight + n * rowheight - scroll);
         }
-        g.setColor(background);
+        g.setColor(BACKGROUND);
         g.fillRect(0, 0, w, bannerheight + rowheight);
-        g.setFont(bigfont);
-        bannerbutton.drawCenter(g, mouseover, foreground, 0, mouse, click);
-        leftbutton.drawCenter(g, mouseover, foreground, 0, mouse, click);
-        rightbutton.drawCenter(g, mouseover, foreground, 0, mouse, click);
-        backbutton.drawCenter(g, mouseover, foreground, 0, mouse, click);
-        exitbutton.drawCenter(g, mouseover, foreground, 0, mouse, click);
-        g.setFont(mediumfont);
-        namebutton.drawLeft(g, mouseover, foreground, smallpadding, 0, mouse, click);
-        yearbutton.drawLeft(g, mouseover, foreground, smallpadding, 0, mouse, click);
-        prioritybutton.drawLeft(g, mouseover, foreground, smallpadding, 0, mouse, click);
-        adjustmentbutton.drawLeft(g, mouseover, foreground, smallpadding, 0, mouse, click);
-        blockbutton.drawLeft(g, mouseover, foreground, smallpadding, 0, mouse, click);
-        officebutton.drawLeft(g, mouseover, foreground, smallpadding, 0, mouse, click);
-        warningsbutton.drawLeft(g, mouseover, foreground, smallpadding, 0, mouse, click);
+        g.setFont(BIGFONT);
+        bannerbutton.drawCenter(g, MOUSEOVER, FOREGROUND, 0, mouse, click);
+        leftbutton.drawCenter(g, MOUSEOVER, FOREGROUND, 0, mouse, click);
+        rightbutton.drawCenter(g, MOUSEOVER, FOREGROUND, 0, mouse, click);
+        backbutton.drawCenter(g, MOUSEOVER, FOREGROUND, 0, mouse, click);
+        exitbutton.drawCenter(g, MOUSEOVER, FOREGROUND, 0, mouse, click);
+        g.setFont(MEDIUMFONT);
+        namebutton.drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, 0, mouse, click);
+        yearbutton.drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, 0, mouse, click);
+        prioritybutton.drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, 0, mouse, click);
+        adjustmentbutton.drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, 0, mouse, click);
+        blockbutton.drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, 0, mouse, click);
+        officebutton.drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, 0, mouse, click);
+        warningsbutton.drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, 0, mouse, click);
         for (int n = 0; n < 2; n++) {
             g.drawLine(0, bannerheight + n * rowheight, w, bannerheight + n * rowheight);
         }
@@ -393,7 +388,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
             years[thisyear++] = year;
         }
         for (int year = 0; year < numyears; year++) {
-            if (years[year] == this.year) {
+            if (years[year] == year) {
                 thisyear = year;
             }
         }
