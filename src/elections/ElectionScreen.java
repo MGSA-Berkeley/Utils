@@ -2,6 +2,7 @@ package elections;
 
 import java.awt.Graphics;
 import java.awt.HeadlessException;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -15,12 +16,19 @@ import java.util.Set;
 public class ElectionScreen implements mgsa.Screen {
 
     private final mgsa.MainCanvas canvas;
+    
+    private final mgsa.Button backbutton = new mgsa.Button("←", null);
+    private final mgsa.Button exitbutton = new mgsa.Button("X", null);
 
     private final Set<Integer> keyset = new HashSet<>();
     private String paste = "";
 
     public ElectionScreen(mgsa.MainCanvas canvas) {
         this.canvas = canvas;
+//        int bigpadding = 12;
+//        int smallpadding = 5;
+//        backbutton.setRectLeft(g, new Point(bigpadding - smallpadding, bannerheight / 2), smallpadding);
+//        exitbutton.setRectRight(g, new Point(w - bigpadding + smallpadding, bannerheight / 2), smallpadding);
     }
 
     @Override

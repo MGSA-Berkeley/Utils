@@ -157,6 +157,7 @@ public class SaveData {
             int y = r.y + r.height - 2;
             graphics[i].drawString(office, x, y);
         }
+        new File("C:\\Users\\thoma\\mgsa\\officedraw\\" + year).mkdirs();
         for (int i = 0; i < 4; i++) {
             ImageIO.write(images[i], "png", new File("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\floor-" + (((i + 6) % 9) + 1) + ".png"));
         }
