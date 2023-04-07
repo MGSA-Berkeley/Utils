@@ -359,6 +359,9 @@ public class OfficeDrawScreen implements mgsa.Screen {
             } else if (key == KeyEvent.VK_MINUS) {
                 button.setText(button.getText() + "-");
                 append = true;
+            } else if (key == KeyEvent.VK_SLASH) {
+                button.setText(button.getText() + "/");
+                append = true;
             } else if (letters.contains(s)) {
                 button.setText(button.getText() + (keyset.contains(KeyEvent.VK_SHIFT) ? s : s.toLowerCase()));
                 append = true;
@@ -444,7 +447,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                     break;
                 }
                 try {
-                    Integer.parseInt(prioritystring);
+                    new BigFraction(prioritystring);
                 } catch (NumberFormatException ex) {
                     badyears.add(years[year]);
                     break;
@@ -485,9 +488,9 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 warning += "Non-integer year. ";
             }
             try {
-                Integer.parseInt(prioritystring);
+                new BigFraction(prioritystring);
             } catch (NumberFormatException ex) {
-                warning += "Non-integer priority. ";
+                warning += "Non-rational priority. ";
             }
             if (!(blockstring.equals("Squat") || blockstring.equals("Float") || blockstring.startsWith("Block"))) {
                 warning += "Invalid block. ";
@@ -540,26 +543,26 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 yearints[year][person] = Integer.parseInt(yearstrings[year][person]);
             }
         }
-        int[][] individualpriorities = new int[numyears][];
+        BigFraction[][] individualpriorities = new BigFraction[numyears][];
         for (int year = 0; year < numyears; year++) {
-            individualpriorities[year] = new int[numpeople[year]];
+            individualpriorities[year] = new BigFraction[numpeople[year]];
             for (int person = 0; person < numpeople[year]; person++) {
-                individualpriorities[year][person] = Integer.parseInt(prioritystrings[year][person]);
+                individualpriorities[year][person] = new BigFraction(prioritystrings[year][person]);
             }
         }
         BigFraction[][] blockpriorities = new BigFraction[numyears][];
         for (int year = 0; year < numyears; year++) {
             blockpriorities[year] = new BigFraction[numpeople[year]];
-            Map<String, Integer> numerators = new HashMap<>();
+            Map<String, BigFraction> numerators = new HashMap<>();
             Map<String, Integer> denominators = new HashMap<>();
             for (int person = 0; person < numpeople[year]; person++) {
                 String block = blockstrings[year][person];
-                numerators.put(block, numerators.getOrDefault(block, 0) + individualpriorities[year][person]);
+                numerators.put(block, numerators.getOrDefault(block, BigFraction.ZERO).add(individualpriorities[year][person]));
                 denominators.put(block, denominators.getOrDefault(block, 0) + 1);
             }
             for (int person = 0; person < numpeople[year]; person++) {
                 String block = blockstrings[year][person];
-                blockpriorities[year][person] = new BigFraction(numerators.get(block), denominators.get(block));
+                blockpriorities[year][person] = numerators.get(block).divide(new BigFraction(denominators.get(block)));
             }
         }
         BigFraction[][] effectivepriorities = new BigFraction[numyears][];
@@ -639,8 +642,8 @@ public class OfficeDrawScreen implements mgsa.Screen {
         for (int person = 0; person < numpeople[thisyear]; person++) {
             String warning = "";
             int yearint = yearints[thisyear][person];
-            int priorityint = individualpriorities[thisyear][person];
-            int adjustment = 0;
+            BigFraction priorityint = individualpriorities[thisyear][person];
+            BigFraction adjustment = BigFraction.ZERO;
             String namestring = namestrings[thisyear][person];
             String adjustmentstring = adjustmentstrings[thisyear][person];
             String blockstring = blockstrings[thisyear][person];
@@ -648,12 +651,12 @@ public class OfficeDrawScreen implements mgsa.Screen {
             boolean parse = true;
             if (!adjustmentstring.isEmpty()) {
                 try {
-                    adjustment = Integer.parseInt(adjustmentstrings[thisyear][person]);
-                    if (adjustment >= 0) {
+                    adjustment = new BigFraction(adjustmentstrings[thisyear][person]);
+                    if (adjustment.signum() >= 0) {
                         warning += "Invalid adjustment. ";
                     }
                 } catch (NumberFormatException ex) {
-                    warning += "Non-integer adjustment. ";
+                    warning += "Non-rational adjustment. ";
                     parse = false;
                 }
             }
@@ -679,8 +682,9 @@ public class OfficeDrawScreen implements mgsa.Screen {
             if (parse) {
                 int[] lookup = {6, 4, 3, 2, 1, 1, 3};
                 int basepriority = yearint >= 8 ? 5 : lookup[yearint - 1];
-                if (priorityint != basepriority + adjustment) {
-                    warning += "Priority off by " + (priorityint - basepriority - adjustment) + ". ";
+                BigFraction off = priorityint.subtract(new BigFraction(basepriority)).subtract(adjustment);
+                if (off.signum() != 0) {
+                    warning += "Priority off by " + off + ". ";
                 }
             }
             int blocktotal = blocktotals.get(blockstring);
@@ -708,8 +712,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                         warning += "Invalid squat (must specify " + oldoffice + "). ";
                     } else if (!officestring.equals(oldoffice)) {
                         warning += "Invalid squat (must squat in " + oldoffice + "). ";
-                    } else if (!(individualpriorities[thisyear][person] == 5
-                            && individualpriorities[thisyear - 1][namelookup.get(thisyear - 1).get(namestring)] == 5)) {
+                    } else {
                         List<String> badnames = new ArrayList<>();
                         for (int oldperson : prevofficecache.get(officestring)) {
                             String name = namestrings[thisyear - 1][oldperson];
@@ -728,7 +731,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                         } else {
                             BigFraction oldsum = BigFraction.ZERO;
                             int oldamt = 0;
-                            int newsum = 0;
+                            BigFraction newsum = BigFraction.ZERO;
                             int newamt = 0;
                             List<String> badnames2 = new ArrayList<>();
                             for (int squatter : blockcache.get(blockstring)) {
@@ -738,7 +741,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                                 } else {
                                     oldsum = oldsum.add(effectivepriority);
                                     oldamt++;
-                                    newsum += individualpriorities[thisyear][squatter];
+                                    newsum = newsum.add(individualpriorities[thisyear][squatter]);
                                     newamt++;
                                 }
                             }
@@ -748,7 +751,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                                 warning += "Unable to determine effective priority (" + s.substring(1, s.length() - 1) + "). ";
                             } else {
                                 BigFraction pold = oldsum.divide(new BigFraction(oldamt));
-                                BigFraction pnew = new BigFraction(newsum, newamt);
+                                BigFraction pnew = newsum.divide(new BigFraction(newamt));
                                 if (pold.compareTo(pnew) < 0) {
                                     warning += "Illegal squat (" + pold + " < " + pnew + "). ";
                                 }

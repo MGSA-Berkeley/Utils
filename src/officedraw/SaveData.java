@@ -50,7 +50,7 @@ public class SaveData {
             }
         }
         List<List<String>> blocks = new ArrayList<>();
-        List<Integer> blocksums = new ArrayList<>();
+        List<BigFraction> blocksums = new ArrayList<>();
         List<String> block = new ArrayList<>();
         String oldblock = null;
         List<Long> times = new ArrayList<>();
@@ -62,7 +62,7 @@ public class SaveData {
                 if (oldblock != null) {
                     blocks.add(block);
                 }
-                blocksums.add(0);
+                blocksums.add(BigFraction.ZERO);
                 block = new ArrayList<>();
                 oldblock = newblock;
                 if (newblock.startsWith("Squat")) {
@@ -73,13 +73,13 @@ public class SaveData {
                 }
                 len++;
             }
-            blocksums.set(len - 1, blocksums.get(len - 1) + Integer.parseInt(p.buttons[2].getText()));
+            blocksums.set(len - 1, blocksums.get(len - 1).add(new BigFraction(p.buttons[2].getText())));
             block.add(p.buttons[0].getText());
         }
         blocks.add(block);
         List<BigFraction> priorities = new ArrayList<>();
         for (int i = 0; i < len; i++) {
-            priorities.add(new BigFraction(blocksums.get(i), blocks.get(i).size()));
+            priorities.add(blocksums.get(i).divide(new BigFraction(blocks.get(i).size())));
         }
         if (year == 2022) {
             long base = 1651086000000L;

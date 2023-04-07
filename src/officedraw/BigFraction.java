@@ -1,6 +1,7 @@
 package officedraw;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class BigFraction implements Comparable<BigFraction> {
@@ -11,16 +12,36 @@ public class BigFraction implements Comparable<BigFraction> {
     private final BigInteger top;
     private final BigInteger bottom;
 
-    public BigFraction(BigInteger top, BigInteger bottom) {
-        BigInteger gcd = top.gcd(bottom);
-        top = top.divide(gcd);
-        bottom = bottom.divide(gcd);
-        if (bottom.signum() < 0) {
-            top = top.negate();
-            bottom = bottom.negate();
+    public BigFraction(String s) {
+        if (s.matches("^-?\\d+$")) {
+            top = new BigInteger(s);
+            bottom = BigInteger.ONE;
+        } else if (s.matches("^-?\\d+/\\d+$")) {
+            String[] a = s.split("/");
+            BigInteger numerator = new BigInteger(a[0]);
+            BigInteger denominator = new BigInteger(a[1]);
+            if (denominator.signum() == 0) {
+                throw new NumberFormatException();
+            }
+            BigInteger gcd = numerator.gcd(denominator);
+            top = numerator.divide(gcd);
+            bottom = denominator.divide(gcd);
+        } else {
+            throw new NumberFormatException();
         }
-        this.top = top;
-        this.bottom = bottom;
+    }
+
+    public BigFraction(BigInteger numerator, BigInteger denominator) {
+        if (denominator.signum() == 0) {
+            throw new IllegalArgumentException();
+        }
+        if (denominator.signum() < 0) {
+            numerator = numerator.negate();
+            denominator = denominator.negate();
+        }
+        BigInteger gcd = numerator.gcd(denominator);
+        top = numerator.divide(gcd);
+        bottom = denominator.divide(gcd);
     }
 
     public BigFraction(BigInteger n) {

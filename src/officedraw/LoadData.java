@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class LoadData {
 
-    private static final String TAB = "\t";
+    private static final char TAB = '\t';
 
     public static Map<Integer, Person[]> load() {
         Map<Integer, Person[]> data = new HashMap<>();
@@ -42,7 +42,7 @@ public class LoadData {
         return data;
     }
 
-    private static String[] split(String s, String t) {
+    private static String[] split(String s, char t) {
         List<String> list = new ArrayList<>();
         int i = 0;
         while (true) {
