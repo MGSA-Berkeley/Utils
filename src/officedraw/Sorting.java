@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Sorting {
-    
+
     public static Person[] nameSort(Person[] oldpeople) {
         int len = oldpeople.length - 1;
         Person[] sortedpeople = Arrays.copyOf(oldpeople, len);
@@ -14,7 +14,7 @@ public class Sorting {
         newpeople[len] = new Person();
         return newpeople;
     }
-    
+
     public static Person[] yearSort(Person[] oldpeople) {
         int len = oldpeople.length - 1;
         Person[] sortedpeople = Arrays.copyOf(oldpeople, len);
@@ -23,7 +23,7 @@ public class Sorting {
         newpeople[len] = new Person();
         return newpeople;
     }
-    
+
     public static Person[] prioritySort(Person[] oldpeople) {
         int len = oldpeople.length - 1;
         Person[] sortedpeople = Arrays.copyOf(oldpeople, len);
@@ -32,7 +32,7 @@ public class Sorting {
         newpeople[len] = new Person();
         return newpeople;
     }
-    
+
     public static Person[] adjustmentSort(Person[] oldpeople) {
         int len = oldpeople.length - 1;
         Person[] sortedpeople = Arrays.copyOf(oldpeople, len);
@@ -41,7 +41,7 @@ public class Sorting {
         newpeople[len] = new Person();
         return newpeople;
     }
-    
+
     public static Person[] blockSort(Person[] oldpeople, int year) {
         int len = oldpeople.length - 1;
         Person[] sortedpeople = Arrays.copyOf(oldpeople, len);
@@ -71,7 +71,7 @@ public class Sorting {
         newpeople[len] = new Person();
         return newpeople;
     }
-    
+
     public static Person[] officeSort(Person[] oldpeople) {
         int len = oldpeople.length - 1;
         Person[] sortedpeople = Arrays.copyOf(oldpeople, len);
@@ -80,7 +80,7 @@ public class Sorting {
         newpeople[len] = new Person();
         return newpeople;
     }
-    
+
     public static Person[] warningsSort(Person[] oldpeople) {
         int len = oldpeople.length - 1;
         Person[] sortedpeople = Arrays.copyOf(oldpeople, len);
@@ -89,11 +89,11 @@ public class Sorting {
         newpeople[len] = new Person();
         return newpeople;
     }
-    
+
     public static int nameCompare(Person p, Person q) {
         return p.buttons[0].getText().compareTo(q.buttons[0].getText());
     }
-    
+
     public static int yearCompare(Person p, Person q) {
         int i = Integer.MIN_VALUE;
         int j = Integer.MIN_VALUE;
@@ -107,7 +107,7 @@ public class Sorting {
         }
         return Integer.compare(i, j);
     }
-    
+
     public static int priorityCompare(Person p, Person q) {
         BigFraction i = new BigFraction(-100);
         BigFraction j = new BigFraction(-100);
@@ -121,21 +121,29 @@ public class Sorting {
         }
         return i.compareTo(j);
     }
-    
+
     public static int adjustmentCompare(Person p, Person q) {
-        BigFraction i = new BigFraction(-100);
-        BigFraction j = new BigFraction(-100);
-        try {
-            i = new BigFraction(p.buttons[3].getText());
-        } catch (NumberFormatException ex) {
+        BigFraction i = new BigFraction(100);
+        BigFraction j = new BigFraction(100);
+        String s = p.buttons[3].getText();
+        String t = q.buttons[3].getText();
+        if (!s.isEmpty()) {
+            try {
+                i = new BigFraction(s);
+            } catch (NumberFormatException ex) {
+                i = new BigFraction(-100);
+            }
         }
-        try {
-            j = new BigFraction(q.buttons[3].getText());
-        } catch (NumberFormatException ex) {
+        if (!t.isEmpty()) {
+            try {
+                j = new BigFraction(t);
+            } catch (NumberFormatException ex) {
+                j = new BigFraction(-100);
+            }
         }
         return i.compareTo(j);
     }
-    
+
     public static int blockCompare(Person p, Person q, Map<String, BigFraction> fractions, int year) {
         String sp = p.buttons[4].getText();
         String sq = q.buttons[4].getText();
@@ -157,7 +165,7 @@ public class Sorting {
         // This tiebreak is exploitable, but last-minute changes won't scramble the pick order
         return comparison == 0 ? Integer.compare((tp + year).hashCode(), (tq + year).hashCode()) : comparison;
     }
-    
+
     public static int officeCompare(Person p, Person q) {
         int i = Integer.MIN_VALUE;
         int j = Integer.MIN_VALUE;
@@ -171,7 +179,7 @@ public class Sorting {
         }
         return Integer.compare(i, j);
     }
-    
+
     public static int warningsCompare(Person p, Person q) {
         String s = p.warning.getText();
         String t = q.warning.getText();
@@ -180,7 +188,7 @@ public class Sorting {
         }
         return p.warning.getText().compareTo(q.warning.getText());
     }
-    
+
     public static String block(Person person) {
         String block = person.buttons[4].getText();
         if (block.equals("Float")) {
