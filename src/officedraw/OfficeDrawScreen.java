@@ -35,7 +35,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
     private final mgsa.Button warningsbutton = new mgsa.Button("Warnings", null);
 
     private final Set<Integer> keyset = new HashSet<>();
-    private final Set<String> letters = new HashSet<>();
+    private final Map<String, String> letters = new HashMap<>();
 
     private Point click;
 
@@ -58,8 +58,10 @@ public class OfficeDrawScreen implements mgsa.Screen {
 
     public OfficeDrawScreen(mgsa.MainCanvas canvas) {
         this.canvas = canvas;
-        for (char c : "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray()) {
-            letters.add(Character.toString(c));
+        String lower = "abcdefghijklmnopqrstuvwxyz1234567890";
+        String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()";
+        for (int i = 0; i < lower.length(); i++) {
+            letters.put(Character.toString(lower.charAt(i)), Character.toString(upper.charAt(i)));
         }
         if (!data.containsKey(year)) {
             data.put(year, new Person[]{new Person()});
@@ -334,7 +336,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
             Person[] people = data.get(year);
             mgsa.Button button = people[row].buttons[column];
             boolean append = false;
-            String s = KeyEvent.getKeyText(key);
+            String s = KeyEvent.getKeyText(key).toLowerCase();
             if (key == KeyEvent.VK_BACK_SPACE) {
                 String text = button.getText();
                 if (!text.isEmpty()) {
@@ -362,8 +364,8 @@ public class OfficeDrawScreen implements mgsa.Screen {
             } else if (key == KeyEvent.VK_SLASH) {
                 button.setText(button.getText() + "/");
                 append = true;
-            } else if (letters.contains(s)) {
-                button.setText(button.getText() + (keyset.contains(KeyEvent.VK_SHIFT) ? s : s.toLowerCase()));
+            } else if (letters.keySet().contains(s)) {
+                button.setText(button.getText() + (keyset.contains(KeyEvent.VK_SHIFT) ? letters.get(s) : s));
                 append = true;
             } else {
                 return;
