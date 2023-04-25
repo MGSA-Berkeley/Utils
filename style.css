@@ -123,6 +123,10 @@ body {
 	user-select: none;
 }
 
+#building > .buttons > button:focus-visible {
+	outline: none;
+}
+
 #building > .buttons > button:hover {
 	background: #aaa;
 	color: #eee;

@@ -44,10 +44,13 @@ function setupBuilding() {
 	const floor0 = makeFloor("1");
 
 	window.goToFloor = function (num) {
+		if (num == "1") {
+			num = "0"
+		}
 		floor7.dataset.active = "7" == num ? 1 : 0;
 		floor8.dataset.active = "8" == num ? 1 : 0;
 		floor9.dataset.active = "9" == num ? 1 : 0;
-		floor0.dataset.active = "0" == num || "1" == num ? 1 : 0;
+		floor0.dataset.active = "0" == num ? 1 : 0;
 		building.dataset.floor = num;
 	};
 
