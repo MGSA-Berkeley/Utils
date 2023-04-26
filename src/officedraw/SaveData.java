@@ -105,6 +105,23 @@ public class SaveData {
             }
         }
         try {
+            // Hacky edge case, delete after the office draw
+            if (year == 2023) {
+                int pos = 33;
+                String name = "Yifan Chen";
+                long time = 1682710200000L;
+                String office = null;
+                List<String> badblock = new ArrayList<>();
+                badblock.add(name);
+                blocks.add(pos, badblock);
+                priorities.add(pos, new BigFraction(2));
+                times.add(pos, time);
+                if (office != null) {
+                    personToOffice.put(name, office);
+                    officeToPerson.get(office).add(name);
+                }
+                len++;
+            }
             images(year, officeToPerson);
             saveHtml(year, len, blocks, priorities, times, personToOffice, officeToPerson);
         } catch (IOException ex) {
