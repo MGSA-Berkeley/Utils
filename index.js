@@ -44,10 +44,13 @@ function setupBuilding() {
 	const floor0 = makeFloor("1");
 
 	window.goToFloor = function (num) {
+		if (num == "1") {
+			num = "0"
+		}
 		floor7.dataset.active = "7" == num ? 1 : 0;
 		floor8.dataset.active = "8" == num ? 1 : 0;
 		floor9.dataset.active = "9" == num ? 1 : 0;
-		floor0.dataset.active = "0" == num || "1" == num ? 1 : 0;
+		floor0.dataset.active = "0" == num ? 1 : 0;
 		building.dataset.floor = num;
 	};
 
@@ -123,6 +126,18 @@ function setupOfficePops() {
 	});
 }
 
+function switchToMobileLayout() {
+	const drawOrder_ = drawOrder;
+	const setOffices_ = setOffices;
+	root.removeChild(drawOrder_);
+	root.removeChild(setOffices_);
+	const row2 = document.createElement('div');
+	row2.id = 'row2';
+	row2.append(drawOrder_);
+	row2.append(setOffices_);
+	root.append(row2);
+}
+
 function scrollToOffice(number) {
 	Array.from(setOffices.lastElementChild.children).forEach((child) => {
 		child.dataset.active = child.dataset.number == number ? 1 : 0;
@@ -152,4 +167,6 @@ function go() {
 	setupBuilding();
 	setupDrawOrder();
 	setupOfficePops();
+	if(window.innerHeight > window.innerWidth)
+		switchToMobileLayout();
 }

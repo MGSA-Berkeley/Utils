@@ -123,6 +123,10 @@ body {
 	user-select: none;
 }
 
+#building > .buttons > button:focus-visible {
+	outline: none;
+}
+
 #building > .buttons > button:hover {
 	background: #aaa;
 	color: #eee;
@@ -316,12 +320,24 @@ body {
         display: block;
     }
 
-	#drawOrder {
-		display: none;
+    #building {
+        height: calc(63vw - 1.26em);
+    }
+
+	#row2 {
+		height: 100vh;
+		display: flex;
+		justify-content: space-evenly;
 	}
 
-    #building {
-        height: 58vw;
+	#drawOrder, #setOffices {
+		flex-grow: 1;
+		flex-shrink: 1;
+	}
+
+	#setOffices, #drawOrder {
+        padding: 5px;
+        overflow: hidden;
     }
 
     #building > .buttons {
@@ -333,20 +349,6 @@ body {
         height: 2em;
         width: 2em;
     }
-
-    #setOffices {
-        height: calc(100vh - 58vw - 2em);
-        padding-left: 0px;
-        overflow: hidden;
-    }
-
-    #setOffices > h2 {
-        display: none;
-    }
-
-	.block-scoller > div {
-		height: calc(100vh - 60vw) !important;
-	}
 
 	input {
 		font: inherit;
