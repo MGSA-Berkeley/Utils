@@ -123,6 +123,18 @@ function setupOfficePops() {
 	});
 }
 
+function switchToMobileLayout() {
+	const drawOrder_ = drawOrder;
+	const setOffices_ = setOffices;
+	root.removeChild(drawOrder_);
+	root.removeChild(setOffices_);
+	const row2 = document.createElement('div');
+	row2.id = 'row2';
+	row2.append(drawOrder_);
+	row2.append(setOffices_);
+	root.append(row2);
+}
+
 function scrollToOffice(number) {
 	Array.from(setOffices.lastElementChild.children).forEach((child) => {
 		child.dataset.active = child.dataset.number == number ? 1 : 0;
@@ -152,4 +164,6 @@ function go() {
 	setupBuilding();
 	setupDrawOrder();
 	setupOfficePops();
+	if(window.innerHeight > window.innerWidth)
+		switchToMobileLayout();
 }
