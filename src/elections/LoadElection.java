@@ -1,7 +1,10 @@
 package elections;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LoadElection {
 
@@ -10,76 +13,45 @@ public class LoadElection {
 
     public static void loadElection(int numseats, String rawpaste) throws IOException {
         String[] rawlines = rawpaste.split(newline);
-        int numlines = rawlines.length;
-        String[][] splitlines = new String[numlines][];
-        for (int i = 0; i < numlines; i++) {
+        int numballots = rawlines.length;
+        String[][] splitlines = new String[numballots][];
+        Set<String> candidatelist = new HashSet<>();
+        for (int i = 0; i < numballots; i++) {
             splitlines[i] = rawlines[i].split(tab);
+            for (String candidate : splitlines[i]) {
+                if (!candidate.isEmpty()) {
+                    candidatelist.add(candidate);
+                }
+            }
         }
-        if (splitlines.length == 0) {
-            throw new IllegalArgumentException("Did not find any lines");
-        }
-        String[] candidates = splitlines[0];
-        int numcandidates = candidates.length;
+        int numcandidates = candidatelist.size();
         if (numcandidates < numseats) {
             throw new IllegalArgumentException("There are " + numcandidates + " for " + numseats + " seats, so there is no point holding an election.");
         }
-        int numballots = numlines - 1;
-        int[][] ballots = new int[numballots][numcandidates];
-        for (int i = 0; i < numballots; i++) {
-            if (splitlines[i + 1].length > numcandidates) {
-                throw new IllegalArgumentException("Ballot" + (i + 1) + " has too many votes");
-            }
-            for (int j = 0; j < splitlines[i + 1].length; j++) {
-                ballots[i][j] = parse(splitlines[i + 1][j]);
-                if (ballots[i][j] < 0 || ballots[i][j] > numcandidates) {
-                    throw new IllegalArgumentException("Ballot " + (i + 1) + " has an illegal vote");
-                }
-            }
-        }
-        int[][] cleanballots = cleanballots(candidates.length, ballots);
-        List<ElectionState> record = RunElection.runElection(numseats, candidates.length, cleanballots);
-        DisplayElection.displayElection(numseats, candidates, record);
-    }
-
-    private static int[][] cleanballots(int numcandidates, int[][] ballots) {
-        int[][] cleanballots = new int[ballots.length][];
-        for (int i = 0; i < ballots.length; i++) {
-            cleanballots[i] = cleanballot(numcandidates, ballots[i]);
-        }
-        return cleanballots;
-    }
-
-    private static int[] cleanballot(int numcandidates, int[] ballot) {
+        String[] candidates = new String[numcandidates];
         int len = 0;
-        for (int i : ballot) {
-            if (i != 0) {
-                len++;
-            }
+        for (String candidate : candidatelist) {
+            candidates[len++] = candidate;
         }
-        int[] cleanballot = new int[len];
-        len = 0;
-        for (int i = 1; i <= numcandidates; i++) {
-            for (int j = 0; j < ballot.length; j++) {
-                if (ballot[j] == i) {
-                    cleanballot[len++] = j;
-                    break;
+        int[][] ballots = new int[numballots][];
+        for (int i = 0; i < numballots; i++) {
+            len = 0;
+            for (String candidate : splitlines[i]) {
+                if (!candidate.isEmpty()) {
+                    len++;
+                }
+            }
+            ballots[i] = new int[len];
+            len = 0;
+            for (String candidate : splitlines[i]) {
+                for (int j = 0; j < numcandidates; j++) {
+                    if (candidate.equals(candidates[j])) {
+                        ballots[i][len++] = j;
+                    }
                 }
             }
         }
-        if (len < cleanballot.length) {
-            throw new IllegalArgumentException("Ballot has same rank twice");
-        }
-        return cleanballot;
-    }
-
-    private static int parse(String s) {
-        if (!s.matches("^[0-9]*[^0-9]*$")) {
-            throw new IllegalArgumentException("Cannot parse vote: " + s);
-        }
-        String t = s.replaceAll("[^0-9]", "");
-        if (t.isEmpty()) {
-            return 0;
-        }
-        return Integer.parseInt(t);
+        List<ElectionState> record = RunElection.runElection(numseats, candidates.length, ballots);
+        DisplayElection.displayElection(numseats, candidates, record);
     }
 }
