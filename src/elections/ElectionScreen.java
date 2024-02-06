@@ -1,5 +1,7 @@
 package elections;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.HeadlessException;
 import java.awt.Point;
@@ -16,32 +18,62 @@ import java.util.Set;
 public class ElectionScreen implements mgsa.Screen {
 
     private final mgsa.MainCanvas canvas;
-    
+
     private final mgsa.Button backbutton = new mgsa.Button("←", null);
     private final mgsa.Button exitbutton = new mgsa.Button("X", null);
 
     private final Set<Integer> keyset = new HashSet<>();
     private String paste = "";
 
+    private Point click;
+
+    private static final Color BACKGROUND = mgsa.GraphicsUtils.Grey;
+    private static final Color FOREGROUND = mgsa.GraphicsUtils.Black;
+    private static final Color MOUSEOVER = mgsa.GraphicsUtils.BayFog;
+    private static final Color SELECT = mgsa.GraphicsUtils.SatherGate;
+
+    private static final Font BIGFONT = new Font(Font.SANS_SERIF, Font.BOLD, 48);
+    private static final Font MEDIUMFONT = new Font(Font.SANS_SERIF, Font.BOLD, 16);
+    private static final Font SMALLFONT = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
+    private int bannerheight;
+    private int rowheight;
+
     public ElectionScreen(mgsa.MainCanvas canvas) {
         this.canvas = canvas;
-//        int bigpadding = 12;
-//        int smallpadding = 5;
-//        backbutton.setRectLeft(g, new Point(bigpadding - smallpadding, bannerheight / 2), smallpadding);
-//        exitbutton.setRectRight(g, new Point(w - bigpadding + smallpadding, bannerheight / 2), smallpadding);
     }
 
     @Override
     public void paintComponent(Graphics g, int w, int h) {
-        //GraphicsUtils.drawCenteredString(g, paste, new Rectangle(0, 0, w, h), true);
+        int bigpadding = 12;
+        int smallpadding = 5;
+        g.setFont(BIGFONT);
+        bannerheight = exitbutton.getHeight(g, bigpadding);
+        backbutton.setRectLeft(g, new Point(bigpadding - smallpadding, bannerheight / 2), smallpadding);
+        exitbutton.setRectRight(g, new Point(w - bigpadding + smallpadding, bannerheight / 2), smallpadding);
+        g.setColor(BACKGROUND);
+        g.fillRect(0, 0, w, bannerheight + rowheight);
+        g.setFont(BIGFONT);
+        Point mouse = canvas.getMousePosition();
+        backbutton.drawCenter(g, MOUSEOVER, FOREGROUND, 0, mouse, click);
+        exitbutton.drawCenter(g, MOUSEOVER, FOREGROUND, 0, mouse, click);
+        g.drawLine(0, bannerheight, w, bannerheight);
     }
 
     @Override
     public void mousePressed() {
+        click = canvas.getMousePosition();
     }
 
     @Override
     public void mouseReleased() {
+        Point p = canvas.getMousePosition();
+        if (backbutton.contains(p) && backbutton.contains(click)) {
+            canvas.setScreen(new mgsa.HomeScreen(canvas));
+        }
+        if (exitbutton.contains(p) && exitbutton.contains(click)) {
+            System.exit(0);
+        }
+        click = null;
     }
 
     @Override
