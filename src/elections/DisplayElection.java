@@ -19,8 +19,7 @@ import javax.imageio.ImageIO;
 
 public class DisplayElection {
 
-    public static void displayElection(int numseats, String[] candidates, List<ElectionState> record) throws IOException {
-        String timestring = "Spring 2023";
+    public static void displayElection(int numseats, String[] candidates, List<ElectionState> record, String title) throws IOException {
         int numcandidates = candidates.length;
         Decimal maxvote = Decimal.ZERO;
         for (ElectionState electionstate : record) {
@@ -61,7 +60,7 @@ public class DisplayElection {
         List<String> sb = new ArrayList<>();
         sb.add("<html>");
         sb.add("<head>");
-        sb.add("<title>" + timestring + " MGSA Election</title>");
+        sb.add("<title>" + title + "</title>");
         sb.add("<style>");
         sb.add("body {text-align:center; font-family: sans-serif; color:#FDB515; background-color: #003262;}");
         sb.add(".infobox {margin: auto; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; "
@@ -71,8 +70,8 @@ public class DisplayElection {
         sb.add("</style>");
         sb.add("</head>");
         sb.add("<body>");
-        sb.add("<h1>" + timestring + " MGSA Election</h1>");
-        sb.add("<h2>There were " + numcandidates + " candidates and " + numseats + " open seats</h2>");
+        sb.add("<h1>" + title + "</h1>");
+        sb.add("<h2>There were " + numcandidates + " candidates for " + numseats + " open seat" + (numseats == 1 ? "" : "s") + "</h2>");
         sb.add("<h2>The election used Meek's STV algorithm</h2>");
         List<String> elected = new ArrayList<>();
         List<String> defeated = new ArrayList<>();

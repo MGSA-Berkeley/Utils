@@ -10,7 +10,7 @@ public class LoadElection {
     private static final String newline = "\n";
     private static final String tab = "\t";
 
-    public static void loadElection(int numseats, String rawpaste) throws IOException {
+    public static void loadElection(int numseats, String rawpaste, String title) throws IOException {
         String[] rawlines = rawpaste.split(newline);
         int numballots = rawlines.length;
         String[][] splitlines = new String[numballots][];
@@ -51,6 +51,6 @@ public class LoadElection {
             }
         }
         List<ElectionState> record = RunElection.runElection(numseats, candidates.length, ballots);
-        DisplayElection.displayElection(numseats, candidates, record);
+        DisplayElection.displayElection(numseats, candidates, record, title);
     }
 }

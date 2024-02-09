@@ -100,7 +100,8 @@ public class ElectionScreen implements mgsa.Screen {
                     String s = (String) t.getTransferData(DataFlavor.stringFlavor);
                     if (!paste.equals(s)) {
                         paste = s;
-                        LoadElection.loadElection(7, paste);
+                        // Todo: Let user adjust number of seats
+                        LoadElection.loadElection(7, paste, title.getText());
                     }
                 }
             } catch (HeadlessException | UnsupportedFlavorException | IOException ex) {
