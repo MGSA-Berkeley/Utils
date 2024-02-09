@@ -12,6 +12,7 @@ import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +20,9 @@ public class ElectionScreen implements mgsa.Screen {
 
     private final mgsa.MainCanvas canvas;
 
+    private int year = Calendar.getInstance().get(Calendar.YEAR);
+    private String semester = Calendar.getInstance().get(Calendar.MONTH) < 6 ? "Spring" : "Fall";
+    private final mgsa.Button title = new mgsa.Button(semester + " " + year + " MGSA Election", null);
     private final mgsa.Button backbutton = new mgsa.Button("←", null);
     private final mgsa.Button exitbutton = new mgsa.Button("X", null);
 
@@ -48,12 +52,14 @@ public class ElectionScreen implements mgsa.Screen {
         int smallpadding = 5;
         g.setFont(BIGFONT);
         bannerheight = exitbutton.getHeight(g, bigpadding);
+        title.setRectCenter(g, new Point(w / 2, bannerheight / 2), smallpadding);
         backbutton.setRectLeft(g, new Point(bigpadding - smallpadding, bannerheight / 2), smallpadding);
         exitbutton.setRectRight(g, new Point(w - bigpadding + smallpadding, bannerheight / 2), smallpadding);
         g.setColor(BACKGROUND);
         g.fillRect(0, 0, w, bannerheight + rowheight);
         g.setFont(BIGFONT);
         Point mouse = canvas.getMousePosition();
+        title.drawCenter(g, BACKGROUND, FOREGROUND, 0, mouse, click);
         backbutton.drawCenter(g, MOUSEOVER, FOREGROUND, 0, mouse, click);
         exitbutton.drawCenter(g, MOUSEOVER, FOREGROUND, 0, mouse, click);
         g.drawLine(0, bannerheight, w, bannerheight);

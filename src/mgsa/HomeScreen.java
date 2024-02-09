@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.HashSet;
 import java.util.Set;
@@ -47,7 +46,7 @@ public class HomeScreen implements Screen {
         g.setColor(background);
         g.fillRect(0, 0, w, h);
         g.setFont(bigfont);
-        title.drawCenter(g, mouseover, foreground, 0, mouse, click);
+        title.drawCenter(g, background, foreground, 0, mouse, click);
         g.setFont(smallfont);
         officedraw.drawCenter(g, mouseover, foreground, 0, mouse, click);
         election.drawCenter(g, mouseover, foreground, 0, mouse, click);
