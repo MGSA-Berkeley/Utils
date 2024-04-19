@@ -692,48 +692,31 @@ public class OfficeDrawScreen implements mgsa.Screen {
                     } else if (!officestring.equals(oldoffice)) {
                         warning += "Invalid squat (must squat in " + oldoffice + "). ";
                     } else {
-                        List<String> badnames = new ArrayList<>();
-                        for (int oldperson : prevofficecache.get(officestring)) {
-                            String name = namestrings[thisyear - 1][oldperson];
-                            if (namelookup.get(thisyear).containsKey(name)) {
-                                int newperson = namelookup.get(thisyear).get(name);
-                                if (!(squatting[thisyear][newperson] && officestrings[thisyear][newperson].equals(officestring))) {
-                                    badnames.add(name);
-                                }
+                        BigFraction oldsum = BigFraction.ZERO;
+                        int oldamt = 0;
+                        BigFraction newsum = BigFraction.ZERO;
+                        int newamt = 0;
+                        List<String> badnames2 = new ArrayList<>();
+                        for (int squatter : blockcache.get(blockstring)) {
+                            BigFraction effectivepriority = effectivepriorities[thisyear][squatter];
+                            if (effectivepriority == null) {
+                                badnames2.add(namestrings[thisyear][squatter]);
+                            } else {
+                                oldsum = oldsum.add(effectivepriority);
+                                oldamt++;
+                                newsum = newsum.add(individualpriorities[thisyear][squatter]);
+                                newamt++;
                             }
                         }
-                        if (!badnames.isEmpty()) {
-                            Collections.sort(badnames);
-                            String s = badnames.toString();
-                            s = s.substring(1, s.length() - 1);
-                            warning += "Illegal squat (" + s + "). ";
+                        if (!badnames2.isEmpty()) {
+                            Collections.sort(badnames2);
+                            String s = badnames2.toString();
+                            warning += "Unable to determine effective priority (" + s.substring(1, s.length() - 1) + "). ";
                         } else {
-                            BigFraction oldsum = BigFraction.ZERO;
-                            int oldamt = 0;
-                            BigFraction newsum = BigFraction.ZERO;
-                            int newamt = 0;
-                            List<String> badnames2 = new ArrayList<>();
-                            for (int squatter : blockcache.get(blockstring)) {
-                                BigFraction effectivepriority = effectivepriorities[thisyear][squatter];
-                                if (effectivepriority == null) {
-                                    badnames2.add(namestrings[thisyear][squatter]);
-                                } else {
-                                    oldsum = oldsum.add(effectivepriority);
-                                    oldamt++;
-                                    newsum = newsum.add(individualpriorities[thisyear][squatter]);
-                                    newamt++;
-                                }
-                            }
-                            if (!badnames2.isEmpty()) {
-                                Collections.sort(badnames2);
-                                String s = badnames2.toString();
-                                warning += "Unable to determine effective priority (" + s.substring(1, s.length() - 1) + "). ";
-                            } else {
-                                BigFraction pold = oldsum.divide(new BigFraction(oldamt));
-                                BigFraction pnew = newsum.divide(new BigFraction(newamt));
-                                if (pold.compareTo(pnew) < 0) {
-                                    warning += "Illegal squat (" + pold + " < " + pnew + "). ";
-                                }
+                            BigFraction pold = oldsum.divide(new BigFraction(oldamt));
+                            BigFraction pnew = newsum.divide(new BigFraction(newamt));
+                            if (pold.compareTo(pnew) < 0) {
+                                warning += "Illegal squat (" + pold + " < " + pnew + "). ";
                             }
                         }
                     }
