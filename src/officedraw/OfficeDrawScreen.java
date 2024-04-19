@@ -612,34 +612,13 @@ public class OfficeDrawScreen implements mgsa.Screen {
             }
         }
         Person[] sorted = Sorting.blockSort(people[thisyear], year);
-        Set<String> invalidsubset = new HashSet<>();
         Map<String, Integer> officecache = new HashMap<>();
-        Map<String, Integer> blockoffices = new HashMap<>();
-        List<String> blocknames = new ArrayList<>();
-        String currentblock = null;
         for (int i = 0; i < numpeople[thisyear]; i++) {
             Person person = sorted[i];
-            String name = person.buttons[0].getText();
-            String block = Sorting.block(person);
-            if (!block.equals(currentblock)) {
-                if (currentblock != null) {
-                    if (invalidsubset(officecache, blockoffices)) {
-                        invalidsubset.addAll(blocknames);
-                    }
-                    blockoffices.clear();
-                    blocknames.clear();
-                }
-                currentblock = block;
-            }
             String office = person.buttons[5].getText();
             if (!office.isEmpty()) {
                 officecache.put(office, officecache.getOrDefault(office, 0) + 1);
-                blockoffices.put(office, blockoffices.getOrDefault(office, 0) + 1);
-                blocknames.add(name);
             }
-        }
-        if (invalidsubset(officecache, blockoffices)) {
-            invalidsubset.addAll(blocknames);
         }
         for (int person = 0; person < numpeople[thisyear]; person++) {
             String warning = "";
@@ -697,8 +676,6 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 }
                 if (blocking[thisyear][person] && blockcount > 0 && blockcount < blocktotal) {
                     warning += "Incomplete pick. ";
-                } else if (invalidsubset.contains(namestring)) {
-                    warning += "Illegal office set. ";
                 }
             }
             if (squatting[thisyear][person]) {
@@ -767,20 +744,5 @@ public class OfficeDrawScreen implements mgsa.Screen {
             }
             people[thisyear][person].warning.setText(warning);
         }
-    }
-
-    private static boolean invalidsubset(Map<String, Integer> officecache, Map<String, Integer> blockoffices) {
-        int totalspace = 0;
-        for (String office : blockoffices.keySet()) {
-            totalspace += Offices.offices.get(office) - officecache.get(office);
-        }
-        for (String office : blockoffices.keySet()) {
-            int officepop = blockoffices.get(office);
-            int officespace = Offices.offices.get(office) - officecache.get(office);
-            if (officepop <= totalspace - officespace) {
-                return true;
-            }
-        }
-        return false;
     }
 }
