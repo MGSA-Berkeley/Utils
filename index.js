@@ -69,14 +69,14 @@ function setupDrawOrder() {
 		div.className = "block";
 		div.dataset.done = block.done ? 1 : 0;
 		div.dataset.searchable = block.people.join(", ").toLowerCase();
-		const time = block.time
+		const time = block.time == -1 ? "" : (block.time
 			? new Date(block.time).toLocaleTimeString([], {
 					hour: "numeric",
 					minute: "numeric",
 			  })
-			: "(squat)";
+			: "(squat)");
 		div.innerHTML = `
-            <div>${time} (${block.priority})</div>
+            <div>${time} (priority ${block.priority})</div>
             ${block.people.map((person) => `<div>${person}</div>`).join("")}
         `;
 		drawOrder.lastElementChild.append(div);
