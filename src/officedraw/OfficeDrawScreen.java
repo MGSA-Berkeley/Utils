@@ -297,7 +297,10 @@ public class OfficeDrawScreen implements mgsa.Screen {
             System.exit(0);
         }
         if (keyset.contains(KeyEvent.VK_CONTROL) && key == KeyEvent.VK_S) {
+            update();
+            normalizeBlocks();
             SaveData.save(year, data, severe);
+            update();
             return;
         }
         if (key == KeyEvent.VK_UP) {
@@ -726,6 +729,34 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 warning += "Overfull office. ";
             }
             people[thisyear][person].warning.setText(warning);
+        }
+    }
+
+    private void normalizeBlocks() {
+        if (severe) {
+            return;
+        }
+        for (int year : data.keySet()) {
+            Person[] people = data.get(year);
+            Map<String, List<Person>> blocks = new HashMap<>();
+            for (Person person : people) {
+                String block = person.buttons[4].getText();
+                if (block.startsWith("Block")) {
+                    if (!blocks.containsKey(block)) {
+                        blocks.put(block, new ArrayList<>());
+                    }
+                    blocks.get(block).add(person);
+                }
+            }
+            for (String blockname : blocks.keySet()) {
+                Collections.sort(blocks.get(blockname), Sorting::nameCompare);
+            }
+            for (Person person : people) {
+                String block = person.buttons[4].getText();
+                if (block.startsWith("Block")) {
+                    person.buttons[4].setText("Block " + blocks.get(block).get(0).buttons[0].getText());
+                }
+            }
         }
     }
 }
