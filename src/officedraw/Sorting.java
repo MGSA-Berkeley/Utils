@@ -162,8 +162,11 @@ public class Sorting {
             return sp.equals("Squat") ? -1 : 1;
         }
         int comparison = fractions.get(tp).compareTo(fractions.get(tq));
+        if (comparison != 0) {
+            return comparison;
+        }
         // This tiebreak is exploitable, but last-minute changes won't scramble the pick order
-        return comparison == 0 ? Integer.compare((tp + year).hashCode(), (tq + year).hashCode()) : comparison;
+        return Integer.compare((tp + year).hashCode(), (tq + year).hashCode());
     }
 
     public static int officeCompare(Person p, Person q) {
