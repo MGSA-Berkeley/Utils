@@ -81,29 +81,18 @@ public class SaveData {
         for (int i = 0; i < len; i++) {
             priorities.add(blocksums.get(i).divide(new BigFraction(blocks.get(i).size())));
         }
-//        if (year == 2022) {
-//            long base = 1651258800000L;
-//            long delta = 900000L;
-//            int numslots = 12;
-//            int pos = 0;
-//            for (int i = 0; i < len; i++) {
-//                if (times.get(i) == -1) {
-//                    times.set(i, base + pos * numslots / amt * delta);
-//                    pos++;
-//                }
-//            }
-//        } else if (year == 2023) {
-//            long base = 1682708400000L;
-//            long delta = 900000L;
-//            int numslots = 12;
-//            int pos = 0;
-//            for (int i = 0; i < len; i++) {
-//                if (times.get(i) == -1) {
-//                    times.set(i, base + pos * numslots / amt * delta);
-//                    pos++;
-//                }
-//            }
-//        }
+        if (year == 2024) {
+            long base = 1714158000000L;
+            long delta = 900000L;
+            int numslots = 12;
+            int pos = 0;
+            for (int i = 0; i < len; i++) {
+                if (times.get(i) == -1) {
+                    times.set(i, base + pos * numslots / amt * delta);
+                    pos++;
+                }
+            }
+        }
         try {
             images(year, officeToPerson);
             saveHtml(year, len, blocks, priorities, times, personToOffice, officeToPerson);
