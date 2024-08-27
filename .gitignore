@@ -3,3 +3,4 @@ build.xml
 build/**
 nbproject/**
 /dist/
+/build/
