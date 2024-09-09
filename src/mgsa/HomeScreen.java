@@ -14,6 +14,7 @@ public class HomeScreen implements Screen {
 
     private final Button title = new Button("MGSA Utils", null);
     private final Button officedraw = new Button("Office Draw", null);
+    private final Button officedraw2 = new Button("Office Draw 2.0", null);
     private final Button election = new Button("Election", null);
     private final Button exit = new Button("Exit", null);
 
@@ -41,6 +42,7 @@ public class HomeScreen implements Screen {
         officedraw.setRectCenter(g, new Point(w / 2, h / 2), padding);
         election.setRectCenter(g, new Point(w / 2, 5 * h / 8), padding);
         exit.setRectCenter(g, new Point(w / 2, 3 * h / 4), padding);
+        officedraw2.setRectCenter(g, new Point(w / 2, 7 * h / 8), padding);
         // *** PAINT THE CANVAS ***
         Point mouse = canvas.getMousePosition();
         g.setColor(background);
@@ -51,6 +53,7 @@ public class HomeScreen implements Screen {
         officedraw.drawCenter(g, mouseover, foreground, 0, mouse, click);
         election.drawCenter(g, mouseover, foreground, 0, mouse, click);
         exit.drawCenter(g, mouseover, foreground, 0, mouse, click);
+        officedraw2.drawCenter(g, mouseover, foreground, 0, mouse, click);
     }
 
     @Override
@@ -69,6 +72,9 @@ public class HomeScreen implements Screen {
         }
         if (exit.contains(p) && exit.contains(click)) {
             System.exit(0);
+        }
+        if (officedraw2.contains(p) && officedraw2.contains(click)) {
+            canvas.setScreen(new officedraw.OfficeDrawScreen2(canvas));
         }
         click = null;
     }
