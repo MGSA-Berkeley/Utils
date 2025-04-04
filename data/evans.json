@@ -1,0 +1,519 @@
+{
+    "floors": [
+        {
+            "number": "7",
+            "map": "evans7.png"
+        },
+        {
+            "number": "8",
+            "map": "evans8.png"
+        },
+        {
+            "number": "9",
+            "map": "evans9.png"
+        },
+        {
+            "number": "10",
+            "map": "evans10.png"
+        }
+    ],
+    "offices": [
+        {
+            "floor": "7",
+            "number": "710",
+            "capacity": 2,
+            "xpoints": [680, 680, 632, 632],
+            "ypoints": [558, 489, 489, 558]
+        },
+        {
+            "floor": "7",
+            "number": "716",
+            "capacity": 2,
+            "xpoints": [475, 475, 427, 427],
+            "ypoints": [558, 489, 489, 558]
+        },
+        {
+            "floor": "7",
+            "number": "737",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [465, 417, 417, 465]
+        },
+        {
+            "floor": "7",
+            "number": "739",
+            "capacity": 4,
+            "xpoints": [168, 168, 69, 69],
+            "ypoints": [414, 366, 366, 414]
+        },
+        {
+            "floor": "7",
+            "number": "741",
+            "capacity": 4,
+            "xpoints": [168, 168, 69, 69],
+            "ypoints": [363, 315, 315, 363]
+        },
+        {
+            "floor": "7",
+            "number": "743",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [312, 264, 264, 312]
+        },
+        {
+            "floor": "7",
+            "number": "745",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [261, 212, 212, 261]
+        },
+        {
+            "floor": "7",
+            "number": "747",
+            "capacity": 4,
+            "xpoints": [168, 168, 69, 69],
+            "ypoints": [209, 161, 161, 209]
+        },
+        {
+            "floor": "7",
+            "number": "775",
+            "capacity": 3,
+            "xpoints": [782, 782, 734, 734],
+            "ypoints": [138, 59, 59, 138]
+        },
+        {
+            "floor": "7",
+            "number": "787",
+            "capacity": 4,
+            "xpoints": [987, 987, 888, 888],
+            "ypoints": [209, 161, 161, 209]
+        },
+        {
+            "floor": "7",
+            "number": "789",
+            "capacity": 3,
+            "xpoints": [967, 967, 888, 888],
+            "ypoints": [261, 212, 212, 261]
+        },
+        {
+            "floor": "8",
+            "number": "810",
+            "capacity": 2,
+            "xpoints": [680, 680, 632, 632],
+            "ypoints": [558, 489, 489, 558]
+        },
+        {
+            "floor": "8",
+            "number": "812",
+            "capacity": 2,
+            "xpoints": [629, 629, 581, 581],
+            "ypoints": [558, 489, 489, 558]
+        },
+        {
+            "floor": "8",
+            "number": "814",
+            "capacity": 2,
+            "xpoints": [578, 578, 529, 529],
+            "ypoints": [558, 489, 489, 558]
+        },
+        {
+            "floor": "8",
+            "number": "816",
+            "capacity": 2,
+            "xpoints": [526, 526, 478, 478],
+            "ypoints": [558, 489, 489, 558]
+        },
+        {
+            "floor": "8",
+            "number": "818",
+            "capacity": 2,
+            "xpoints": [475, 475, 427, 427],
+            "ypoints": [558, 489, 489, 558]
+        },
+        {
+            "floor": "8",
+            "number": "820",
+            "capacity": 2,
+            "xpoints": [424, 424, 376, 376],
+            "ypoints": [558, 489, 489, 558]
+        },
+        {
+            "floor": "8",
+            "number": "822",
+            "capacity": 2,
+            "xpoints": [373, 373, 325, 325],
+            "ypoints": [558, 489, 489, 558]
+        },
+        {
+            "floor": "8",
+            "number": "824",
+            "capacity": 3,
+            "xpoints": [322, 322, 273, 273],
+            "ypoints": [558, 458, 458, 558]
+        },
+        {
+            "floor": "8",
+            "number": "826",
+            "capacity": 3,
+            "xpoints": [373, 373, 304, 304, 325, 325],
+            "ypoints": [486, 417, 417, 455, 455, 486]
+        },
+        {
+            "floor": "8",
+            "number": "828",
+            "capacity": 2,
+            "xpoints": [424, 424, 376, 376],
+            "ypoints": [486, 417, 417, 486]
+        },
+        {
+            "floor": "8",
+            "number": "830",
+            "capacity": 2,
+            "xpoints": [475, 475, 427, 427],
+            "ypoints": [486, 417, 417, 486]
+        },
+        {
+            "floor": "8",
+            "number": "832",
+            "capacity": 2,
+            "xpoints": [526, 526, 478, 478],
+            "ypoints": [486, 417, 417, 486]
+        },
+        {
+            "floor": "8",
+            "number": "834",
+            "capacity": 2,
+            "xpoints": [578, 578, 529, 529],
+            "ypoints": [486, 417, 417, 486]
+        },
+        {
+            "floor": "8",
+            "number": "835",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [517, 468, 468, 517]
+        },
+        {
+            "floor": "8",
+            "number": "836",
+            "capacity": 2,
+            "xpoints": [629, 629, 581, 581],
+            "ypoints": [486, 417, 417, 486]
+        },
+        {
+            "floor": "8",
+            "number": "840",
+            "capacity": 4,
+            "xpoints": [680, 680, 632, 632],
+            "ypoints": [383, 284, 284, 383]
+        },
+        {
+            "floor": "8",
+            "number": "842",
+            "capacity": 4,
+            "xpoints": [629, 629, 581, 581],
+            "ypoints": [383, 284, 284, 383]
+        },
+        {
+            "floor": "8",
+            "number": "844",
+            "capacity": 4,
+            "xpoints": [578, 578, 529, 529],
+            "ypoints": [383, 284, 284, 383]
+        },
+        {
+            "floor": "8",
+            "number": "845",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [261, 212, 212, 261]
+        },
+        {
+            "floor": "8",
+            "number": "848",
+            "capacity": 4,
+            "xpoints": [475, 475, 427, 427],
+            "ypoints": [383, 284, 284, 383]
+        },
+        {
+            "floor": "8",
+            "number": "850",
+            "capacity": 4,
+            "xpoints": [424, 424, 376, 376],
+            "ypoints": [383, 284, 284, 383]
+        },
+        {
+            "floor": "8",
+            "number": "852",
+            "capacity": 4,
+            "xpoints": [373, 373, 325, 325],
+            "ypoints": [383, 284, 284, 383]
+        },
+        {
+            "floor": "8",
+            "number": "853",
+            "capacity": 4,
+            "xpoints": [219, 219, 171, 171],
+            "ypoints": [138, 38, 38, 138]
+        },
+        {
+            "floor": "8",
+            "number": "854",
+            "capacity": 4,
+            "xpoints": [322, 322, 263, 263],
+            "ypoints": [363, 284, 284, 363]
+        },
+        {
+            "floor": "8",
+            "number": "869",
+            "capacity": 4,
+            "xpoints": [629, 629, 581, 581],
+            "ypoints": [138, 38, 38, 138]
+        },
+        {
+            "floor": "9",
+            "number": "935",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [517, 468, 468, 517]
+        },
+        {
+            "floor": "9",
+            "number": "937",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [465, 417, 417, 465]
+        },
+        {
+            "floor": "9",
+            "number": "941",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [312, 264, 264, 312]
+        },
+        {
+            "floor": "10",
+            "number": "1004",
+            "capacity": 2,
+            "xpoints": [680, 680, 621, 621],
+            "ypoints": [322, 274, 274, 322]
+        },
+        {
+            "floor": "10",
+            "number": "1006",
+            "capacity": 2,
+            "xpoints": [680, 680, 621, 621],
+            "ypoints": [373, 325, 325, 373]
+        },
+        {
+            "floor": "10",
+            "number": "1008",
+            "capacity": 2,
+            "xpoints": [680, 680, 621, 621],
+            "ypoints": [424, 376, 376, 424]
+        },
+        {
+            "floor": "10",
+            "number": "1010",
+            "capacity": 2,
+            "xpoints": [680, 680, 621, 621],
+            "ypoints": [486, 427, 427, 486]
+        },
+        {
+            "floor": "10",
+            "number": "1020",
+            "capacity": 2,
+            "xpoints": [363, 363, 304, 304],
+            "ypoints": [486, 427, 427, 486]
+        },
+        {
+            "floor": "10",
+            "number": "1037",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [517, 468, 468, 517]
+        },
+        {
+            "floor": "10",
+            "number": "1039",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [465, 417, 417, 465]
+        },
+        {
+            "floor": "10",
+            "number": "1040",
+            "capacity": 2,
+            "xpoints": [363, 363, 304, 304],
+            "ypoints": [424, 376, 376, 424]
+        },
+        {
+            "floor": "10",
+            "number": "1041",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [414, 366, 366, 414]
+        },
+        {
+            "floor": "10",
+            "number": "1042",
+            "capacity": 3,
+            "xpoints": [363, 363, 284, 284],
+            "ypoints": [373, 325, 325, 373]
+        },
+        {
+            "floor": "10",
+            "number": "1043",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [363, 315, 315, 363]
+        },
+        {
+            "floor": "10",
+            "number": "1044",
+            "capacity": 3,
+            "xpoints": [363, 363, 263, 263],
+            "ypoints": [322, 274, 274, 322]
+        },
+        {
+            "floor": "10",
+            "number": "1045",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [312, 264, 264, 312]
+        },
+        {
+            "floor": "10",
+            "number": "1047",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [261, 212, 212, 261]
+        },
+        {
+            "floor": "10",
+            "number": "1049",
+            "capacity": 3,
+            "xpoints": [168, 168, 89, 89],
+            "ypoints": [209, 161, 161, 209]
+        },
+        {
+            "floor": "10",
+            "number": "1056",
+            "capacity": 2,
+            "xpoints": [363, 363, 284, 284],
+            "ypoints": [220, 171, 171, 220]
+        },
+        {
+            "floor": "10",
+            "number": "1057",
+            "capacity": 3,
+            "xpoints": [383, 383, 314, 314],
+            "ypoints": [138, 90, 90, 138]
+        },
+        {
+            "floor": "10",
+            "number": "1058",
+            "capacity": 3,
+            "xpoints": [363, 363, 263, 263],
+            "ypoints": [271, 223, 223, 271]
+        },
+        {
+            "floor": "10",
+            "number": "1060",
+            "capacity": 3,
+            "xpoints": [414, 414, 366, 366],
+            "ypoints": [230, 171, 171, 230]
+        },
+        {
+            "floor": "10",
+            "number": "1061",
+            "capacity": 3,
+            "xpoints": [455, 455, 386, 386],
+            "ypoints": [138, 90, 90, 138]
+        },
+        {
+            "floor": "10",
+            "number": "1062",
+            "capacity": 3,
+            "xpoints": [465, 465, 417, 417],
+            "ypoints": [230, 171, 171, 230]
+        },
+        {
+            "floor": "10",
+            "number": "1064",
+            "capacity": 3,
+            "xpoints": [516, 516, 468, 468],
+            "ypoints": [230, 171, 171, 230]
+        },
+        {
+            "floor": "10",
+            "number": "1065",
+            "capacity": 3,
+            "xpoints": [598, 598, 529, 529],
+            "ypoints": [138, 90, 90, 138]
+        },
+        {
+            "floor": "10",
+            "number": "1066",
+            "capacity": 3,
+            "xpoints": [567, 567, 519, 519],
+            "ypoints": [230, 171, 171, 230]
+        },
+        {
+            "floor": "10",
+            "number": "1068",
+            "capacity": 3,
+            "xpoints": [618, 618, 570, 570],
+            "ypoints": [230, 171, 171, 230]
+        },
+        {
+            "floor": "10",
+            "number": "1070",
+            "capacity": 2,
+            "xpoints": [680, 680, 621, 621],
+            "ypoints": [220, 171, 171, 220]
+        },
+        {
+            "floor": "10",
+            "number": "1075",
+            "capacity": 3,
+            "xpoints": [885, 885, 816, 816],
+            "ypoints": [138, 90, 90, 138]
+        },
+        {
+            "floor": "10",
+            "number": "1085",
+            "capacity": 3,
+            "xpoints": [967, 967, 888, 888],
+            "ypoints": [261, 212, 212, 261]
+        },
+        {
+            "floor": "10",
+            "number": "1087",
+            "capacity": 3,
+            "xpoints": [967, 967, 888, 888],
+            "ypoints": [312, 264, 264, 312]
+        },
+        {
+            "floor": "10",
+            "number": "1093",
+            "capacity": 3,
+            "xpoints": [967, 967, 888, 888],
+            "ypoints": [465, 417, 417, 465]
+        },
+        {
+            "floor": "10",
+            "number": "1095",
+            "capacity": 3,
+            "xpoints": [967, 967, 888, 888],
+            "ypoints": [517, 468, 468, 517]
+        },
+        {
+            "floor": "10",
+            "number": "1097",
+            "capacity": 3,
+            "xpoints": [967, 967, 888, 888],
+            "ypoints": [568, 520, 520, 568]
+        }
+    ]
+}
