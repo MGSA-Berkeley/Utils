@@ -1,0 +1,46 @@
+{
+    "data": [
+        {
+            "year": "2018",
+            "floorplan": "evans.json",
+            "activeoffices": "activeoffices2023.json",
+            "people": "people2018.json"
+        },
+        {
+            "year": "2019",
+            "floorplan": "evans.json",
+            "activeoffices": "activeoffices2023.json",
+            "people": "people2019.json"
+        },
+        {
+            "year": "2020",
+            "floorplan": "evans.json",
+            "activeoffices": "activeoffices2023.json",
+            "people": "people2020.json"
+        },
+        {
+            "year": "2021",
+            "floorplan": "evans.json",
+            "activeoffices": "activeoffices2023.json",
+            "people": "people2021.json"
+        },
+        {
+            "year": "2022",
+            "floorplan": "evans.json",
+            "activeoffices": "activeoffices2023.json",
+            "people": "people2022.json"
+        },
+        {
+            "year": "2023",
+            "floorplan": "evans.json",
+            "activeoffices": "activeoffices2023.json",
+            "people": "people2018.json"
+        },
+        {
+            "year": "2024",
+            "floorplan": "evans.json",
+            "activeoffices": "activeoffices2024.json",
+            "people": "people2024.json"
+        }
+    ]
+}

@@ -44,13 +44,13 @@ public class MGSA {
     }
 
     public static void main(String[] args) throws InterruptedException, IOException {
+        officedraw.Offices.init();
         // temp code to generate evans json file
         Map<String, BufferedImage> floorplans = new HashMap<>();
         floorplans.put("7", ImageIO.read(new File("data\\evans7.png")));
         floorplans.put("8", ImageIO.read(new File("data\\evans8.png")));
         floorplans.put("9", ImageIO.read(new File("data\\evans9.png")));
         floorplans.put("10", ImageIO.read(new File("data\\evans10.png")));
-        officedraw.Offices.init();
         List<String> offices = new ArrayList<>();
         offices.addAll(officedraw.Offices.offices.keySet());
         Collections.sort(offices);
@@ -87,6 +87,7 @@ public class MGSA {
         for (String s : offices) {
             System.out.println("        \""+s+"\",");
         }
+        // end temp code
         MainJFrame frame = new MainJFrame();
         while (true) {
             frame.repaint();
