@@ -103,6 +103,31 @@ public class SaveData {
     }
 
     private static void saveData(int year, Map<Integer, Person[]> data) {
+        if (true) {
+            List<String> lines = new ArrayList<>();
+            lines.add("{");
+            lines.add("    \"people\": [");
+            for (Person p : Sorting.nameSort(data.get(year))) {
+                lines.add("        {");
+                lines.add("            \"name\": \"" + p.buttons[0].getText() + "\",");
+                lines.add("            \"year\": \"" + p.buttons[1].getText() + "\",");
+                lines.add("            \"priority\": \"" + p.buttons[2].getText() + "\",");
+                lines.add("            \"adjustment\": \"" + p.buttons[3].getText() + "\",");
+                lines.add("            \"block\": \"" + p.buttons[4].getText() + "\",");
+                lines.add("            \"office\": \"" + p.buttons[5].getText() + "\"");
+                lines.add("        },");
+            }
+            lines.set(lines.size() - 1, "        }");
+            lines.add("    ]");
+            lines.add("}");
+            // todo: harvest file name from data.json
+            Path file = Paths.get("data" + File.separator + "people" + year + ".json");
+            try {
+                Files.write(file, lines);
+            } catch (IOException ex) {
+                System.out.println("Error: " + ex);
+            }
+        }
         List<String> lines = new ArrayList<>();
         for (Person p : Sorting.nameSort(data.get(year))) {
             lines.add(p.buttons[0].getText() + TAB + p.buttons[1].getText() + TAB + p.buttons[2].getText() + TAB + p.buttons[3].getText() + TAB + p.buttons[4].getText() + TAB + p.buttons[5].getText());

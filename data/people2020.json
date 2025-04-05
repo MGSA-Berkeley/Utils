@@ -1,0 +1,1460 @@
+{
+    "people": [
+        {
+            "name": "Aaron Brookner",
+            "year": "6",
+            "priority": "0",
+            "adjustment": "-1",
+            "block": "Float",
+            "office": "1058"
+        },
+        {
+            "name": "Adam Dhillon",
+            "year": "2",
+            "priority": "0",
+            "adjustment": "-4",
+            "block": "Block Adam Dhillon",
+            "office": "1043"
+        },
+        {
+            "name": "Adele Padgett",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Adele Padgett",
+            "office": "737"
+        },
+        {
+            "name": "Ahmad Abassi",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Ahmee Marshall-Christensen",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Ahmee Marshall-Christensen",
+            "office": "1042"
+        },
+        {
+            "name": "Alois Cerbu",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Alois Cerbu",
+            "office": "853"
+        },
+        {
+            "name": "Andrew Gitlin",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Andrew Gitlin",
+            "office": "1068"
+        },
+        {
+            "name": "Andrew Scharf",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Andrew Shi",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Andrew Shi",
+            "office": "1095"
+        },
+        {
+            "name": "Angxiu Ni",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Float",
+            "office": "787"
+        },
+        {
+            "name": "Anningzhe Gao",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "743"
+        },
+        {
+            "name": "Anthony Villafranca",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Anthony Villafranca",
+            "office": "1044"
+        },
+        {
+            "name": "Anya Michaelsen",
+            "year": "2",
+            "priority": "-1",
+            "adjustment": "-5",
+            "block": "Block Anya Michaelsen",
+            "office": "1040"
+        },
+        {
+            "name": "Aubrey Gross",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Ben Castle",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "741"
+        },
+        {
+            "name": "Benjamin Pineau",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Benjamin Pineau",
+            "office": "1060"
+        },
+        {
+            "name": "Benjamin Siskind",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "937"
+        },
+        {
+            "name": "Bo Li",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "743"
+        },
+        {
+            "name": "Boyan Xu",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Alois Cerbu",
+            "office": "853"
+        },
+        {
+            "name": "Calvin McPhail-Snyder",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "935"
+        },
+        {
+            "name": "Carlos Esparza",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Catherine Lee",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Charlie Cifarelli",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1061"
+        },
+        {
+            "name": "Chi Cheuk Tsang",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Benjamin Pineau",
+            "office": "1004"
+        },
+        {
+            "name": "Christopher Kuo",
+            "year": "5",
+            "priority": "-1/3",
+            "adjustment": "-4/3",
+            "block": "Block Christopher Kuo",
+            "office": "1097"
+        },
+        {
+            "name": "Claire Mirocha",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Connor Halleck-Dube",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Dan Daniel Erdmann-Pham",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1039"
+        },
+        {
+            "name": "Daniel Chupin",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Daniel Chupin",
+            "office": "835"
+        },
+        {
+            "name": "David Casey",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "937"
+        },
+        {
+            "name": "David Gonzalez",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block David Gonzalez",
+            "office": "1056"
+        },
+        {
+            "name": "David Keating",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "935"
+        },
+        {
+            "name": "Diego Bejarano Rayo",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Diego Bejarano Rayo",
+            "office": "869"
+        },
+        {
+            "name": "Dong An",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1087"
+        },
+        {
+            "name": "DongGyu Lim",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1020"
+        },
+        {
+            "name": "Dongxiao Yu",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1085"
+        },
+        {
+            "name": "Dun Tang",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Dun Tang",
+            "office": "787"
+        },
+        {
+            "name": "Edric Wang",
+            "year": "2",
+            "priority": "3",
+            "adjustment": "-1",
+            "block": "Block Edric Wang",
+            "office": "1006"
+        },
+        {
+            "name": "Eduardo Oregon Reyes",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Andrew Gitlin",
+            "office": "1068"
+        },
+        {
+            "name": "Emily Bain",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Anthony Villafranca",
+            "office": "1044"
+        },
+        {
+            "name": "Enoch Yiu",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Enoch Yiu",
+            "office": "842"
+        },
+        {
+            "name": "Eric Jankowski",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Erik Herrera",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Esme Bajo",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Float",
+            "office": "1041"
+        },
+        {
+            "name": "Ethan Dlugie",
+            "year": "3",
+            "priority": "2",
+            "adjustment": "-1",
+            "block": "Block Alois Cerbu",
+            "office": "853"
+        },
+        {
+            "name": "Eugene Rabinovich",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1057"
+        },
+        {
+            "name": "Fei Yu Chen",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Enoch Yiu",
+            "office": "842"
+        },
+        {
+            "name": "Foster Tom",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1047"
+        },
+        {
+            "name": "Frederick Huang",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Anthony Villafranca",
+            "office": "1044"
+        },
+        {
+            "name": "German Stefanich",
+            "year": "5",
+            "priority": "-1/3",
+            "adjustment": "-4/3",
+            "block": "Block Christopher Kuo",
+            "office": "1097"
+        },
+        {
+            "name": "Guillaume Massas",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Diego Bejarano Rayo",
+            "office": "869"
+        },
+        {
+            "name": "Haixiang Zhang",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Haixiang Zhang",
+            "office": "844"
+        },
+        {
+            "name": "Haoren Xiong",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Haoren Xiong",
+            "office": "745"
+        },
+        {
+            "name": "Haotian Gu",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1070"
+        },
+        {
+            "name": "Holly Mandel",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Float",
+            "office": "1065"
+        },
+        {
+            "name": "Hongyi Liu",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Hongyi Liu",
+            "office": "1062"
+        },
+        {
+            "name": "Ian Francis",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "845"
+        },
+        {
+            "name": "Ian Gleason",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Block Ian Gleason",
+            "office": "1037"
+        },
+        {
+            "name": "Irit Huq-Kuruvilla",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Daniel Chupin",
+            "office": "835"
+        },
+        {
+            "name": "Isabelle Shankar",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "739"
+        },
+        {
+            "name": "Izak Oltman",
+            "year": "2",
+            "priority": "0",
+            "adjustment": "-4",
+            "block": "Block Adam Dhillon",
+            "office": "1043"
+        },
+        {
+            "name": "Jacob Elafandi",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Ahmee Marshall-Christensen",
+            "office": "1042"
+        },
+        {
+            "name": "Jacopo Di Bonito",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Jacopo Di Bonito",
+            "office": "747"
+        },
+        {
+            "name": "James Dix",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block James Dix",
+            "office": "1093"
+        },
+        {
+            "name": "James Hagborg",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1085"
+        },
+        {
+            "name": "James Rowan",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block James Dix",
+            "office": "1093"
+        },
+        {
+            "name": "Jeffmin Lin",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Float",
+            "office": "789"
+        },
+        {
+            "name": "Jeffrey Kuan",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Benjamin Pineau",
+            "office": "1004"
+        },
+        {
+            "name": "Jeremy Meza",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1047"
+        },
+        {
+            "name": "Jeremy Taylor",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Jess Banks",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1065"
+        },
+        {
+            "name": "Jiahao Yao",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Edric Wang",
+            "office": "1006"
+        },
+        {
+            "name": "Jiaming Wang",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Hongyi Liu",
+            "office": "1062"
+        },
+        {
+            "name": "Jian Wang",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "789"
+        },
+        {
+            "name": "Jiasu Wang",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Haixiang Zhang",
+            "office": "844"
+        },
+        {
+            "name": "Jiazhen Tan",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Jiefu Zhang",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "789"
+        },
+        {
+            "name": "John Nolan",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Jordan Brown",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Jorge Garza Vargas",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Float",
+            "office": "775"
+        },
+        {
+            "name": "Joseph Stahl",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Block Joseph Stahl",
+            "office": "1075"
+        },
+        {
+            "name": "Julian Chaidez",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "935"
+        },
+        {
+            "name": "Junsheng Zhang",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Float",
+            "office": "745"
+        },
+        {
+            "name": "Kabir Kapoor",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Katrina Biele",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "739"
+        },
+        {
+            "name": "Kentaro Yamamoto",
+            "year": "7",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Kentaro Yamamoto",
+            "office": "1049"
+        },
+        {
+            "name": "Kiran Luecke",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Float",
+            "office": "1057"
+        },
+        {
+            "name": "Kristina Nelson",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Adele Padgett",
+            "office": "737"
+        },
+        {
+            "name": "Kubrat Danailov",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "741"
+        },
+        {
+            "name": "Kyle Miller",
+            "year": "7",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Kyle Miller",
+            "office": "1045"
+        },
+        {
+            "name": "Larsen Linov",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Larsen Linov",
+            "office": "941"
+        },
+        {
+            "name": "Lauren Heller",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Larsen Linov",
+            "office": "941"
+        },
+        {
+            "name": "Leon Zhang",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Block Leon Zhang",
+            "office": "1061"
+        },
+        {
+            "name": "Liyu Xia",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "743"
+        },
+        {
+            "name": "Luke Corcos",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1066"
+        },
+        {
+            "name": "Luya Wang",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "845"
+        },
+        {
+            "name": "Maddie Weinstein",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1008"
+        },
+        {
+            "name": "Mariana Vicaria",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Block Jacopo Di Bonito",
+            "office": "747"
+        },
+        {
+            "name": "Mariel Supina",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "739"
+        },
+        {
+            "name": "Mario Sanchez",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "739"
+        },
+        {
+            "name": "Mark Macerato",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Enoch Yiu",
+            "office": "842"
+        },
+        {
+            "name": "Marvin Castellon",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Marvin Castellon",
+            "office": "1058"
+        },
+        {
+            "name": "Matthew Duvalier",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "741"
+        },
+        {
+            "name": "Max Hlavacek",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Adele Padgett",
+            "office": "737"
+        },
+        {
+            "name": "Max Wimberley",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1047"
+        },
+        {
+            "name": "Max Zubkov",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Andrew Gitlin",
+            "office": "1068"
+        },
+        {
+            "name": "Melissa Sherman-Bennett",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Leon Zhang",
+            "office": "1061"
+        },
+        {
+            "name": "Meredith Shea",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Block Kyle Miller",
+            "office": "1045"
+        },
+        {
+            "name": "Michael Christianson",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Block Joseph Stahl",
+            "office": "1075"
+        },
+        {
+            "name": "Michael Franco",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1066"
+        },
+        {
+            "name": "Michael Heinz",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Michael Seaman",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Michael Seaman",
+            "office": "852"
+        },
+        {
+            "name": "Michael Smith",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1010"
+        },
+        {
+            "name": "Michael Yeh",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Float",
+            "office": "1057"
+        },
+        {
+            "name": "Milind Hegde",
+            "year": "5",
+            "priority": "0",
+            "adjustment": "-1",
+            "block": "Squat",
+            "office": "1039"
+        },
+        {
+            "name": "Mingyang Li",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Mitchell Taylor",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Benjamin Pineau",
+            "office": "1060"
+        },
+        {
+            "name": "Mostafa Adnane",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Diego Bejarano Rayo",
+            "office": "869"
+        },
+        {
+            "name": "Nic Brody",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Block Kyle Miller",
+            "office": "1045"
+        },
+        {
+            "name": "Nicholas Bhattacharya",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Block Andrew Shi",
+            "office": "1095"
+        },
+        {
+            "name": "Nima Moini",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1010"
+        },
+        {
+            "name": "Oliver Edtmair",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Michael Seaman",
+            "office": "852"
+        },
+        {
+            "name": "Onyebuchi Ekenta",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Float",
+            "office": "1049"
+        },
+        {
+            "name": "Ovidiu-Neculai Avadanei",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Michael Seaman",
+            "office": "852"
+        },
+        {
+            "name": "Patrick Lutz",
+            "year": "5",
+            "priority": "-1/3",
+            "adjustment": "-4/3",
+            "block": "Block Christopher Kuo",
+            "office": "1097"
+        },
+        {
+            "name": "Paula Burkhardt-Guim",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1065"
+        },
+        {
+            "name": "Pranav Trivedi",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Qinyi Zhu",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Raehyun Kim",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Haixiang Zhang",
+            "office": "844"
+        },
+        {
+            "name": "Raha Ahmadian",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Jacopo Di Bonito",
+            "office": "747"
+        },
+        {
+            "name": "Rahul Dalal",
+            "year": "6",
+            "priority": "0",
+            "adjustment": "-1",
+            "block": "Squat",
+            "office": "1041"
+        },
+        {
+            "name": "Ravi Fernando",
+            "year": "7",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Ian Gleason",
+            "office": "1037"
+        },
+        {
+            "name": "Rebecca Whitman",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Reid Dale",
+            "year": "7",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Kentaro Yamamoto",
+            "office": "1049"
+        },
+        {
+            "name": "Rikhav Shah",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block David Gonzalez",
+            "office": "1056"
+        },
+        {
+            "name": "Ritvik Ramkumar",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Block Joseph Stahl",
+            "office": "1075"
+        },
+        {
+            "name": "Rockford Sison",
+            "year": "7",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Float",
+            "office": "1008"
+        },
+        {
+            "name": "Ronan O'Gorman",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Rose Lopez",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Roy Zhao",
+            "year": "4",
+            "priority": "1",
+            "adjustment": "-1",
+            "block": "Block James Dix",
+            "office": "1093"
+        },
+        {
+            "name": "Sander Mack-Crane",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1041"
+        },
+        {
+            "name": "Satyaki Mukherjee",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1039"
+        },
+        {
+            "name": "Scott Mutchnik",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Sean Gonzales",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Shinu Cho",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Float",
+            "office": "775"
+        },
+        {
+            "name": "Shoshana Simons",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Tahsin Saffat",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Alois Cerbu",
+            "office": "853"
+        },
+        {
+            "name": "Theo McKenzie",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Larsen Linov",
+            "office": "941"
+        },
+        {
+            "name": "Theodore Coyne",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Float",
+            "office": "775"
+        },
+        {
+            "name": "Theodore Zhu",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1085"
+        },
+        {
+            "name": "Thomas Browning",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Ahmee Marshall-Christensen",
+            "office": "1042"
+        },
+        {
+            "name": "Tianrui Xu",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Tong Zhou",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Michael Seaman",
+            "office": "852"
+        },
+        {
+            "name": "Tristan Hull",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1087"
+        },
+        {
+            "name": "Weitong Wang",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Xianglong Ni",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Marvin Castellon",
+            "office": "1058"
+        },
+        {
+            "name": "Xiaohan Yan",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Jacopo Di Bonito",
+            "office": "747"
+        },
+        {
+            "name": "Xiaoyu Huang",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Xinyu Zhao",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1087"
+        },
+        {
+            "name": "Yanshuai Qin",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Float",
+            "office": "812"
+        },
+        {
+            "name": "Yelena Mandelshtam",
+            "year": "2",
+            "priority": "0",
+            "adjustment": "-4",
+            "block": "Block Adam Dhillon",
+            "office": "1043"
+        },
+        {
+            "name": "Yi Lai",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Float",
+            "office": "787"
+        },
+        {
+            "name": "Yifan Chen",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Yifeng Ding",
+            "year": "6",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "937"
+        },
+        {
+            "name": "Yiling You",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Squat",
+            "office": "1070"
+        },
+        {
+            "name": "Yixiang Luo",
+            "year": "2",
+            "priority": "4",
+            "adjustment": "",
+            "block": "Block Yixiang Luo",
+            "office": "1064"
+        },
+        {
+            "name": "Yixuan Li",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Haoren Xiong",
+            "office": "745"
+        },
+        {
+            "name": "Yonah Borns-Weil",
+            "year": "3",
+            "priority": "0",
+            "adjustment": "-3",
+            "block": "Squat",
+            "office": "845"
+        },
+        {
+            "name": "Yu Tong",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Andrew Shi",
+            "office": "1095"
+        },
+        {
+            "name": "Yuan Yao",
+            "year": "4",
+            "priority": "2",
+            "adjustment": "",
+            "block": "Block Daniel Chupin",
+            "office": "835"
+        },
+        {
+            "name": "Yuchen Mao",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Yulia Alexandr",
+            "year": "2",
+            "priority": "3",
+            "adjustment": "-1",
+            "block": "Block Anya Michaelsen",
+            "office": "1040"
+        },
+        {
+            "name": "Yulong Dong",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Float",
+            "office": "1062"
+        },
+        {
+            "name": "Zachary McNulty",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Zachary Stier",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Zhewei Yao",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Block Yixiang Luo",
+            "office": "1064"
+        },
+        {
+            "name": "Zhongkai Tao",
+            "year": "1",
+            "priority": "6",
+            "adjustment": "",
+            "block": "Float",
+            "office": ""
+        },
+        {
+            "name": "Zirui Zhou",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Float",
+            "office": "741"
+        },
+        {
+            "name": "Ziwen Zhao",
+            "year": "3",
+            "priority": "3",
+            "adjustment": "",
+            "block": "Block Dun Tang",
+            "office": "787"
+        },
+        {
+            "name": "Zixi Hu",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Block Yixiang Luo",
+            "office": "1064"
+        },
+        {
+            "name": "Zixin Jiang",
+            "year": "5",
+            "priority": "1",
+            "adjustment": "",
+            "block": "Block Ian Gleason",
+            "office": "1037"
+        },
+        {
+            "name": "",
+            "year": "",
+            "priority": "",
+            "adjustment": "",
+            "block": "",
+            "office": ""
+        }
+    ]
+}
