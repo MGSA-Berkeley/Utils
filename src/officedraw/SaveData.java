@@ -107,7 +107,9 @@ public class SaveData {
             List<String> lines = new ArrayList<>();
             lines.add("{");
             lines.add("    \"people\": [");
-            for (Person p : Sorting.nameSort(data.get(year))) {
+            Person[] people = Sorting.nameSort(data.get(year));
+            for (int i = 0; i < people.length - 1; i++) {
+                Person p = people[i];
                 lines.add("        {");
                 lines.add("            \"name\": \"" + p.buttons[0].getText() + "\",");
                 lines.add("            \"year\": \"" + p.buttons[1].getText() + "\",");
@@ -115,9 +117,8 @@ public class SaveData {
                 lines.add("            \"adjustment\": \"" + p.buttons[3].getText() + "\",");
                 lines.add("            \"block\": \"" + p.buttons[4].getText() + "\",");
                 lines.add("            \"office\": \"" + p.buttons[5].getText() + "\"");
-                lines.add("        },");
+                lines.add(i == people.length - 2 ? "        }" : "        },");
             }
-            lines.set(lines.size() - 1, "        }");
             lines.add("    ]");
             lines.add("}");
             // todo: harvest file name from data.json
