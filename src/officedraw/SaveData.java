@@ -119,7 +119,7 @@ public class SaveData {
             }
         }
         int index = 0;
-        int[] indices = new int[people.length];
+        Map<String,Integer> indices = new HashMap<>();
         List<List<String>> blocks = new ArrayList<>();
         List<BigFraction> blocksums = new ArrayList<>();
         List<String> block = new ArrayList<>();
@@ -147,8 +147,9 @@ public class SaveData {
                 len++;
             }
             blocksums.set(len - 1, blocksums.get(len - 1).add(new BigFraction(p.buttons[2].getText())));
-            block.add(p.buttons[0].getText());
-            indices[i] = index;
+            String name = p.buttons[0].getText();
+            block.add(name);
+            indices.put(name, index);
         }
         blocks.add(block);
         index++;
@@ -174,9 +175,10 @@ public class SaveData {
         people = Sorting.nameSort(people);
         for (int i = 0; i < people.length; i++) {
             Person p = people[i];
-            index = indices[i];
+            String name = p.buttons[0].getText();
+            index = indices.get(name);
             lines.add("        {");
-            lines.add("            \"name\": \"" + p.buttons[0].getText() + "\",");
+            lines.add("            \"name\": \"" + name + "\",");
             lines.add("            \"priority\": \"" + priorities.get(index) + "\",");
             lines.add("            \"index\": \"" + index + "\",");
             lines.add("            \"time\": \"" + times.get(index) + "\",");
