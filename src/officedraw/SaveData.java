@@ -103,8 +103,8 @@ public class SaveData {
         }
     }
 
-    private static void saveJson(int year, Person[] people) {
-        people = Arrays.copyOf(Sorting.blockSort(people, year), people.length - 1);
+    private static void saveJson(int year, Person[] data) {
+        Person[] people = Arrays.copyOf(Sorting.blockSort(data, year), data.length - 1);
         Map<String, List<String>> officeToPerson = new HashMap<>();
         Map<String, String> personToOffice = new HashMap<>();
         for (String office : Offices.offices.keySet()) {
@@ -119,7 +119,7 @@ public class SaveData {
             }
         }
         int index = 0;
-        Map<String,Integer> indices = new HashMap<>();
+        Map<Person,Integer> indices = new HashMap<>();
         List<List<String>> blocks = new ArrayList<>();
         List<BigFraction> blocksums = new ArrayList<>();
         List<String> block = new ArrayList<>();
@@ -149,7 +149,7 @@ public class SaveData {
             blocksums.set(len - 1, blocksums.get(len - 1).add(new BigFraction(p.buttons[2].getText())));
             String name = p.buttons[0].getText();
             block.add(name);
-            indices.put(name, index);
+            indices.put(p, index);
         }
         blocks.add(block);
         index++;
@@ -172,11 +172,11 @@ public class SaveData {
         List<String> lines = new ArrayList<>();
         lines.add("{");
         lines.add("    \"people\": [");
-        people = Sorting.nameSort(people);
+        people = Arrays.copyOf(Sorting.nameSort(data), data.length - 1);
         for (int i = 0; i < people.length; i++) {
             Person p = people[i];
             String name = p.buttons[0].getText();
-            index = indices.get(name);
+            index = indices.get(p);
             lines.add("        {");
             lines.add("            \"name\": \"" + name + "\",");
             lines.add("            \"priority\": \"" + priorities.get(index) + "\",");
