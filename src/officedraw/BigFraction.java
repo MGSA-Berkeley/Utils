@@ -1,7 +1,6 @@
 package officedraw;
 
 import java.math.BigInteger;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class BigFraction implements Comparable<BigFraction> {

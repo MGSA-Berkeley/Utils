@@ -28,8 +28,9 @@ public class SaveData {
     private static final String TAB = "\t";
 
     public static void save(int year, Map<Integer, Person[]> data, boolean severe) {
-        saveData(year, data);
+        saveData(year, data.get(year));
         if (!severe) {
+            saveJson(year, data.get(year));
             save(year, data.get(year));
         }
     }
@@ -102,35 +103,100 @@ public class SaveData {
         }
     }
 
-    private static void saveData(int year, Map<Integer, Person[]> data) {
-        if (true) {
-            List<String> lines = new ArrayList<>();
-            lines.add("{");
-            lines.add("    \"people\": [");
-            Person[] people = Sorting.nameSort(data.get(year));
-            for (int i = 0; i < people.length - 1; i++) {
-                Person p = people[i];
-                lines.add("        {");
-                lines.add("            \"name\": \"" + p.buttons[0].getText() + "\",");
-                lines.add("            \"year\": \"" + p.buttons[1].getText() + "\",");
-                lines.add("            \"priority\": \"" + p.buttons[2].getText() + "\",");
-                lines.add("            \"adjustment\": \"" + p.buttons[3].getText() + "\",");
-                lines.add("            \"block\": \"" + p.buttons[4].getText() + "\",");
-                lines.add("            \"office\": \"" + p.buttons[5].getText() + "\"");
-                lines.add(i == people.length - 2 ? "        }" : "        },");
+    private static void saveJson(int year, Person[] people) {
+        people = Arrays.copyOf(Sorting.blockSort(people, year), people.length - 1);
+        Map<String, List<String>> officeToPerson = new HashMap<>();
+        Map<String, String> personToOffice = new HashMap<>();
+        for (String office : Offices.offices.keySet()) {
+            officeToPerson.put(office, new ArrayList<>());
+        }
+        for (Person person : people) {
+            String name = person.buttons[0].getText();
+            String office = person.buttons[5].getText();
+            if (!office.isEmpty()) {
+                officeToPerson.get(office).add(name);
+                personToOffice.put(name, office);
             }
-            lines.add("    ]");
-            lines.add("}");
-            // todo: harvest file name from data.json
-            Path file = Paths.get("data" + File.separator + "people" + year + ".json");
-            try {
-                Files.write(file, lines);
-            } catch (IOException ex) {
-                System.out.println("Error: " + ex);
+        }
+        int index = 0;
+        int[] indices = new int[people.length];
+        List<List<String>> blocks = new ArrayList<>();
+        List<BigFraction> blocksums = new ArrayList<>();
+        List<String> block = new ArrayList<>();
+        String oldblock = null;
+        List<Long> times = new ArrayList<>();
+        int len = 0;
+        int amt = 0;
+        for (int i = 0; i < people.length; i++) {
+            Person p = people[i];
+            String newblock = Sorting.block(p);
+            if (!newblock.equals(oldblock)) {
+                if (oldblock != null) {
+                    blocks.add(block);
+                    index++;
+                }
+                blocksums.add(BigFraction.ZERO);
+                block = new ArrayList<>();
+                oldblock = newblock;
+                if (newblock.startsWith("Squat")) {
+                    times.add(0L);
+                } else {
+                    times.add(-1L);
+                    amt++;
+                }
+                len++;
+            }
+            blocksums.set(len - 1, blocksums.get(len - 1).add(new BigFraction(p.buttons[2].getText())));
+            block.add(p.buttons[0].getText());
+            indices[i] = index;
+        }
+        blocks.add(block);
+        index++;
+        List<BigFraction> priorities = new ArrayList<>();
+        for (int i = 0; i < len; i++) {
+            priorities.add(blocksums.get(i).divide(new BigFraction(blocks.get(i).size())));
+        }
+        if (year == 2024) {
+            long base = 1714158000000L;
+            long delta = 900000L;
+            int numslots = 12;
+            int pos = 0;
+            for (int i = 0; i < len; i++) {
+                if (times.get(i) == -1) {
+                    times.set(i, base + pos * numslots / amt * delta);
+                    pos++;
+                }
             }
         }
         List<String> lines = new ArrayList<>();
-        for (Person p : Sorting.nameSort(data.get(year))) {
+        lines.add("{");
+        lines.add("    \"people\": [");
+        people = Sorting.nameSort(people);
+        for (int i = 0; i < people.length; i++) {
+            Person p = people[i];
+            index = indices[i];
+            lines.add("        {");
+            lines.add("            \"name\": \"" + p.buttons[0].getText() + "\",");
+            lines.add("            \"priority\": \"" + priorities.get(index) + "\",");
+            lines.add("            \"index\": \"" + index + "\",");
+            lines.add("            \"time\": \"" + times.get(index) + "\",");
+            lines.add("            \"office\": \"" + p.buttons[5].getText() + "\"");
+            lines.add(i == people.length - 1 ? "        }" : "        },");
+        }
+        lines.add("    ]");
+        lines.add("}");
+        // todo: harvest file name from data.json
+        Path file = Paths.get("data" + File.separator + "people" + year + ".json");
+        try {
+            Files.write(file, lines);
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex);
+        }
+    }
+
+    private static void saveData(int year, Person[] data) {
+        List<String> lines = new ArrayList<>();
+        for (Person p : Sorting.nameSort(data)) {
             lines.add(p.buttons[0].getText() + TAB + p.buttons[1].getText() + TAB + p.buttons[2].getText() + TAB + p.buttons[3].getText() + TAB + p.buttons[4].getText() + TAB + p.buttons[5].getText());
         }
         Path file = Paths.get(year + ".officedraw");
