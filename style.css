@@ -1,6 +1,6 @@
 :root {
 	--gold-tint: rgb(255 215 0 / 30%);
-	--dark-tint: rgba(0, 0, 0, 0.05);
+	--dark-tint: rgba(0, 0, 0, 0.3);
 	--berk-blue: #003262;
 	--berk-light-blue: #3b7ea1;
 	--berk-gold: #fdb515;
@@ -47,52 +47,50 @@ body {
 	font-family: freight-sans-pro;
 }
 
-/* .office-box {
-	background: var(--dark-tint);
-} */
-
-.office-box:hover,
-.office-box[data-hover="1"] {
-	background: var(--gold-tint);
-}
-
-.floor-map {
-	width: 100%;
+img#imgmap {
 	position: absolute;
 	top: 0;
-	opacity: 0;
 	pointer-events: none;
-	/* transition: opacity 0.2s; */
-	/* zoom: 1.05; */
-	/* transition-timing-function: cubic-bezier(0.3, 0, 0, 0); */
+	max-width: 100%;
+	max-height: 100%;
 }
 
-/* .floor-map img {
-    transition: .2s;
-} */
-
-/* .floor-map[data-active="0"] img {
-	transform: scale(1.02);
-} */
-
-.floor-map[data-active="1"] {
-	opacity: 1;
-	pointer-events: all;
-	/* transition-timing-function: cubic-bezier(1, 1, 0.7, 1); */
-}
-
-.floor-map > div {
+svg#svgmap {
 	position: absolute;
+	top: 0;
 	width: 100%;
 	height: 100%;
-	top: 0;
-	left: 0;
 }
 
-.floor-map > img {
-	width: 100%;
-	top: 0;
-	left: 0;
+#svgmap g {
+	opacity: 0;
+	pointer-events: none;
+}
+
+#svgmap .office {
+	fill: var(--berk-light-blue);
+}
+
+#svgmap text.cap {
+	font-size: 1.7rem;
+	text-anchor: middle;
+	dominant-baseline: central;
+}
+
+#svgmap text {
+	pointer-events: none;
+}
+
+#svgmap .office:hover {
+	fill: var(--berk-dark-gold);
+}
+
+#building[data-floor="7"] g[data-floor="7"],
+#building[data-floor="8"] g[data-floor="8"],
+#building[data-floor="9"] g[data-floor="9"],
+#building[data-floor="10"] g[data-floor="10"] {
+	opacity: 1;
+	pointer-events: all;
 }
 
 #building {
@@ -103,6 +101,7 @@ body {
 }
 
 #building > .buttons {
+	z-index: 2;
 	position: absolute;
 	right: 2em;
 	display: flex;
@@ -135,7 +134,7 @@ body {
 #building[data-floor="7"] button[data-floor="7"],
 #building[data-floor="8"] button[data-floor="8"],
 #building[data-floor="9"] button[data-floor="9"],
-#building[data-floor="0"] button[data-floor="0"] {
+#building[data-floor="10"] button[data-floor="10"] {
 	border: 2px solid #888;
 	color: #888;
 }
@@ -173,7 +172,7 @@ body {
 }
 
 .block-scoller > div {
-	height: calc(100vh - 111px);
+	height: calc(100vh - 211px);
 	overflow-y: scroll;
 	padding: 3px;
 }
