@@ -2,65 +2,76 @@
  * @author Rikhav Shah
  * @email atob("cmlraGF2LnNoYWhAYmVya2VsZXkuZWR1")
  */
-
+const ns = "http://www.w3.org/2000/svg";
 const activeOfficeRef = {};
 
-function setupBuilding() {
-	function makeFloor(floorNum) {
-		const wrapper = document.createElement("div");
-		wrapper.className = "floor-map";
-		const im = new Image();
-		im.src = `floor-${floorNum}.png?cachebust=${Date.now()}`;
-		wrapper.append(im);
-		window.officesByFloor[floorNum].forEach((office) => {
-			const { number, capacity, x1, x2, y1, y2 } = office;
-			const div = document.createElement("div");
+function capitalize(s) {
+	return s[0].toUpperCase() + s.substring(1);
+}
 
-			if (typeof x1 != "object") {
-				const [a, b, c, d] = [x1 / 1160, y1 / 730, x2 / 1160, y2 / 730].map(
-					(v) => `${v * 100}%`
-				);
-				div.style.clipPath = `polygon(${a} ${b}, ${c} ${b}, ${c} ${d}, ${a} ${d})`;
-			} else {
-				div.style.clipPath = `polygon(${x1
-					.map((x, i) => `${x / 11.6}% ${y1[i] / 7.3}%`)
-					.join(", ")})`;
-			}
+function ave(arr) {
+	let tot = 0;
+	for(let i = 0; i < arr.length; i++) tot += arr[i];
+	return tot/arr.length;
+  }
 
-			div.className = "office-box";
+async function setupMap() {
+	const evans = await fetch('data/evans.json').then(x => x.json());
 
-			div.dataset.number = number;
-			div.addEventListener("mouseover", scrollToOffice.bind(null, number));
-			div.addEventListener("mouseleave", scrollOffOffice.bind(null, number));
+	const floors = Object.assign({}, ...evans.floors.map(({number, map}) => {
+		const g = document.createElementNS(ns, "g");
+		g.setAttribute("data-floor", number);
+		svgmap.append(g);
+		return {[number]: {g, map}};
+	}));
 
-			wrapper.append(div);
+	evans.offices.forEach(office => {
+		const { number, floor, capacity, xpoints, ypoints } = office;
+		
+		const points = xpoints.map((x, i) => `${x},${ypoints[i]}`).join(' ');
+		const poly = document.createElementNS(ns, "polygon");
+		poly.setAttribute("points", points);
+		poly.setAttribute('class', 'office');
+
+		const num = document.createElementNS(ns, "text");
+		num.innerHTML = "#" + number;
+		num.setAttribute("x", Math.min(...xpoints)+2);
+		num.setAttribute("y", Math.max(...ypoints)-4);
+		num.setAttribute('class', 'num');
+
+		const cap = document.createElementNS(ns, "text");
+		cap.innerHTML = "? / " + capacity;
+		
+		cap.setAttribute("x", ave(xpoints));
+		cap.setAttribute("y", ave(ypoints) - 7);
+		cap.setAttribute('class', 'cap');
+
+		floors[floor].g.append(poly);
+		floors[floor].g.append(num);
+		floors[floor].g.append(cap);
+	});
+
+	
+	function resize() {
+		const r = imgmap.height / imgmap.naturalHeight;
+		Object.values(floors).map(({g}) => {
+			g.setAttribute("transform", `scale(${r})`);
 		});
-		return wrapper;
 	}
 
-	const floor7 = makeFloor("7");
-	const floor8 = makeFloor("8");
-	const floor9 = makeFloor("9");
-	const floor0 = makeFloor("1");
-
-	window.goToFloor = function (num) {
-		if (num == "1") {
-			num = "0"
-		}
-		floor7.dataset.active = "7" == num ? 1 : 0;
-		floor8.dataset.active = "8" == num ? 1 : 0;
-		floor9.dataset.active = "9" == num ? 1 : 0;
-		floor0.dataset.active = "0" == num ? 1 : 0;
+	function goToFloor(num) {
+		if (num == "1" || num == "0") num = "10";
+		imgmap.src = 'data/'+capitalize(floors[num].map);
 		building.dataset.floor = num;
 	};
 
-	floor7.dataset.active = 1;
-	window.addEventListener("keydown", (evt) => "78901".includes(evt.key) && goToFloor(evt.key));
+	goToFloor(10);
 
-	building.prepend(floor7);
-	building.prepend(floor8);
-	building.prepend(floor9);
-	building.prepend(floor0);
+	window.onresize = resize;
+	imgmap.onload = resize;
+	setTimeout(resize, 200);
+
+	window.addEventListener("keydown", (evt) => "78901".includes(evt.key) && goToFloor(evt.key));
 }
 
 function setupDrawOrder() {
@@ -71,9 +82,9 @@ function setupDrawOrder() {
 		div.dataset.searchable = block.people.join(", ").toLowerCase();
 		const time = block.time == -1 ? "" : (block.time
 			? new Date(block.time).toLocaleTimeString([], {
-					hour: "numeric",
-					minute: "numeric",
-			  })
+				hour: "numeric",
+				minute: "numeric",
+			})
 			: "(squat)");
 		div.innerHTML = `
             <div>${time} (priority ${block.priority})</div>
@@ -161,12 +172,14 @@ function searchForName(el, text) {
 }
 
 function go() {
+	setupMap();
+	return;
 	window.searchForNameInDraw = searchForName.bind(null, drawOrder.lastElementChild);
 	window.searchForNameInOffice = searchForName.bind(null, setOffices.lastElementChild);
 
 	setupBuilding();
 	setupDrawOrder();
 	setupOfficePops();
-	if(window.innerHeight > window.innerWidth)
+	if (window.innerHeight > window.innerWidth)
 		switchToMobileLayout();
 }

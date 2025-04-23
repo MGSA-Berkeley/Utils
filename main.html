@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<script src="offices.js"></script>
 	<script src="data.js?v={{cachebust}}"></script>
 	<script src="index.js?v=2"></script>
 	<link href="style.css?v=2" rel="stylesheet" />
@@ -19,11 +18,13 @@
 		</div>
 		<div id="building" data-floor="7">
 			<div class="buttons">
-                <button data-floor="0" onclick="goToFloor('0')">10</button>
+                <button data-floor="10" onclick="goToFloor('10')">10</button>
                 <button data-floor="9" onclick="goToFloor('9')">9</button>
                 <button data-floor="8" onclick="goToFloor('8')">8</button>
 				<button data-floor="7" onclick="goToFloor('7')">7</button>
 			</div>
+			<img id="imgmap" class="floor-map"/>
+			<svg id="svgmap" xmlns="http://www.w3.org/2000/svg"></svg>
 		</div>
 		<div id="setOffices" class="block-scoller">
 			<h1>Set Offices</h1>
