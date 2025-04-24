@@ -15,8 +15,7 @@ function ave(arr) {
 	return tot / arr.length;
 }
 
-async function setupMap(floorplan, offices, populations) {
-	const evans = await fetch('data/' + floorplan).then(x => x.json());
+async function setupMap(evans, officeNums) {
 
 	const floors = Object.assign({}, ...evans.floors.map(({ number, map }) => {
 		const g = document.createElementNS(ns, "g");
@@ -27,7 +26,7 @@ async function setupMap(floorplan, offices, populations) {
 
 	evans.offices.forEach(office => {
 		const { number, floor, capacity, xpoints, ypoints } = office;
-		if (!offices.includes(number))
+		if (!officeNums.includes(number))
 			return;
 
 		const points = xpoints.map((x, i) => `${x},${ypoints[i]}`).join(' ');
@@ -42,7 +41,7 @@ async function setupMap(floorplan, offices, populations) {
 		num.setAttribute('class', 'num');
 
 		const cap = document.createElementNS(ns, "text");
-		cap.innerHTML = populations[number] + " / " + capacity;
+		cap.innerHTML = (office.people?.length || 0) + " / " + capacity;
 
 		cap.setAttribute("x", ave(xpoints));
 		cap.setAttribute("y", ave(ypoints) - 7);
@@ -67,6 +66,8 @@ async function setupMap(floorplan, offices, populations) {
 		building.dataset.floor = num;
 	};
 
+	window.goToFloor = goToFloor;
+
 	goToFloor(10);
 
 	window.onresize = resize;
@@ -80,10 +81,11 @@ async function foo() {
 
 }
 
-function setupDrawOrder() {
-	window.blocks.forEach((block) => {
+function setupDrawOrder(blocks) {
+	blocks.forEach((block) => {
 		const div = document.createElement("div");
 		div.className = "block";
+		block.done = block.time < Date.now();
 		div.dataset.done = block.done ? 1 : 0;
 		div.dataset.searchable = block.people.join(", ").toLowerCase();
 		const time = block.time == -1 ? "" : (block.time
@@ -93,7 +95,7 @@ function setupDrawOrder() {
 			})
 			: "(squat)");
 		div.innerHTML = `
-            <div>${time} (priority ${block.priority})</div>
+            <div>${time}</div>
             ${block.people.map((person) => `<div>${person}</div>`).join("")}
         `;
 		drawOrder.lastElementChild.append(div);
@@ -102,12 +104,12 @@ function setupDrawOrder() {
 
 	setTimeout(
 		() =>
-			window.blocks.find((block) => !block.done)?.elmt.scrollIntoView({ behavior: "smooth" }),
+			blocks.find((block) => !block.done)?.elmt.scrollIntoView({ behavior: "smooth" }),
 		200
 	);
 }
 
-function setupOfficePops() {
+function setupOfficePops(offices) {
 	function highlightOfficeBox(number) {
 		const old = document.querySelector(`.office-box[data-number="${activeOfficeRef.current}"]`);
 		if (old) old.dataset.hover = 0;
@@ -125,7 +127,7 @@ function setupOfficePops() {
 		if (el) el.dataset.hover = value;
 	}
 
-	window.officePops.forEach(({ number, people }) => {
+	offices.forEach(({ number, people, capacity }) => {
 		const div = document.createElement("div");
 		div.className = "block";
 		div.dataset.searchable = people.join(", ").toLowerCase();
@@ -136,7 +138,7 @@ function setupOfficePops() {
 		div.onmouseleave = lazyHighlightOfficeBox.bind(null, div.dataset.number, 0);
 
 		div.innerHTML = `
-        <div>Office ${number} (${people.length} / ${window.officesByNumber[number].capacity})</div>
+        <div>Office ${number} (${people.length} / ${capacity})</div>
         ${people.map((person) => `<div>${person}</div>`).join("")}
         `;
 		setOffices.lastElementChild.append(div);
@@ -177,32 +179,41 @@ function searchForName(el, text) {
 	});
 }
 
+function processPeople(people, drawBlocks, offices) {
+	people.forEach(person => {
+		const office = offices.find(office => office.number == person.office) || {};
+		if(!office.people) office.people = [];
+		office.people.push(person.name);
+
+		if (!(person.index in drawBlocks))
+			drawBlocks[person.index] = { people: [], time: parseInt(person.time) };
+		drawBlocks[person.index].people.push(person.name);
+
+	});
+}
+
 async function go() {
 	const urlParams = new URLSearchParams(window.location.search);
 
 	const year = urlParams.get('year') || new Date().getFullYear();
-
 	const data = await fetch('data/data.json').then(res => res.json()).then(x => x.data.find(y => y.year == year) || x.data[x.data.length - 1]);
-
-	const offices = await fetch('data/' + data.activeoffices).then(res => res.json()).then(x => x.offices);
-
+	const evans = await fetch('data/' + data.floorplan).then(x => x.json());
+	const officeNums = await fetch('data/' + data.activeoffices).then(res => res.json()).then(x => x.offices);
 	const people = await fetch('data/' + data.people).then(res => res.json()).then(x => x.people);
-	const populations = {};
-	people.forEach(person => {
-		if (!(person.office in populations))
-			populations[person.office] = 0;
-		populations[person.office] += 1;
-	})
 
-	setupMap(data.floorplan, offices, populations);
+	const blocks = [];
+	processPeople(people, blocks, evans.offices);
 
-	return;
+	setupDrawOrder(blocks);
+	setupMap(evans, officeNums);
+	setupOfficePops(evans.offices);
+
 	window.searchForNameInDraw = searchForName.bind(null, drawOrder.lastElementChild);
+	return;
 	window.searchForNameInOffice = searchForName.bind(null, setOffices.lastElementChild);
 
 	setupBuilding();
 	setupDrawOrder();
-	setupOfficePops();
 	if (window.innerHeight > window.innerWidth)
 		switchToMobileLayout();
 }
