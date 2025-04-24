@@ -13,10 +13,10 @@ function ave(arr) {
 	let tot = 0;
 	for(let i = 0; i < arr.length; i++) tot += arr[i];
 	return tot/arr.length;
-  }
+}
 
-async function setupMap() {
-	const evans = await fetch('data/evans.json').then(x => x.json());
+async function setupMap(floorplan, offices) {
+	const evans = await fetch('data/' + floorplan).then(x => x.json());
 
 	const floors = Object.assign({}, ...evans.floors.map(({number, map}) => {
 		const g = document.createElementNS(ns, "g");
@@ -27,7 +27,9 @@ async function setupMap() {
 
 	evans.offices.forEach(office => {
 		const { number, floor, capacity, xpoints, ypoints } = office;
-		
+		if(!offices.includes(number))
+			return;
+
 		const points = xpoints.map((x, i) => `${x},${ypoints[i]}`).join(' ');
 		const poly = document.createElementNS(ns, "polygon");
 		poly.setAttribute("points", points);
@@ -171,8 +173,11 @@ function searchForName(el, text) {
 	});
 }
 
-function go() {
-	setupMap();
+async function go() {
+	const data = await fetch('data/data.json').then(res=>res.json()).then(x => x.data);
+	const offices = await fetch('data/' + data.activeoffices).then(res=>res.json()).then(x => x.offices);
+	setupMap(data.floorplan, offices);
+
 	return;
 	window.searchForNameInDraw = searchForName.bind(null, drawOrder.lastElementChild);
 	window.searchForNameInOffice = searchForName.bind(null, setOffices.lastElementChild);
