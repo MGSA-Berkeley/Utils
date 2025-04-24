@@ -188,11 +188,11 @@ public class SaveData {
         lines.add("    ]");
         lines.add("}");
         // todo: harvest file name from data.json
-        Path file = Paths.get("data" + File.separator + "people" + year + ".json");
+        Path file = Paths.get("officedraw" + File.separator + "data" + File.separator + "people" + year + ".json");
         try {
             Files.write(file, lines);
         } catch (IOException ex) {
-            System.out.println("Error: " + ex);
+            ex.printStackTrace();
         }
     }
 
