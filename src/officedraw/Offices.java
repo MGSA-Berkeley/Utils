@@ -1,15 +1,53 @@
 package officedraw;
 
 import java.awt.Polygon;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Offices {
 
     public static final Map<String, Integer> offices = new HashMap<>();
+    public static final Map<Integer, Map<String, Integer>> capacitymap = new HashMap<>();
     public static final Map<String, Polygon> polygons = new HashMap<>();
 
     public static void init() {
+        try {
+            String datafolder = "officedraw" + File.separator + "data" + File.separator;
+            String datafile = datafolder + "data.json";
+            Map<String, Object> datamap = (Map) JsonParser.parse(new FileReader(datafile));
+            List<Object> yearlist = (List) datamap.get("data");
+            System.out.println(yearlist);
+            for (int i = 0; i < yearlist.size(); i++) {
+                Map<String, Object> yearmap = (Map) yearlist.get(i);
+                int year = Integer.parseInt((String) yearmap.get("year"));
+                String floorfile = datafolder + yearmap.get("floorplan");
+                Map<String, Object> floormap = (Map) JsonParser.parse(new FileReader(floorfile));
+                List<Object> officelist = (List) floormap.get("offices");
+                Map<String, Integer> capacities = new HashMap<>();
+                for (int j = 0; j < officelist.size(); j++) {
+                    Map<String, Object> officemap = (Map) officelist.get(j);
+                    String number = (String) officemap.get("number");
+                    Integer capacity = (Integer) officemap.get("capacity");
+                    capacities.put(number, capacity);
+                }
+                String activefile = datafolder + yearmap.get("activeoffices");
+                Map<String, Object> activemap = (Map) JsonParser.parse(new FileReader(activefile));
+                List<Object> activelist = (List) activemap.get("offices");
+                capacitymap.put(year, new HashMap<>());
+                for (int j = 0; j < activelist.size(); j++) {
+                    String number = (String) activelist.get(j);
+                    Integer capacity = capacities.get(number);
+                    capacitymap.get(year).put(number, capacity);
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
         addOffice("710", 2, 632, 489, 681, 559);
         addOffice("716", 2, 427, 489, 476, 559);
         addOffice("737", 3, 89, 417, 169, 466);

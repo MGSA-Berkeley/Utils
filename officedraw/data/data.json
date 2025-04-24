@@ -41,6 +41,12 @@
             "floorplan": "evans.json",
             "activeoffices": "activeoffices2024.json",
             "people": "people2024.json"
+        },
+        {
+            "year": "2025",
+            "floorplan": "evans.json",
+            "activeoffices": "activeoffices2025.json",
+            "people": "people2025.json"
         }
     ]
 }
