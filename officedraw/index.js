@@ -11,59 +11,68 @@ function capitalize(s) {
 
 function ave(arr) {
 	let tot = 0;
-	for(let i = 0; i < arr.length; i++) tot += arr[i];
-	return tot/arr.length;
-  }
+	for (let i = 0; i < arr.length; i++) tot += arr[i];
+	return tot / arr.length;
+}
 
-async function setupMap() {
-	const evans = await fetch('data/evans.json').then(x => x.json());
-
-	const floors = Object.assign({}, ...evans.floors.map(({number, map}) => {
+function floorDataToObject(floors) {
+	return Object.assign({}, ...floors.map(({ number, map }) => {
 		const g = document.createElementNS(ns, "g");
 		g.setAttribute("data-floor", number);
 		svgmap.append(g);
-		return {[number]: {g, map}};
+		return { [number]: { g, map } };
 	}));
+}
+
+function createOfficeSvgElements(office) {
+	const { number, capacity, xpoints, ypoints } = office;
+	const points = xpoints.map((x, i) => `${x},${ypoints[i]}`).join(' ');
+	const poly = document.createElementNS(ns, "polygon");
+	poly.setAttribute("points", points);
+	poly.setAttribute('class', 'office');
+	poly.setAttribute('data-number', number);
+
+	const num = document.createElementNS(ns, "text");
+	num.innerHTML = "#" + number;
+	num.setAttribute("x", Math.min(...xpoints) + 2);
+	num.setAttribute("y", Math.max(...ypoints) - 4);
+	num.setAttribute('class', 'num');
+
+	const cap = document.createElementNS(ns, "text");
+	cap.innerHTML = (office.people?.length || 0) + " / " + capacity;
+
+	cap.setAttribute("x", ave(xpoints));
+	cap.setAttribute("y", ave(ypoints) - 7);
+	cap.setAttribute('class', 'cap');
+	return [poly, num, cap];
+}
+
+async function setupMap(evans, officeNums) {
+
+	const floors = floorDataToObject(evans.floors);
 
 	evans.offices.forEach(office => {
-		const { number, floor, capacity, xpoints, ypoints } = office;
-		
-		const points = xpoints.map((x, i) => `${x},${ypoints[i]}`).join(' ');
-		const poly = document.createElementNS(ns, "polygon");
-		poly.setAttribute("points", points);
-		poly.setAttribute('class', 'office');
+		if (!officeNums.includes(office.number))
+			return;
 
-		const num = document.createElementNS(ns, "text");
-		num.innerHTML = "#" + number;
-		num.setAttribute("x", Math.min(...xpoints)+2);
-		num.setAttribute("y", Math.max(...ypoints)-4);
-		num.setAttribute('class', 'num');
-
-		const cap = document.createElementNS(ns, "text");
-		cap.innerHTML = "? / " + capacity;
-		
-		cap.setAttribute("x", ave(xpoints));
-		cap.setAttribute("y", ave(ypoints) - 7);
-		cap.setAttribute('class', 'cap');
-
-		floors[floor].g.append(poly);
-		floors[floor].g.append(num);
-		floors[floor].g.append(cap);
+		const elements = createOfficeSvgElements(office);
+		floors[office.floor].g.append(...elements);
 	});
 
-	
 	function resize() {
 		const r = imgmap.height / imgmap.naturalHeight;
-		Object.values(floors).map(({g}) => {
+		Object.values(floors).map(({ g }) => {
 			g.setAttribute("transform", `scale(${r})`);
 		});
 	}
 
 	function goToFloor(num) {
 		if (num == "1" || num == "0") num = "10";
-		imgmap.src = 'data/'+capitalize(floors[num].map);
+		imgmap.src = 'data/' + capitalize(floors[num].map);
 		building.dataset.floor = num;
 	};
+
+	window.goToFloor = goToFloor;
 
 	goToFloor(10);
 
@@ -74,10 +83,11 @@ async function setupMap() {
 	window.addEventListener("keydown", (evt) => "78901".includes(evt.key) && goToFloor(evt.key));
 }
 
-function setupDrawOrder() {
-	window.blocks.forEach((block) => {
+function setupDrawList(blocks) {
+	blocks.forEach((block) => {
 		const div = document.createElement("div");
 		div.className = "block";
+		block.done = block.time < Date.now();
 		div.dataset.done = block.done ? 1 : 0;
 		div.dataset.searchable = block.people.join(", ").toLowerCase();
 		const time = block.time == -1 ? "" : (block.time
@@ -87,7 +97,7 @@ function setupDrawOrder() {
 			})
 			: "(squat)");
 		div.innerHTML = `
-            <div>${time} (priority ${block.priority})</div>
+            <div>${time}</div>
             ${block.people.map((person) => `<div>${person}</div>`).join("")}
         `;
 		drawOrder.lastElementChild.append(div);
@@ -96,30 +106,30 @@ function setupDrawOrder() {
 
 	setTimeout(
 		() =>
-			window.blocks.find((block) => !block.done)?.elmt.scrollIntoView({ behavior: "smooth" }),
+			blocks.find((block) => !block.done)?.elmt.scrollIntoView({ behavior: "smooth" }),
 		200
 	);
 }
 
-function setupOfficePops() {
+function setupOfficeList(offices) {
 	function highlightOfficeBox(number) {
-		const old = document.querySelector(`.office-box[data-number="${activeOfficeRef.current}"]`);
+		const old = document.querySelector(`.office[data-number="${activeOfficeRef.current}"]`);
 		if (old) old.dataset.hover = 0;
 
 		activeOfficeRef.current = number;
 		goToFloor(number[0]);
-		const el = document.querySelector(`.office-box[data-number="${number}"]`);
+		const el = document.querySelector(`.office[data-number="${number}"]`);
 		if (!el) return;
 		el.dataset.hover = 1;
 		setTimeout(() => (el.dataset.hover = 0), 2000);
 	}
 
 	function lazyHighlightOfficeBox(number, value) {
-		const el = document.querySelector(`.office-box[data-number="${number}"]`);
+		const el = document.querySelector(`.office[data-number="${number}"]`);
 		if (el) el.dataset.hover = value;
 	}
 
-	window.officePops.forEach(({ number, people }) => {
+	offices.forEach(({ number, people, capacity }) => {
 		const div = document.createElement("div");
 		div.className = "block";
 		div.dataset.searchable = people.join(", ").toLowerCase();
@@ -130,7 +140,7 @@ function setupOfficePops() {
 		div.onmouseleave = lazyHighlightOfficeBox.bind(null, div.dataset.number, 0);
 
 		div.innerHTML = `
-        <div>Office ${number} (${people.length} / ${window.officesByNumber[number].capacity})</div>
+        <div>Office ${number} (${people.length} / ${capacity})</div>
         ${people.map((person) => `<div>${person}</div>`).join("")}
         `;
 		setOffices.lastElementChild.append(div);
@@ -171,15 +181,41 @@ function searchForName(el, text) {
 	});
 }
 
-function go() {
-	setupMap();
-	return;
+function processPeople(people, drawBlocks, offices) {
+	people.forEach(person => {
+		const office = offices.find(office => office.number == person.office) || {};
+		if (!office.people) office.people = [];
+		office.people.push(person.name);
+
+		if (!(person.index in drawBlocks))
+			drawBlocks[person.index] = { people: [], time: parseInt(person.time) };
+		drawBlocks[person.index].people.push(person.name);
+
+	});
+}
+
+async function fetchData(year) {
+	const data = await fetch('data/data.json').then(res => res.json()).then(x => x.data.find(y => y.year == year) || x.data[x.data.length - 1]);
+	const evans = await fetch('data/' + data.floorplan).then(x => x.json());
+	const officeNums = await fetch('data/' + data.activeoffices).then(res => res.json()).then(x => x.offices);
+	const people = await fetch('data/' + data.people).then(res => res.json()).then(x => x.people);
+	return { evans, officeNums, people };
+}
+
+async function go() {
+	const urlParams = new URLSearchParams(window.location.search);
+	const year = urlParams.get('year') || new Date().getFullYear();
+	const { evans, officeNums, people } = await fetchData(year);
+
+	const blocks = [];
+	processPeople(people, blocks, evans.offices);
+
+	setupMap(evans, officeNums);
+	setupDrawList(blocks);
+	setupOfficeList(evans.offices);
+
 	window.searchForNameInDraw = searchForName.bind(null, drawOrder.lastElementChild);
 	window.searchForNameInOffice = searchForName.bind(null, setOffices.lastElementChild);
-
-	setupBuilding();
-	setupDrawOrder();
-	setupOfficePops();
 	if (window.innerHeight > window.innerWidth)
 		switchToMobileLayout();
 }
