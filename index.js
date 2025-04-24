@@ -11,23 +11,23 @@ function capitalize(s) {
 
 function ave(arr) {
 	let tot = 0;
-	for(let i = 0; i < arr.length; i++) tot += arr[i];
-	return tot/arr.length;
+	for (let i = 0; i < arr.length; i++) tot += arr[i];
+	return tot / arr.length;
 }
 
-async function setupMap(floorplan, offices) {
+async function setupMap(floorplan, offices, populations) {
 	const evans = await fetch('data/' + floorplan).then(x => x.json());
 
-	const floors = Object.assign({}, ...evans.floors.map(({number, map}) => {
+	const floors = Object.assign({}, ...evans.floors.map(({ number, map }) => {
 		const g = document.createElementNS(ns, "g");
 		g.setAttribute("data-floor", number);
 		svgmap.append(g);
-		return {[number]: {g, map}};
+		return { [number]: { g, map } };
 	}));
 
 	evans.offices.forEach(office => {
 		const { number, floor, capacity, xpoints, ypoints } = office;
-		if(!offices.includes(number))
+		if (!offices.includes(number))
 			return;
 
 		const points = xpoints.map((x, i) => `${x},${ypoints[i]}`).join(' ');
@@ -37,13 +37,13 @@ async function setupMap(floorplan, offices) {
 
 		const num = document.createElementNS(ns, "text");
 		num.innerHTML = "#" + number;
-		num.setAttribute("x", Math.min(...xpoints)+2);
-		num.setAttribute("y", Math.max(...ypoints)-4);
+		num.setAttribute("x", Math.min(...xpoints) + 2);
+		num.setAttribute("y", Math.max(...ypoints) - 4);
 		num.setAttribute('class', 'num');
 
 		const cap = document.createElementNS(ns, "text");
-		cap.innerHTML = "? / " + capacity;
-		
+		cap.innerHTML = populations[number] + " / " + capacity;
+
 		cap.setAttribute("x", ave(xpoints));
 		cap.setAttribute("y", ave(ypoints) - 7);
 		cap.setAttribute('class', 'cap');
@@ -53,17 +53,17 @@ async function setupMap(floorplan, offices) {
 		floors[floor].g.append(cap);
 	});
 
-	
+
 	function resize() {
 		const r = imgmap.height / imgmap.naturalHeight;
-		Object.values(floors).map(({g}) => {
+		Object.values(floors).map(({ g }) => {
 			g.setAttribute("transform", `scale(${r})`);
 		});
 	}
 
 	function goToFloor(num) {
 		if (num == "1" || num == "0") num = "10";
-		imgmap.src = 'data/'+capitalize(floors[num].map);
+		imgmap.src = 'data/' + capitalize(floors[num].map);
 		building.dataset.floor = num;
 	};
 
@@ -74,6 +74,10 @@ async function setupMap(floorplan, offices) {
 	setTimeout(resize, 200);
 
 	window.addEventListener("keydown", (evt) => "78901".includes(evt.key) && goToFloor(evt.key));
+}
+
+async function foo() {
+
 }
 
 function setupDrawOrder() {
@@ -175,10 +179,22 @@ function searchForName(el, text) {
 
 async function go() {
 	const urlParams = new URLSearchParams(window.location.search);
+
 	const year = urlParams.get('year') || new Date().getFullYear();
-	const data = await fetch('data/data.json').then(res=>res.json()).then(x => x.data.find(y => y.year == year));
-	const offices = await fetch('data/' + data.activeoffices).then(res=>res.json()).then(x => x.offices);
-	setupMap(data.floorplan, offices);
+
+	const data = await fetch('data/data.json').then(res => res.json()).then(x => x.data.find(y => y.year == year) || x.data[x.data.length - 1]);
+
+	const offices = await fetch('data/' + data.activeoffices).then(res => res.json()).then(x => x.offices);
+
+	const people = await fetch('data/' + data.people).then(res => res.json()).then(x => x.people);
+	const populations = {};
+	people.forEach(person => {
+		if (!(person.office in populations))
+			populations[person.office] = 0;
+		populations[person.office] += 1;
+	})
+
+	setupMap(data.floorplan, offices, populations);
 
 	return;
 	window.searchForNameInDraw = searchForName.bind(null, drawOrder.lastElementChild);
