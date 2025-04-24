@@ -75,10 +75,10 @@ Jorge Garza Vargas	5	1		Float	1097
 Joseph Stahl	6	1		Squat	1075
 Junsheng Zhang	3	3		Float	1058
 Katalin Berlow	1	6		Float	848
-Kiran Luecke	4	2		Squat	1057
+Kiran Luecke	4	2		Block Kiran Luecke	1057
 Kristina Nelson	5	1		Block Adele Padgett	1061
 Kubrat Danailov	7	3		Squat	741
-Kyle Miller	8	5		Squat	1045
+Kyle Miller	8	5		Block Kyle Miller	1045
 Larsen Linov	5	1		Squat	941
 Lauren Heller	5	1		Squat	941
 Lewis Pan	1	6		Float	850
@@ -91,15 +91,15 @@ Matthew Duvalier	4	2		Squat	741
 Max Hlavacek	5	0	-1	Block Adele Padgett	1061
 Max Wimberley	7	3		Squat	1047
 Max Zubkov	4	2		Block Emily Bain	1044
-Meredith Shea	6	1		Squat	1045
+Meredith Shea	6	1		Block Kyle Miller	1045
 Michael Franco	6	1		Float	1066
 Michael Heinz	2	3	-1	Block Carlos Esparza	1068
-Michael Yeh	7	3		Squat	1057
+Michael Yeh	7	3		Block Kiran Luecke	1057
 Mingyang Li	2	4		Block Mingyang Li	937
 Mitchell Taylor	4	2		Block Benjamin Pineau	1040
 Mitsuki Hanada	1	6		Block John Lentfer	852
 Mostafa Adnane	4	2		Block Diego Bejarano Rayo	743
-Nic Brody	6	1		Squat	1045
+Nic Brody	6	1		Block Kyle Miller	1045
 Nicholas Bhattacharya	6	1		Squat	1095
 Nima Moini	7	3		Squat	1010
 Oliver Edtmair	3	3		Block Oliver Edtmair	869
@@ -110,7 +110,7 @@ Qinyi Zhu	4	2		Block Jiefu Zhang	789
 Qiuyu Ren	1	6		Block Fangu Chen	832
 Raehyun Kim	3	3		Block Haixiang Zhang	1064
 Raha Ahmadian	5	1		Block Mariana Vicaria	745
-Ravi Fernando	8	5		Squat	1037
+Ravi Fernando	8	5		Block Ravi Fernando	1037
 Rebecca Whitman	2	4		Block Claire Mirocha	737
 Reid Dale	8	5		Float	747
 Rikhav Shah	3	3		Block David Gonzalez	739
@@ -126,7 +126,7 @@ Shoshana Simons	2	4		Block Mariana Vicaria	745
 Tahsin Saffat	4	2		Squat	853
 Theo McKenzie	5	1		Squat	941
 Theodore Coyne	4	2		Float	869
-Theodore Zhu	7	3		Squat	1085
+Theodore Zhu	7	3		Float	1085
 Thomas Browning	3	0	-3	Block Anya Michaelsen	1041
 Tianrui Xu	2	4		Float	1004
 Tong Zhou	3	3		Block Oliver Edtmair	869
@@ -155,5 +155,5 @@ Zhen Huang	1	6		Block Yuhang Cai	830
 Zhongkai Tao	2	4		Block Mingyang Li	937
 Zirui Zhou	4	2		Squat	741
 Ziwen Zhao	4	2		Squat	787
-Zixin Jiang	6	1		Squat	1037
+Zixin Jiang	6	1		Block Ravi Fernando	1037
 					

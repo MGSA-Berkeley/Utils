@@ -460,7 +460,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                     badyears.add(years[year]);
                     break;
                 }
-                if (!(officestring.isEmpty() || Offices.offices.containsKey(officestring))) {
+                if (!(officestring.isEmpty() || (Offices.capacitymap.containsKey(years[year]) && Offices.capacitymap.get(years[year]).containsKey(officestring)))) {
                     badyears.add(years[year]);
                     break;
                 }
@@ -499,7 +499,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
             if (!(blockstring.equals("Squat") || blockstring.equals("Float") || blockstring.startsWith("Block"))) {
                 warning += "Invalid block. ";
             }
-            if (!(officestring.isEmpty() || Offices.offices.containsKey(officestring))) {
+            if (!(officestring.isEmpty() || (Offices.capacitymap.containsKey(year) && Offices.capacitymap.get(year).containsKey(officestring)))) {
                 warning += "Invalid office. ";
             }
             people[thisyear][person].warning.setText(warning);
@@ -724,7 +724,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                     }
                 }
             }
-            if (!officestring.isEmpty() && officecache.get(officestring) > Offices.offices.get(officestring)) {
+            if (!officestring.isEmpty() && Offices.capacitymap.containsKey(year) && officecache.get(officestring) > Offices.capacitymap.get(year).get(officestring)) {
                 warning += "Overfull office. ";
             }
             people[thisyear][person].warning.setText(warning);

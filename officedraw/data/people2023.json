@@ -190,9 +190,9 @@
             "office": "1066"
         },
         {
-            "name": "Charley Hutchinson",
+            "name": "Charley Hutchison",
             "priority": "6",
-            "index": "72",
+            "index": "71",
             "time": "-1",
             "office": "848"
         },
@@ -269,7 +269,7 @@
         {
             "name": "Drew Keisling",
             "priority": "6",
-            "index": "72",
+            "index": "71",
             "time": "-1",
             "office": "848"
         },
@@ -913,7 +913,7 @@
         {
             "name": "Sterling Saint Rain",
             "priority": "6",
-            "index": "72",
+            "index": "71",
             "time": "-1",
             "office": "848"
         },
@@ -948,7 +948,7 @@
         {
             "name": "Tejas Rao",
             "priority": "6",
-            "index": "71",
+            "index": "72",
             "time": "-1",
             "office": "1095"
         },
@@ -1144,7 +1144,7 @@
         {
             "name": "Zakkai Goriely",
             "priority": "6",
-            "index": "72",
+            "index": "71",
             "time": "-1",
             "office": "848"
         },
