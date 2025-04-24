@@ -20,10 +20,9 @@ public class Offices {
             String datafile = datafolder + "data.json";
             Map<String, Object> datamap = (Map) JsonParser.parse(new FileReader(datafile));
             List<Object> yearlist = (List) datamap.get("data");
-            System.out.println(yearlist);
             for (int i = 0; i < yearlist.size(); i++) {
                 Map<String, Object> yearmap = (Map) yearlist.get(i);
-                int year = Integer.parseInt((String) yearmap.get("year"));
+                int year = Integer.parseInt(yearmap.get("year").toString());
                 String floorfile = datafolder + yearmap.get("floorplan");
                 Map<String, Object> floormap = (Map) JsonParser.parse(new FileReader(floorfile));
                 List<Object> officelist = (List) floormap.get("offices");
@@ -31,7 +30,7 @@ public class Offices {
                 for (int j = 0; j < officelist.size(); j++) {
                     Map<String, Object> officemap = (Map) officelist.get(j);
                     String number = (String) officemap.get("number");
-                    Integer capacity = (Integer) officemap.get("capacity");
+                    Integer capacity = Integer.parseInt(officemap.get("capacity").toString());
                     capacities.put(number, capacity);
                 }
                 String activefile = datafolder + yearmap.get("activeoffices");
