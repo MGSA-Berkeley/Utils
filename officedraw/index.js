@@ -132,7 +132,7 @@ function setupOfficeList(offices) {
 	offices.forEach(({ number, people, capacity }) => {
 		const div = document.createElement("div");
 		div.className = "block";
-		div.dataset.searchable = people.join(", ").toLowerCase();
+		div.dataset.searchable = people?.join(", ").toLowerCase() || "";
 		div.dataset.number = number;
 		div.onclick = highlightOfficeBox.bind(null, div.dataset.number);
 
@@ -140,8 +140,8 @@ function setupOfficeList(offices) {
 		div.onmouseleave = lazyHighlightOfficeBox.bind(null, div.dataset.number, 0);
 
 		div.innerHTML = `
-        <div>Office ${number} (${people.length} / ${capacity})</div>
-        ${people.map((person) => `<div>${person}</div>`).join("")}
+        <div>Office ${number} (${people?.length || 0} / ${capacity})</div>
+        ${people?.map((person) => `<div>${person}</div>`).join("") || ""}
         `;
 		setOffices.lastElementChild.append(div);
 	});
