@@ -81,7 +81,7 @@ svg#svgmap {
 	pointer-events: none;
 }
 
-#svgmap .office[data-hover='1'],
+#svgmap .office[data-highlighted='1'],
 #svgmap .office:hover {
 	fill: var(--berk-dark-gold);
 }
