@@ -3,7 +3,7 @@
         {
             "name": "Aaron Brookner",
             "priority": "2",
-            "index": "33",
+            "index": "29",
             "time": "-1",
             "office": "1042"
         },
@@ -24,7 +24,7 @@
         {
             "name": "Adele Padgett",
             "priority": "1/3",
-            "index": "22",
+            "index": "18",
             "time": "-1",
             "office": "1061"
         },
@@ -59,7 +59,7 @@
         {
             "name": "Andrew Gitlin",
             "priority": "2",
-            "index": "34",
+            "index": "30",
             "time": "-1",
             "office": "1093"
         },
@@ -87,14 +87,14 @@
         {
             "name": "Anthony Villafranca",
             "priority": "1",
-            "index": "29",
+            "index": "25",
             "time": "-1",
             "office": "1097"
         },
         {
             "name": "Anya Michaelsen",
             "priority": "-1/2",
-            "index": "21",
+            "index": "17",
             "time": "-1",
             "office": "1041"
         },
@@ -108,7 +108,7 @@
         {
             "name": "Benjamin Pineau",
             "priority": "5/2",
-            "index": "44",
+            "index": "41",
             "time": "-1",
             "office": "1040"
         },
@@ -143,7 +143,7 @@
         {
             "name": "Chi Cheuk Tsang",
             "priority": "2",
-            "index": "32",
+            "index": "28",
             "time": "-1",
             "office": "1087"
         },
@@ -192,7 +192,7 @@
         {
             "name": "Diego Bejarano Rayo",
             "priority": "2",
-            "index": "38",
+            "index": "34",
             "time": "-1",
             "office": "743"
         },
@@ -213,14 +213,14 @@
         {
             "name": "Edric Wang",
             "priority": "5/2",
-            "index": "14",
+            "index": "13",
             "time": "0",
             "office": "1006"
         },
         {
             "name": "Eduardo Oregon Reyes",
             "priority": "2",
-            "index": "32",
+            "index": "28",
             "time": "-1",
             "office": "1087"
         },
@@ -234,7 +234,7 @@
         {
             "name": "Emily Bain",
             "priority": "7/3",
-            "index": "43",
+            "index": "40",
             "time": "-1",
             "office": "1044"
         },
@@ -255,14 +255,14 @@
         {
             "name": "Erik Herrera",
             "priority": "3",
-            "index": "47",
+            "index": "46",
             "time": "-1",
             "office": "1057"
         },
         {
             "name": "Esme Bajo",
             "priority": "3",
-            "index": "19",
+            "index": "16",
             "time": "0",
             "office": "1041"
         },
@@ -290,7 +290,7 @@
         {
             "name": "Foster Tom",
             "priority": "5/2",
-            "index": "15",
+            "index": "14",
             "time": "0",
             "office": "1047"
         },
@@ -304,7 +304,7 @@
         {
             "name": "Frederick Huang",
             "priority": "1",
-            "index": "29",
+            "index": "25",
             "time": "-1",
             "office": "1097"
         },
@@ -325,7 +325,7 @@
         {
             "name": "Guillaume Massas",
             "priority": "2",
-            "index": "38",
+            "index": "34",
             "time": "-1",
             "office": "743"
         },
@@ -339,14 +339,14 @@
         {
             "name": "Haoren Xiong",
             "priority": "1",
-            "index": "26",
+            "index": "22",
             "time": "-1",
             "office": "775"
         },
         {
             "name": "Haotian Gu",
             "priority": "2",
-            "index": "42",
+            "index": "38",
             "time": "-1",
             "office": "935"
         },
@@ -360,7 +360,7 @@
         {
             "name": "Hongyi Liu",
             "priority": "2",
-            "index": "40",
+            "index": "36",
             "time": "-1",
             "office": "1075"
         },
@@ -402,21 +402,21 @@
         {
             "name": "Jacopo Di Bonito",
             "priority": "1",
-            "index": "30",
+            "index": "26",
             "time": "-1",
             "office": "747"
         },
         {
             "name": "James Dix",
             "priority": "2/3",
-            "index": "23",
+            "index": "19",
             "time": "-1",
             "office": "1049"
         },
         {
             "name": "James Rowan",
             "priority": "2/3",
-            "index": "23",
+            "index": "19",
             "time": "-1",
             "office": "1049"
         },
@@ -437,7 +437,7 @@
         {
             "name": "Jeffrey Kuan",
             "priority": "2",
-            "index": "32",
+            "index": "28",
             "time": "-1",
             "office": "1087"
         },
@@ -458,14 +458,14 @@
         {
             "name": "Jiahao Yao",
             "priority": "5/2",
-            "index": "14",
+            "index": "13",
             "time": "0",
             "office": "1006"
         },
         {
             "name": "Jiaming Wang",
             "priority": "2",
-            "index": "36",
+            "index": "32",
             "time": "-1",
             "office": "816"
         },
@@ -486,7 +486,7 @@
         {
             "name": "Jiefu Zhang",
             "priority": "3/2",
-            "index": "31",
+            "index": "27",
             "time": "-1",
             "office": "789"
         },
@@ -514,7 +514,7 @@
         {
             "name": "Jorge Garza Vargas",
             "priority": "1",
-            "index": "25",
+            "index": "21",
             "time": "-1",
             "office": "1097"
         },
@@ -542,29 +542,29 @@
         {
             "name": "Kiran Luecke",
             "priority": "5/2",
-            "index": "16",
-            "time": "0",
+            "index": "42",
+            "time": "-1",
             "office": "1057"
         },
         {
             "name": "Kristina Nelson",
             "priority": "1/3",
-            "index": "22",
+            "index": "18",
             "time": "-1",
             "office": "1061"
         },
         {
             "name": "Kubrat Danailov",
             "priority": "7/3",
-            "index": "13",
+            "index": "12",
             "time": "0",
             "office": "741"
         },
         {
             "name": "Kyle Miller",
             "priority": "7/3",
-            "index": "12",
-            "time": "0",
+            "index": "39",
+            "time": "-1",
             "office": "1045"
         },
         {
@@ -591,7 +591,7 @@
         {
             "name": "Luke Corcos",
             "priority": "1",
-            "index": "28",
+            "index": "24",
             "time": "-1",
             "office": "1066"
         },
@@ -605,7 +605,7 @@
         {
             "name": "Mariana Vicaria",
             "priority": "2",
-            "index": "41",
+            "index": "37",
             "time": "-1",
             "office": "745"
         },
@@ -619,49 +619,49 @@
         {
             "name": "Marvin Castellon",
             "priority": "2",
-            "index": "39",
+            "index": "35",
             "time": "-1",
             "office": "1093"
         },
         {
             "name": "Matthew Duvalier",
             "priority": "7/3",
-            "index": "13",
+            "index": "12",
             "time": "0",
             "office": "741"
         },
         {
             "name": "Max Hlavacek",
             "priority": "1/3",
-            "index": "22",
+            "index": "18",
             "time": "-1",
             "office": "1061"
         },
         {
             "name": "Max Wimberley",
             "priority": "5/2",
-            "index": "15",
+            "index": "14",
             "time": "0",
             "office": "1047"
         },
         {
             "name": "Max Zubkov",
             "priority": "7/3",
-            "index": "43",
+            "index": "40",
             "time": "-1",
             "office": "1044"
         },
         {
             "name": "Meredith Shea",
             "priority": "7/3",
-            "index": "12",
-            "time": "0",
+            "index": "39",
+            "time": "-1",
             "office": "1045"
         },
         {
             "name": "Michael Franco",
             "priority": "1",
-            "index": "24",
+            "index": "20",
             "time": "-1",
             "office": "1066"
         },
@@ -675,8 +675,8 @@
         {
             "name": "Michael Yeh",
             "priority": "5/2",
-            "index": "16",
-            "time": "0",
+            "index": "42",
+            "time": "-1",
             "office": "1057"
         },
         {
@@ -689,7 +689,7 @@
         {
             "name": "Mitchell Taylor",
             "priority": "5/2",
-            "index": "44",
+            "index": "41",
             "time": "-1",
             "office": "1040"
         },
@@ -703,15 +703,15 @@
         {
             "name": "Mostafa Adnane",
             "priority": "2",
-            "index": "38",
+            "index": "34",
             "time": "-1",
             "office": "743"
         },
         {
             "name": "Nic Brody",
             "priority": "7/3",
-            "index": "12",
-            "time": "0",
+            "index": "39",
+            "time": "-1",
             "office": "1045"
         },
         {
@@ -724,42 +724,42 @@
         {
             "name": "Nima Moini",
             "priority": "3",
-            "index": "17",
+            "index": "15",
             "time": "0",
             "office": "1010"
         },
         {
             "name": "Oliver Edtmair",
             "priority": "3",
-            "index": "45",
+            "index": "44",
             "time": "-1",
             "office": "869"
         },
         {
             "name": "Onyebuchi Ekenta",
             "priority": "3",
-            "index": "46",
+            "index": "45",
             "time": "-1",
             "office": "1047"
         },
         {
             "name": "Ovidiu-Neculai Avadanei",
             "priority": "3",
-            "index": "45",
+            "index": "44",
             "time": "-1",
             "office": "869"
         },
         {
             "name": "Pranav Trivedi",
             "priority": "1",
-            "index": "27",
+            "index": "23",
             "time": "-1",
             "office": "1039"
         },
         {
             "name": "Qinyi Zhu",
             "priority": "3/2",
-            "index": "31",
+            "index": "27",
             "time": "-1",
             "office": "789"
         },
@@ -780,15 +780,15 @@
         {
             "name": "Raha Ahmadian",
             "priority": "2",
-            "index": "41",
+            "index": "37",
             "time": "-1",
             "office": "745"
         },
         {
             "name": "Ravi Fernando",
             "priority": "3",
-            "index": "18",
-            "time": "0",
+            "index": "47",
+            "time": "-1",
             "office": "1037"
         },
         {
@@ -836,21 +836,21 @@
         {
             "name": "Ronan O'Gorman",
             "priority": "1",
-            "index": "27",
+            "index": "23",
             "time": "-1",
             "office": "1039"
         },
         {
             "name": "Rose Lopez",
             "priority": "1",
-            "index": "27",
+            "index": "23",
             "time": "-1",
             "office": "1039"
         },
         {
             "name": "Roy Zhao",
             "priority": "2/3",
-            "index": "23",
+            "index": "19",
             "time": "-1",
             "office": "1049"
         },
@@ -871,7 +871,7 @@
         {
             "name": "Shoshana Simons",
             "priority": "2",
-            "index": "41",
+            "index": "37",
             "time": "-1",
             "office": "745"
         },
@@ -892,21 +892,21 @@
         {
             "name": "Theodore Coyne",
             "priority": "2",
-            "index": "37",
+            "index": "33",
             "time": "-1",
             "office": "869"
         },
         {
             "name": "Theodore Zhu",
             "priority": "3",
-            "index": "20",
-            "time": "0",
+            "index": "43",
+            "time": "-1",
             "office": "1085"
         },
         {
             "name": "Thomas Browning",
             "priority": "-1/2",
-            "index": "21",
+            "index": "17",
             "time": "-1",
             "office": "1041"
         },
@@ -920,21 +920,21 @@
         {
             "name": "Tong Zhou",
             "priority": "3",
-            "index": "45",
+            "index": "44",
             "time": "-1",
             "office": "869"
         },
         {
             "name": "Xianglong Ni",
             "priority": "2",
-            "index": "39",
+            "index": "35",
             "time": "-1",
             "office": "1093"
         },
         {
             "name": "Xiaohan Yan",
             "priority": "1",
-            "index": "30",
+            "index": "26",
             "time": "-1",
             "office": "747"
         },
@@ -976,7 +976,7 @@
         {
             "name": "Yiling You",
             "priority": "2",
-            "index": "42",
+            "index": "38",
             "time": "-1",
             "office": "935"
         },
@@ -990,7 +990,7 @@
         {
             "name": "Yixuan Li",
             "priority": "1",
-            "index": "26",
+            "index": "22",
             "time": "-1",
             "office": "775"
         },
@@ -1046,14 +1046,14 @@
         {
             "name": "Yulia Alexandr",
             "priority": "7/3",
-            "index": "43",
+            "index": "40",
             "time": "-1",
             "office": "1044"
         },
         {
             "name": "Yulong Dong",
             "priority": "2",
-            "index": "35",
+            "index": "31",
             "time": "-1",
             "office": "787"
         },
@@ -1088,7 +1088,7 @@
         {
             "name": "Zirui Zhou",
             "priority": "7/3",
-            "index": "13",
+            "index": "12",
             "time": "0",
             "office": "741"
         },
@@ -1102,8 +1102,8 @@
         {
             "name": "Zixin Jiang",
             "priority": "3",
-            "index": "18",
-            "time": "0",
+            "index": "47",
+            "time": "-1",
             "office": "1037"
         }
     ]
