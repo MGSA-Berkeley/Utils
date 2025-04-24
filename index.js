@@ -174,7 +174,9 @@ function searchForName(el, text) {
 }
 
 async function go() {
-	const data = await fetch('data/data.json').then(res=>res.json()).then(x => x.data);
+	const urlParams = new URLSearchParams(window.location.search);
+	const year = urlParams.get('year') || new Date().getFullYear();
+	const data = await fetch('data/data.json').then(res=>res.json()).then(x => x.data.find(y => y.year == year));
 	const offices = await fetch('data/' + data.activeoffices).then(res=>res.json()).then(x => x.offices);
 	setupMap(data.floorplan, offices);
 
