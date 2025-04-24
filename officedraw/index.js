@@ -3,7 +3,6 @@
  * @email atob("cmlraGF2LnNoYWhAYmVya2VsZXkuZWR1")
  */
 const ns = "http://www.w3.org/2000/svg";
-const activeOfficeRef = {};
 
 function capitalize(s) {
 	return s[0].toUpperCase() + s.substring(1);
@@ -31,6 +30,7 @@ function createOfficeSvgElements(office) {
 	poly.setAttribute("points", points);
 	poly.setAttribute('class', 'office');
 	poly.setAttribute('data-number', number);
+	poly.onclick = highlightOfficeInList.bind(null, number);
 
 	const num = document.createElementNS(ns, "text");
 	num.innerHTML = "#" + number;
@@ -112,36 +112,30 @@ function setupDrawList(blocks) {
 }
 
 function setupOfficeList(offices) {
+	let highlightedOfficeNum = null;
+
 	function highlightOfficeBox(number) {
-		const old = document.querySelector(`.office[data-number="${activeOfficeRef.current}"]`);
-		if (old) old.dataset.hover = 0;
+		const old = document.querySelector(`polygon.office[data-number="${highlightedOfficeNum}"]`);
+		if (old) old.dataset.highlighted = 0;
 
-		activeOfficeRef.current = number;
+		highlightedOfficeNum = number;
 		goToFloor(number[0]);
-		const el = document.querySelector(`.office[data-number="${number}"]`);
+		const el = document.querySelector(`polygon.office[data-number="${number}"]`);
 		if (!el) return;
-		el.dataset.hover = 1;
-		setTimeout(() => (el.dataset.hover = 0), 2000);
-	}
-
-	function lazyHighlightOfficeBox(number, value) {
-		const el = document.querySelector(`.office[data-number="${number}"]`);
-		if (el) el.dataset.hover = value;
+		el.dataset.highlighted = 1;
+		setTimeout(() => (el.dataset.highlighted = 0), 2000);
 	}
 
 	offices.forEach(({ number, people, capacity }) => {
 		const div = document.createElement("div");
 		div.className = "block";
-		div.dataset.searchable = people.join(", ").toLowerCase();
+		div.dataset.searchable = people?.join(", ").toLowerCase() || "";
 		div.dataset.number = number;
 		div.onclick = highlightOfficeBox.bind(null, div.dataset.number);
 
-		div.onmouseenter = lazyHighlightOfficeBox.bind(null, div.dataset.number, 1);
-		div.onmouseleave = lazyHighlightOfficeBox.bind(null, div.dataset.number, 0);
-
 		div.innerHTML = `
-        <div>Office ${number} (${people.length} / ${capacity})</div>
-        ${people.map((person) => `<div>${person}</div>`).join("")}
+        <div>Office ${number} (${people?.length || 0} / ${capacity})</div>
+        ${people?.map((person) => `<div>${person}</div>`).join("") || ""}
         `;
 		setOffices.lastElementChild.append(div);
 	});
@@ -174,6 +168,11 @@ function scrollOffOffice(number) {
 	});
 }
 
+function highlightOfficeInList(number) {
+	scrollToOffice(number);
+	setTimeout(scrollOffOffice.bind(null, number), 2000);
+}
+
 function searchForName(el, text) {
 	text = text.toLowerCase();
 	Array.from(el.children).forEach((child) => {
@@ -204,7 +203,8 @@ async function fetchData(year) {
 
 async function go() {
 	const urlParams = new URLSearchParams(window.location.search);
-	const year = urlParams.get('year') || new Date().getFullYear();
+	const msIn6Mo = 15768000000;
+	const year = urlParams.get('year') || new Date(Date.now() - msIn6Mo).getFullYear();
 	const { evans, officeNums, people } = await fetchData(year);
 
 	const blocks = [];
