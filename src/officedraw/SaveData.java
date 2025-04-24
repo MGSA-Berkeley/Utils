@@ -95,7 +95,7 @@ public class SaveData {
             }
         }
         try {
-            images(year, officeToPerson);
+//            images(year, officeToPerson);
             saveHtml(year, len, blocks, priorities, times, personToOffice, officeToPerson);
         } catch (IOException ex) {
             System.out.println("Error: " + ex);
@@ -119,7 +119,7 @@ public class SaveData {
             }
         }
         int index = 0;
-        Map<Person,Integer> indices = new HashMap<>();
+        Map<Person, Integer> indices = new HashMap<>();
         List<List<String>> blocks = new ArrayList<>();
         List<BigFraction> blocksums = new ArrayList<>();
         List<String> block = new ArrayList<>();
@@ -322,17 +322,17 @@ public class SaveData {
             sb.append("]}");
         }
         sb.append("];\n");
-        Path datajs = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\data.js");
-        Path indexjs = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\index.js");
-        Path indexphp = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\index.php");
-        Path mainhtml = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\main.html");
-        Path officesjs = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\offices.js");
-        Path stylecss = Paths.get("C:\\Users\\thoma\\mgsa\\officedraw\\" + year + "\\style.css");
+        Path datajs = Paths.get("officedraw\\data.js");
+//        Path indexjs = Paths.get("officedraw\\index.js");
+//        Path indexphp = Paths.get("officedraw\\index.php");
+//        Path mainhtml = Paths.get("officedraw\\main.html");
+//        Path officesjs = Paths.get("officedraw\\" + year + "\\offices.js");
+//        Path stylecss = Paths.get("officedraw\\" + year + "\\style.css");
         Files.writeString(datajs, sb.toString(), StandardCharsets.UTF_8);
-        Files.copy(Paths.get("index.js"), indexjs, StandardCopyOption.REPLACE_EXISTING);
-        Files.copy(Paths.get("index.php"), indexphp, StandardCopyOption.REPLACE_EXISTING);
-        Files.copy(Paths.get("main.html"), mainhtml, StandardCopyOption.REPLACE_EXISTING);
-        Files.copy(Paths.get("offices.js"), officesjs, StandardCopyOption.REPLACE_EXISTING);
-        Files.copy(Paths.get("style.css"), stylecss, StandardCopyOption.REPLACE_EXISTING);
+//        Files.copy(Paths.get("officedraw\\index.js"), indexjs, StandardCopyOption.REPLACE_EXISTING);
+//        Files.copy(Paths.get("officedraw\\index.php"), indexphp, StandardCopyOption.REPLACE_EXISTING);
+//        Files.copy(Paths.get("main.html"), mainhtml, StandardCopyOption.REPLACE_EXISTING);
+//        Files.copy(Paths.get("offices.js"), officesjs, StandardCopyOption.REPLACE_EXISTING);
+//        Files.copy(Paths.get("style.css"), stylecss, StandardCopyOption.REPLACE_EXISTING);
     }
 }
