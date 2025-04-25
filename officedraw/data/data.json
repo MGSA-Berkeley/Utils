@@ -4,49 +4,73 @@
             "year": "2018",
             "floorplan": "evans.json",
             "activeoffices": "activeoffices2023.json",
-            "people": "people2018.json"
+            "people": "people2018.json",
+            "start": 1525204800000,
+            "delta": 900000,
+            "timeslots": 12
         },
         {
             "year": "2019",
             "floorplan": "evans.json",
             "activeoffices": "activeoffices2023.json",
-            "people": "people2019.json"
+            "people": "people2019.json",
+            "start": 1557435600000,
+            "delta": 900000,
+            "timeslots": 12
         },
         {
             "year": "2020",
             "floorplan": "evans.json",
             "activeoffices": "activeoffices2023.json",
-            "people": "people2020.json"
+            "people": "people2020.json",
+            "start": 1590181200000,
+            "delta": 900000,
+            "timeslots": 12
         },
         {
             "year": "2021",
             "floorplan": "evans.json",
             "activeoffices": "activeoffices2023.json",
-            "people": "people2021.json"
+            "people": "people2021.json",
+            "start": 1621630800000,
+            "delta": 900000,
+            "timeslots": 12
         },
         {
             "year": "2022",
             "floorplan": "evans.json",
             "activeoffices": "activeoffices2023.json",
-            "people": "people2022.json"
+            "people": "people2022.json",
+            "start": 1651258800000,
+            "delta": 900000,
+            "timeslots": 12
         },
         {
             "year": "2023",
             "floorplan": "evans.json",
             "activeoffices": "activeoffices2023.json",
-            "people": "people2018.json"
+            "people": "people2023.json",
+            "start": 1682708400000,
+            "delta": 900000,
+            "timeslots": 12
         },
         {
             "year": "2024",
             "floorplan": "evans.json",
             "activeoffices": "activeoffices2024.json",
-            "people": "people2024.json"
+            "people": "people2024.json",
+            "start": 1714158000000,
+            "delta": 900000,
+            "timeslots": 12
         },
         {
             "year": "2025",
             "floorplan": "evans.json",
             "activeoffices": "activeoffices2025.json",
-            "people": "people2025.json"
+            "people": "people2025.json",
+            "start": 1746212400000,
+            "delta": 900000,
+            "timeslots": 12
         }
     ]
 }

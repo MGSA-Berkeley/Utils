@@ -9,6 +9,7 @@ import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -22,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.imageio.ImageIO;
+import static officedraw.Offices.capacitymap;
 
 public class SaveData {
 
@@ -157,17 +159,29 @@ public class SaveData {
         for (int i = 0; i < len; i++) {
             priorities.add(blocksums.get(i).divide(new BigFraction(blocks.get(i).size())));
         }
-        if (year == 2024) {
-            long base = 1714158000000L;
-            long delta = 900000L;
-            int numslots = 12;
-            int pos = 0;
-            for (int i = 0; i < len; i++) {
-                if (times.get(i) == -1) {
-                    times.set(i, base + pos * numslots / amt * delta);
-                    pos++;
+        try {
+            String datafolder = "officedraw" + File.separator + "data" + File.separator;
+            String datafile = datafolder + "data.json";
+            Map<String, Object> datamap = (Map) JsonParser.parse(new FileReader(datafile));
+            List<Object> yearlist = (List) datamap.get("data");
+            for (int i = 0; i < yearlist.size(); i++) {
+                Map<String, Object> yearmap = (Map) yearlist.get(i);
+                if (Integer.parseInt(yearmap.get("year").toString()) != year) {
+                    continue;
+                }
+                long base = (Long) yearmap.get("start");
+                long delta = (Long) yearmap.get("delta");
+                long numslots = (Long) yearmap.get("timeslots");
+                int pos = 0;
+                for (int j = 0; j < len; j++) {
+                    if (times.get(j) == -1) {
+                        times.set(j, base + pos * numslots / amt * delta);
+                        pos++;
+                    }
                 }
             }
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
         List<String> lines = new ArrayList<>();
         lines.add("{");

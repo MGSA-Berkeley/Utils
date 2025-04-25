@@ -80,7 +80,7 @@ public final class JsonParser {
 	private Object readSingleValue() throws IOException {
 		skipWhitespace();
 		Object result = readValue();
-		if (!(result instanceof Integer)) {
+		if (!(result instanceof Long)) {
 			read();
 		}
 		skipWhitespace();
@@ -151,7 +151,7 @@ public final class JsonParser {
 			Object value = readValue();
 			obj.put(key, value);
 
-			if (!(value instanceof Integer)) {
+			if (!(value instanceof Long)) {
 				read();
 			}
 
@@ -180,7 +180,7 @@ public final class JsonParser {
 			Object value = readValue();
 			array.add(value);
 
-			if (!(value instanceof Integer)) {
+			if (!(value instanceof Long)) {
 				read();
 			}
 
@@ -277,7 +277,7 @@ public final class JsonParser {
 		return character() >= '0' && character() <= '9';
 	}
 
-	private Integer readNumber() throws IOException {
+	private Long readNumber() throws IOException {
 		StringBuilder result = new StringBuilder();
 
 		if (character() == '-') {
@@ -340,7 +340,7 @@ public final class JsonParser {
 		String resultStr = result.toString();
 
 		try {
-			return Integer.parseInt(resultStr);
+			return Long.parseLong(resultStr);
 		} catch (NumberFormatException error) {
 			throw new JsonParseException("Failed to parse number '" + resultStr + "'");
 		}
