@@ -89,7 +89,7 @@ function setupDrawList(blocks) {
 		div.className = "block";
 		block.done = block.people.every(x => x.office);
 		div.dataset.done = block.done ? 1 : 0;
-		div.dataset.searchable = block.people.join(", ").toLowerCase();
+		div.dataset.searchable = block.people.map(person => person.name).join(", ").toLowerCase();
 		const time = block.time == -1 ? "" : (block.time
 			? new Date(block.time).toLocaleTimeString([], {
 				hour: "numeric",
