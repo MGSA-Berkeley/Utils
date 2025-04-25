@@ -164,12 +164,20 @@ svg#svgmap {
 }
 
 .block {
-	border: 1px solid var(--berk-dark-gray);
+	border: 1px solid var(--berk-blue);
 	color: #222;
 	padding: 0.5em;
 	margin-bottom: 0.5em;
 	user-select: none;
 	background-color: var(--berk-gray);
+}
+
+/* cannot display none it bc we want the width to count */
+.block.hidden {
+	visibility: hidden;
+	height: 0px;
+	padding: 0 0.5em;
+	margin-bottom: -1.6px;
 }
 
 .block-scoller > div {

@@ -176,7 +176,10 @@ function highlightOfficeInList(number) {
 function searchForName(el, text) {
 	text = text.toLowerCase();
 	Array.from(el.children).forEach((child) => {
-		child.style.display = child.dataset.searchable.includes(text) ? "block" : "none";
+		if (child.dataset.searchable.includes(text))
+			child.classList.remove('hidden')
+		else
+			child.classList.add('hidden')
 	});
 }
 
