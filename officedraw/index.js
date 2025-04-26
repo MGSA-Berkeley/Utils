@@ -87,9 +87,9 @@ function setupDrawList(blocks) {
 	blocks.forEach((block) => {
 		const div = document.createElement("div");
 		div.className = "block";
-		block.done = block.time < Date.now();
+		block.done = block.people.every(x => x.office);
 		div.dataset.done = block.done ? 1 : 0;
-		div.dataset.searchable = block.people.join(", ").toLowerCase();
+		div.dataset.searchable = block.people.map(person => person.name).join(", ").toLowerCase();
 		const time = block.time == -1 ? "" : (block.time
 			? new Date(block.time).toLocaleTimeString([], {
 				hour: "numeric",
@@ -98,7 +98,7 @@ function setupDrawList(blocks) {
 			: "(squat)");
 		div.innerHTML = `
             <div>${time}</div>
-            ${block.people.map((person) => `<div>${person}</div>`).join("")}
+            ${block.people.map((person) => `<div>${person.name}</div>`).join("")}
         `;
 		drawOrder.lastElementChild.append(div);
 		block.elmt = div;
@@ -176,19 +176,22 @@ function highlightOfficeInList(number) {
 function searchForName(el, text) {
 	text = text.toLowerCase();
 	Array.from(el.children).forEach((child) => {
-		child.style.display = child.dataset.searchable.includes(text) ? "block" : "none";
+		if (child.dataset.searchable.includes(text))
+			child.classList.remove('hidden')
+		else
+			child.classList.add('hidden')
 	});
 }
 
-function processPeople(people, drawBlocks, offices) {
+function processPeople(people, blocks, offices) {
 	people.forEach(person => {
 		const office = offices.find(office => office.number == person.office) || {};
 		if (!office.people) office.people = [];
 		office.people.push(person.name);
 
-		if (!(person.index in drawBlocks))
-			drawBlocks[person.index] = { people: [], time: parseInt(person.time) };
-		drawBlocks[person.index].people.push(person.name);
+		if (!(person.index in blocks))
+			blocks[person.index] = { people: [], time: parseInt(person.time) };
+		blocks[person.index].people.push(person);
 
 	});
 }
