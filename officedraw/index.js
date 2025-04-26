@@ -96,7 +96,7 @@ function setupDrawList(blocks) {
 				minute: "numeric",
 			})
 			: "(squat)");
-		const priority = block.people.map(person => person.priority)[0];
+		const priority = block.people[0].priority;
 		div.innerHTML = `
             <div>${time} (priority ${priority})</div>
             ${block.people.map((person) => `<div>${person.name}</div>`).join("")}
