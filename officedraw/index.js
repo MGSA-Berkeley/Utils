@@ -25,7 +25,7 @@ function floorDataToObject(floors) {
 
 function createOfficeSvgElements(office) {
 	const { number, capacity, xpoints, ypoints } = office;
-	const points = xpoints.map((x, i) => `${x},${ypoints[i]}`).join(' ');
+	const points = xpoints.map((x, i) => `${x + .5},${ypoints[i] + .5}`).join(' ');
 	const poly = document.createElementNS(ns, "polygon");
 	poly.setAttribute("points", points);
 	poly.setAttribute('class', 'office');
