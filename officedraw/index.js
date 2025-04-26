@@ -69,15 +69,32 @@ async function setupMap(evans, officeNums) {
 		building.dataset.floor = num;
 	};
 
+	function resize() {
+		const { width, height } = building.getClientRects()[0];
+		const a = width * (730 || imgmap.naturalHeight) < (imgmap.naturalWidth || 1160) * height;
+		imgmap.style.width = a ? '100%' : '';
+		imgmap.style.height = a ? '' : '100%';
+		svgmap.style.width = a ? '100%' : '';
+		svgmap.style.height = a ? '' : '100%';
+	}
+
+	window.onresize = resize;
+	imgmap.onload = function () {
+		svgmap.setAttribute('viewBox', `0 0 ${imgmap.naturalWidth} ${imgmap.naturalHeight}`)
+		resize();
+	};
+
 	window.goToFloor = goToFloor;
 	goToFloor(10);
 	window.addEventListener("keydown", (evt) => {
-		if("78901".includes(evt.key))
+		if (evt.ctrlKey)
+			return
+		if ("78901".includes(evt.key))
 			return goToFloor(evt.key)
-		if(evt.key == 'ArrowUp')
-			return goToFloor( Math.min(10, parseInt(building.dataset.floor) + 1) );
-		if(evt.key == 'ArrowDown')
-			return goToFloor( Math.max(7, parseInt(building.dataset.floor) - 1) );
+		if (evt.key == 'ArrowUp')
+			return goToFloor(Math.min(10, parseInt(building.dataset.floor) + 1));
+		if (evt.key == 'ArrowDown')
+			return goToFloor(Math.max(7, parseInt(building.dataset.floor) - 1));
 	});
 }
 
