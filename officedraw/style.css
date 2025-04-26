@@ -98,7 +98,7 @@ svg#svgmap {
 #svgmap .office[data-highlighted='1'],
 #svgmap .office:hover {
 	fill: var(--berk-light-blue);
-	stroke-width: 5;
+	stroke-width: 3;
 	stroke: var(--berk-orange);
 }
 
@@ -170,9 +170,8 @@ svg#svgmap {
 	padding-left: 1em;
 }
 
-.block[data-active="1"] {
+.block[data-active="1"], #setOffices .block:hover {
 	box-shadow: 0 0 3px 3px var(--berk-orange);
-	border: 1px solid var(--berk-orange);
 }
 
 .block[data-done="1"] {
@@ -180,7 +179,7 @@ svg#svgmap {
 }
 
 .block {
-	border: 1px solid var(--berk-blue);
+	/* border: 1px solid var(--berk-blue); */
 	color: #222;
 	padding: 0.5em;
 	margin-bottom: 0.5em;
@@ -209,11 +208,6 @@ svg#svgmap {
 
 #setOffices .block {
 	cursor: pointer;
-}
-
-#setOffices .block:hover {
-	outline: 2px solid var(--berk-gray);
-	color: black;
 }
 
 .people-search {
