@@ -69,7 +69,7 @@
             "activeoffices": "activeoffices2025.json",
             "people": "people2025.json",
             "start": 1746212400000,
-            "delta": 900000,
+            "delta": 0,
             "timeslots": 12
         }
     ]
