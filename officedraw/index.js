@@ -71,7 +71,14 @@ async function setupMap(evans, officeNums) {
 
 	window.goToFloor = goToFloor;
 	goToFloor(10);
-	window.addEventListener("keydown", (evt) => "78901".includes(evt.key) && goToFloor(evt.key));
+	window.addEventListener("keydown", (evt) => {
+		if("78901".includes(evt.key))
+			return goToFloor(evt.key)
+		if(evt.key == 'ArrowUp')
+			return goToFloor( Math.min(10, parseInt(building.dataset.floor) + 1) );
+		if(evt.key == 'ArrowDown')
+			return goToFloor( Math.max(7, parseInt(building.dataset.floor) - 1) );
+	});
 }
 
 function setupDrawList(blocks) {
