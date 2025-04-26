@@ -38,8 +38,12 @@ function createOfficeSvgElements(office) {
 	num.setAttribute("y", Math.max(...ypoints) - 4);
 	num.setAttribute('class', 'num');
 
+	const fullness = office.people?.length || 0;
 	const cap = document.createElementNS(ns, "text");
 	cap.innerHTML = (office.people?.length || 0) + " / " + capacity;
+	const a = fullness == 0 ? 0 : fullness == capacity ? 2 : 1;
+	poly.setAttribute('data-fullness', a);
+	console.log(fullness, capacity, a);
 
 	cap.setAttribute("x", ave(xpoints));
 	cap.setAttribute("y", ave(ypoints) - 7);

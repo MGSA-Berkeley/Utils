@@ -2,7 +2,13 @@
 	--gold-tint: rgb(255 215 0 / 30%);
 	--dark-tint: rgba(0, 0, 0, 0.3);
 	--berk-blue: #003262;
-	--berk-light-blue: #3b7ea1;
+	--berk-light-blue: #9FD1FF;
+	--berk-medium-blue: #004AAE;
+	--berk-light-purple: #D9CEFF;
+	--berk-medium-purple: #8236C7;
+	--berk-light-green: #B3E59A;
+	--berk-light-yellow: #FFE88D;
+	--berk-light-rose: #FFCFE5;
 	--berk-gold: #fdb515;
 	--berk-dark-gold: #c4820e;
 	--berk-orange: #d9661f;
@@ -67,8 +73,16 @@ svg#svgmap {
 	pointer-events: none;
 }
 
-#svgmap .office {
-	fill: var(--berk-light-blue);
+#svgmap .office[data-fullness='0'] {
+	fill: var(--berk-light-green);
+}
+
+#svgmap .office[data-fullness='1'] {
+	fill: var(--berk-light-yellow);
+}
+
+#svgmap .office[data-fullness='2'] {
+	fill: var(--berk-light-rose);
 }
 
 #svgmap text.cap {
@@ -83,7 +97,9 @@ svg#svgmap {
 
 #svgmap .office[data-highlighted='1'],
 #svgmap .office:hover {
-	fill: var(--berk-dark-gold);
+	fill: var(--berk-light-blue);
+	stroke-width: 5;
+	stroke: var(--berk-orange);
 }
 
 #building[data-floor="7"] g[data-floor="7"],
