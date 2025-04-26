@@ -96,8 +96,9 @@ function setupDrawList(blocks) {
 				minute: "numeric",
 			})
 			: "(squat)");
+		const priority = block.people.map(person => person.priority)[0];
 		div.innerHTML = `
-            <div>${time}</div>
+            <div>${time} (priority ${priority})</div>
             ${block.people.map((person) => `<div>${person.name}</div>`).join("")}
         `;
 		drawOrder.lastElementChild.append(div);
