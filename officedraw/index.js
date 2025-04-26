@@ -95,7 +95,7 @@ function setupDrawList(blocks) {
 				hour: "numeric",
 				minute: "numeric",
 			})
-			: "(squat)");
+			: "(squating)");
 		div.innerHTML = `
             <div>${time}</div>
             ${block.people.map((person) => `<div>${person.name}</div>`).join("")}
