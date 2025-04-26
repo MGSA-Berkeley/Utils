@@ -43,7 +43,6 @@ function createOfficeSvgElements(office) {
 	cap.innerHTML = (office.people?.length || 0) + " / " + capacity;
 	const a = fullness == 0 ? 0 : fullness == capacity ? 2 : 1;
 	poly.setAttribute('data-fullness', a);
-	console.log(fullness, capacity, a);
 
 	cap.setAttribute("x", ave(xpoints));
 	cap.setAttribute("y", ave(ypoints) - 7);
@@ -63,12 +62,6 @@ async function setupMap(evans, officeNums) {
 		floors[office.floor].g.append(...elements);
 	});
 
-	function resize() {
-		const r = imgmap.height / imgmap.naturalHeight;
-		Object.values(floors).map(({ g }) => {
-			g.setAttribute("transform", `scale(${r})`);
-		});
-	}
 
 	function goToFloor(num) {
 		if (num == "1" || num == "0") num = "10";
@@ -77,13 +70,7 @@ async function setupMap(evans, officeNums) {
 	};
 
 	window.goToFloor = goToFloor;
-
 	goToFloor(10);
-
-	window.onresize = resize;
-	imgmap.onload = resize;
-	setTimeout(resize, 200);
-
 	window.addEventListener("keydown", (evt) => "78901".includes(evt.key) && goToFloor(evt.key));
 }
 
