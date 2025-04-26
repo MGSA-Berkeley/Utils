@@ -33,7 +33,7 @@ function createOfficeSvgElements(office) {
 	poly.onclick = highlightOfficeInList.bind(null, number);
 
 	const num = document.createElementNS(ns, "text");
-	num.innerHTML = "#" + number;
+	num.innerHTML = number;
 	num.setAttribute("x", Math.min(...xpoints) + 2);
 	num.setAttribute("y", Math.max(...ypoints) - 4);
 	num.setAttribute('class', 'num');
