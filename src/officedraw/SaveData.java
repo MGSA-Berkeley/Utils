@@ -93,8 +93,7 @@ public class SaveData {
         try {
             String datafolder = "officedraw" + File.separator + "data" + File.separator;
             String datafile = datafolder + "data.json";
-            Map<String, Object> datamap = (Map) JsonParser.parse(new FileReader(datafile));
-            List<Object> yearlist = (List) datamap.get("data");
+            List<Object> yearlist = (List) JsonParser.parse(new FileReader(datafile));
             for (int i = 0; i < yearlist.size(); i++) {
                 Map<String, Object> yearmap = (Map) yearlist.get(i);
                 if (Integer.parseInt(yearmap.get("year").toString()) != year) {
@@ -115,23 +114,21 @@ public class SaveData {
             ex.printStackTrace();
         }
         List<String> lines = new ArrayList<>();
-        lines.add("{");
-        lines.add("    \"people\": [");
+        lines.add("[");
         people = Arrays.copyOf(Sorting.nameSort(data), data.length - 1);
         for (int i = 0; i < people.length; i++) {
             Person p = people[i];
             String name = p.buttons[0].getText();
             index = indices.get(p);
-            lines.add("        {");
-            lines.add("            \"name\": \"" + name + "\",");
-            lines.add("            \"priority\": \"" + priorities.get(index) + "\",");
-            lines.add("            \"index\": \"" + index + "\",");
-            lines.add("            \"time\": \"" + times.get(index) + "\",");
-            lines.add("            \"office\": \"" + p.buttons[5].getText() + "\"");
-            lines.add(i == people.length - 1 ? "        }" : "        },");
+            lines.add("    {");
+            lines.add("        \"name\": \"" + name + "\",");
+            lines.add("        \"priority\": \"" + priorities.get(index) + "\",");
+            lines.add("        \"index\": \"" + index + "\",");
+            lines.add("        \"time\": \"" + times.get(index) + "\",");
+            lines.add("        \"office\": \"" + p.buttons[5].getText() + "\"");
+            lines.add(i == people.length - 1 ? "    }" : "    },");
         }
-        lines.add("    ]");
-        lines.add("}");
+        lines.add("]");
         // todo: harvest file name from data.json
         Path file = Paths.get("officedraw" + File.separator + "data" + File.separator + "people" + year + ".json");
         try {

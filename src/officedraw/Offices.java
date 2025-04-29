@@ -18,8 +18,7 @@ public class Offices {
         try {
             String datafolder = "officedraw" + File.separator + "data" + File.separator;
             String datafile = datafolder + "data.json";
-            Map<String, Object> datamap = (Map) JsonParser.parse(new FileReader(datafile));
-            List<Object> yearlist = (List) datamap.get("data");
+            List<Object> yearlist = (List) JsonParser.parse(new FileReader(datafile));
             for (int i = 0; i < yearlist.size(); i++) {
                 Map<String, Object> yearmap = (Map) yearlist.get(i);
                 int year = Integer.parseInt(yearmap.get("year").toString());
@@ -34,8 +33,7 @@ public class Offices {
                     capacities.put(number, capacity);
                 }
                 String activefile = datafolder + yearmap.get("activeoffices");
-                Map<String, Object> activemap = (Map) JsonParser.parse(new FileReader(activefile));
-                List<Object> activelist = (List) activemap.get("offices");
+                List<Object> activelist = (List) JsonParser.parse(new FileReader(activefile));
                 capacitymap.put(year, new HashMap<>());
                 for (int j = 0; j < activelist.size(); j++) {
                     String number = (String) activelist.get(j);

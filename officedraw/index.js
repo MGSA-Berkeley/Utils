@@ -4,10 +4,6 @@
  */
 const ns = "http://www.w3.org/2000/svg";
 
-function capitalize(s) {
-	return s[0].toUpperCase() + s.substring(1);
-}
-
 function ave(arr) {
 	let tot = 0;
 	for (let i = 0; i < arr.length; i++) tot += arr[i];
@@ -65,7 +61,7 @@ async function setupMap(evans, officeNums) {
 
 	function goToFloor(num) {
 		if (num == "1" || num == "0") num = "10";
-		imgmap.src = 'data/' + capitalize(floors[num].map);
+		imgmap.src = 'data/' + floors[num].map;
 		building.dataset.floor = num;
 	};
 
@@ -213,10 +209,10 @@ function processPeople(people, blocks, offices) {
 }
 
 async function fetchData(year) {
-	const data = await fetch('data/data.json?cachebust=' + Date.now()).then(res => res.json()).then(x => x.data.find(y => y.year == year) || x.data[x.data.length - 1]);
+	const data = await fetch('data/data.json?cachebust=' + Date.now()).then(res => res.json()).then(x => x.find(y => y.year == year) || x.data[x.data.length - 1]);
 	const evans = await fetch('data/' + data.floorplan + '?cachebust=' + Date.now()).then(x => x.json());
-	const officeNums = await fetch('data/' + data.activeoffices + '?cachebust=' + Date.now()).then(res => res.json()).then(x => x.offices);
-	const people = await fetch('data/' + data.people + '?cachebust=' + Date.now()).then(res => res.json()).then(x => x.people);
+	const officeNums = await fetch('data/' + data.activeoffices + '?cachebust=' + Date.now()).then(res => res.json());
+	const people = await fetch('data/' + data.people + '?cachebust=' + Date.now()).then(res => res.json());
 	return { evans, officeNums, people };
 }
 
