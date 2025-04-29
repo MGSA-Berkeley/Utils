@@ -230,6 +230,13 @@
         },
         {
             "floor": "8",
+            "number": "846",
+            "capacity": 4,
+            "xpoints": [526, 526, 478, 478],
+            "ypoints": [383, 284, 284, 383]
+        },
+        {
+            "floor": "8",
             "number": "848",
             "capacity": 4,
             "xpoints": [475, 475, 427, 427],
