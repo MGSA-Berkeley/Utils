@@ -192,7 +192,7 @@ svg#svgmap {
 	visibility: hidden;
 	height: 0px;
 	padding: 0 0.5em;
-	margin-bottom: -1.6px;
+	margin-bottom: 0;
 }
 
 .block-scoller > div {
@@ -208,6 +208,38 @@ svg#svgmap {
 
 #setOffices .block {
 	cursor: pointer;
+}
+
+#help {
+	position: absolute;
+	height: 90vh;
+	width: calc(100% - 2em);
+	margin: 1em;
+	border-radius: 1em;
+	border: 2px solid #444;
+	z-index: 9;
+	background-color: #ddd;
+	visibility: hidden;
+}
+
+#help > div {
+	padding: 2em;
+}
+
+#help:hover {
+	visibility: visible;
+}
+
+#help::before {
+	content: "? help";
+	visibility: visible;
+	border: 1px solid red;
+	border-radius: 1em;
+	padding: .25em .5em;
+
+	background: #fafafafa;
+	border: 2px solid #888;
+	color: #888;
 }
 
 .people-search {
