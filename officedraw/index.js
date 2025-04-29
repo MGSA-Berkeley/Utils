@@ -213,10 +213,10 @@ function processPeople(people, blocks, offices) {
 }
 
 async function fetchData(year) {
-	const data = await fetch('data/data.json?cachebust=' + new Date().getTime()).then(res => res.json()).then(x => x.data.find(y => y.year == year) || x.data[x.data.length - 1]);
-	const evans = await fetch('data/' + data.floorplan + '?cachebust=' + new Date().getTime()).then(x => x.json());
-	const officeNums = await fetch('data/' + data.activeoffices + '?cachebust=' + new Date().getTime()).then(res => res.json()).then(x => x.offices);
-	const people = await fetch('data/' + data.people + '?cachebust=' + new Date().getTime()).then(res => res.json()).then(x => x.people);
+	const data = await fetch('data/data.json?cachebust=' + Date.now()).then(res => res.json()).then(x => x.data.find(y => y.year == year) || x.data[x.data.length - 1]);
+	const evans = await fetch('data/' + data.floorplan + '?cachebust=' + Date.now()).then(x => x.json());
+	const officeNums = await fetch('data/' + data.activeoffices + '?cachebust=' + Date.now()).then(res => res.json()).then(x => x.offices);
+	const people = await fetch('data/' + data.people + '?cachebust=' + Date.now()).then(res => res.json()).then(x => x.people);
 	return { evans, officeNums, people };
 }
 
