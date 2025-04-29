@@ -110,7 +110,7 @@ function setupDrawList(blocks) {
 				hour: "numeric",
 				minute: "numeric",
 			})
-			: "(squating)");
+			: "(squatting)");
 		const priority = block.people[0].priority;
 		div.innerHTML = `
             <div>${time} (priority ${priority})</div>
