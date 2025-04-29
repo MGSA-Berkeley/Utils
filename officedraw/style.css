@@ -231,7 +231,7 @@ svg#svgmap {
 }
 
 #help::before {
-	content: "? help";
+	content: "help ?";
 	visibility: visible;
 	border: 1px solid red;
 	border-radius: 1em;
