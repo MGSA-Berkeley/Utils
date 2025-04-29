@@ -222,8 +222,8 @@ async function fetchData(year) {
 
 async function go() {
 	const urlParams = new URLSearchParams(window.location.search);
-	const msIn6Mo = 15768000000;
-	const year = urlParams.get('year') || new Date(Date.now() - msIn6Mo).getFullYear();
+	const msIn7Mo = 18396000000;
+	const year = urlParams.get('year') || new Date(Date.now() - msIn7Mo).getFullYear();
 	const { evans, officeNums, people } = await fetchData(year);
 
 	const blocks = [];
