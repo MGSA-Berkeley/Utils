@@ -15,8 +15,8 @@
     },
     {
         "name": "Adam Lesnikowski",
-        "priority": "6",
-        "index": "75",
+        "priority": "16/3",
+        "index": "73",
         "time": "1714166100000",
         "office": "852"
     },
@@ -163,7 +163,7 @@
     {
         "name": "Brian Morris",
         "priority": "6",
-        "index": "74",
+        "index": "75",
         "time": "1714166100000",
         "office": "848"
     },
@@ -274,15 +274,15 @@
     },
     {
         "name": "Daniel Li",
-        "priority": "6",
-        "index": "75",
+        "priority": "16/3",
+        "index": "73",
         "time": "1714166100000",
         "office": "852"
     },
     {
         "name": "Daniel Ogbe",
         "priority": "6",
-        "index": "73",
+        "index": "74",
         "time": "1714166100000",
         "office": "830"
     },
@@ -365,8 +365,8 @@
     },
     {
         "name": "Esme Weil",
-        "priority": "6",
-        "index": "75",
+        "priority": "16/3",
+        "index": "73",
         "time": "1714166100000",
         "office": "852"
     },
@@ -464,7 +464,7 @@
     {
         "name": "Hua-Shin Chang",
         "priority": "6",
-        "index": "74",
+        "index": "75",
         "time": "1714166100000",
         "office": "848"
     },
@@ -526,8 +526,8 @@
     },
     {
         "name": "Jerry Wei",
-        "priority": "6",
-        "index": "75",
+        "priority": "16/3",
+        "index": "73",
         "time": "1714166100000",
         "office": "828"
     },
@@ -652,8 +652,8 @@
     },
     {
         "name": "Lucy Horowitz",
-        "priority": "6",
-        "index": "75",
+        "priority": "16/3",
+        "index": "73",
         "time": "1714166100000",
         "office": "852"
     },
@@ -835,7 +835,7 @@
     {
         "name": "Robert Bowden",
         "priority": "6",
-        "index": "74",
+        "index": "75",
         "time": "1714166100000",
         "office": "848"
     },
@@ -946,8 +946,8 @@
     },
     {
         "name": "Shang Xu",
-        "priority": "6",
-        "index": "75",
+        "priority": "16/3",
+        "index": "73",
         "time": "1714166100000",
         "office": "828"
     },
@@ -961,7 +961,7 @@
     {
         "name": "Sophia Gu",
         "priority": "6",
-        "index": "74",
+        "index": "75",
         "time": "1714166100000",
         "office": "848"
     },
@@ -1017,7 +1017,7 @@
     {
         "name": "Tyler Guo",
         "priority": "6",
-        "index": "73",
+        "index": "74",
         "time": "1714166100000",
         "office": "830"
     },
