@@ -1,29 +1,16 @@
 package officedraw;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.imageio.ImageIO;
-import static officedraw.Offices.capacitymap;
 
 public class SaveData {
 
@@ -38,19 +25,6 @@ public class SaveData {
 
     private static void saveJson(int year, Person[] data) {
         Person[] people = Arrays.copyOf(Sorting.blockSort(data, year), data.length - 1);
-        Map<String, List<String>> officeToPerson = new HashMap<>();
-        Map<String, String> personToOffice = new HashMap<>();
-        for (String office : Offices.offices.keySet()) {
-            officeToPerson.put(office, new ArrayList<>());
-        }
-        for (Person person : people) {
-            String name = person.buttons[0].getText();
-            String office = person.buttons[5].getText();
-            if (!office.isEmpty()) {
-                officeToPerson.get(office).add(name);
-                personToOffice.put(name, office);
-            }
-        }
         int index = 0;
         Map<Person, Integer> indices = new HashMap<>();
         List<List<String>> blocks = new ArrayList<>();
