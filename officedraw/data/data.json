@@ -1,5 +1,113 @@
 [
     {
+        "year": "2006",
+        "floorplan": "evans.json",
+        "activeoffices": "activeoffices2006.json",
+        "people": "people2006.json",
+        "start": 1525204800000,
+        "delta": 900000,
+        "timeslots": 12
+    },
+    {
+        "year": "2007",
+        "floorplan": "evans.json",
+        "activeoffices": "activeoffices2007.json",
+        "people": "people2007.json",
+        "start": 1525204800000,
+        "delta": 900000,
+        "timeslots": 12
+    },
+    {
+        "year": "2008",
+        "floorplan": "evans.json",
+        "activeoffices": "activeoffices2008.json",
+        "people": "people2008.json",
+        "start": 1525204800000,
+        "delta": 900000,
+        "timeslots": 12
+    },
+    {
+        "year": "2009",
+        "floorplan": "evans.json",
+        "activeoffices": "activeoffices2008.json",
+        "people": "people2009.json",
+        "start": 1525204800000,
+        "delta": 900000,
+        "timeslots": 12
+    },
+    {
+        "year": "2010",
+        "floorplan": "evans.json",
+        "activeoffices": "activeoffices2008.json",
+        "people": "people2010.json",
+        "start": 1525204800000,
+        "delta": 900000,
+        "timeslots": 12
+    },
+    {
+        "year": "2011",
+        "floorplan": "evans.json",
+        "activeoffices": "activeoffices2008.json",
+        "people": "people2011.json",
+        "start": 1525204800000,
+        "delta": 900000,
+        "timeslots": 12
+    },
+    {
+        "year": "2012",
+        "floorplan": "evans.json",
+        "activeoffices": "activeoffices2008.json",
+        "people": "people2012.json",
+        "start": 1525204800000,
+        "delta": 900000,
+        "timeslots": 12
+    },
+    {
+        "year": "2013",
+        "floorplan": "evans.json",
+        "activeoffices": "activeoffices2008.json",
+        "people": "people2013.json",
+        "start": 1525204800000,
+        "delta": 900000,
+        "timeslots": 12
+    },
+    {
+        "year": "2014",
+        "floorplan": "evans.json",
+        "activeoffices": "activeoffices2014.json",
+        "people": "people2014.json",
+        "start": 1525204800000,
+        "delta": 900000,
+        "timeslots": 12
+    },
+    {
+        "year": "2015",
+        "floorplan": "evans.json",
+        "activeoffices": "activeoffices2015.json",
+        "people": "people2015.json",
+        "start": 1525204800000,
+        "delta": 900000,
+        "timeslots": 12
+    },
+    {
+        "year": "2016",
+        "floorplan": "evans.json",
+        "activeoffices": "activeoffices2023.json",
+        "people": "people2016.json",
+        "start": 1525204800000,
+        "delta": 900000,
+        "timeslots": 12
+    },
+    {
+        "year": "2017",
+        "floorplan": "evans.json",
+        "activeoffices": "activeoffices2023.json",
+        "people": "people2017.json",
+        "start": 1525204800000,
+        "delta": 900000,
+        "timeslots": 12
+    },
+    {
         "year": "2018",
         "floorplan": "evans.json",
         "activeoffices": "activeoffices2023.json",

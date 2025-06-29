@@ -22,7 +22,21 @@
             "floor": "7",
             "number": "710",
             "capacity": 2,
+            "xpoints": [629, 629, 529, 529],
+            "ypoints": [558, 489, 489, 558]
+        },
+        {
+            "floor": "7",
+            "number": "710",
+            "capacity": 2,
             "xpoints": [680, 680, 632, 632],
+            "ypoints": [558, 489, 489, 558]
+        },
+        {
+            "floor": "7",
+            "number": "714",
+            "capacity": 2,
+            "xpoints": [526, 526, 478, 478],
             "ypoints": [558, 489, 489, 558]
         },
         {
@@ -73,6 +87,13 @@
             "capacity": 4,
             "xpoints": [168, 168, 69, 69],
             "ypoints": [209, 161, 161, 209]
+        },
+        {
+            "floor": "7",
+            "number": "759",
+            "capacity": 3,
+            "xpoints": [373, 373, 325, 325],
+            "ypoints": [138, 59, 59, 138]
         },
         {
             "floor": "7",
@@ -269,6 +290,41 @@
             "capacity": 4,
             "xpoints": [322, 322, 263, 263],
             "ypoints": [363, 284, 284, 363]
+        },
+        {
+            "floor": "8",
+            "number": "855",
+            "capacity": 4,
+            "xpoints": [270, 270, 22, 22],
+            "ypoints": [138, 38, 38, 138]
+        },
+        {
+            "floor": "8",
+            "number": "858",
+            "capacity": 4,
+            "xpoints": [325, 373, 373, 325],
+            "ypoints": [171, 171, 281, 281]
+        },
+        {
+            "floor": "8",
+            "number": "860",
+            "capacity": 4,
+            "xpoints": [376, 424, 424, 376],
+            "ypoints": [171, 171, 281, 281]
+        },
+        {
+            "floor": "8",
+            "number": "864",
+            "capacity": 4,
+            "xpoints": [478, 526, 526, 478],
+            "ypoints": [171, 171, 281, 281]
+        },
+        {
+            "floor": "8",
+            "number": "866",
+            "capacity": 4,
+            "xpoints": [529, 578, 578, 529],
+            "ypoints": [171, 171, 281, 281]
         },
         {
             "floor": "8",

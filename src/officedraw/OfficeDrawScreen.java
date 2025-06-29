@@ -394,6 +394,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
         for (int year : yearset) {
             years[thisyear++] = year;
         }
+        Arrays.sort(years);
         for (int year = 0; year < numyears; year++) {
             if (years[year] == this.year) {
                 thisyear = year;
