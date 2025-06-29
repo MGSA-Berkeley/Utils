@@ -13,7 +13,7 @@ import java.util.List;
 public class MGSA {
 
     public static void main(String[] args) throws InterruptedException, IOException {
-        if (true) {
+        if (false) {
             List<String[]> data = new ArrayList<>();
             BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\thoma\\Downloads\\Temp Data - officedraw(3).csv"));
             while (true) {
