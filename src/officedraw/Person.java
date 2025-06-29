@@ -122,6 +122,9 @@ public class Person {
                 if (s.equals("Katherine Grace Christianson")) {
                     s = "Michael Christianson";
                 }
+                if (s.equals("Ka Kin Kenneth Hung")) {
+                    s = "Kenneth Hung";
+                }
             }
             buttons[i] = new Button(s, null);
         }
