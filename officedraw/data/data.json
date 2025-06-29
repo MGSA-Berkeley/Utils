@@ -92,7 +92,7 @@
     {
         "year": "2016",
         "floorplan": "evans.json",
-        "activeoffices": "activeoffices2023.json",
+        "activeoffices": "activeoffices2016.json",
         "people": "people2016.json",
         "start": 1525204800000,
         "delta": 900000,
