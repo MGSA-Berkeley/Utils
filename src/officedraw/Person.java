@@ -14,7 +14,11 @@ public class Person {
         }
         buttons = new Button[len];
         for (int i = 0; i < len; i++) {
-            buttons[i] = new Button(data[i], null);
+            String s = data[i];
+            if (i == 0) {
+                s = s.replace("  "," ");
+            }
+            buttons[i] = new Button(s, null);
         }
         warning = new Button("", null);
     }

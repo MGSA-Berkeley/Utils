@@ -1,6 +1,6 @@
-Aaron  Doman	1	6		Float	836
 Aaron Brookner	3	3		Float	1006
-Adele  Padgett	1	6		Block Adele  Padgett	844
+Aaron Doman	1	6		Float	836
+Adele Padgett	1	6		Block Adele Padgett	844
 Albert Ai	6	1		Squat	845
 Alexander Appleton	4	2		Squat	787
 Alexander Bertoloni	4	2		Block Alexander Bertoloni	1045
@@ -11,8 +11,8 @@ Alexander Sherman	4	2		Block Alexander Sherman	1093
 Alexander Youcis	5	1		Block Alexander Youcis	1047
 Alexander Zorn	6	1		Block Alexander Zorn	1041
 Alvin Kerber	7	3		Block Alvin Kerber	941
-Andrew  Shi	1	6		Float	850
 Andrew Hanlon	4	2		Squat	853
+Andrew Shi	1	6		Float	850
 Angxiu Ni	1	6		Block Angxiu Ni	854
 Anh-Trang Nguyen	7	3		Float	716
 Anna Seigal	4	2		Block Anna Seigal	1043
@@ -47,7 +47,7 @@ Daniel Chupin	1	6		Block Daniel Chupin	840
 Daniel Fremont	5	1		Block Daniel Fremont	1075
 Daniel Hermes	5	1		Squat	1087
 Daniel Lowengrub	5	1		Block Alexander Youcis	1047
-David Casey	1	6		Block Adele  Padgett	844
+David Casey	1	6		Block Adele Padgett	844
 David Keating	3	3		Block Calvin McPhail-Snyder	1044
 Dominique Maldague	4	2		Squat	743
 Dong An	2	4		Block Dong An	710
@@ -61,22 +61,22 @@ Felix Gotti-Pena	4	2		Float	816
 Franchesca Louise Cavagnaro	2	4		Block Franchesca Louise Cavagnaro	1060
 Franco Vargas Pallete	6	1		Block Franco Vargas Pallete	745
 Frank Ban	5	1		Block Franco Vargas Pallete	745
-Frederick  Huang	1	6		Float	852
+Frederick Huang	1	6		Float	852
 German Ezequiel Stefanich	2	4		Block Christopher Ling-Po Kuo	820
 Grace Liu	6	1		Squat	845
 Haoran Tang	3	3		Block Haoran Tang	1020
 Haoren Xiong	1	6		Float	852
 Harrison Chen	7	3		Block Alvin Kerber	941
-Holly Mandel	1	6		Block Adele  Padgett	844
+Holly Mandel	1	6		Block Adele Padgett	844
 Hong Suh	2	4		Block Bo Li	810
 Ian Gleason	3	3		Block Ben Castle	737
 Irit Huq-Kuruvilla	1	6		Block Daniel Chupin	840
 Isabelle Susheela Shankar	2	4		Block Isabelle Susheela Shankar	739
 Izaak Meckler	2	4		Block Izaak Meckler	1068
 Jacopo Di Bonito	1	6		Float	826
-James  Dix	1	6		Float	830
-James  Rowan	1	6		Block James  Rowan	842
+James Dix	1	6		Float	830
 James Moody	5	1		Block Daniel Fremont	1075
+James Rowan	1	6		Block James Rowan	842
 James Walsh	4	2		Block Anna Seigal	1043
 Jana Sotakova	1	6		Float	854
 Jeffmin Lin	3	3		Float	816
@@ -88,7 +88,7 @@ Jianwei Xiao	5	1		Float	1085
 Jiefu Zhang	2	4		Block Anningzhe Gao	1058
 Jonathan Gleason	5	1		Squat	935
 Jonathan Leake	4	2		Block Alexander Sherman	1093
-Jorge  Garza Vargas	1	6		Block James  Rowan	842
+Jorge Garza Vargas	1	6		Block James Rowan	842
 Joseph Stahl	2	4		Block Joseph Stahl	1062
 Julian Chaidez	3	3		Block Calvin McPhail-Snyder	1044
 Justin Brereton	5	1		Block Justin Brereton	835
@@ -99,27 +99,27 @@ Katrina Biele	2	0	-4	Block Isabelle Susheela Shankar	739
 Kentaro Yamamoto	4	2		Block Kentaro Yamamoto	1095
 Kevin Donoghue	6	1		Block Benson Au	747
 Kevin ONeill	5	1		Block Justin Brereton	835
-Kristina Nelson	1	6		Block Adele  Padgett	844
+Kristina Nelson	1	6		Block Adele Padgett	844
 Kubrat Danailov	3	3		Block Ben Castle	737
 Kun Chen	6	1		Squat	1008
 Kyeong Sik Nam	3	3		Block Haoran Tang	1020
 Kyle Miller	4	2		Float	747
 Kyle Russ-Navarro	4	2		Float	814
-Larsen  Linov	1	6		Block James  Rowan	842
-Lauren  Heller	1	6		Float	834
+Larsen Linov	1	6		Block James Rowan	842
+Lauren Heller	1	6		Float	834
 Leon Zhang	2	4		Float	1042
 Liyu Xia	2	4		Float	1004
 Luhang Lai	4	2		Float	1037
 Luke Pernal Corcos	2	3	-1	Block Luke Pernal Corcos	1066
 Madeleine Aster Weinstein	2	4		Float	1060
 Madeline Brandt	4	0	-2	Block Anna Seigal	1043
-Magda  Hlavacek	1	6		Block James  Rowan	842
+Magda Hlavacek	1	6		Block James Rowan	842
 Maria Martinez	8	3	-2	Float	1042
 Mariana Vicaria	2	4		Block Kentaro Yamamoto	1095
 Mariel Josephine Supina	2	3	-1	Block Isabelle Susheela Shankar	739
 Mario Sanchez	2	4		Block Isabelle Susheela Shankar	739
 Maryam Farahmand	7	3		Float	1042
-Maxim  Jeffs	1	6		Block Daniel Chupin	840
+Maxim Jeffs	1	6		Block Daniel Chupin	840
 Maxim Wimberley	3	3		Block Archit Kukarni	775
 Melissa Ulrika Sherman-Bennett	2	4		Block Jess Banks	824
 Mengyuan Zhang	4	0	-2	Block Christopher Eur	1061
@@ -165,14 +165,14 @@ Shenghan Zhang	4	2		Block Shenghan Zhang	1064
 Shishir Agrawal	7	3		Block Alvin Kerber	941
 Shiyu Li	4	2		Float	1040
 Tao Su	6	1		Block Benson Au	747
-Theo  McKenzie	1	6		Block Angxiu Ni	854
+Theo McKenzie	1	6		Block Angxiu Ni	854
 Theodore Zhu	3	3		Float	1085
 Thomas Mack-Crane	3	3		Block Alexander Bertoloni	1045
 Thunwa Theerakarn	6	1		Block Morgan Weiler	1039
 Watson Ladd	5	1		Squat	1057
 Will Pazner	3	3		Float	1085
 Wolfgang Schmaltz	6	1		Block Alexander Zorn	1041
-Xiaohan  Yan	1	6		Float	826
+Xiaohan Yan	1	6		Float	826
 Xinyu Zhao	2	4		Block Dong An	710
 Yanhe Huang	2	4		Block Luke Pernal Corcos	1066
 Yi Lai	2	4		Block Shenghan Zhang	1064
@@ -180,7 +180,7 @@ Yi-Chang Chen	6	1		Block Christopher Eur	1061
 Yifeng Ding	3	3		Block Benjamin Siskind	937
 Yingdi Qin	4	2		Float	818
 Yixuan Li	1	6		Float	852
-Yu  Tong	1	6		Float	850
+Yu Tong	1	6		Float	850
 Yuan Yao	1	6		Block Daniel Chupin	840
 Zahra Ahmadianhosseini	1	6		Float	826
 Ze Xu	5	1		Squat	789
