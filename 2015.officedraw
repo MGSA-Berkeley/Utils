@@ -1,15 +1,15 @@
 Aaron Brookner	1	6		Float	854
 Aaron Mazel-Gee	6	1		Block Aaron Mazel-Gee	1045
 Albert Ai	4	3	1	Float	853
+Alex Appleton	2	4		Float	787
 Alex Kruckman	6	1		Block Alex Kruckman	1057
-Alexander Appleton	2	4		Float	787
-Alexander Bertoloni	2	4		Block Alexander Bertoloni	845
+Alex Rusciano	2	4		Block Alex Rusciano	787
+Alex Sherman	2	4		Float	739
+Alex Youcis	3	3		Block Alex Youcis	1042
+Alexander Bertoloni Meli	2	4		Block Alexander Bertoloni Meli	845
 Alexander Carney	2	0	-4	Block Alexander Carney	1044
 Alexander Kocurek	4	2		Squat	737
-Alexander Rusciano	2	4		Block Alexander Rusciano	787
 Alexander Shapiro	5	1		Squat	941
-Alexander Sherman	2	4		Float	739
-Alexander Youcis	3	3		Block Alexander Youcis	1042
 Alexander Zorn	4	2		Block Alexander Zorn	1047
 Alexis Drouot	2	4		Float	835
 Alvin Kerber	5	1		Squat	937
@@ -20,7 +20,7 @@ Andrew Hanlon	2	4		Block Andrew Hanlon	741
 Anh-Trang Nguyen	5	1		Float	1070
 Anna Lieb	5	1		Float	1010
 Anna Seigal	2	4		Block Anna Seigal	1062
-Archit Kukarni	1	6		Block Archit Kukarni	850
+Archit Kulkarni	1	6		Block Archit Kulkarni	850
 Ben Castle	1	6		Float	836
 Ben Wormleighton	1	6		Block Ben Wormleighton	842
 Benjamin Filippenko	2	4		Block Benjamin Filippenko	935
@@ -37,7 +37,7 @@ Calvin McPhail-Snyder	1	6		Block Calvin McPhail-Snyder	826
 Catherine Cannizzo	3	3		Block Catherine Cannizzo	1056
 Chang-Yeon Cho	6	1		Float	1095
 Chanwoo Oh	4	2		Float	1061
-Chao Kusollershariya	7	3		Float	1095
+Chao Kusollerschariya	7	3		Float	1095
 Charles Skipper	3	3		Squat	1068
 Chen Shen	4	2		Block Chen Shen	1008
 Chris Gerig	4	2		Float	1049
@@ -49,12 +49,12 @@ Christopher R. Miller	2	4		Block Christopher R. Miller	1066
 Christopher Wong	5	1		Block Christopher Miller	1039
 Clare Stinchcombe	5	1		Squat	937
 Cristian Gavrus	4	2		Float	853
-Cristian Munteanu	2	4		Block Andrew Hanlon	741
+Cristian Mihai Munteanu	2	4		Block Andrew Hanlon	741
 Dan Daniel Erdmann-Pham	1	6		Float	844
 Daniel Appel	6	1		Float	1087
 Daniel Fremont	3	3		Squat	1068
 Daniel Hermes	3	3		Float	1040
-Daniel Lowengrub	3	3		Block Alexander Youcis	1042
+Daniel Lowengrub	3	3		Block Alex Youcis	1042
 David Anderson	7	1	-2	Block Christopher Miller	1039
 David Keating	1	6		Block Bryan Brown	848
 Derek Hollowood	2	4		Float	1006
@@ -89,8 +89,8 @@ James Robertson	1	6		Float	834
 James Walsh	2	4		Block Anna Seigal	1062
 Jason Ferguson	7	3		Float	1061
 Jed Duersch	7	3		Float	810
+Jeff Hicks	3	3		Block Benjamin Filippenko	935
 Jeffmin Lin	1	6		Float	840
-Jeffrey Hicks	3	3		Block Benjamin Filippenko	935
 Jeremy Meza	1	6		Float	848
 Jianwei Xiao	3	3		Float	1065
 Jonathan Gleason	3	3		Float	935
@@ -98,19 +98,19 @@ Jonathan Leake	2	4		Float	741
 Joseph Kileel	4	2		Block Joseph Kileel	1087
 Joshua Tobin	1	6		Float	852
 Jue Chen	6	1		Float	1085
-Julian Chaidez	1	6		Block Archit Kukarni	850
+Julian Chaidez	1	6		Block Archit Kulkarni	850
 Justin Brereton	3	3		Float	1066
-Ka Kin Kenneth Hung	2	4		Block Alexander Rusciano	787
+Ka Kin Kenneth Hung	2	4		Block Alex Rusciano	787
 Kai-Chieh Chen	2	4		Float	812
 Kentaro Yamamoto	2	4		Block Kentaro Yamamoto	1060
 Kevin Donoghue	4	2		Squat	747
-Kevin ONeill	3	3		Block Dominique Maldague	835
+Kevin O'Neill	3	3		Block Dominique Maldague	835
 Kevin Wray	6	1		Float	1043
 Kieren James-Lubin	4	2		Block Joseph Kileel	1087
 Kuan-Ying Fang	5	1		Float	816
 Kubrat Danailov	1	6		Float	844
 Kun Chen	4	2		Block Chen Shen	1008
-Kyeong Sik Nam	1	6		Float	840
+Kyeongsik Nam	1	6		Float	840
 Kyle Miller	2	4		Block Christopher R. Miller	1066
 Kyle Russ-Navarro	2	4		Float	814
 Luhang Lai	2	4		Float	745
@@ -121,22 +121,22 @@ Markus Vasquez	5	1		Squat	937
 Maryam Farahmand	5	1		Block Anastasia Chavez	1037
 Matthew Harrison-Trainor	4	2		Block Frank Ban	743
 Matthew Tanzer	2	4		Block Matthew Tanzer	739
-Maxim Wimberley	1	6		Float	830
+Max Wimberley	1	6		Float	830
 Meire Fortunato	6	1		Float	1047
 Mengyuan Zhang	2	4		Block Kentaro Yamamoto	1060
 Michael Lindsey	1	6		Block Ben Wormleighton	842
-Michael Smith	1	6		Block Archit Kukarni	850
+Michael Smith	1	6		Block Archit Kulkarni	850
 Michael Wan	6	1		Float	1065
 Michael Yeh	1	6		Float	828
 Minjae Lee	8	1	-4	Squat	1075
-Minseon Shin	3	3		Block Alexander Youcis	1042
-Mohandes Pillai	1	6		Float	832
+Minseon Shin	3	3		Block Alex Youcis	1042
+Mohandas Pillai	1	6		Float	832
 Moor Xu	3	0	-3	Float	1065
 Morgan Weiler	3	3		Block Frank Ban	743
 Nick Ryder	2	4		Block Matthew Tanzer	739
-Nima Moini	1	6		Block Archit Kukarni	850
+Nima Moini	1	6		Block Archit Kulkarni	850
 Noah Schweber	5	1		Float	1064
-Noble Macfarlane	2	4		Block Alexander Bertoloni	845
+Noble Macfarlane	2	4		Block Alexander Bertoloni Meli	845
 Olya Mandelshtam	6	0	-1	Block Olya Mandelshtam	1041
 Oran Gannot	6	1		Block Alex Kruckman	1057
 Patrick Wilson	4	0	-2	Squat	1093
@@ -146,16 +146,17 @@ Peyam Tabrizian	6	1		Float	1049
 Qiao Zhou	4	2		Squat	1093
 Qiaochu Yuan 2012	4	2		Block Alexander Zorn	1041
 Qiaochu Yuan 2013	3	3		Block Catherine Cannizzo	1056
-Qiuyi Zhang	2	4		Block Alexander Rusciano	787
+Qiuyi Zhang	2	4		Block Alex Rusciano	787
 Rahul Dalal	1	6		Block Calvin McPhail-Snyder	826
 Ravi Fernando	2	4		Block Alexander Carney	1044
 Reid Dale	2	4		Block Kentaro Yamamoto	1060
-Rockford Foster	2	4		Block Alexander Bertoloni	845
+Rockford Sison	2	4		Block Alexander Bertoloni Meli	845
 RuoChen Liang	2	4		Float	739
-Russel Buehler	4	2		Squat	737
+Russell Ahmed-Buehler	4	2		Squat	737
 Ryan Thorngren	3	3		Block Aaron Mazel-Gee	1045
 Saad Qadeer	3	3		Float	1058
 Samuel Ramsey	3	3		Float	1064
+Sander Mack-Crane	1	6		Block Ben Wormleighton	842
 Satyaki Mukherjee	1	6		Float	844
 Shelly Manber	6	1		Block Shelly Manber	1043
 Shenghan Zhang	2	4		Float	836
@@ -166,7 +167,6 @@ Steven Karp	4	2		Squat	775
 Sung-Chul Park	2	4		Block Andrew Hanlon	741
 Tao Su	4	2		Squat	747
 Theodore Zhu	1	6		Float	840
-Thomas Mack-Crane	1	6		Block Ben Wormleighton	842
 Thunwa Theerakarn	4	2		Block Penghui Li	745
 Tsvi Benson-Tilson	1	6		Block Benjamin Siskind	852
 Watson Ladd	3	3		Float	1070

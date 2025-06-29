@@ -366,6 +366,9 @@ public class OfficeDrawScreen implements mgsa.Screen {
             } else if (key == KeyEvent.VK_SLASH) {
                 button.setText(button.getText() + "/");
                 append = true;
+            } else if (key == KeyEvent.VK_PERIOD) {
+                button.setText(button.getText() + ".");
+                append = true;
             } else if (letters.keySet().contains(s)) {
                 button.setText(button.getText() + (keyset.contains(KeyEvent.VK_SHIFT) ? letters.get(s) : s));
                 append = true;

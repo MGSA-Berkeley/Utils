@@ -114,7 +114,7 @@
     {
         "name": "Anningzhe Gao",
         "priority": "3",
-        "index": "48",
+        "index": "49",
         "time": "1525209300000",
         "office": "1068"
     },
@@ -154,7 +154,7 @@
         "office": "853"
     },
     {
-        "name": "Benjamin Gamage",
+        "name": "Benjamin Gammage",
         "priority": "1",
         "index": "22",
         "time": "1525204800000",
@@ -170,7 +170,7 @@
     {
         "name": "Bo Li",
         "priority": "3",
-        "index": "48",
+        "index": "49",
         "time": "1525209300000",
         "office": "1068"
     },
@@ -217,10 +217,10 @@
         "office": "1061"
     },
     {
-        "name": "Chen Shen ",
+        "name": "Chen Shen",
         "priority": "3",
-        "index": "50",
-        "time": "1525209300000",
+        "index": "47",
+        "time": "1525208400000",
         "office": "741"
     },
     {
@@ -252,7 +252,7 @@
         "office": "1095"
     },
     {
-        "name": "Christopher Miller",
+        "name": "Christopher R. Miller",
         "priority": "2/3",
         "index": "1",
         "time": "0",
@@ -450,7 +450,7 @@
     {
         "name": "Hong Suh",
         "priority": "3",
-        "index": "49",
+        "index": "50",
         "time": "1525209300000",
         "office": "845"
     },
@@ -737,7 +737,7 @@
     {
         "name": "Leon Zhang",
         "priority": "3",
-        "index": "49",
+        "index": "50",
         "time": "1525209300000",
         "office": "845"
     },
@@ -1080,8 +1080,8 @@
     {
         "name": "Russell Ahmed-Buehler",
         "priority": "3",
-        "index": "47",
-        "time": "1525208400000",
+        "index": "48",
+        "time": "1525209300000",
         "office": "937"
     },
     {
