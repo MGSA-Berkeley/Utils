@@ -123,7 +123,7 @@ function setupDrawList(blocks) {
 	);
 }
 
-function setupOfficeList(offices) {
+function setupOfficeList(offices, officeNums) {
 	let highlightedOfficeNum = null;
 
 	function highlightOfficeBox(number) {
@@ -139,6 +139,8 @@ function setupOfficeList(offices) {
 	}
 
 	offices.forEach(({ number, people, capacity }) => {
+		if (!officeNums.includes(number))
+			return;
 		const div = document.createElement("div");
 		div.className = "block";
 		div.dataset.searchable = people?.join(", ").toLowerCase() || "";
@@ -227,7 +229,7 @@ async function go() {
 
 	setupMap(evans, officeNums);
 	setupDrawList(blocks);
-	setupOfficeList(evans.offices);
+	setupOfficeList(evans.offices, officeNums);
 
 	window.searchForNameInDraw = searchForName.bind(null, drawOrder.lastElementChild);
 	window.searchForNameInOffice = searchForName.bind(null, setOffices.lastElementChild);
