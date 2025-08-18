@@ -10,10 +10,10 @@ Congratulations budding office czar! Here is a step-by-step guide:
 6. Run `git add .` (to add the newly generated `people20xx.json` file), `git commit -am "commit message"` (to commit your changes locally), `git push` (to push your changes to this repository).
 7. Log in to `mgsa@math.berkeley.edu` and upload the contents of [data](officedraw/data) to `public_html/officedraw/data` (or just upload the current `people20xx.json` file if that's all that was changed).
 8. Check that the new data is present on the [officedraw website](https://math.berkeley.edu/~mgsa/officedraw/main.html).
-
-*Note*: For the first-year office draw, steps 3 through 8 are the same, except that they must be done live once the first-years pick their blocking groups. But you can at least fill in the first four columns ahead of time.
 9. During the office draw, run [MGSA.jar](MGSA.jar), click on the `Block` heading to sort by block, and start filling in the `Office` column.
 10. Throughout the officedraw, run steps 5 through 8 to keep the website up-to-date.
+
+*Note*: For the first-year office draw, the steps are the same, but step 3 must wait until the first-years pick their blocking groups, although you can at least fill in the first four columns ahead of time.
 ### Help! The department redesignated which offices are graduate student offices!
 No worries. Simply point the `activeoffices` entry in [data.json](officedraw/data/data.json) to a modified list of active offices. If any of these offices are not yet present in [evans.json](officedraw/data/evans.json), then you will need to add new entries. But please do not delete old entries as that will break previous years.
 ### Help! The we're moving out of Evans!
