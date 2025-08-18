@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +25,10 @@ public class LoadData {
                     Person[] people = new Person[len];
                     for (int i = 0; i < len; i++) {
                         people[i] = new Person(split(lines.get(i), TAB));
+                    }
+                    if (len == 0 || !people[len - 1].blank()) {
+                        people = Arrays.copyOf(people, len + 1);
+                        people[len] = new Person();
                     }
                     data.put(Integer.parseInt(p.toString().substring(0, p.toString().length() - 11)), people);
                 } catch (IOException | NumberFormatException ex) {

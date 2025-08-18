@@ -16,7 +16,7 @@ public class Person {
         for (int i = 0; i < len; i++) {
             String s = data[i];
             if (i == 0) {
-                s = s.replace("  "," ");
+                s = s.replace("  ", " ");
                 while (!s.isEmpty() && s.charAt(s.length() - 1) == ' ') {
                     s = s.substring(0, s.length() - 1);
                 }
@@ -133,5 +133,14 @@ public class Person {
 
     public Person() {
         this("", "", "", "", "", "");
+    }
+
+    public boolean blank() {
+        for (Button b : buttons) {
+            if (!b.getText().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

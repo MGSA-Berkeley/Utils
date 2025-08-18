@@ -343,13 +343,7 @@ public class OfficeDrawScreen implements mgsa.Screen {
                 String text = button.getText();
                 if (!text.isEmpty()) {
                     button.setText(text.substring(0, text.length() - 1));
-                    boolean delete = true;
-                    for (mgsa.Button b : people[row].buttons) {
-                        if (!b.getText().isEmpty()) {
-                            delete = false;
-                            break;
-                        }
-                    }
+                    boolean delete = people[row].blank();
                     if (delete) {
                         Person[] newpeople = new Person[people.length - 1];
                         System.arraycopy(people, 0, newpeople, 0, row);
