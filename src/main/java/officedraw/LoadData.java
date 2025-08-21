@@ -10,19 +10,19 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static java.lang.System.out;
+import java.util.regex.Pattern;
 
 public class LoadData {
 
     private static final char TAB = '\t';
     private static final String LOCAL_FOLDER = "officedraw-local" + File.separator;
+    private static final String REGEX_LOCAL_FOLDER = Pattern.quote(LOCAL_FOLDER);
     private static final int LOCAL_FOLDER_LENGTH = LOCAL_FOLDER.length();
 
     public static Map<Integer, Person[]> load() {
         Map<Integer, Person[]> data = new HashMap<>();
         try {
-            Files.list(Paths.get(LOCAL_FOLDER)).filter(p -> p.toString().matches(".*?\\d+\\.officedraw$")).forEach(p -> {
+            Files.list(Paths.get(LOCAL_FOLDER)).filter(p -> p.toString().matches(REGEX_LOCAL_FOLDER + "\\d+\\.officedraw$")).forEach(p -> {
                 try {
                     List<String> lines;
                     lines = Files.readAllLines(p);
