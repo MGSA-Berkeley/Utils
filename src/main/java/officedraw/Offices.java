@@ -15,7 +15,7 @@ public class Offices {
 
     public static void init() {
         try {
-            String datafolder = "officedraw" + File.separator + "data" + File.separator;
+            String datafolder = "officedraw-website" + File.separator + "data" + File.separator;
             String datafile = datafolder + "data.json";
             List<Object> yearlist = (List) JsonParser.parse(new FileReader(datafile));
             for (int i = 0; i < yearlist.size(); i++) {

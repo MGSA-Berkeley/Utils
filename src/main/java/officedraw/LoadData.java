@@ -1,5 +1,6 @@
 package officedraw;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -10,14 +11,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.System.out;
+
 public class LoadData {
 
     private static final char TAB = '\t';
+    private static final String LOCAL_FOLDER = "officedraw-local" + File.separator;
+    private static final int LOCAL_FOLDER_LENGTH = LOCAL_FOLDER.length();
 
     public static Map<Integer, Person[]> load() {
         Map<Integer, Person[]> data = new HashMap<>();
         try {
-            Files.list(Paths.get("")).filter(p -> p.toString().matches("^\\d+\\.officedraw$")).forEach(p -> {
+            Files.list(Paths.get(LOCAL_FOLDER)).filter(p -> p.toString().matches(".*?\\d+\\.officedraw$")).forEach(p -> {
                 try {
                     List<String> lines;
                     lines = Files.readAllLines(p);
@@ -30,7 +35,7 @@ public class LoadData {
                         people = Arrays.copyOf(people, len + 1);
                         people[len] = new Person();
                     }
-                    data.put(Integer.parseInt(p.toString().substring(0, p.toString().length() - 11)), people);
+                    data.put(Integer.parseInt(p.toString().substring(LOCAL_FOLDER_LENGTH, p.toString().length() - 11)), people);
                 } catch (IOException | NumberFormatException ex) {
                     System.out.println("Error in file " + p);
                     ex.printStackTrace(System.out);

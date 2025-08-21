@@ -65,7 +65,7 @@ public class SaveData {
             priorities.add(blocksums.get(i).divide(new BigFraction(blocks.get(i).size())));
         }
         try {
-            String datafolder = "officedraw" + File.separator + "data" + File.separator;
+            String datafolder = "officedraw-website" + File.separator + "data" + File.separator;
             String datafile = datafolder + "data.json";
             List<Object> yearlist = (List) JsonParser.parse(new FileReader(datafile));
             for (int i = 0; i < yearlist.size(); i++) {
@@ -104,7 +104,7 @@ public class SaveData {
         }
         lines.add("]");
         // todo: harvest file name from data.json
-        Path file = Paths.get("officedraw" + File.separator + "data" + File.separator + "people" + year + ".json");
+        Path file = Paths.get("officedraw-website" + File.separator + "data" + File.separator + "people" + year + ".json");
         try {
             Files.write(file, lines);
         } catch (IOException ex) {
@@ -117,7 +117,7 @@ public class SaveData {
         for (Person p : Sorting.nameSort(data)) {
             lines.add(p.buttons[0].getText() + TAB + p.buttons[1].getText() + TAB + p.buttons[2].getText() + TAB + p.buttons[3].getText() + TAB + p.buttons[4].getText() + TAB + p.buttons[5].getText());
         }
-        Path file = Paths.get(year + ".officedraw");
+        Path file = Paths.get("officedraw-local" + File.separator + year + ".officedraw");
         try {
             Files.write(file, lines);
         } catch (IOException ex) {
