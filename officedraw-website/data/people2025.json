@@ -100,7 +100,7 @@
     {
         "name": "Aren Martinian",
         "priority": "6",
-        "index": "82",
+        "index": "83",
         "time": "1746221400000",
         "office": "846"
     },
@@ -282,14 +282,14 @@
     {
         "name": "Daniel Vargas",
         "priority": "6",
-        "index": "81",
+        "index": "82",
         "time": "1746221400000",
         "office": "846"
     },
     {
         "name": "David Donze",
         "priority": "6",
-        "index": "85",
+        "index": "86",
         "time": "1746222300000",
         "office": "844"
     },
@@ -429,7 +429,7 @@
     {
         "name": "Gregory Li",
         "priority": "6",
-        "index": "86",
+        "index": "87",
         "time": "1746222300000",
         "office": "842"
     },
@@ -450,7 +450,7 @@
     {
         "name": "Haoen Li",
         "priority": "6",
-        "index": "84",
+        "index": "85",
         "time": "1746222300000",
         "office": "854"
     },
@@ -534,7 +534,7 @@
     {
         "name": "Jake Hofgard",
         "priority": "6",
-        "index": "85",
+        "index": "86",
         "time": "1746222300000",
         "office": "844"
     },
@@ -548,7 +548,7 @@
     {
         "name": "Jenna Plute",
         "priority": "6",
-        "index": "82",
+        "index": "83",
         "time": "1746221400000",
         "office": "846"
     },
@@ -709,7 +709,7 @@
     {
         "name": "Madeleine Goertz",
         "priority": "6",
-        "index": "86",
+        "index": "87",
         "time": "1746222300000",
         "office": "842"
     },
@@ -947,8 +947,8 @@
     {
         "name": "Sasha Shashkov",
         "priority": "6",
-        "index": "83",
-        "time": "1746221400000",
+        "index": "84",
+        "time": "1746222300000",
         "office": "846"
     },
     {
@@ -996,7 +996,7 @@
     {
         "name": "Shosuke Kiami",
         "priority": "6",
-        "index": "85",
+        "index": "86",
         "time": "1746222300000",
         "office": "844"
     },
@@ -1073,7 +1073,7 @@
     {
         "name": "Tyler Chamberlain",
         "priority": "6",
-        "index": "85",
+        "index": "86",
         "time": "1746222300000",
         "office": "844"
     },
@@ -1171,7 +1171,7 @@
     {
         "name": "Yasana Aminaei",
         "priority": "6",
-        "index": "86",
+        "index": "87",
         "time": "1746222300000",
         "office": "842"
     },
@@ -1262,7 +1262,7 @@
     {
         "name": "Zarif Ahsan",
         "priority": "6",
-        "index": "86",
+        "index": "87",
         "time": "1746222300000",
         "office": "842"
     },
@@ -1276,7 +1276,7 @@
     {
         "name": "Zhehan Xu",
         "priority": "6",
-        "index": "84",
+        "index": "85",
         "time": "1746222300000",
         "office": "854"
     },
@@ -1300,5 +1300,12 @@
         "index": "36",
         "time": "0",
         "office": "1093"
+    },
+    {
+        "name": "Zuo Lin",
+        "priority": "6",
+        "index": "81",
+        "time": "1746221400000",
+        "office": "836"
     }
 ]
