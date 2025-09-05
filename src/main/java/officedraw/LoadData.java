@@ -20,6 +20,7 @@ public class LoadData {
     private static final int LOCAL_FOLDER_LENGTH = LOCAL_FOLDER.length();
 
     public static Map<Integer, Person[]> load() {
+        Map<String, Map<Integer, Integer>> officemap = new HashMap<>();
         Map<Integer, Person[]> data = new HashMap<>();
         try {
             Files.list(Paths.get(LOCAL_FOLDER)).filter(p -> p.toString().matches("^" + REGEX_LOCAL_FOLDER + "\\d+\\.officedraw$")).forEach(p -> {
