@@ -20,6 +20,8 @@ import javax.imageio.ImageIO;
 public class DisplayElection {
 
     public static void displayElection(int numseats, String[] candidates, List<ElectionState> record, String title) throws IOException {
+        String folder = title.replaceAll(" ", "");
+        new File(folder).mkdirs();
         int numcandidates = candidates.length;
         Decimal maxvote = Decimal.ZERO;
         for (ElectionState electionstate : record) {
@@ -54,7 +56,7 @@ public class DisplayElection {
             }
             Decimal quota = electionstate.getQuota();
             BufferedImage img = displayElectionState(maxlen, reorderedcandidates, states, votes, maxvote, quota);
-            ImageIO.write(img, "png", new File("C:\\Users\\thoma\\website\\election\\round" + round + ".png"));
+            ImageIO.write(img, "png", new File(folder + File.separator + "round" + round + ".png"));
             round++;
         }
         List<String> sb = new ArrayList<>();
@@ -110,9 +112,8 @@ public class DisplayElection {
         sb.add("<div class=\"infobox\">" + winners(elected, "elected") + "!</div>");
         sb.add("</body>");
         sb.add("</html>");
-        Path file = Paths.get("C:\\Users\\thoma\\website\\election\\election.html");
+        Path file = Paths.get(folder + File.separator + "election.html");
         Files.write(file, sb, StandardCharsets.UTF_8);
-        System.exit(0);
     }
 
     private static String winners(List<String> names, String result) {
