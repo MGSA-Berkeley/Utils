@@ -105,7 +105,7 @@ public class ElectionScreen implements mgsa.Screen {
         candidates.drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, 0);
         seats.drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, 0, mouse, click);
         savebutton.drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, 0, mouse, click);
-        error.drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, 0);
+        error.drawLeft(g, MOUSEOVER, Color.RED, smallpadding, 0);
     }
     
     @Override
