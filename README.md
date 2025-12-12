@@ -42,6 +42,7 @@ Congratulations budding office czar! Here is a step-by-step guide:
 8. Check that the new data is present on the [officedraw website](https://math.berkeley.edu/~mgsa/officedraw/main.html).
 9. During the office draw, run [MGSA.jar](MGSA.jar), click on the `Block` heading to sort by block, and start filling in the `Office` column.
 10. Throughout the officedraw, run steps 5 through 8 to keep the website up-to-date.
+11. After the office draw, let Jasan Fujii know that the new data is present on the [officedraw data page](https://math.berkeley.edu/~mgsa/officedraw/data.html).
 
 *Note*: For the first-year office draw, the steps are the same, but step 3 must wait until the first-years pick their blocking groups, although you can at least fill in the first four columns ahead of time.
 ### Help! The department redesignated which offices are graduate student offices!
