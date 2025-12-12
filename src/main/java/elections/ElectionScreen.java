@@ -21,9 +21,9 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 
 public class ElectionScreen implements mgsa.Screen {
-    
+
     private final mgsa.MainCanvas canvas;
-    
+
     private int numseats = 7;
     private ElectionData data = null;
     private final int year = Calendar.getInstance().get(Calendar.YEAR);
@@ -38,25 +38,25 @@ public class ElectionScreen implements mgsa.Screen {
     private final mgsa.Button seats = new mgsa.Button(numseats + " Seats", null);
     private final mgsa.Button savebutton = new mgsa.Button("Save (Ctrl-S)", null);
     private final mgsa.Button error = new mgsa.Button("", null);
-    
+
     private final Set<Integer> keyset = new HashSet<>();
     private static final String newline = "\n";
     private static final String tab = "\t";
     private String paste = "";
-    
+
     private Point click;
-    
+
     private static final Color BACKGROUND = mgsa.GraphicsUtils.Grey;
     private static final Color FOREGROUND = mgsa.GraphicsUtils.Black;
     private static final Color MOUSEOVER = mgsa.GraphicsUtils.BayFog;
-    
+
     private static final Font BIGFONT = new Font(Font.SANS_SERIF, Font.BOLD, 48);
     private static final Font SMALLFONT = new Font(Font.SANS_SERIF, Font.PLAIN, 24);
-    
+
     public ElectionScreen(mgsa.MainCanvas canvas) {
         this.canvas = canvas;
     }
-    
+
     @Override
     public void paintComponent(Graphics g, int w, int h) {
         int bigpadding = 12;
@@ -107,12 +107,12 @@ public class ElectionScreen implements mgsa.Screen {
         savebutton.drawLeft(g, MOUSEOVER, FOREGROUND, smallpadding, 0, mouse, click);
         error.drawLeft(g, MOUSEOVER, Color.RED, smallpadding, 0);
     }
-    
+
     @Override
     public void mousePressed() {
         click = canvas.getMousePosition();
     }
-    
+
     @Override
     public void mouseReleased() {
         Point p = canvas.getMousePosition();
@@ -129,7 +129,10 @@ public class ElectionScreen implements mgsa.Screen {
             save();
         }
         if (title.contains(p) && title.contains(click)) {
-            title.setText(JOptionPane.showInputDialog("Election Title:", title.getText()));
+            String s = JOptionPane.showInputDialog("Election Title:", title.getText());
+            if (s != null) {
+                title.setText(s);
+            }
         }
         if (seats.contains(p) && seats.contains(click)) {
             String s = JOptionPane.showInputDialog("Number of Seats:", numseats);
@@ -139,19 +142,19 @@ public class ElectionScreen implements mgsa.Screen {
                     throw new IllegalArgumentException();
                 }
                 numseats = k;
-                seats.setText(numseats+" Seats");
+                seats.setText(numseats + " Seats");
                 error.setText("");
             } catch (Exception ex) {
-                error.setText("Invalid number of seats: "+s);
+                error.setText("Invalid number of seats: " + s);
             }
         }
         click = null;
     }
-    
+
     @Override
     public void mouseScrolled(int n) {
     }
-    
+
     @Override
     public void keyPressed(int key) {
         keyset.add(key);
@@ -166,31 +169,25 @@ public class ElectionScreen implements mgsa.Screen {
         }
     }
 
-    // why isn't empty throwing an error?
     private void paste() {
         try {
             Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
             Transferable t = cb.getContents(null);
-            if (t.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-                String s = (String) t.getTransferData(DataFlavor.stringFlavor);
-                if (!paste.equals(s)) {
-                    paste = s;
-                    ElectionData data = LoadElection.loadElection(paste);
-                    if (data.candidates.length <= numseats) {
-                        throw new IllegalArgumentException("There are " + data.candidates.length + " candidates for " + numseats + " seats, so there is no point holding an election.");
-                    }
-                    this.data = data;
-                    candidates.setText(data.candidates.length + " candidates");
-                    ballots.setText(data.ballots.length + " ballots");
-                    error.setText("");
-                }
+            paste = (String) t.getTransferData(DataFlavor.stringFlavor);
+            ElectionData data = LoadElection.loadElection(paste);
+            if (data.candidates.length <= numseats) {
+                throw new IllegalArgumentException("There are " + data.candidates.length + " candidates for " + numseats + " seats, so there is no point holding an election.");
             }
-        } catch (HeadlessException | UnsupportedFlavorException | IllegalArgumentException | IOException ex) {
+            this.data = data;
+            candidates.setText(data.candidates.length + " candidates");
+            ballots.setText(data.ballots.length + " ballots");
+            error.setText("");
+        } catch (Exception ex) {
             error.setText(ex.getMessage());
             data = null;
         }
     }
-    
+
     private void save() {
         if (data == null) {
             error.setText("No valid data has been pasted yet");
@@ -204,7 +201,7 @@ public class ElectionScreen implements mgsa.Screen {
             error.setText(ex.getMessage());
         }
     }
-    
+
     @Override
     public void keyReleased(int key) {
         keyset.remove(key);
