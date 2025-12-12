@@ -49,6 +49,3 @@ Congratulations budding office czar! Here is a step-by-step guide:
 No worries. Simply point the `activeoffices` entry in [data.json](officedraw-website/data/data.json) to a modified list of active offices. If any of these offices are not yet present in [evans.json](officedraw-website/data/evans.json), then you will need to add new entries. But please do not delete old entries as that will break previous years.
 ### Help! The we're moving out of Evans!
 My condolences. You'll need to point the `floorplan` entry in [data.json](officedraw-website/data/data.json) to a remake of [evans.json](officedraw-website/data/evans.json). You will also need to make new floor plan images. Please do this carefully with attention to detail since these floor plan images will be used long after you're gone. Our current floor plan images are courtesy of Larsen Linov and are perhaps the most accurate maps of Evans Hall that you can find publically.
-
-
-Right now, running the election requires cloning this repo and modifying hardcoded directory paths in the code, but we're hoping to change that soon :)
