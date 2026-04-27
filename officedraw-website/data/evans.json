@@ -117,6 +117,13 @@
             "ypoints": [261, 212, 212, 261]
         },
         {
+            "floor": "7",
+            "number": "797",
+            "capacity": 4,
+            "xpoints": [987, 987, 888, 888],
+            "ypoints": [568, 521, 521, 568]
+        },
+        {
             "floor": "8",
             "number": "810",
             "capacity": 2,
