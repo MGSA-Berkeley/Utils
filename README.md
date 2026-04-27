@@ -47,5 +47,5 @@ Congratulations budding office czar! Here is a step-by-step guide:
 *Note*: For the first-year office draw, the steps are the same, but step 3 must wait until the first-years pick their blocking groups, although you can at least fill in the first four columns ahead of time.
 ### Help! The department redesignated which offices are graduate student offices!
 No worries. Simply point the `activeoffices` entry in [data.json](officedraw-website/data/data.json) to a modified list of active offices. If any of these offices are not yet present in [evans.json](officedraw-website/data/evans.json), then you will need to add new entries. But please do not delete old entries as that will break previous years.
-### Help! The we're moving out of Evans!
+### Help! We're moving out of Evans!
 My condolences. You'll need to point the `floorplan` entry in [data.json](officedraw-website/data/data.json) to a remake of [evans.json](officedraw-website/data/evans.json). You will also need to make new floor plan images. Please do this carefully with attention to detail since these floor plan images will be used long after you're gone. Our current floor plan images are courtesy of Larsen Linov and are perhaps the most accurate maps of Evans Hall that you can find publically.
