@@ -178,5 +178,14 @@
         "start": 1746212400000,
         "delta": 900000,
         "timeslots": 12
+    },
+    {
+        "year": "2026",
+        "floorplan": "evans.json",
+        "activeoffices": "activeoffices2026.json",
+        "people": "people2026.json",
+        "start": 1777651200000,
+        "delta": 900000,
+        "timeslots": 12
     }
 ]
