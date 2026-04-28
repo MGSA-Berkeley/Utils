@@ -79,7 +79,7 @@
     {
         "name": "Aren Martinian",
         "priority": "4",
-        "index": "70",
+        "index": "71",
         "time": "1777660200000",
         "office": ""
     },
@@ -100,15 +100,15 @@
     {
         "name": "Benjamin Braiman",
         "priority": "4",
-        "index": "67",
+        "index": "68",
         "time": "1777659300000",
         "office": ""
     },
     {
         "name": "Benjamin Daniels",
         "priority": "4",
-        "index": "64",
-        "time": "1777658400000",
+        "index": "65",
+        "time": "1777659300000",
         "office": ""
     },
     {
@@ -143,20 +143,20 @@
         "name": "Cameron Chang",
         "priority": "3",
         "index": "58",
-        "time": "1777657500000",
+        "time": "1777656600000",
         "office": ""
     },
     {
         "name": "Casey Appleton",
         "priority": "4",
-        "index": "70",
+        "index": "71",
         "time": "1777660200000",
         "office": ""
     },
     {
         "name": "Cecilia Chen",
         "priority": "4",
-        "index": "66",
+        "index": "67",
         "time": "1777659300000",
         "office": ""
     },
@@ -184,7 +184,7 @@
     {
         "name": "Christian Campbell",
         "priority": "4",
-        "index": "67",
+        "index": "68",
         "time": "1777659300000",
         "office": ""
     },
@@ -203,9 +203,9 @@
         "office": "737"
     },
     {
-        "name": "Daniel 'Danny' Alexander Newman Vargas",
+        "name": "Daniel "Danny" Alexander Newman Vargas",
         "priority": "4",
-        "index": "72",
+        "index": "73",
         "time": "1777661100000",
         "office": ""
     },
@@ -233,8 +233,8 @@
     {
         "name": "David Donze",
         "priority": "4",
-        "index": "64",
-        "time": "1777658400000",
+        "index": "65",
+        "time": "1777659300000",
         "office": ""
     },
     {
@@ -248,7 +248,7 @@
         "name": "Emma Boniface",
         "priority": "2",
         "index": "48",
-        "time": "1777654800000",
+        "time": "1777653900000",
         "office": ""
     },
     {
@@ -317,7 +317,7 @@
     {
         "name": "Gregory Li",
         "priority": "4",
-        "index": "73",
+        "index": "74",
         "time": "1777661100000",
         "office": ""
     },
@@ -331,7 +331,7 @@
     {
         "name": "Haoen Li",
         "priority": "4",
-        "index": "65",
+        "index": "66",
         "time": "1777659300000",
         "office": ""
     },
@@ -359,9 +359,16 @@
     {
         "name": "Ignasi Segura Vicente",
         "priority": "4",
-        "index": "63",
+        "index": "64",
         "time": "1777658400000",
         "office": ""
+    },
+    {
+        "name": "Iris Rosenblum-Sellers",
+        "priority": "1",
+        "index": "15",
+        "time": "0",
+        "office": "941"
     },
     {
         "name": "Jacob Erlikhman",
@@ -401,8 +408,15 @@
     {
         "name": "Jenna Plute",
         "priority": "4",
-        "index": "72",
+        "index": "73",
         "time": "1777661100000",
+        "office": ""
+    },
+    {
+        "name": "Jerry Wei",
+        "priority": "7/2",
+        "index": "63",
+        "time": "1777658400000",
         "office": ""
     },
     {
@@ -443,7 +457,7 @@
     {
         "name": "Julian Kaufmann",
         "priority": "4",
-        "index": "69",
+        "index": "70",
         "time": "1777660200000",
         "office": ""
     },
@@ -506,7 +520,7 @@
     {
         "name": "Madeleine Goertz",
         "priority": "4",
-        "index": "73",
+        "index": "74",
         "time": "1777661100000",
         "office": ""
     },
@@ -527,6 +541,13 @@
     {
         "name": "MohammedSaid Alhalimi",
         "priority": "4",
+        "index": "64",
+        "time": "1777658400000",
+        "office": ""
+    },
+    {
+        "name": "Nai-Chung Hou",
+        "priority": "7/2",
         "index": "63",
         "time": "1777658400000",
         "office": ""
@@ -541,7 +562,7 @@
     {
         "name": "Nilay Patel",
         "priority": "4",
-        "index": "68",
+        "index": "69",
         "time": "1777660200000",
         "office": ""
     },
@@ -604,7 +625,7 @@
     {
         "name": "Rebecca Lan",
         "priority": "4",
-        "index": "66",
+        "index": "67",
         "time": "1777659300000",
         "office": ""
     },
@@ -667,7 +688,7 @@
     {
         "name": "Sam Lidz",
         "priority": "4",
-        "index": "67",
+        "index": "68",
         "time": "1777659300000",
         "office": ""
     },
@@ -675,7 +696,7 @@
         "name": "Sam Mayo",
         "priority": "3",
         "index": "61",
-        "time": "1777658400000",
+        "time": "1777657500000",
         "office": ""
     },
     {
@@ -723,7 +744,7 @@
     {
         "name": "Shosuke Kiami",
         "priority": "4",
-        "index": "69",
+        "index": "70",
         "time": "1777660200000",
         "office": ""
     },
@@ -751,7 +772,7 @@
     {
         "name": "Suyash Srivastava",
         "priority": "4",
-        "index": "71",
+        "index": "72",
         "time": "1777661100000",
         "office": ""
     },
@@ -772,7 +793,7 @@
     {
         "name": "Tyler Chamberlain",
         "priority": "4",
-        "index": "69",
+        "index": "70",
         "time": "1777660200000",
         "office": ""
     },
@@ -843,7 +864,7 @@
         "name": "Xiangru Zeng",
         "priority": "3",
         "index": "58",
-        "time": "1777657500000",
+        "time": "1777656600000",
         "office": ""
     },
     {
@@ -856,7 +877,7 @@
     {
         "name": "Yahya Bashandy",
         "priority": "4",
-        "index": "63",
+        "index": "64",
         "time": "1777658400000",
         "office": ""
     },
@@ -919,8 +940,8 @@
     {
         "name": "Zarif Ahsan",
         "priority": "4",
-        "index": "64",
-        "time": "1777658400000",
+        "index": "65",
+        "time": "1777659300000",
         "office": ""
     },
     {
@@ -933,7 +954,7 @@
     {
         "name": "Zhehan Xu",
         "priority": "4",
-        "index": "71",
+        "index": "72",
         "time": "1777661100000",
         "office": ""
     },
