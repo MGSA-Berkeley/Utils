@@ -128,14 +128,14 @@
     {
         "name": "Benjamin Braiman",
         "priority": "6",
-        "index": "77",
+        "index": "78",
         "time": "1746220500000",
         "office": "848"
     },
     {
         "name": "Benjamin Daniels",
         "priority": "6",
-        "index": "77",
+        "index": "78",
         "time": "1746220500000",
         "office": "848"
     },
@@ -198,8 +198,8 @@
     {
         "name": "Cecilia Chen",
         "priority": "6",
-        "index": "75",
-        "time": "1746219600000",
+        "index": "76",
+        "time": "1746220500000",
         "office": "832"
     },
     {
@@ -233,7 +233,7 @@
     {
         "name": "Christian Campbell",
         "priority": "6",
-        "index": "77",
+        "index": "78",
         "time": "1746220500000",
         "office": "848"
     },
@@ -266,13 +266,6 @@
         "office": "853"
     },
     {
-        "name": "Daniel 'Danny' Alexander Newman Vargas",
-        "priority": "6",
-        "index": "78",
-        "time": "1746220500000",
-        "office": "846"
-    },
-    {
         "name": "Daniel Gonzalez",
         "priority": "3",
         "index": "55",
@@ -292,6 +285,13 @@
         "index": "66",
         "time": "1746217800000",
         "office": "1062"
+    },
+    {
+        "name": "Danny Vargas",
+        "priority": "6",
+        "index": "75",
+        "time": "1746219600000",
+        "office": "846"
     },
     {
         "name": "David Donze",
@@ -842,8 +842,8 @@
     {
         "name": "Rebecca Lan",
         "priority": "6",
-        "index": "75",
-        "time": "1746219600000",
+        "index": "76",
+        "time": "1746220500000",
         "office": "832"
     },
     {
@@ -1010,7 +1010,7 @@
     {
         "name": "Songyu Ye",
         "priority": "6",
-        "index": "77",
+        "index": "78",
         "time": "1746220500000",
         "office": "848"
     },
@@ -1031,7 +1031,7 @@
     {
         "name": "Suyash Srivastava",
         "priority": "6",
-        "index": "76",
+        "index": "77",
         "time": "1746220500000",
         "office": "854"
     },

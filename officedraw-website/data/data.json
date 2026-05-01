@@ -184,7 +184,7 @@
         "floorplan": "evans.json",
         "activeoffices": "activeoffices2026.json",
         "people": "people2026.json",
-        "start": 1777651200000,
+        "start": 1777658400000,
         "delta": 900000,
         "timeslots": 12
     }
